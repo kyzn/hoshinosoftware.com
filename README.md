@@ -1,0 +1,1 @@
+# hoshinosoftware.com
