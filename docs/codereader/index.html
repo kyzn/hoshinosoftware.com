@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Code Reader – Documentation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+/* ── Reset & Base ───────────────────────────── */
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #111;
+  line-height: 1.6;
+}
+
+/* ── Fixed language strip ───────────────────── */
+#lang-strip {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid #e5e5e5;
+}
+#lang-strip .strip-langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  padding: 8px 20px;
+  font-size: 13px;
+  justify-content: center;
+}
+#lang-strip .strip-langs a {
+  color: #666;
+  text-decoration: none;
+  padding: 2px 10px 2px 0;
+  white-space: nowrap;
+}
+#lang-strip .strip-langs a:hover { color: #000; }
+#lang-strip .strip-langs a.active { color: #000; font-weight: 700; }
+#lang-strip .strip-langs .dot {
+  color: #ccc;
+  padding-right: 10px;
+  user-select: none;
+}
+
+/* ── Main content ───────────────────────────── */
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+  /* top padding handled by JS after header height is known */
+}
+
+/* ── Section scroll anchors ─────────────────── */
+.lang-anchor {
+  scroll-margin-top: 90px; /* header height + breathing room */
+}
+
+/* ── Language section divider ───────────────── */
+.lang-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 56px 0 32px;
+  padding-top: 24px;
+  border-top: 2px solid #e5e5e5;
+}
+.lang-divider:first-child {
+  margin-top: 0;
+  border-top: none;
+  padding-top: 0;
+}
+.lang-flag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #aaa;
+  white-space: nowrap;
+}
+.lang-name {
+  font-size: 13px;
+  color: #bbb;
+}
+
+/* ── Sub-section divider (Manual / Legal) ───── */
+.sub-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 40px 0 24px;
+}
+.sub-divider::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.sub-divider-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bbb;
+  white-space: nowrap;
+}
+.sub-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+/* ── Placeholder ────────────────────────────── */
+.placeholder-block {
+  background: #f9f9f9;
+  border: 1px dashed #ddd;
+  border-radius: 10px;
+  padding: 40px 20px;
+  text-align: center;
+  color: #bbb;
+  font-style: italic;
+  font-size: 15px;
+  margin: 20px 0;
+}
+
+/* ── Typography ─────────────────────────────── */
+h1 { font-weight: 600; margin-bottom: 10px; margin-top: 0; }
+h2 { margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+h3 { margin-top: 20px; margin-bottom: 4px; }
+p  { margin: 10px 0; }
+ul, ol { padding-left: 20px; }
+li { margin: 4px 0; }
+
+/* ── Manual-specific ────────────────────────── */
+.screenshots {
+  display: flex; gap: 16px; flex-wrap: wrap; margin-top: 15px;
+}
+.screenshots img {
+  width: 160px; border-radius: 20px; border: 1px solid #ddd;
+}
+.screenshot-placeholder {
+  display: inline-block;
+  width: 160px; height: 280px;
+  background: #f5f5f7;
+  border-radius: 20px;
+  border: 1px dashed #ccc;
+  text-align: center;
+  line-height: 280px;
+  font-size: 12px; color: #999;
+  vertical-align: top;
+}
+.tip {
+  background: #f5f5f7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 15px;
+}
+table {
+  width: 100%; border-collapse: collapse;
+  margin-top: 15px; font-size: 14px;
+  border: 1px solid #eee; border-radius: 8px; overflow: hidden;
+}
+thead th {
+  text-align: left; background: #f5f5f7;
+  font-weight: 600; padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+tbody td { padding: 10px; border-bottom: 1px solid #eee; }
+tbody tr:nth-child(even) { background: #fafafa; }
+
+/* ── RTL block ──────────────────────────────── */
+.rtl { direction: rtl; }
+.rtl h1, .rtl h2, .rtl h3, .rtl p, .rtl ul, .rtl ol { text-align: right; }
+
+/* ── Footer ─────────────────────────────────── */
+footer {
+  margin-top: 60px; padding-top: 10px;
+  border-top: 1px solid #eee;
+  font-size: 12px; color: #666; text-align: center;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- FIXED LANGUAGE STRIP                                      -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div id="lang-strip">
+  <nav class="strip-langs">
+    <a href="#manual-en" data-lang="en">EN</a><span class="dot">·</span>
+    <a href="#manual-fr" data-lang="fr">FR</a><span class="dot">·</span>
+    <a href="#manual-it" data-lang="it">IT</a><span class="dot">·</span>
+    <a href="#manual-es" data-lang="es">ES</a><span class="dot">·</span>
+    <a href="#manual-de" data-lang="de">DE</a><span class="dot">·</span>
+    <a href="#manual-tr" data-lang="tr">TR</a><span class="dot">·</span>
+    <a href="#manual-ko" data-lang="ko">한국어</a><span class="dot">·</span>
+    <a href="#manual-ja" data-lang="ja">日本語</a><span class="dot">·</span>
+    <a href="#manual-zh-hans" data-lang="zh-hans">简体中文</a><span class="dot">·</span>
+    <a href="#manual-zh-hant" data-lang="zh-hant">繁體中文</a><span class="dot">·</span>
+    <a href="#manual-ar" data-lang="ar">العربية</a>
+  </nav>
+</div>
+
+<main>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  ENGLISH                                                  -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<div class="lang-divider lang-anchor" id="manual-en">
+  <span class="lang-flag">EN</span><span class="lang-name">English</span>
+</div>
+
+<!-- Manual -->
+<h1>Code Reader – Support</h1>
+
+<p>Code Reader scans barcodes and QR codes using your iPhone's camera or any image in your photo library.
+It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
+
+<div class="screenshots">
+  <span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+  <span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+  <span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+  <span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+</div>
+
+<h2>Camera</h2>
+<p>The Camera tab opens immediately to a live viewfinder. Point it at any barcode or QR code — it detects codes automatically and shows the result.</p>
+<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+<ul>
+  <li><b>Flashlight</b> — tap the flashlight button to illuminate dark environments. Automatically disabled when using the front camera.</li>
+  <li><b>Front camera</b> — tap the rotate button to switch between rear and front cameras. Useful for scanning codes on another screen.</li>
+</ul>
+<div class="tip">💡 The app shows a red scanning line while it looks for codes. You don't need to press anything — recognition is automatic.</div>
+<h3>If the camera is not accessible</h3>
+<p>If Code Reader doesn't have camera permission, a message will appear with an <b>Open Settings</b> button. Tap it, then enable <b>Camera</b> access for Code Reader.</p>
+
+<h2>Gallery</h2>
+<p>The Gallery tab lets you scan codes from an existing image. Tap <b>Choose Photo</b> to pick any image from your library — only the specific photo you choose is shared with the app. Code Reader does not request access to your entire photo library.</p>
+<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+<p>After picking a photo, the app scans it and shows the result immediately. If no code is found, an alert will tell you so.</p>
+
+<h2>Scan Results</h2>
+<p>When a code is detected, Code Reader shows you its content. For plain text or URLs, you'll see the raw data and buttons to <b>Copy</b>, <b>Share</b>, and <b>Open</b> (URLs only).</p>
+<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+<p>Code Reader automatically recognises special code types and shows contextual actions:</p>
+<table>
+  <thead><tr><th>Code type</th><th>What you can do</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / Link</td><td>Open in your default browser · Copy · Share</td></tr>
+    <tr><td>📶 Wi-Fi network</td><td><b>Connect</b> directly · Copy password</td></tr>
+    <tr><td>👤 Contact (vCard / MECARD)</td><td><b>Save to Contacts</b> with preview</td></tr>
+    <tr><td>📅 Calendar event</td><td><b>Add to Calendar</b></td></tr>
+    <tr><td>✉️ Email</td><td><b>Compose</b> pre-filled email</td></tr>
+    <tr><td>💬 SMS / Message</td><td><b>Send Message</b></td></tr>
+    <tr><td>📞 Phone number</td><td><b>Call</b></td></tr>
+    <tr><td>📍 Location / Geo</td><td><b>Open in Maps</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> or FaceTime Audio</td></tr>
+    <tr><td>₿ Bitcoin</td><td><b>Copy address</b></td></tr>
+    <tr><td>✈️ Boarding pass</td><td>Flight details parsed from Aztec / PDF417</td></tr>
+  </tbody>
+</table>
+<h3>Tracking parameter detection</h3>
+<p>When a URL contains tracking parameters (UTM tags, click IDs, etc.), Code Reader shows an <b>Open Without Tracking</b> button. Tap it to open the link with all tracking parameters stripped — you reach the same page without being tracked.</p>
+<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+
+<h2>History</h2>
+<p>Every scan is automatically saved to the History tab. Scans are kept for <b>6 months</b> and the history holds up to <b>1,000 entries</b>; the oldest are removed automatically when the limit is reached.</p>
+<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+<ul>
+  <li><b>View a past scan</b> — tap any row to re-open the full result.</li>
+  <li><b>Delete one entry</b> — swipe left on a row and tap <b>Delete</b>.</li>
+  <li><b>Delete all</b> — tap the trash icon in the top-right corner.</li>
+  <li><b>Source label</b> — each entry shows whether it came from the Camera, Gallery, or a Share.</li>
+</ul>
+
+<h2>Settings</h2>
+<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+<h3>Multi-Code Mode</h3>
+<p>By default, Code Reader stops as soon as it finds <b>one code</b>. Turn on <b>Multi-Code Mode</b> to scan up to <b>5 codes at once</b> — useful for business cards, product sheets, or any image containing several codes side by side.</p>
+<p>When multi-code mode is active, the camera keeps scanning for a brief moment after the first detection to gather all visible codes before showing results. This is why it takes slightly longer than single-code mode.</p>
+<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+<h3>Show Details (Advanced Mode)</h3>
+<p>Turn on <b>Show Details</b> to reveal technical metadata about each code — things like QR version, error correction level, mask pattern, or barcode structure (start/stop characters, check digit). This information is shown both in the result view and in the History tab rows.</p>
+<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+
+<h2>Scanning from Another App</h2>
+<p>You can scan a code that appears in a photo inside any other app — a message, email, document viewer, or web browser — without leaving that app.</p>
+<h3>Using the Share Sheet (Share Extension)</h3>
+<ol>
+  <li>Long-press the image that contains the code.</li>
+  <li>Tap <b>Share</b>.</li>
+  <li>In the share sheet, find and tap <b>Code Reader</b>.</li>
+  <li>The app opens and scans the image automatically.</li>
+</ol>
+<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+<h3>Using the Actions Row (Action Extension)</h3>
+<ol>
+  <li>Long-press the image that contains the code.</li>
+  <li>Tap <b>Share</b>.</li>
+  <li>Scroll the actions row and tap <b>Scan for Codes</b>.</li>
+  <li>The app opens and scans the image automatically.</li>
+</ol>
+<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+<div class="tip">💡 Both options do the same thing. "Code Reader" in the app row and "Scan for Codes" in the actions row are two ways to reach the same feature.</div>
+
+<h2>Homescreen Widget</h2>
+<p>Code Reader includes a homescreen widget in three sizes (small, medium, large). Tapping it opens the app directly to the camera, ready to scan.</p>
+<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+<p>To add the widget:</p>
+<ol>
+  <li>Long-press an empty area of your homescreen until the icons jiggle.</li>
+  <li>Tap the <b>+</b> button in the top-left corner.</li>
+  <li>Search for <b>Code Reader</b>.</li>
+  <li>Choose a size and tap <b>Add Widget</b>.</li>
+</ol>
+
+<h2>Control Center</h2>
+<p>A Control Center button lets you open Code Reader's camera with a single tap from anywhere — lock screen, another app, anywhere.</p>
+<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+<p>To add the control:</p>
+<ol>
+  <li>Open <b>Settings → Control Center</b>.</li>
+  <li>Scroll down to <b>More Controls</b>.</li>
+  <li>Tap <b>+</b> next to <b>Code Reader</b>.</li>
+</ol>
+<div class="tip">💡 On iOS 26, you can also add controls directly from the Control Center: swipe to open it, tap <b>+</b>, and find Code Reader in the list.</div>
+
+<h2>Supported Code Types</h2>
+<table>
+  <thead><tr><th>Type</th><th>Codes</th></tr></thead>
+  <tbody>
+    <tr><td><b>2D</b></td><td>QR Code, Micro QR, Aztec, Data Matrix, PDF417, Micro PDF417</td></tr>
+    <tr><td><b>EAN / UPC</b></td><td>EAN-8, EAN-13, UPC-E</td></tr>
+    <tr><td><b>Code</b></td><td>Code 39, Code 39 (Checksum), Code 39 Full ASCII, Code 93, Code 93i, Code 128</td></tr>
+    <tr><td><b>Industrial</b></td><td>ITF-14, Interleaved 2 of 5 (I2of5), I2of5 Checksum, Codabar</td></tr>
+    <tr><td><b>GS1 DataBar</b></td><td>GS1 DataBar, GS1 DataBar Expanded, GS1 DataBar Limited</td></tr>
+  </tbody>
+</table>
+
+<h2>FAQ</h2>
+<ul>
+  <li><b>Does it need an internet connection?</b><br>No. Code Reader works completely offline.</li><br>
+  <li><b>Does it collect my data?</b><br>No. Nothing is uploaded anywhere. Scan history is stored only on your device.</li><br>
+  <li><b>Does it access my entire photo library?</b><br>No. In the Gallery tab, you pick a single photo using the system photo picker — Code Reader never receives access to your library.</li><br>
+  <li><b>Why does multi-code mode take a little longer?</b><br>The camera gathers codes across a short window of frames to make sure it catches all codes in view before showing the result.</li><br>
+  <li><b>How long is scan history kept?</b><br>Entries older than 6 months are removed automatically. The history also caps at 1,000 entries; the oldest are removed to make room for new ones.</li><br>
+  <li><b>Why doesn't it navigate to a link automatically?</b><br>This is intentional. Fake or malicious QR codes are common — in parking lots, restaurant tables, and elsewhere. Showing you the URL before opening it lets you verify it's safe.</li>
+</ul>
+
+<!-- Legal – English -->
+<div class="sub-divider lang-anchor" id="legal-en"><span class="sub-divider-label">Legal</span></div>
+
+<h2 class="lang-anchor" id="privacy-en">Privacy Policy</h2>
+<p><b>Last Updated:</b> April 2026</p>
+<h3>Introduction</h3>
+<p>Code Reader is built around a simple principle: your data belongs to you. This Privacy Policy explains what information the app accesses and how it is handled.</p>
+<h3>Camera Access</h3>
+<p>The app uses your device's camera to scan barcodes and QR codes in real time. The camera feed is processed entirely on your device. No images or video frames are ever stored, uploaded, or shared with anyone.</p>
+<h3>Scan History</h3>
+<p>Scan results are saved locally on your device using Apple's on-device storage. This data never leaves your device and is never transmitted to any server. You can delete your scan history at any time from within the app.</p>
+<h3>No Internet Connection</h3>
+<p>Code Reader works entirely offline. The app makes no network requests. Your data never leaves your device.</p>
+<h3>No Data Collection</h3>
+<p>We do not collect, store, or process any personal information. The app does not require an account or any form of registration.</p>
+<h3>Third-Party Services</h3>
+<p>Code Reader does not use any third-party analytics, advertising, or tracking services. No data is shared with any third party.</p>
+<h3>Children's Privacy</h3>
+<p>Because no personal data is collected, Code Reader is safe for users of all ages and complies with the Children's Online Privacy Protection Act (COPPA) and similar regulations worldwide.</p>
+<h3>Changes to This Policy</h3>
+<p>We may update this Privacy Policy from time to time. Changes are effective immediately upon posting. We encourage you to review this page periodically.</p>
+<h3>Contact Us</h3>
+<p>If you have any questions about this Privacy Policy, do not hesitate to contact us at: support [at] hoshinosoftware [dot] com</p>
+
+<h2 class="lang-anchor" id="terms-en">Terms of Service</h2>
+<p><b>Last Updated:</b> April 2026</p>
+<h3>Acceptance of Terms</h3>
+<p>By downloading or using Code Reader, you agree to be bound by these Terms of Service. If you do not agree, please do not use the app.</p>
+<h3>License</h3>
+<p>Hoshino Software grants you a personal, non-transferable, non-exclusive license to use Code Reader on your Apple devices in accordance with these terms and Apple's App Store Terms of Service.</p>
+<h3>Permitted Use</h3>
+<p>You may use Code Reader only for lawful purposes. You agree not to use the app in any way that violates applicable laws or regulations.</p>
+<h3>No Warranty</h3>
+<p>Code Reader is provided "as is" without warranty of any kind, express or implied. We do not guarantee that the app will be error-free, uninterrupted, or suitable for any particular purpose.</p>
+<h3>Limitation of Liability</h3>
+<p>To the fullest extent permitted by applicable law, Hoshino Software shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use of or inability to use Code Reader.</p>
+<h3>Changes to These Terms</h3>
+<p>We may update these Terms of Service from time to time. Continued use of the app after changes are posted constitutes your acceptance of the revised terms.</p>
+<h3>Governing Law</h3>
+<p>These terms are governed by the laws of the jurisdiction in which Hoshino Software operates.</p>
+<h3>Contact Us</h3>
+<p>If you have any questions about these Terms of Service, do not hesitate to contact us at: support [at] hoshinosoftware [dot] com</p>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  FRANÇAIS                                                 -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<div class="lang-divider lang-anchor" id="manual-fr">
+  <span class="lang-flag">FR</span><span class="lang-name">Français</span>
+</div>
+
+<h1>Lecteur de Codes – Manuel</h1>
+<div class="placeholder-block">Manuel en cours de rédaction — disponible prochainement.</div>
+
+<div class="sub-divider lang-anchor" id="legal-fr"><span class="sub-divider-label">Mentions légales</span></div>
+
+<h2 class="lang-anchor" id="privacy-fr">Politique de Confidentialité</h2>
+<p><b>Dernière mise à jour :</b> avril 2026</p>
+<h3>Introduction</h3>
+<p>Lecteur de Codes repose sur un principe simple : vos données vous appartiennent. Cette politique de confidentialité explique à quelles informations l'application accède et comment elles sont traitées.</p>
+<h3>Accès à l'appareil photo</h3>
+<p>L'application utilise l'appareil photo de votre appareil pour scanner des codes-barres et des codes QR en temps réel. Le flux de la caméra est traité entièrement sur votre appareil. Aucune image ni séquence vidéo n'est jamais stockée, téléchargée ou partagée.</p>
+<h3>Historique des scans</h3>
+<p>Les résultats des scans sont enregistrés localement sur votre appareil grâce à la technologie de stockage embarquée d'Apple. Ces données ne quittent jamais votre appareil et ne sont jamais transmises à un serveur. Vous pouvez supprimer votre historique de scans à tout moment depuis l'application.</p>
+<h3>Aucune connexion Internet requise</h3>
+<p>Lecteur de Codes fonctionne entièrement hors ligne. L'application n'effectue aucune requête réseau. Vos données ne quittent jamais votre appareil.</p>
+<h3>Aucune collecte de données</h3>
+<p>Nous ne collectons, ne stockons ni ne traitons aucune information personnelle. L'application ne nécessite ni compte ni inscription d'aucune sorte.</p>
+<h3>Services tiers</h3>
+<p>Lecteur de Codes n'utilise aucun service d'analyse, de publicité ou de suivi tiers. Aucune donnée n'est partagée avec des tiers.</p>
+<h3>Confidentialité des enfants</h3>
+<p>Étant donné qu'aucune donnée personnelle n'est collectée, Lecteur de Codes est sûr pour les utilisateurs de tous âges et est conforme à la loi COPPA et aux réglementations similaires dans le monde entier.</p>
+<h3>Modifications de cette politique</h3>
+<p>Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. Les modifications prennent effet immédiatement après leur publication. Nous vous encourageons à consulter cette page régulièrement.</p>
+<h3>Nous contacter</h3>
+<p>Pour toute question concernant cette politique de confidentialité : support [at] hoshinosoftware [dot] com</p>
+
+<h2 class="lang-anchor" id="terms-fr">Conditions d'Utilisation</h2>
+<p><b>Dernière mise à jour :</b> avril 2026</p>
+<h3>Acceptation des conditions</h3>
+<p>En téléchargeant ou en utilisant Lecteur de Codes, vous acceptez d'être lié par ces Conditions d'Utilisation. Si vous n'êtes pas d'accord, veuillez ne pas utiliser l'application.</p>
+<h3>Licence</h3>
+<p>Hoshino Software vous accorde une licence personnelle, non transférable et non exclusive pour utiliser Lecteur de Codes sur vos appareils Apple, conformément à ces conditions et aux Conditions d'utilisation de l'App Store d'Apple.</p>
+<h3>Utilisation autorisée</h3>
+<p>Vous ne pouvez utiliser Lecteur de Codes qu'à des fins légales. Vous vous engagez à ne pas utiliser l'application d'une manière qui violerait les lois ou réglementations applicables.</p>
+<h3>Absence de garantie</h3>
+<p>Lecteur de Codes est fourni « tel quel » sans garantie d'aucune sorte, expresse ou implicite. Nous ne garantissons pas que l'application sera exempte d'erreurs, ininterrompue ou adaptée à un usage particulier.</p>
+<h3>Limitation de responsabilité</h3>
+<p>Dans toute la mesure permise par la loi applicable, Hoshino Software ne sera pas responsable des dommages directs, indirects, accessoires, spéciaux ou consécutifs découlant de votre utilisation de Lecteur de Codes.</p>
+<h3>Modifications des présentes conditions</h3>
+<p>Nous pouvons mettre à jour ces Conditions d'Utilisation de temps à autre. L'utilisation continue de l'application après la publication des modifications vaut acceptation des conditions révisées.</p>
+<h3>Loi applicable</h3>
+<p>Ces conditions sont régies par les lois de la juridiction dans laquelle Hoshino Software opère.</p>
+<h3>Nous contacter</h3>
+<p>Pour toute question concernant ces Conditions d'Utilisation : support [at] hoshinosoftware [dot] com</p>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  ITALIANO                                                 -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<div class="lang-divider lang-anchor" id="manual-it">
+  <span class="lang-flag">IT</span><span class="lang-name">Italiano</span>
+</div>
+
+<h1>Lettore Codici – Manuale</h1>
+<div class="placeholder-block">Manuale in fase di redazione — disponibile a breve.</div>
+
+<div class="sub-divider lang-anchor" id="legal-it"><span class="sub-divider-label">Note legali</span></div>
+
+<h2 class="lang-anchor" id="privacy-it">Informativa sulla Privacy</h2>
+<p><b>Ultimo aggiornamento:</b> aprile 2026</p>
+<h3>Introduzione</h3>
+<p>Lettore Codici è costruito su un principio semplice: i tuoi dati appartengono a te. Questa Informativa sulla Privacy spiega a quali informazioni l'app accede e come vengono gestite.</p>
+<h3>Accesso alla fotocamera</h3>
+<p>L'app utilizza la fotocamera del tuo dispositivo per scansionare codici a barre e codici QR in tempo reale. Il flusso della fotocamera viene elaborato interamente sul tuo dispositivo. Nessuna immagine o fotogramma video viene mai archiviato, caricato o condiviso.</p>
+<h3>Cronologia delle scansioni</h3>
+<p>I risultati delle scansioni vengono salvati localmente sul tuo dispositivo utilizzando la tecnologia di archiviazione integrata di Apple. Questi dati non lasciano mai il tuo dispositivo e non vengono mai trasmessi ad alcun server. Puoi eliminare la cronologia delle scansioni in qualsiasi momento dall'app.</p>
+<h3>Nessuna connessione Internet richiesta</h3>
+<p>Lettore Codici funziona completamente offline. L'app non effettua richieste di rete. I tuoi dati non lasciano mai il tuo dispositivo.</p>
+<h3>Nessuna raccolta di dati</h3>
+<p>Non raccogliamo, archiviamo né elaboriamo alcuna informazione personale. L'app non richiede account né alcuna forma di registrazione.</p>
+<h3>Servizi di terze parti</h3>
+<p>Lettore Codici non utilizza servizi di analisi, pubblicità o tracciamento di terze parti. Nessun dato viene condiviso con terze parti.</p>
+<h3>Privacy dei minori</h3>
+<p>Poiché non vengono raccolti dati personali, Lettore Codici è sicuro per utenti di tutte le età e rispetta il COPPA e normative analoghe in tutto il mondo.</p>
+<h3>Modifiche a questa informativa</h3>
+<p>Potremmo aggiornare questa Informativa sulla Privacy di tanto in tanto. Le modifiche sono efficaci immediatamente dopo la pubblicazione. Ti invitiamo a consultare periodicamente questa pagina.</p>
+<h3>Contattaci</h3>
+<p>Per domande su questa Informativa sulla Privacy: support [at] hoshinosoftware [dot] com</p>
+
+<h2 class="lang-anchor" id="terms-it">Termini di Servizio</h2>
+<p><b>Ultimo aggiornamento:</b> aprile 2026</p>
+<h3>Accettazione dei termini</h3>
+<p>Scaricando o utilizzando Lettore Codici, accetti di essere vincolato da questi Termini di Servizio. Se non sei d'accordo, ti preghiamo di non utilizzare l'app.</p>
+<h3>Licenza</h3>
+<p>Hoshino Software ti concede una licenza personale, non trasferibile e non esclusiva per utilizzare Lettore Codici sui tuoi dispositivi Apple, in conformità con questi termini e con i Termini di Servizio dell'App Store di Apple.</p>
+<h3>Uso consentito</h3>
+<p>Puoi utilizzare Lettore Codici solo per scopi leciti. Ti impegni a non utilizzare l'app in modi che violino le leggi o i regolamenti applicabili.</p>
+<h3>Nessuna garanzia</h3>
+<p>Lettore Codici è fornito "così com'è" senza garanzie di alcun tipo, esplicite o implicite. Non garantiamo che l'app sia priva di errori, ininterrotta o adatta a uno scopo specifico.</p>
+<h3>Limitazione di responsabilità</h3>
+<p>Nella misura massima consentita dalla legge applicabile, Hoshino Software non sarà responsabile per danni diretti, indiretti, incidentali, speciali o consequenziali derivanti dall'uso o dall'impossibilità di usare Lettore Codici.</p>
+<h3>Modifiche ai presenti termini</h3>
+<p>Potremmo aggiornare questi Termini di Servizio di tanto in tanto. L'uso continuato dell'app dopo la pubblicazione delle modifiche costituisce accettazione dei termini aggiornati.</p>
+<h3>Legge applicabile</h3>
+<p>Questi termini sono disciplinati dalle leggi della giurisdizione in cui opera Hoshino Software.</p>
+<h3>Contattaci</h3>
+<p>Per domande su questi Termini di Servizio: support [at] hoshinosoftware [dot] com</p>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  ESPAÑOL                                                  -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<div class="lang-divider lang-anchor" id="manual-es">
+  <span class="lang-flag">ES</span><span class="lang-name">Español</span>
+</div>
+
+<h1>Lector de Códigos – Manual</h1>
+<div class="placeholder-block">Manual en preparación — disponible próximamente.</div>
+
+<div class="sub-divider lang-anchor" id="legal-es"><span class="sub-divider-label">Legal</span></div>
+
+<h2 class="lang-anchor" id="privacy-es">Política de Privacidad</h2>
+<p><b>Última actualización:</b> abril de 2026</p>
+<h3>Introducción</h3>
+<p>Lector de Códigos está construido sobre un principio simple: tus datos te pertenecen. Esta Política de Privacidad explica a qué información accede la app y cómo se gestiona.</p>
+<h3>Acceso a la cámara</h3>
+<p>La app usa la cámara de tu dispositivo para escanear códigos de barras y códigos QR en tiempo real. El flujo de la cámara se procesa completamente en tu dispositivo. Ninguna imagen ni fotograma de video se almacena, carga o comparte jamás.</p>
+<h3>Historial de escaneos</h3>
+<p>Los resultados de los escaneos se guardan localmente en tu dispositivo usando la tecnología de almacenamiento integrada de Apple. Estos datos nunca salen de tu dispositivo ni se transmiten a ningún servidor. Puedes eliminar tu historial de escaneos en cualquier momento desde la app.</p>
+<h3>Sin conexión a Internet</h3>
+<p>Lector de Códigos funciona completamente sin conexión. La app no realiza ninguna solicitud de red. Tus datos nunca abandonan tu dispositivo.</p>
+<h3>Sin recopilación de datos</h3>
+<p>No recopilamos, almacenamos ni procesamos ninguna información personal. La app no requiere cuenta ni ningún tipo de registro.</p>
+<h3>Servicios de terceros</h3>
+<p>Lector de Códigos no usa ningún servicio de análisis, publicidad o seguimiento de terceros. Ningún dato se comparte con terceros.</p>
+<h3>Privacidad de menores</h3>
+<p>Dado que no se recopilan datos personales, Lector de Códigos es seguro para usuarios de todas las edades y cumple con la ley COPPA y regulaciones similares en todo el mundo.</p>
+<h3>Cambios en esta política</h3>
+<p>Podemos actualizar esta Política de Privacidad ocasionalmente. Los cambios son efectivos inmediatamente después de su publicación. Te recomendamos revisar esta página periódicamente.</p>
+<h3>Contáctanos</h3>
+<p>Para preguntas sobre esta Política de Privacidad: support [at] hoshinosoftware [dot] com</p>
+
+<h2 class="lang-anchor" id="terms-es">Términos de Servicio</h2>
+<p><b>Última actualización:</b> abril de 2026</p>
+<h3>Aceptación de los términos</h3>
+<p>Al descargar o usar Lector de Códigos, aceptas quedar vinculado por estos Términos de Servicio. Si no estás de acuerdo, por favor no uses la app.</p>
+<h3>Licencia</h3>
+<p>Hoshino Software te otorga una licencia personal, intransferible y no exclusiva para usar Lector de Códigos en tus dispositivos Apple, conforme a estos términos y a los Términos de Servicio del App Store de Apple.</p>
+<h3>Uso permitido</h3>
+<p>Solo puedes usar Lector de Códigos con fines legales. Aceptas no usar la app de ninguna manera que viole las leyes o regulaciones aplicables.</p>
+<h3>Sin garantía</h3>
+<p>Lector de Códigos se proporciona "tal cual" sin garantía de ningún tipo, expresa o implícita. No garantizamos que la app esté libre de errores, sea ininterrumpida o adecuada para ningún propósito particular.</p>
+<h3>Limitación de responsabilidad</h3>
+<p>En la máxima medida permitida por la ley aplicable, Hoshino Software no será responsable de daños directos, indirectos, incidentales, especiales o consecuentes derivados del uso o imposibilidad de uso de Lector de Códigos.</p>
+<h3>Cambios en estos términos</h3>
+<p>Podemos actualizar estos Términos de Servicio de vez en cuando. El uso continuado de la app tras la publicación de los cambios constituye tu aceptación de los términos revisados.</p>
+<h3>Ley aplicable</h3>
+<p>Estos términos se rigen por las leyes de la jurisdicción en la que opera Hoshino Software.</p>
+<h3>Contáctanos</h3>
+<p>Para preguntas sobre estos Términos de Servicio: support [at] hoshinosoftware [dot] com</p>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  DEUTSCH                                                  -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<div class="lang-divider lang-anchor" id="manual-de">
+  <span class="lang-flag">DE</span><span class="lang-name">Deutsch</span>
+</div>
+
+<h1>Code-Scanner – Anleitung</h1>
+<div class="placeholder-block">Anleitung in Vorbereitung — demnächst verfügbar.</div>
+
+<div class="sub-divider lang-anchor" id="legal-de"><span class="sub-divider-label">Rechtliches</span></div>
+
+<h2 class="lang-anchor" id="privacy-de">Datenschutzerklärung</h2>
+<p><b>Letzte Aktualisierung:</b> April 2026</p>
+<h3>Einleitung</h3>
+<p>Code-Scanner basiert auf einem einfachen Prinzip: Deine Daten gehören dir. Diese Datenschutzerklärung erläutert, auf welche Informationen die App zugreift und wie sie verwendet werden.</p>
+<h3>Kamerazugriff</h3>
+<p>Die App verwendet die Kamera deines Geräts, um Barcodes und QR-Codes in Echtzeit zu scannen. Der Kamerastream wird vollständig auf deinem Gerät verarbeitet. Keine Bilder oder Videoframes werden gespeichert, hochgeladen oder weitergegeben.</p>
+<h3>Scanverlauf</h3>
+<p>Scanergebnisse werden lokal auf deinem Gerät mithilfe der geräteeigenen Speichertechnologie von Apple gespeichert. Diese Daten verlassen dein Gerät nie und werden nie an einen Server übertragen. Du kannst deinen Scanverlauf jederzeit in der App löschen.</p>
+<h3>Keine Internetverbindung erforderlich</h3>
+<p>Code-Scanner funktioniert vollständig offline. Die App stellt keine Netzwerkanfragen. Deine Daten verlassen dein Gerät nie.</p>
+<h3>Keine Datenerhebung</h3>
+<p>Wir erheben, speichern oder verarbeiten keine personenbezogenen Daten. Die App erfordert kein Konto und keine Registrierung.</p>
+<h3>Drittanbieterdienste</h3>
+<p>Code-Scanner verwendet keine Analyse-, Werbe- oder Tracking-Dienste von Drittanbietern. Es werden keine Daten an Dritte weitergegeben.</p>
+<h3>Datenschutz für Kinder</h3>
+<p>Da keine personenbezogenen Daten erhoben werden, ist Code-Scanner für Benutzer jeden Alters sicher und erfüllt den COPPA sowie vergleichbare Vorschriften weltweit.</p>
+<h3>Änderungen dieser Erklärung</h3>
+<p>Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Änderungen werden sofort nach der Veröffentlichung wirksam. Wir empfehlen, diese Seite regelmäßig zu überprüfen.</p>
+<h3>Kontakt</h3>
+<p>Bei Fragen zu dieser Datenschutzerklärung: support [at] hoshinosoftware [dot] com</p>
+
+<h2 class="lang-anchor" id="terms-de">Nutzungsbedingungen</h2>
+<p><b>Letzte Aktualisierung:</b> April 2026</p>
+<h3>Annahme der Bedingungen</h3>
+<p>Durch das Herunterladen oder die Nutzung von Code-Scanner stimmst du diesen Nutzungsbedingungen zu. Wenn du nicht einverstanden bist, verwende die App bitte nicht.</p>
+<h3>Lizenz</h3>
+<p>Hoshino Software gewährt dir eine persönliche, nicht übertragbare und nicht ausschließliche Lizenz zur Nutzung von Code-Scanner auf deinen Apple-Geräten gemäß diesen Bedingungen und den App Store-Nutzungsbedingungen von Apple.</p>
+<h3>Zulässige Nutzung</h3>
+<p>Du darfst Code-Scanner nur für legale Zwecke verwenden. Du stimmst zu, die App nicht in einer Weise zu nutzen, die gegen geltende Gesetze oder Vorschriften verstößt.</p>
+<h3>Keine Gewährleistung</h3>
+<p>Code-Scanner wird „wie besehen" ohne jegliche ausdrückliche oder stillschweigende Gewährleistung bereitgestellt. Wir garantieren nicht, dass die App fehlerfrei, ununterbrochen oder für einen bestimmten Zweck geeignet ist.</p>
+<h3>Haftungsbeschränkung</h3>
+<p>Im größtmöglichen gesetzlich zulässigen Umfang haftet Hoshino Software nicht für direkte, indirekte, zufällige, besondere oder Folgeschäden, die aus der Nutzung oder Nichtnutzbarkeit von Code-Scanner entstehen.</p>
+<h3>Änderungen dieser Bedingungen</h3>
+<p>Wir können diese Nutzungsbedingungen von Zeit zu Zeit aktualisieren. Die fortgesetzte Nutzung der App nach der Veröffentlichung von Änderungen gilt als Zustimmung zu den überarbeiteten Bedingungen.</p>
+<h3>Anwendbares Recht</h3>
+<p>Diese Bedingungen unterliegen dem Recht der Gerichtsbarkeit, in der Hoshino Software tätig ist.</p>
+<h3>Kontakt</h3>
+<p>Bei Fragen zu diesen Nutzungsbedingungen: support [at] hoshinosoftware [dot] com</p>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  TÜRKÇE                                                   -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<div class="lang-divider lang-anchor" id="manual-tr">
+  <span class="lang-flag">TR</span><span class="lang-name">Türkçe</span>
+</div>
+
+<h1>Kod Tarayıcı – Kılavuz</h1>
+<div class="placeholder-block">Kılavuz hazırlanıyor — yakında yayımlanacak.</div>
+
+<div class="sub-divider lang-anchor" id="legal-tr"><span class="sub-divider-label">Yasal</span></div>
+
+<h2 class="lang-anchor" id="privacy-tr">Gizlilik Politikası</h2>
+<p><b>Son Güncelleme:</b> Nisan 2026</p>
+<h3>Giriş</h3>
+<p>Kod Tarayıcı basit bir ilke üzerine inşa edilmiştir: verileriniz size aittir. Bu Gizlilik Politikası, uygulamanın hangi bilgilere eriştiğini ve bu bilgilerin nasıl işlendiğini açıklar.</p>
+<h3>Kamera Erişimi</h3>
+<p>Uygulama, barkodları ve QR kodlarını gerçek zamanlı olarak taramak için cihazınızın kamerasını kullanır. Kamera görüntüsü yalnızca cihazınızda işlenir. Hiçbir görüntü veya video karesi saklanmaz, yüklenmez veya paylaşılmaz.</p>
+<h3>Tarama Geçmişi</h3>
+<p>Tarama sonuçları, Apple'ın cihaz içi depolama teknolojisi kullanılarak cihazınızda yerel olarak kaydedilir. Bu veriler cihazınızı asla terk etmez ve hiçbir sunucuya iletilmez. Tarama geçmişinizi istediğiniz zaman uygulama içinden silebilirsiniz.</p>
+<h3>İnternet Bağlantısı Gerekmez</h3>
+<p>Kod Tarayıcı tamamen çevrimdışı çalışır. Uygulama hiçbir ağ isteği göndermez. Verileriniz cihazınızı asla terk etmez.</p>
+<h3>Veri Toplama Yok</h3>
+<p>Hiçbir kişisel bilgiyi toplamaz, depolamaz veya işlemeyiz. Uygulama herhangi bir hesap veya kayıt gerektirmez.</p>
+<h3>Üçüncü Taraf Hizmetler</h3>
+<p>Kod Tarayıcı herhangi bir üçüncü taraf analitik, reklam veya izleme hizmeti kullanmaz. Hiçbir veri üçüncü taraflarla paylaşılmaz.</p>
+<h3>Çocukların Gizliliği</h3>
+<p>Kişisel veri toplanmadığı için Kod Tarayıcı her yaştan kullanıcı için güvenlidir ve COPPA ile dünya genelindeki benzer düzenlemelere uygundur.</p>
+<h3>Bu Politikadaki Değişiklikler</h3>
+<p>Bu Gizlilik Politikasını zaman zaman güncelleyebiliriz. Değişiklikler yayınlandıktan hemen sonra yürürlüğe girer. Bu sayfayı periyodik olarak gözden geçirmenizi öneririz.</p>
+<h3>Bize Ulaşın</h3>
+<p>Bu Gizlilik Politikasına ilişkin sorularınız için: support [at] hoshinosoftware [dot] com</p>
+
+<h2 class="lang-anchor" id="terms-tr">Kullanım Koşulları</h2>
+<p><b>Son Güncelleme:</b> Nisan 2026</p>
+<h3>Koşulların Kabulü</h3>
+<p>Kod Tarayıcı'yı indirerek veya kullanarak bu Kullanım Koşullarına bağlı olmayı kabul edersiniz. Kabul etmiyorsanız lütfen uygulamayı kullanmayın.</p>
+<h3>Lisans</h3>
+<p>Hoshino Software, bu koşullar ve Apple'ın App Store Kullanım Koşulları çerçevesinde Kod Tarayıcı'yı Apple cihazlarınızda kullanmanız için kişisel, devredilemez ve münhasır olmayan bir lisans vermektedir.</p>
+<h3>İzin Verilen Kullanım</h3>
+<p>Kod Tarayıcı'yı yalnızca yasal amaçlarla kullanabilirsiniz. Uygulamayı yürürlükteki yasa veya yönetmelikleri ihlal eden herhangi bir şekilde kullanmamayı kabul edersiniz.</p>
+<h3>Garanti Yok</h3>
+<p>Kod Tarayıcı, açık veya zımni herhangi bir garanti olmaksızın "olduğu gibi" sağlanmaktadır. Uygulamanın hatasız, kesintisiz veya belirli bir amaca uygun olacağını garanti etmiyoruz.</p>
+<h3>Sorumluluk Sınırlaması</h3>
+<p>Yürürlükteki yasaların izin verdiği azami ölçüde Hoshino Software, Kod Tarayıcı'nın kullanımından veya kullanılamamasından kaynaklanan doğrudan, dolaylı, arızi, özel veya sonuç olarak ortaya çıkan zararlardan sorumlu tutulamaz.</p>
+<h3>Bu Koşullardaki Değişiklikler</h3>
+<p>Bu Kullanım Koşullarını zaman zaman güncelleyebiliriz. Değişikliklerin yayınlanmasından sonra uygulamayı kullanmaya devam etmeniz, güncellenen koşulları kabul ettiğiniz anlamına gelir.</p>
+<h3>Geçerli Hukuk</h3>
+<p>Bu koşullar, Hoshino Software'in faaliyet gösterdiği yargı bölgesinin yasalarına tabidir.</p>
+<h3>Bize Ulaşın</h3>
+<p>Bu Kullanım Koşullarına ilişkin sorularınız için: support [at] hoshinosoftware [dot] com</p>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  한국어                                                    -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<div class="lang-divider lang-anchor" id="manual-ko">
+  <span class="lang-flag">KO</span><span class="lang-name">한국어</span>
+</div>
+
+<h1>코드 리더 – 매뉴얼</h1>
+<div class="placeholder-block">매뉴얼 준비 중 — 곧 제공될 예정입니다.</div>
+
+<div class="sub-divider lang-anchor" id="legal-ko"><span class="sub-divider-label">법적 고지</span></div>
+
+<h2 class="lang-anchor" id="privacy-ko">개인정보 처리방침</h2>
+<p><b>최종 업데이트:</b> 2026년 4월</p>
+<h3>소개</h3>
+<p>코드 리더는 간단한 원칙을 바탕으로 만들어졌습니다: 당신의 데이터는 당신의 것입니다. 이 개인정보 처리방침은 앱이 어떤 정보에 접근하고 어떻게 처리하는지 설명합니다.</p>
+<h3>카메라 접근</h3>
+<p>앱은 바코드와 QR 코드를 실시간으로 스캔하기 위해 기기의 카메라를 사용합니다. 카메라 피드는 기기 내에서만 처리됩니다. 이미지나 동영상 프레임은 저장, 업로드, 공유되지 않습니다.</p>
+<h3>스캔 기록</h3>
+<p>스캔 결과는 Apple의 기기 내 저장 기술을 사용하여 기기에 로컬로 저장됩니다. 이 데이터는 기기를 떠나지 않으며 어떤 서버에도 전송되지 않습니다. 앱 내에서 언제든지 스캔 기록을 삭제할 수 있습니다.</p>
+<h3>인터넷 연결 불필요</h3>
+<p>코드 리더는 완전히 오프라인으로 작동합니다. 앱은 네트워크 요청을 보내지 않습니다. 데이터는 기기를 절대 떠나지 않습니다.</p>
+<h3>데이터 수집 없음</h3>
+<p>어떠한 개인정보도 수집, 저장, 처리하지 않습니다. 앱은 계정이나 등록이 필요하지 않습니다.</p>
+<h3>제3자 서비스</h3>
+<p>코드 리더는 제3자 분석, 광고 또는 추적 서비스를 사용하지 않습니다. 어떤 데이터도 제3자와 공유되지 않습니다.</p>
+<h3>아동 개인정보 보호</h3>
+<p>개인정보를 수집하지 않으므로 코드 리더는 모든 연령의 사용자에게 안전하며 COPPA 및 전 세계 유사 법규를 준수합니다.</p>
+<h3>방침 변경</h3>
+<p>이 개인정보 처리방침은 때때로 업데이트될 수 있습니다. 변경 사항은 게시 즉시 효력이 발생합니다. 이 페이지를 주기적으로 확인하시기 바랍니다.</p>
+<h3>문의</h3>
+<p>이 개인정보 처리방침에 관한 문의: support [at] hoshinosoftware [dot] com</p>
+
+<h2 class="lang-anchor" id="terms-ko">이용약관</h2>
+<p><b>최종 업데이트:</b> 2026년 4월</p>
+<h3>약관 동의</h3>
+<p>코드 리더를 다운로드하거나 사용함으로써 이 이용약관에 동의하는 것으로 간주됩니다. 동의하지 않으시면 앱을 사용하지 마십시오.</p>
+<h3>라이선스</h3>
+<p>Hoshino Software는 이 약관 및 Apple App Store 이용약관에 따라 Apple 기기에서 코드 리더를 사용할 수 있는 개인적이고 양도 불가능한 비독점적 라이선스를 부여합니다.</p>
+<h3>허용된 사용</h3>
+<p>코드 리더는 합법적인 목적으로만 사용할 수 있습니다. 관련 법률 또는 규정을 위반하는 방식으로 앱을 사용하지 않기로 동의합니다.</p>
+<h3>무보증</h3>
+<p>코드 리더는 명시적이거나 묵시적인 어떠한 보증도 없이 "있는 그대로" 제공됩니다. 앱이 오류 없이 작동하거나 중단 없이 제공되거나 특정 목적에 적합하다고 보장하지 않습니다.</p>
+<h3>책임 제한</h3>
+<p>관련 법률이 허용하는 최대 범위 내에서 Hoshino Software는 코드 리더의 사용 또는 사용 불가로 인한 직접적, 간접적, 부수적, 특별 또는 결과적 손해에 대해 책임지지 않습니다.</p>
+<h3>약관 변경</h3>
+<p>이 이용약관은 때때로 업데이트될 수 있습니다. 변경 사항 게시 후 앱을 계속 사용하면 개정된 약관에 동의한 것으로 간주됩니다.</p>
+<h3>준거법</h3>
+<p>이 약관은 Hoshino Software가 운영되는 관할 지역의 법률에 의해 규율됩니다.</p>
+<h3>문의</h3>
+<p>이 이용약관에 관한 문의: support [at] hoshinosoftware [dot] com</p>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  日本語                                                    -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<div class="lang-divider lang-anchor" id="manual-ja">
+  <span class="lang-flag">JA</span><span class="lang-name">日本語</span>
+</div>
+
+<h1>コードリーダー – マニュアル</h1>
+<div class="placeholder-block">マニュアル準備中 — 近日公開予定です。</div>
+
+<div class="sub-divider lang-anchor" id="legal-ja"><span class="sub-divider-label">法的情報</span></div>
+
+<h2 class="lang-anchor" id="privacy-ja">プライバシーポリシー</h2>
+<p><b>最終更新：</b>2026年4月</p>
+<h3>はじめに</h3>
+<p>コードリーダーはシンプルな原則に基づいて作られています：あなたのデータはあなたのものです。このプライバシーポリシーは、アプリがどの情報にアクセスし、どのように扱われるかを説明します。</p>
+<h3>カメラへのアクセス</h3>
+<p>アプリはバーコードやQRコードをリアルタイムでスキャンするために、デバイスのカメラを使用します。カメラの映像はデバイス上でのみ処理されます。画像や動画フレームが保存、アップロード、または共有されることは一切ありません。</p>
+<h3>スキャン履歴</h3>
+<p>スキャン結果はAppleのデバイス内ストレージ技術を使用してデバイス上にローカル保存されます。このデータはデバイスを離れることはなく、サーバーに送信されることもありません。スキャン履歴はいつでもアプリ内から削除できます。</p>
+<h3>インターネット接続不要</h3>
+<p>コードリーダーは完全にオフラインで動作します。アプリはネットワークリクエストを行いません。データはデバイスを離れることはありません。</p>
+<h3>データ収集なし</h3>
+<p>個人情報の収集、保存、処理は一切行いません。アプリはアカウントや登録を必要としません。</p>
+<h3>サードパーティサービス</h3>
+<p>コードリーダーはサードパーティの分析、広告、またはトラッキングサービスを使用しません。いかなるデータもサードパーティと共有されません。</p>
+<h3>子どものプライバシー</h3>
+<p>個人データを収集しないため、コードリーダーはすべての年齢のユーザーに安全であり、COPPAおよび世界各国の同様の規制に準拠しています。</p>
+<h3>ポリシーの変更</h3>
+<p>このプライバシーポリシーは随時更新される場合があります。変更は掲載後すぐに有効になります。定期的にこのページをご確認ください。</p>
+<h3>お問い合わせ</h3>
+<p>このプライバシーポリシーに関するお問い合わせ：support [at] hoshinosoftware [dot] com</p>
+
+<h2 class="lang-anchor" id="terms-ja">利用規約</h2>
+<p><b>最終更新：</b>2026年4月</p>
+<h3>規約への同意</h3>
+<p>コードリーダーをダウンロードまたは使用することにより、この利用規約に同意したものとみなされます。同意しない場合は、アプリをご使用にならないでください。</p>
+<h3>ライセンス</h3>
+<p>Hoshino Softwareは、本規約およびAppleのApp Store利用規約に従い、Appleデバイスでコードリーダーをご使用いただくための個人的・非譲渡・非独占的ライセンスを付与します。</p>
+<h3>許可された使用</h3>
+<p>コードリーダーは合法的な目的のためにのみご使用いただけます。適用される法律または規制に違反する方法でアプリを使用しないことに同意します。</p>
+<h3>無保証</h3>
+<p>コードリーダーは明示または黙示のいかなる保証もなく「現状のまま」提供されます。アプリがエラーなく動作すること、中断なく利用できること、または特定の目的に適していることを保証しません。</p>
+<h3>責任の制限</h3>
+<p>適用法が許容する最大限の範囲において、Hoshino Softwareはコードリーダーの使用または使用不能から生じる直接的・間接的・付随的・特別・結果的損害について責任を負いません。</p>
+<h3>規約の変更</h3>
+<p>この利用規約は随時更新される場合があります。変更後もアプリを引き続き使用することは、改訂された規約に同意したものとみなされます。</p>
+<h3>準拠法</h3>
+<p>本規約は、Hoshino Softwareが事業を行う管轄地域の法律に準拠します。</p>
+<h3>お問い合わせ</h3>
+<p>この利用規約に関するお問い合わせ：support [at] hoshinosoftware [dot] com</p>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  简体中文                                                  -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<div class="lang-divider lang-anchor" id="manual-zh-hans">
+  <span class="lang-flag">ZH</span><span class="lang-name">简体中文</span>
+</div>
+
+<h1>扫码器 – 使用手册</h1>
+<div class="placeholder-block">使用手册准备中 — 即将发布。</div>
+
+<div class="sub-divider lang-anchor" id="legal-zh-hans"><span class="sub-divider-label">法律信息</span></div>
+
+<h2 class="lang-anchor" id="privacy-zh-hans">隐私政策</h2>
+<p><b>最后更新：</b>2026年4月</p>
+<h3>简介</h3>
+<p>扫码器建立在一个简单的原则上：您的数据属于您自己。本隐私政策说明了应用访问哪些信息以及如何处理这些信息。</p>
+<h3>相机访问</h3>
+<p>应用使用您设备的相机实时扫描条码和二维码。相机画面完全在您的设备上处理。任何图像或视频帧都不会被存储、上传或共享。</p>
+<h3>扫描历史</h3>
+<p>扫描结果使用 Apple 的设备端存储技术本地保存在您的设备上。这些数据永远不会离开您的设备，也不会传输到任何服务器。您可以随时在应用内删除扫描历史。</p>
+<h3>无需网络连接</h3>
+<p>扫码器完全离线运行。应用不发出任何网络请求。您的数据永远不会离开您的设备。</p>
+<h3>不收集数据</h3>
+<p>我们不收集、存储或处理任何个人信息。应用不需要账户或任何形式的注册。</p>
+<h3>第三方服务</h3>
+<p>扫码器不使用任何第三方分析、广告或追踪服务。任何数据都不会与第三方共享。</p>
+<h3>儿童隐私</h3>
+<p>由于不收集任何个人数据，扫码器对所有年龄段的用户都是安全的，并符合 COPPA 及全球类似法规。</p>
+<h3>政策变更</h3>
+<p>我们可能会不时更新本隐私政策。变更在发布后立即生效。建议您定期查阅本页面。</p>
+<h3>联系我们</h3>
+<p>如有关于本隐私政策的问题：support [at] hoshinosoftware [dot] com</p>
+
+<h2 class="lang-anchor" id="terms-zh-hans">服务条款</h2>
+<p><b>最后更新：</b>2026年4月</p>
+<h3>接受条款</h3>
+<p>下载或使用扫码器即表示您同意受本服务条款的约束。如不同意，请勿使用本应用。</p>
+<h3>许可</h3>
+<p>Hoshino Software 根据本条款及 Apple App Store 服务条款，授予您在 Apple 设备上使用扫码器的个人、不可转让、非独家许可。</p>
+<h3>允许的使用</h3>
+<p>您只能将扫码器用于合法目的。您同意不以任何违反适用法律或法规的方式使用本应用。</p>
+<h3>无保证</h3>
+<p>扫码器以"现状"提供，不附带任何明示或暗示的保证。我们不保证应用无错误、不中断或适合任何特定用途。</p>
+<h3>责任限制</h3>
+<p>在适用法律允许的最大范围内，Hoshino Software 对因使用或无法使用扫码器而产生的任何直接、间接、偶发、特殊或后果性损害不承担责任。</p>
+<h3>条款变更</h3>
+<p>我们可能会不时更新本服务条款。变更发布后继续使用应用即表示您接受修订后的条款。</p>
+<h3>适用法律</h3>
+<p>本条款受 Hoshino Software 运营所在司法管辖区的法律管辖。</p>
+<h3>联系我们</h3>
+<p>如有关于本服务条款的问题：support [at] hoshinosoftware [dot] com</p>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  繁體中文                                                  -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<div class="lang-divider lang-anchor" id="manual-zh-hant">
+  <span class="lang-flag">ZH</span><span class="lang-name">繁體中文</span>
+</div>
+
+<h1>掃碼器 – 使用手冊</h1>
+<div class="placeholder-block">使用手冊準備中 — 即將發布。</div>
+
+<div class="sub-divider lang-anchor" id="legal-zh-hant"><span class="sub-divider-label">法律資訊</span></div>
+
+<h2 class="lang-anchor" id="privacy-zh-hant">隱私政策</h2>
+<p><b>最後更新：</b>2026年4月</p>
+<h3>簡介</h3>
+<p>掃碼器建立在一個簡單的原則上：您的資料屬於您自己。本隱私政策說明了應用程式存取哪些資訊以及如何處理這些資訊。</p>
+<h3>相機存取</h3>
+<p>應用程式使用您裝置的相機即時掃描條碼和QR碼。相機畫面完全在您的裝置上處理。任何影像或視訊幀都不會被儲存、上傳或共享。</p>
+<h3>掃描記錄</h3>
+<p>掃描結果使用 Apple 的裝置端儲存技術本地儲存在您的裝置上。這些資料永遠不會離開您的裝置，也不會傳輸到任何伺服器。您可以隨時在應用程式內刪除掃描記錄。</p>
+<h3>無需網路連線</h3>
+<p>掃碼器完全離線運作。應用程式不發出任何網路請求。您的資料永遠不會離開您的裝置。</p>
+<h3>不收集資料</h3>
+<p>我們不收集、儲存或處理任何個人資訊。應用程式不需要帳戶或任何形式的註冊。</p>
+<h3>第三方服務</h3>
+<p>掃碼器不使用任何第三方分析、廣告或追蹤服務。任何資料都不會與第三方共享。</p>
+<h3>兒童隱私</h3>
+<p>由於不收集任何個人資料，掃碼器對所有年齡層的使用者都是安全的，並符合 COPPA 及全球類似法規。</p>
+<h3>政策變更</h3>
+<p>我們可能會不時更新本隱私政策。變更在發布後立即生效。建議您定期查閱本頁面。</p>
+<h3>聯絡我們</h3>
+<p>如有關於本隱私政策的問題：support [at] hoshinosoftware [dot] com</p>
+
+<h2 class="lang-anchor" id="terms-zh-hant">服務條款</h2>
+<p><b>最後更新：</b>2026年4月</p>
+<h3>接受條款</h3>
+<p>下載或使用掃碼器即表示您同意受本服務條款的約束。如不同意，請勿使用本應用程式。</p>
+<h3>授權</h3>
+<p>Hoshino Software 根據本條款及 Apple App Store 服務條款，授予您在 Apple 裝置上使用掃碼器的個人、不可轉讓、非獨家授權。</p>
+<h3>允許的使用</h3>
+<p>您只能將掃碼器用於合法目的。您同意不以任何違反適用法律或法規的方式使用本應用程式。</p>
+<h3>無保證</h3>
+<p>掃碼器以「現狀」提供，不附帶任何明示或暗示的保證。我們不保證應用程式無錯誤、不中斷或適合任何特定用途。</p>
+<h3>責任限制</h3>
+<p>在適用法律允許的最大範圍內，Hoshino Software 對因使用或無法使用掃碼器而產生的任何直接、間接、偶發、特殊或後果性損害不承擔責任。</p>
+<h3>條款變更</h3>
+<p>我們可能會不時更新本服務條款。變更發布後繼續使用應用程式即表示您接受修訂後的條款。</p>
+<h3>適用法律</h3>
+<p>本條款受 Hoshino Software 營運所在司法管轄區的法律管轄。</p>
+<h3>聯絡我們</h3>
+<p>如有關於本服務條款的問題：support [at] hoshinosoftware [dot] com</p>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  العربية                                                  -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<div class="lang-divider lang-anchor" id="manual-ar">
+  <span class="lang-flag">AR</span><span class="lang-name">العربية</span>
+</div>
+
+<div class="rtl">
+
+<h1>قارئ الرموز – الدليل</h1>
+<div class="placeholder-block">الدليل قيد الإعداد — سيتوفر قريبًا.</div>
+
+<div class="sub-divider lang-anchor" id="legal-ar"><span class="sub-divider-label">قانوني</span></div>
+
+<h2 class="lang-anchor" id="privacy-ar">سياسة الخصوصية</h2>
+<p><b>آخر تحديث:</b> أبريل 2026</p>
+<h3>مقدمة</h3>
+<p>قارئ الرموز مبني على مبدأ بسيط: بياناتك ملك لك. توضح سياسة الخصوصية هذه المعلومات التي يصل إليها التطبيق وكيفية التعامل معها.</p>
+<h3>الوصول إلى الكاميرا</h3>
+<p>يستخدم التطبيق كاميرا جهازك لمسح الباركود ورموز QR في الوقت الفعلي. تتم معالجة تغذية الكاميرا بالكامل على جهازك. لا يتم تخزين أي صور أو إطارات فيديو أو تحميلها أو مشاركتها مطلقًا.</p>
+<h3>سجل المسح</h3>
+<p>تُحفظ نتائج المسح محليًا على جهازك باستخدام تقنية التخزين المدمجة في Apple. لا تغادر هذه البيانات جهازك أبدًا ولا تُرسل إلى أي خادم. يمكنك حذف سجل المسح في أي وقت من داخل التطبيق.</p>
+<h3>لا حاجة لاتصال بالإنترنت</h3>
+<p>يعمل قارئ الرموز بالكامل دون اتصال بالإنترنت. لا يُرسل التطبيق أي طلبات شبكة. بياناتك لا تغادر جهازك أبدًا.</p>
+<h3>لا جمع للبيانات</h3>
+<p>لا نجمع أي معلومات شخصية أو نخزنها أو نعالجها. لا يتطلب التطبيق حسابًا أو أي شكل من أشكال التسجيل.</p>
+<h3>خدمات الأطراف الثالثة</h3>
+<p>لا يستخدم قارئ الرموز أي خدمات تحليلات أو إعلانات أو تتبع تابعة لأطراف ثالثة. لا تُشارَك أي بيانات مع أطراف ثالثة.</p>
+<h3>خصوصية الأطفال</h3>
+<p>نظرًا لعدم جمع أي بيانات شخصية، فإن قارئ الرموز آمن لمستخدمي جميع الأعمار ويتوافق مع قانون COPPA واللوائح المماثلة حول العالم.</p>
+<h3>التغييرات على هذه السياسة</h3>
+<p>قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. تسري التغييرات فور نشرها. نشجعك على مراجعة هذه الصفحة بشكل دوري.</p>
+<h3>تواصل معنا</h3>
+<p>لأي استفسارات حول سياسة الخصوصية هذه: support [at] hoshinosoftware [dot] com</p>
+
+<h2 class="lang-anchor" id="terms-ar">شروط الخدمة</h2>
+<p><b>آخر تحديث:</b> أبريل 2026</p>
+<h3>قبول الشروط</h3>
+<p>بتنزيل قارئ الرموز أو استخدامه، فإنك توافق على الالتزام بشروط الخدمة هذه. إذا كنت لا توافق، يرجى عدم استخدام التطبيق.</p>
+<h3>الترخيص</h3>
+<p>تمنحك Hoshino Software ترخيصًا شخصيًا غير قابل للنقل وغير حصري لاستخدام قارئ الرموز على أجهزة Apple الخاصة بك وفقًا لهذه الشروط وشروط خدمة App Store من Apple.</p>
+<h3>الاستخدام المسموح به</h3>
+<p>يمكنك استخدام قارئ الرموز فقط لأغراض مشروعة. توافق على عدم استخدام التطبيق بأي طريقة تنتهك القوانين أو اللوائح المعمول بها.</p>
+<h3>إخلاء المسؤولية عن الضمانات</h3>
+<p>يُقدَّم قارئ الرموز "كما هو" دون أي ضمان من أي نوع، صريح أو ضمني. لا نضمن أن يكون التطبيق خاليًا من الأخطاء أو غير منقطع أو مناسبًا لأي غرض معين.</p>
+<h3>تحديد المسؤولية</h3>
+<p>إلى أقصى حد يسمح به القانون المعمول به، لن تكون Hoshino Software مسؤولة عن أي أضرار مباشرة أو غير مباشرة أو عرضية أو خاصة أو تبعية ناجمة عن استخدامك لقارئ الرموز أو عدم قدرتك على استخدامه.</p>
+<h3>التغييرات على هذه الشروط</h3>
+<p>قد نقوم بتحديث شروط الخدمة هذه من وقت لآخر. استمرار استخدام التطبيق بعد نشر التغييرات يُعدّ قبولًا للشروط المعدَّلة.</p>
+<h3>القانون الحاكم</h3>
+<p>تخضع هذه الشروط لقوانين الولاية القضائية التي تعمل فيها Hoshino Software.</p>
+<h3>تواصل معنا</h3>
+<p>لأي استفسارات حول شروط الخدمة هذه: support [at] hoshinosoftware [dot] com</p>
+
+</div><!-- /.rtl -->
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  FOOTER                                                   -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<footer>© 2026 Hoshino Software</footer>
+
+</main>
+
+<script>
+// ── Pad body top to clear fixed strip ──────────────────────
+function applyTopPad() {
+  var h = document.getElementById('lang-strip').offsetHeight;
+  document.querySelector('main').style.paddingTop = (h + 20) + 'px';
+}
+applyTopPad();
+window.addEventListener('resize', applyTopPad);
+
+// ── Highlight active language tab on scroll ─────────────────
+var langLinks = document.querySelectorAll('#lang-strip .strip-langs a[data-lang]');
+var sections  = Array.from(langLinks).map(function(a) {
+  return document.getElementById('manual-' + a.dataset.lang);
+});
+
+function updateActive() {
+  var scrollY = window.scrollY + 90; /* matches scroll-margin-top on .lang-anchor */
+  var current = sections[0];
+  sections.forEach(function(s) {
+    if (s && s.offsetTop <= scrollY) current = s;
+  });
+  langLinks.forEach(function(a) {
+    var lang = a.dataset.lang;
+    a.classList.toggle('active', current && current.id === 'manual-' + lang);
+  });
+}
+window.addEventListener('scroll', updateActive, { passive: true });
+updateActive();
+</script>
+
+</body>
+</html>
