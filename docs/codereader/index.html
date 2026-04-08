@@ -52,7 +52,7 @@ body {
 main {
   max-width: 700px;
   margin: 0 auto;
-  padding: 20px 20px 60px;
+  padding: 20px 20px 80px;
   /* top padding handled by JS after header height is known */
 }
 
@@ -116,19 +116,6 @@ main {
   background: #eee;
 }
 
-/* ── Placeholder ────────────────────────────── */
-.placeholder-block {
-  background: #f9f9f9;
-  border: 1px dashed #ddd;
-  border-radius: 10px;
-  padding: 40px 20px;
-  text-align: center;
-  color: #bbb;
-  font-style: italic;
-  font-size: 15px;
-  margin: 20px 0;
-}
-
 /* ── Typography ─────────────────────────────── */
 h1 { font-weight: 600; margin-bottom: 10px; margin-top: 0; }
 h2 { margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
@@ -140,9 +127,6 @@ li { margin: 4px 0; }
 /* ── Manual-specific ────────────────────────── */
 .screenshots {
   display: flex; gap: 16px; flex-wrap: wrap; margin-top: 15px;
-}
-.screenshots img {
-  width: 160px; border-radius: 20px; border: 1px solid #ddd;
 }
 .screenshot-placeholder {
   display: inline-block;
@@ -181,9 +165,15 @@ tbody tr:nth-child(even) { background: #fafafa; }
 
 /* ── Footer ─────────────────────────────────── */
 footer {
-  margin-top: 60px; padding-top: 10px;
-  border-top: 1px solid #eee;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-top: 1px solid #e5e5e5;
   font-size: 12px; color: #666; text-align: center;
+  padding: 8px 20px;
 }
 
 </style>
@@ -199,6 +189,7 @@ footer {
     <a href="#support-fr" data-lang="fr">FR</a><span class="dot">·</span>
     <a href="#support-it" data-lang="it">IT</a><span class="dot">·</span>
     <a href="#support-es" data-lang="es">ES</a><span class="dot">·</span>
+    <a href="#support-pt" data-lang="pt">PT</a><span class="dot">·</span>
     <a href="#support-de" data-lang="de">DE</a><span class="dot">·</span>
     <a href="#support-tr" data-lang="tr">TR</a><span class="dot">·</span>
     <a href="#support-ko" data-lang="ko">한국어</a><span class="dot">·</span>
@@ -216,43 +207,61 @@ footer {
 <!--  ENGLISH                                                  -->
 <!-- ══════════════════════════════════════════════════════════ -->
 
-<div class="lang-divider lang-anchor" id="support-en">
+<div class="lang-divider" id="lang-en">
   <span class="lang-flag">EN</span><span class="lang-name">English</span>
 </div>
 
-<!-- Manual -->
-<h1>Barcode QR Reader – Support</h1>
+<h1 class="lang-anchor" id="support-en">Barcode QR Reader</h1>
 
 <p>Barcode QR Reader scans barcodes and QR codes using your iPhone's camera or any image in your photo library.
 It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
 
+<h2>Download</h2>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <img src="../appstorebadge/en.svg" alt="Download on the App Store" height="72">
+  <span class="screenshot-placeholder" style="width:180px; height:180px; line-height:180px; border-radius:10px; font-size:12px; color:#999;">QR code</span>
+</div>
+
+<h2>Support</h2>
+
 <div class="screenshots">
-  <span class="screenshot-placeholder">&lt;screenshot&gt;</span>
-  <span class="screenshot-placeholder">&lt;screenshot&gt;</span>
-  <span class="screenshot-placeholder">&lt;screenshot&gt;</span>
-  <span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+  <span class="screenshot-placeholder">&lt;Camera&gt;</span>
+  <span class="screenshot-placeholder">&lt;Gallery&gt;</span>
+  <span class="screenshot-placeholder">&lt;Scan Result&gt;</span>
 </div>
 
 <h2>Camera</h2>
-<p>The Camera tab opens immediately to a live viewfinder. Point it at any barcode or QR code — it detects codes automatically and shows the result.</p>
-<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+<p>The Camera tab opens and starts scanning right away. Point your phone at any barcode or QR code and the app detects it automatically. Camera permission is required. If you haven't granted it yet, a prompt will appear. Tap <b>Open Settings</b> and enable <b>Camera</b> access for Barcode QR Reader.</p>
 <ul>
-  <li><b>Flashlight</b> — tap the flashlight button to illuminate dark environments. Automatically disabled when using the front camera.</li>
-  <li><b>Front camera</b> — tap the rotate button to switch between rear and front cameras. Useful for scanning codes on another screen.</li>
+  <li><b>Flashlight:</b> tap the flashlight button to illuminate dark environments. Only available with the back camera.</li>
+  <li><b>Front camera:</b> tap the rotate button to switch between back and front cameras. Handy when the back camera is not available (e.g. damaged).</li>
 </ul>
-<div class="tip">💡 The app shows a red scanning line while it looks for codes. You don't need to press anything — recognition is automatic.</div>
-<h3>If the camera is not accessible</h3>
-<p>If Barcode QR Reader doesn't have camera permission, a message will appear with an <b>Open Settings</b> button. Tap it, then enable <b>Camera</b> access for Barcode QR Reader.</p>
+<div class="tip">💡 The app shows a red scanning line while it looks for codes. You don't need to press anything. Recognition is automatic.</div>
 
 <h2>Gallery</h2>
-<p>The Gallery tab lets you scan codes from an existing image. Tap <b>Choose Photo</b> to pick any image from your library — only the specific photo you choose is shared with the app. Barcode QR Reader does not request access to your entire photo library.</p>
-<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+<p>The Gallery tab lets you scan codes from an existing image. Tap <b>Choose Photo</b> to pick any image from your library. Only the specific photo you choose is shared with the app. Barcode QR Reader does not request access to your entire photo library.</p>
 <p>After picking a photo, the app scans it and shows the result immediately. If no code is found, an alert will tell you so.</p>
 
+<h2>History</h2>
+<p>Every scan is automatically saved to the History tab. Scans are kept for <b>6 months</b> and the history holds up to <b>1,000 entries</b>; the oldest are removed automatically when the limit is reached.</p>
+<ul>
+  <li><b>View a past scan:</b> tap any row to re-open the full result.</li>
+  <li><b>Delete one entry:</b> swipe left on a row and tap <b>Delete</b>.</li>
+  <li><b>Delete all:</b> tap the trash icon in the top-right corner.</li>
+  <li><b>Source label:</b> each entry shows whether it came from the Camera, Gallery, or a Share.</li>
+</ul>
+
+<h2>Settings</h2>
+<h3>Multi-Code Mode</h3>
+<p>By default, Barcode QR Reader stops as soon as it finds <b>one code</b>. Turn on <b>Multi-Code Mode</b> to scan up to <b>5 codes at once</b>, useful for business cards, product sheets, or any image containing several codes side by side.</p>
+<p>When multi-code mode is active, the camera keeps scanning for a brief moment after the first detection to gather all visible codes before showing results. This is why it takes slightly longer than single-code mode.</p>
+<h3>Show Advanced Details</h3>
+<p>Turn on <b>Show Advanced Details</b> to reveal technical metadata alongside each scan result: things like QR version, error correction level, mask pattern, or barcode structure (start/stop characters, check digit). This is shown on the Scan Result page and in the History tab rows.</p>
+<div class="tip">💡 This is a great way to learn more about how QR codes and barcodes actually work. If you're curious about the technology behind what you scan, give it a try!</div>
+
 <h2>Scan Results</h2>
-<p>When a code is detected, Barcode QR Reader shows you its content. For plain text or URLs, you'll see the raw data and buttons to <b>Copy</b>, <b>Share</b>, and <b>Open</b> (URLs only).</p>
-<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
-<p>Barcode QR Reader automatically recognises special code types and shows contextual actions:</p>
+<p>When a code is detected, Barcode QR Reader shows you its content before doing anything with it. You always see the raw data first, along with <b>Copy</b> and <b>Share</b> buttons. If the code contains a URL (common in QR codes), an <b>Open</b> button appears. Tapping it opens the link in your default browser, not an in-app browser. No browsing data is collected.</p>
+<p>Barcode QR Reader automatically recognizes special code types and shows contextual actions:</p>
 <table>
   <thead><tr><th>Code type</th><th>What you can do</th></tr></thead>
   <tbody>
@@ -269,81 +278,86 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
     <tr><td>✈️ Boarding pass</td><td>Flight details parsed from Aztec / PDF417</td></tr>
   </tbody>
 </table>
-<h3>Tracking parameter detection</h3>
-<p>When a URL contains tracking parameters (UTM tags, click IDs, etc.), Barcode QR Reader shows an <b>Open Without Tracking</b> button. Tap it to open the link with all tracking parameters stripped — you reach the same page without being tracked.</p>
-<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
-
-<h2>History</h2>
-<p>Every scan is automatically saved to the History tab. Scans are kept for <b>6 months</b> and the history holds up to <b>1,000 entries</b>; the oldest are removed automatically when the limit is reached.</p>
-<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+<h3>Basic vs. Advanced Details</h3>
+<p>By default, the result page shows only the most useful information: the decoded content and any relevant action buttons.</p>
+<p>With <b>Show Advanced Details</b> turned on (in Settings), two additional sections appear on the result page:</p>
 <ul>
-  <li><b>View a past scan</b> — tap any row to re-open the full result.</li>
-  <li><b>Delete one entry</b> — swipe left on a row and tap <b>Delete</b>.</li>
-  <li><b>Delete all</b> — tap the trash icon in the top-right corner.</li>
-  <li><b>Source label</b> — each entry shows whether it came from the Camera, Gallery, or a Share.</li>
+  <li><b>Decoded Data:</b> the raw string encoded inside the barcode, before any parsing.</li>
+  <li><b>Structure:</b> technical breakdown of the barcode: start/stop characters, check digit, guard patterns, and similar elements depending on the code type.</li>
 </ul>
-
-<h2>Settings</h2>
-<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
-<h3>Multi-Code Mode</h3>
-<p>By default, Barcode QR Reader stops as soon as it finds <b>one code</b>. Turn on <b>Multi-Code Mode</b> to scan up to <b>5 codes at once</b> — useful for business cards, product sheets, or any image containing several codes side by side.</p>
-<p>When multi-code mode is active, the camera keeps scanning for a brief moment after the first detection to gather all visible codes before showing results. This is why it takes slightly longer than single-code mode.</p>
-<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
-<h3>Show Details (Advanced Mode)</h3>
-<p>Turn on <b>Show Details</b> to reveal technical metadata about each code — things like QR version, error correction level, mask pattern, or barcode structure (start/stop characters, check digit). This information is shown both in the result view and in the History tab rows.</p>
-<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+<p>For QR codes, metadata chips also appear showing version number, error correction level, and mask pattern.</p>
+<h3>Tracking parameter detection</h3>
+<p>When a URL contains tracking parameters, Barcode QR Reader shows an <b>Open Without Tracking</b> button. This includes UTM tags, click IDs from Facebook, Google Ads, Microsoft, TikTok, and others. Tap it to open the link with those parameters removed. You reach the same page without being tracked.</p>
 
 <h2>Scanning from Another App</h2>
-<p>You can scan a code that appears in a photo inside any other app — a message, email, document viewer, or web browser — without leaving that app.</p>
-<h3>Using the Share Sheet (Share Extension)</h3>
+<p>You can scan a code that appears in a photo inside any other app (a message, email, document viewer, or web browser) without leaving that app.</p>
+<h3>Using Share</h3>
 <ol>
-  <li>Long-press the image that contains the code.</li>
-  <li>Tap <b>Share</b>.</li>
-  <li>In the share sheet, find and tap <b>Barcode QR Reader</b>.</li>
+  <li>Open the image in your gallery or any app, then tap the <b>Share</b> button.</li>
+  <li>In the list of apps that appears, find and tap <b>Barcode QR Reader</b>. If you don't see it, scroll to the end of the list and tap <b>More</b>.</li>
   <li>The app opens and scans the image automatically.</li>
 </ol>
-<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
-<h3>Using the Actions Row (Action Extension)</h3>
+<h3>Using Actions</h3>
 <ol>
-  <li>Long-press the image that contains the code.</li>
-  <li>Tap <b>Share</b>.</li>
-  <li>Scroll the actions row and tap <b>Scan for Codes</b>.</li>
+  <li>Open the image in your gallery or any app, then tap the <b>Share</b> button.</li>
+  <li>Scroll the actions row below the app list and tap <b>Scan for Codes</b>.</li>
   <li>The app opens and scans the image automatically.</li>
 </ol>
-<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
 <div class="tip">💡 Both options do the same thing. "Barcode QR Reader" in the app row and "Scan for Codes" in the actions row are two ways to reach the same feature.</div>
 
 <h2>Homescreen Widget</h2>
-<p>Barcode QR Reader includes a homescreen widget in three sizes (small, medium, large). Tapping it opens the app directly to the camera, ready to scan.</p>
-<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
+<p>You can add a widget to your homescreen as a larger shortcut to the app. Tapping it opens the camera directly, ready to scan. Widgets come in three sizes (small, medium, large), so you can choose whichever fits your homescreen layout.</p>
 <p>To add the widget:</p>
 <ol>
   <li>Long-press an empty area of your homescreen until the icons jiggle.</li>
   <li>Tap the <b>+</b> button in the top-left corner.</li>
   <li>Search for <b>Barcode QR Reader</b>.</li>
   <li>Choose a size and tap <b>Add Widget</b>.</li>
+  <li>You can resize it later by long-pressing the widget and choosing <b>Edit Widget</b>.</li>
 </ol>
 
 <h2>Control Center</h2>
-<p>A Control Center button lets you open Barcode QR Reader's camera with a single tap from anywhere — lock screen, another app, anywhere.</p>
-<span class="screenshot-placeholder">&lt;screenshot&gt;</span>
-<p>To add the control:</p>
+<p>Control Center is the panel that slides down when you swipe down from the top-right corner of the screen. You can add a Barcode QR Reader button there to launch the camera with a single tap from anywhere, including the lock screen or while using another app.</p>
+<p>To add the button:</p>
 <ol>
-  <li>Open <b>Settings → Control Center</b>.</li>
-  <li>Scroll down to <b>More Controls</b>.</li>
-  <li>Tap <b>+</b> next to <b>Barcode QR Reader</b>.</li>
+  <li>Swipe down from the top-right corner to open Control Center.</li>
+  <li>Tap the <b>+</b> button to enter edit mode.</li>
+  <li>Find <b>Barcode QR Reader</b> in the list and tap it to add.</li>
+  <li>You can drag it to reposition it and resize it while in edit mode.</li>
 </ol>
-<div class="tip">💡 On iOS 26, you can also add controls directly from the Control Center: swipe to open it, tap <b>+</b>, and find Barcode QR Reader in the list.</div>
 
 <h2>Supported Code Types</h2>
 <table>
-  <thead><tr><th>Type</th><th>Codes</th></tr></thead>
+  <thead><tr><th>Code</th><th>Notes</th></tr></thead>
   <tbody>
-    <tr><td><b>2D</b></td><td>QR Code, Micro QR, Aztec, Data Matrix, PDF417, Micro PDF417</td></tr>
-    <tr><td><b>EAN / UPC</b></td><td>EAN-8, EAN-13, UPC-E</td></tr>
-    <tr><td><b>Code</b></td><td>Code 39, Code 39 (Checksum), Code 39 Full ASCII, Code 93, Code 93i, Code 128</td></tr>
-    <tr><td><b>Industrial</b></td><td>ITF-14, Interleaved 2 of 5 (I2of5), I2of5 Checksum, Codabar</td></tr>
-    <tr><td><b>GS1 DataBar</b></td><td>GS1 DataBar, GS1 DataBar Expanded, GS1 DataBar Limited</td></tr>
+    <tr><td>QR Code</td><td>Most common 2D code. Used for URLs, Wi-Fi, contacts, and more</td></tr>
+    <tr><td>Micro QR</td><td>Compact variant of QR Code for small labels with limited space</td></tr>
+    <tr><td>Aztec</td><td>Used on boarding passes and transit tickets</td></tr>
+    <tr><td>Data Matrix</td><td>Common in manufacturing, healthcare, and logistics</td></tr>
+    <tr><td>PDF417</td><td>Used on driver's licenses, boarding passes, and shipping labels</td></tr>
+    <tr><td>Micro PDF417</td><td>Compact PDF417 for small items like pharmaceutical packaging</td></tr>
+    <tr><td>EAN-8</td><td>Short retail barcode for small products</td></tr>
+    <tr><td>EAN-13</td><td>Standard retail barcode found on most consumer products worldwide</td></tr>
+    <tr><td>UPC-E</td><td>Compact barcode used on small US/Canada retail packaging</td></tr>
+    <tr><td>Code 39</td><td>One of the oldest barcodes, common in industrial settings</td></tr>
+    <tr><td>Code 93</td><td>Higher-density successor to Code 39</td></tr>
+    <tr><td>Code 128</td><td>High-density barcode widely used in logistics and shipping</td></tr>
+    <tr><td>ITF-14</td><td>14-digit barcode printed on corrugated cardboard shipping boxes</td></tr>
+    <tr><td>Codabar</td><td>Used in libraries, blood banks, and some shipping companies</td></tr>
+    <tr><td>GS1 DataBar</td><td>Compact retail barcode for small items like produce and fresh foods</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>Extended variant that carries additional data like weight and expiry date</td></tr>
+  </tbody>
+</table>
+<p><b>Not supported:</b></p>
+<table>
+  <thead><tr><th>Code</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (add-ons)</td><td>Short digit supplements attached to EAN-13, used for magazine issue numbers and book pricing</td></tr>
+    <tr><td>rMQR</td><td>Rectangular Micro QR, a newer compact QR variant designed for narrow labels</td></tr>
+    <tr><td>MaxiCode</td><td>2D dot-matrix code used by UPS on shipping labels</td></tr>
+    <tr><td>SP Code</td><td>Japanese accessibility barcode that encodes spoken audio data</td></tr>
+    <tr><td>Postal Codes</td><td>4-state postal barcodes used by national mail services (USPS Intelligent Mail, Royal Mail, Australia Post, Japan Post, and others)</td></tr>
+    <tr><td>Proprietary app codes</td><td>Custom visual codes that only the issuing app can scan</td></tr>
   </tbody>
 </table>
 
@@ -351,10 +365,10 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
 <ul>
   <li><b>Does it need an internet connection?</b><br>No. Barcode QR Reader works completely offline.</li><br>
   <li><b>Does it collect my data?</b><br>No. Nothing is uploaded anywhere. Scan history is stored only on your device.</li><br>
-  <li><b>Does it access my entire photo library?</b><br>No. In the Gallery tab, you pick a single photo using the system photo picker — Barcode QR Reader never receives access to your library.</li><br>
+  <li><b>Does it access my entire photo library?</b><br>No. In the Gallery tab, you pick a single photo using the system photo picker. Barcode QR Reader never receives access to your library.</li><br>
   <li><b>Why does multi-code mode take a little longer?</b><br>The camera gathers codes across a short window of frames to make sure it catches all codes in view before showing the result.</li><br>
   <li><b>How long is scan history kept?</b><br>Entries older than 6 months are removed automatically. The history also caps at 1,000 entries; the oldest are removed to make room for new ones.</li><br>
-  <li><b>Why doesn't it navigate to a link automatically?</b><br>This is intentional. Fake or malicious QR codes are common — in parking lots, restaurant tables, and elsewhere. Showing you the URL before opening it lets you verify it's safe.</li>
+  <li><b>Why doesn't it navigate to a link automatically?</b><br>This is intentional. Fake or malicious QR codes are common, found in parking lots, restaurant tables, and elsewhere. Showing you the URL before opening it lets you verify it's safe.</li>
 </ul>
 
 <!-- Legal – English -->
@@ -402,15 +416,170 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
 
 
 <!-- ══════════════════════════════════════════════════════════ -->
-<!--  FRANÇAIS                                                 -->
-<!-- ══════════════════════════════════════════════════════════ -->
 
-<div class="lang-divider lang-anchor" id="support-fr">
+<div class="lang-divider" id="lang-fr">
   <span class="lang-flag">FR</span><span class="lang-name">Français</span>
 </div>
 
-<h1>Lecteur de Codes – Manuel</h1>
-<div class="placeholder-block">Manuel en cours de rédaction — disponible prochainement.</div>
+<h1 class="lang-anchor" id="support-fr">Lecteur de Codes</h1>
+
+<p>Lecteur de Codes scanne les codes-barres et les QR codes avec l'appareil photo de votre iPhone ou depuis n'importe quelle image de votre photothèque.
+Il fonctionne entièrement hors ligne, ne stocke rien dans le cloud et n'affiche jamais de publicités.</p>
+
+<h2>Download</h2>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <img src="../appstorebadge/fr.svg" alt="Download on the App Store" height="72">
+  <span class="screenshot-placeholder" style="width:180px; height:180px; line-height:180px; border-radius:10px; font-size:12px; color:#999;">QR code</span>
+</div>
+
+<h2>Assistance</h2>
+
+<div class="screenshots">
+  <span class="screenshot-placeholder">&lt;Camera&gt;</span>
+  <span class="screenshot-placeholder">&lt;Gallery&gt;</span>
+  <span class="screenshot-placeholder">&lt;Scan Result&gt;</span>
+</div>
+
+<h2>Appareil photo</h2>
+<p>L'onglet Appareil photo s'ouvre et commence à scanner immédiatement. Pointez votre téléphone vers n'importe quel code-barres ou QR code et l'application le détecte automatiquement. L'accès à l'appareil photo est requis. Si vous ne l'avez pas encore accordé, une invite apparaîtra. Appuyez sur <b>Ouvrir les réglages</b> et activez l'accès à l'<b>Appareil photo</b> pour Lecteur de Codes.</p>
+<ul>
+  <li><b>Lampe torche :</b> appuyez sur le bouton lampe torche pour éclairer les environnements sombres. Disponible uniquement avec la caméra arrière.</li>
+  <li><b>Caméra frontale :</b> appuyez sur le bouton de rotation pour basculer entre la caméra arrière et la caméra frontale. Pratique lorsque la caméra arrière n'est pas disponible (par exemple, endommagée).</li>
+</ul>
+<div class="tip">💡 L'application affiche une ligne de scan rouge pendant qu'elle recherche des codes. Vous n'avez rien à appuyer. La reconnaissance est automatique.</div>
+
+<h2>Galerie</h2>
+<p>L'onglet Galerie vous permet de scanner des codes depuis une image existante. Appuyez sur <b>Choisir une photo</b> pour sélectionner n'importe quelle image de votre photothèque. Seule la photo spécifique que vous choisissez est partagée avec l'application. Lecteur de Codes ne demande pas l'accès à l'intégralité de votre photothèque.</p>
+<p>Après avoir sélectionné une photo, l'application la scanne et affiche le résultat immédiatement. Si aucun code n'est trouvé, une alerte vous en informera.</p>
+
+<h2>Historique</h2>
+<p>Chaque scan est automatiquement enregistré dans l'onglet Historique. Les scans sont conservés pendant <b>6 mois</b> et l'historique peut contenir jusqu'à <b>1 000 entrées</b> ; les plus anciennes sont supprimées automatiquement lorsque la limite est atteinte.</p>
+<ul>
+  <li><b>Voir un scan passé :</b> appuyez sur n'importe quelle ligne pour rouvrir le résultat complet.</li>
+  <li><b>Supprimer une entrée :</b> faites glisser vers la gauche sur une ligne et appuyez sur <b>Supprimer</b>.</li>
+  <li><b>Tout supprimer :</b> appuyez sur l'icône de la corbeille en haut à droite.</li>
+  <li><b>Étiquette de source :</b> chaque entrée indique si elle provient de l'Appareil photo, de la Galerie ou d'un Partage.</li>
+</ul>
+
+<h2>Réglages</h2>
+<h3>Mode multi-code</h3>
+<p>Par défaut, Lecteur de Codes s'arrête dès qu'il trouve <b>un code</b>. Activez le <b>Mode multi-code</b> pour scanner jusqu'à <b>5 codes à la fois</b>, utile pour les cartes de visite, les fiches produits ou toute image contenant plusieurs codes côte à côte.</p>
+<p>Lorsque le mode multi-code est actif, l'appareil photo continue de scanner brièvement après la première détection afin de rassembler tous les codes visibles avant d'afficher les résultats. C'est pourquoi il prend légèrement plus de temps que le mode code unique.</p>
+<h3>Afficher les détails avancés</h3>
+<p>Activez <b>Afficher les détails avancés</b> pour révéler les métadonnées techniques à côté de chaque résultat de scan : version QR, niveau de correction d'erreur, motif de masque ou structure du code-barres (caractères de début/fin, chiffre de contrôle). Ces informations apparaissent sur la page de résultat et dans les lignes de l'onglet Historique.</p>
+<div class="tip">💡 C'est une excellente façon d'en apprendre davantage sur le fonctionnement des QR codes et des codes-barres. Si vous êtes curieux à propos de la technologie derrière ce que vous scannez, essayez-le !</div>
+
+<h2>Résultats de scan</h2>
+<p>Lorsqu'un code est détecté, Lecteur de Codes vous affiche son contenu avant de faire quoi que ce soit. Vous voyez toujours les données brutes en premier, accompagnées des boutons <b>Copier</b> et <b>Partager</b>. Si le code contient une URL (courant dans les QR codes), un bouton <b>Ouvrir</b> apparaît. En appuyant dessus, le lien s'ouvre dans votre navigateur par défaut, et non dans un navigateur intégré à l'application. Aucune donnée de navigation n'est collectée.</p>
+<p>Lecteur de Codes reconnaît automatiquement les types de codes spéciaux et affiche des actions contextuelles :</p>
+<table>
+  <thead><tr><th>Type de code</th><th>Ce que vous pouvez faire</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / Lien</td><td>Ouvrir dans votre navigateur par défaut · Copier · Partager</td></tr>
+    <tr><td>📶 Réseau Wi-Fi</td><td><b>Se connecter</b> directement · Copier le mot de passe</td></tr>
+    <tr><td>👤 Contact (vCard / MECARD)</td><td><b>Enregistrer dans Contacts</b> avec aperçu</td></tr>
+    <tr><td>📅 Événement de calendrier</td><td><b>Ajouter au calendrier</b></td></tr>
+    <tr><td>✉️ E-mail</td><td><b>Composer</b> un e-mail prérempli</td></tr>
+    <tr><td>💬 SMS / Message</td><td><b>Envoyer un message</b></td></tr>
+    <tr><td>📞 Numéro de téléphone</td><td><b>Appeler</b></td></tr>
+    <tr><td>📍 Localisation / Géo</td><td><b>Ouvrir dans Plans</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> ou FaceTime Audio</td></tr>
+    <tr><td>₿ Bitcoin</td><td><b>Copier l'adresse</b></td></tr>
+    <tr><td>✈️ Carte d'embarquement</td><td>Détails du vol analysés depuis Aztec / PDF417</td></tr>
+  </tbody>
+</table>
+<h3>Détails de base et détails avancés</h3>
+<p>Par défaut, la page de résultat affiche uniquement les informations les plus utiles : le contenu décodé et les boutons d'action pertinents.</p>
+<p>Avec <b>Afficher les détails avancés</b> activé (dans les Réglages), deux sections supplémentaires apparaissent sur la page de résultat :</p>
+<ul>
+  <li><b>Données décodées :</b> la chaîne brute encodée dans le code-barres, avant tout traitement.</li>
+  <li><b>Structure :</b> décomposition technique du code-barres : caractères de début/fin, chiffre de contrôle, motifs de garde et éléments similaires selon le type de code.</li>
+</ul>
+<p>Pour les QR codes, des puces de métadonnées apparaissent également indiquant le numéro de version, le niveau de correction d'erreur et le motif de masque.</p>
+<h3>Détection des paramètres de suivi</h3>
+<p>Lorsqu'une URL contient des paramètres de suivi, Lecteur de Codes affiche un bouton <b>Ouvrir sans suivi</b>. Cela inclut les balises UTM, les identifiants de clic de Facebook, Google Ads, Microsoft, TikTok et d'autres. Appuyez dessus pour ouvrir le lien sans ces paramètres. Vous accédez à la même page sans être suivi.</p>
+
+<h2>Scanner depuis une autre application</h2>
+<p>Vous pouvez scanner un code qui apparaît dans une photo dans n'importe quelle autre application (un message, un e-mail, un lecteur de documents ou un navigateur web) sans quitter cette application.</p>
+<h3>Via Partager</h3>
+<ol>
+  <li>Ouvrez l'image dans votre galerie ou dans n'importe quelle application, puis appuyez sur le bouton <b>Partager</b>.</li>
+  <li>Dans la liste des applications qui apparaît, trouvez et appuyez sur <b>Lecteur de Codes</b>. Si vous ne le voyez pas, faites défiler jusqu'à la fin de la liste et appuyez sur <b>Plus</b>.</li>
+  <li>L'application s'ouvre et scanne l'image automatiquement.</li>
+</ol>
+<h3>Via les actions</h3>
+<ol>
+  <li>Ouvrez l'image dans votre galerie ou dans n'importe quelle application, puis appuyez sur le bouton <b>Partager</b>.</li>
+  <li>Faites défiler la rangée d'actions sous la liste des applications et appuyez sur <b>Scan for Codes</b>.</li>
+  <li>L'application s'ouvre et scanne l'image automatiquement.</li>
+</ol>
+<div class="tip">💡 Les deux options font la même chose. "Lecteur de Codes" dans la rangée des applications et "Scan for Codes" dans la rangée des actions sont deux façons d'accéder à la même fonctionnalité.</div>
+
+<h2>Widget sur l'écran d'accueil</h2>
+<p>Vous pouvez ajouter un widget à votre écran d'accueil comme raccourci vers l'application. En appuyant dessus, la caméra s'ouvre directement, prête à scanner. Les widgets sont disponibles en trois tailles (petit, moyen, grand), vous pouvez donc choisir celui qui correspond à votre disposition d'écran d'accueil.</p>
+<p>Pour ajouter le widget :</p>
+<ol>
+  <li>Appuyez longuement sur une zone vide de votre écran d'accueil jusqu'à ce que les icônes se mettent à trembler.</li>
+  <li>Appuyez sur le bouton <b>+</b> dans le coin supérieur gauche.</li>
+  <li>Recherchez <b>Lecteur de Codes</b>.</li>
+  <li>Choisissez une taille et appuyez sur <b>Ajouter le widget</b>.</li>
+  <li>Vous pouvez le redimensionner plus tard en appuyant longuement sur le widget et en choisissant <b>Modifier le widget</b>.</li>
+</ol>
+
+<h2>Control Center</h2>
+<p>Control Center est le panneau qui s'affiche lorsque vous faites glisser vers le bas depuis le coin supérieur droit de l'écran. Vous pouvez y ajouter un bouton Lecteur de Codes pour lancer la caméra en un seul appui depuis n'importe où, y compris depuis l'écran de verrouillage ou pendant l'utilisation d'une autre application.</p>
+<p>Pour ajouter le bouton :</p>
+<ol>
+  <li>Faites glisser vers le bas depuis le coin supérieur droit pour ouvrir Control Center.</li>
+  <li>Appuyez sur le bouton <b>+</b> pour entrer en mode édition.</li>
+  <li>Trouvez <b>Lecteur de Codes</b> dans la liste et appuyez dessus pour l'ajouter.</li>
+  <li>Vous pouvez le faire glisser pour le repositionner et le redimensionner en mode édition.</li>
+</ol>
+
+<h2>Types de codes pris en charge</h2>
+<table>
+  <thead><tr><th>Code</th><th>Remarques</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>Code 2D le plus courant. Utilisé pour les URL, le Wi-Fi, les contacts et plus encore</td></tr>
+    <tr><td>Micro QR</td><td>Variante compacte du QR Code pour les petites étiquettes avec peu d'espace</td></tr>
+    <tr><td>Aztec</td><td>Utilisé sur les cartes d'embarquement et les titres de transport</td></tr>
+    <tr><td>Data Matrix</td><td>Courant dans la fabrication, la santé et la logistique</td></tr>
+    <tr><td>PDF417</td><td>Utilisé sur les permis de conduire, les cartes d'embarquement et les étiquettes d'expédition</td></tr>
+    <tr><td>Micro PDF417</td><td>PDF417 compact pour les petits articles comme les emballages pharmaceutiques</td></tr>
+    <tr><td>EAN-8</td><td>Code-barres court pour les petits produits de vente au détail</td></tr>
+    <tr><td>EAN-13</td><td>Code-barres standard présent sur la plupart des produits de consommation dans le monde</td></tr>
+    <tr><td>UPC-E</td><td>Code-barres compact utilisé sur les petits emballages de vente au détail aux États-Unis et au Canada</td></tr>
+    <tr><td>Code 39</td><td>L'un des codes-barres les plus anciens, courant dans les environnements industriels</td></tr>
+    <tr><td>Code 93</td><td>Successeur de Code 39 à plus haute densité</td></tr>
+    <tr><td>Code 128</td><td>Code-barres haute densité largement utilisé dans la logistique et l'expédition</td></tr>
+    <tr><td>ITF-14</td><td>Code-barres à 14 chiffres imprimé sur les boîtes d'expédition en carton ondulé</td></tr>
+    <tr><td>Codabar</td><td>Utilisé dans les bibliothèques, les banques de sang et certaines sociétés d'expédition</td></tr>
+    <tr><td>GS1 DataBar</td><td>Code-barres compact pour les petits articles comme les produits frais</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>Variante étendue qui contient des données supplémentaires comme le poids et la date d'expiration</td></tr>
+  </tbody>
+</table>
+<p><b>Non pris en charge :</b></p>
+<table>
+  <thead><tr><th>Code</th><th>Remarques</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (compléments)</td><td>Suppléments courts de chiffres attachés à l'EAN-13, utilisés pour les numéros d'édition de magazines et la tarification des livres</td></tr>
+    <tr><td>rMQR</td><td>Micro QR rectangulaire, une variante QR compacte récente conçue pour les étiquettes étroites</td></tr>
+    <tr><td>MaxiCode</td><td>Code matriciel 2D utilisé par UPS sur les étiquettes d'expédition</td></tr>
+    <tr><td>SP Code</td><td>Code-barres d'accessibilité japonais qui encode des données audio parlées</td></tr>
+    <tr><td>Codes postaux</td><td>Codes-barres postaux à 4 états utilisés par les services postaux nationaux (USPS Intelligent Mail, Royal Mail, Australia Post, Japan Post et autres)</td></tr>
+    <tr><td>Codes d'applications propriétaires</td><td>Codes visuels personnalisés que seule l'application émettrice peut scanner</td></tr>
+  </tbody>
+</table>
+
+<h2>FAQ</h2>
+<ul>
+  <li><b>Une connexion internet est-elle nécessaire ?</b><br>Non. Lecteur de Codes fonctionne entièrement hors ligne.</li><br>
+  <li><b>Collecte-t-il mes données ?</b><br>Non. Rien n'est téléchargé nulle part. L'historique des scans est stocké uniquement sur votre appareil.</li><br>
+  <li><b>Accède-t-il à l'intégralité de ma photothèque ?</b><br>Non. Dans l'onglet Galerie, vous choisissez une seule photo via le sélecteur de photos système. Lecteur de Codes n'accède jamais à votre photothèque.</li><br>
+  <li><b>Pourquoi le mode multi-code prend-il un peu plus de temps ?</b><br>L'appareil photo collecte les codes sur une courte fenêtre d'images pour s'assurer de capturer tous les codes visibles avant d'afficher le résultat.</li><br>
+  <li><b>Combien de temps l'historique des scans est-il conservé ?</b><br>Les entrées de plus de 6 mois sont supprimées automatiquement. L'historique est également limité à 1 000 entrées ; les plus anciennes sont supprimées pour faire place aux nouvelles.</li><br>
+  <li><b>Pourquoi ne navigue-t-il pas automatiquement vers un lien ?</b><br>C'est intentionnel. Les QR codes faux ou malveillants sont courants : dans les parkings, sur les tables de restaurant et ailleurs. Vous montrer l'URL avant de l'ouvrir vous permet de vérifier qu'elle est sûre.</li>
+</ul>
 
 <div class="sub-divider lang-anchor" id="legal-fr"><span class="sub-divider-label">Mentions légales</span></div>
 
@@ -456,15 +625,170 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
 
 
 <!-- ══════════════════════════════════════════════════════════ -->
-<!--  ITALIANO                                                 -->
-<!-- ══════════════════════════════════════════════════════════ -->
 
-<div class="lang-divider lang-anchor" id="support-it">
+<div class="lang-divider" id="lang-it">
   <span class="lang-flag">IT</span><span class="lang-name">Italiano</span>
 </div>
 
-<h1>Lettore Codici – Manuale</h1>
-<div class="placeholder-block">Manuale in fase di redazione — disponibile a breve.</div>
+<h1 class="lang-anchor" id="support-it">Lettore Codici</h1>
+
+<p>Lettore Codici scansiona codici a barre e QR code tramite la fotocamera del tuo iPhone o da qualsiasi immagine nella tua libreria foto.
+Funziona completamente offline, non archivia nulla nel cloud e non mostra mai pubblicità.</p>
+
+<h2>Download</h2>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <img src="../appstorebadge/it.svg" alt="Download on the App Store" height="72">
+  <span class="screenshot-placeholder" style="width:180px; height:180px; line-height:180px; border-radius:10px; font-size:12px; color:#999;">QR code</span>
+</div>
+
+<h2>Supporto</h2>
+
+<div class="screenshots">
+  <span class="screenshot-placeholder">&lt;Camera&gt;</span>
+  <span class="screenshot-placeholder">&lt;Gallery&gt;</span>
+  <span class="screenshot-placeholder">&lt;Scan Result&gt;</span>
+</div>
+
+<h2>Fotocamera</h2>
+<p>La scheda Fotocamera si apre e inizia a scansionare immediatamente. Punta il telefono su qualsiasi codice a barre o QR code e l'app lo rileva automaticamente. È necessario il permesso per la fotocamera. Se non lo hai ancora concesso, apparirà una richiesta. Tocca <b>Apri Impostazioni</b> e abilita l'accesso alla <b>Fotocamera</b> per Lettore Codici.</p>
+<ul>
+  <li><b>Torcia:</b> tocca il pulsante della torcia per illuminare ambienti bui. Disponibile solo con la fotocamera posteriore.</li>
+  <li><b>Fotocamera frontale:</b> tocca il pulsante di rotazione per passare dalla fotocamera posteriore a quella frontale. Utile quando la fotocamera posteriore non è disponibile (ad esempio, danneggiata).</li>
+</ul>
+<div class="tip">💡 L'app mostra una linea di scansione rossa mentre cerca i codici. Non devi premere nulla. Il riconoscimento è automatico.</div>
+
+<h2>Galleria</h2>
+<p>La scheda Galleria ti consente di scansionare codici da un'immagine esistente. Tocca <b>Scegli foto</b> per selezionare qualsiasi immagine dalla tua libreria. Solo la foto specifica che scegli viene condivisa con l'app. Lettore Codici non richiede l'accesso all'intera libreria foto.</p>
+<p>Dopo aver selezionato una foto, l'app la scansiona e mostra il risultato immediatamente. Se non viene trovato alcun codice, un avviso te lo comunicherà.</p>
+
+<h2>Cronologia</h2>
+<p>Ogni scansione viene salvata automaticamente nella scheda Cronologia. Le scansioni vengono conservate per <b>6 mesi</b> e la cronologia può contenere fino a <b>1.000 voci</b>; le più vecchie vengono rimosse automaticamente quando viene raggiunto il limite.</p>
+<ul>
+  <li><b>Visualizza una scansione precedente:</b> tocca qualsiasi riga per riaprire il risultato completo.</li>
+  <li><b>Elimina una voce:</b> scorri verso sinistra su una riga e tocca <b>Elimina</b>.</li>
+  <li><b>Elimina tutto:</b> tocca l'icona del cestino nell'angolo in alto a destra.</li>
+  <li><b>Etichetta sorgente:</b> ogni voce indica se proviene dalla Fotocamera, dalla Galleria o da una Condivisione.</li>
+</ul>
+
+<h2>Impostazioni</h2>
+<h3>Modalità multi-codice</h3>
+<p>Per impostazione predefinita, Lettore Codici si ferma non appena trova <b>un codice</b>. Attiva la <b>Modalità multi-codice</b> per scansionare fino a <b>5 codici contemporaneamente</b>, utile per biglietti da visita, schede prodotto o qualsiasi immagine contenente più codici affiancati.</p>
+<p>Quando la modalità multi-codice è attiva, la fotocamera continua a scansionare per un breve momento dopo la prima rilevazione per raccogliere tutti i codici visibili prima di mostrare i risultati. Ecco perché richiede leggermente più tempo rispetto alla modalità a codice singolo.</p>
+<h3>Mostra dettagli avanzati</h3>
+<p>Attiva <b>Mostra dettagli avanzati</b> per visualizzare i metadati tecnici accanto a ogni risultato di scansione: versione QR, livello di correzione degli errori, schema di mascheramento o struttura del codice a barre (caratteri di inizio/fine, cifra di controllo). Queste informazioni vengono mostrate nella pagina del risultato e nelle righe della scheda Cronologia.</p>
+<div class="tip">💡 È un ottimo modo per saperne di più su come funzionano effettivamente i QR code e i codici a barre. Se sei curioso riguardo alla tecnologia dietro ciò che scansioni, provalo!</div>
+
+<h2>Risultati di scansione</h2>
+<p>Quando viene rilevato un codice, Lettore Codici mostra il contenuto prima di fare qualsiasi cosa. Vedi sempre prima i dati grezzi, insieme ai pulsanti <b>Copia</b> e <b>Condividi</b>. Se il codice contiene un URL (comune nei QR code), appare un pulsante <b>Apri</b>. Toccandolo si apre il link nel browser predefinito, non in un browser integrato nell'app. Nessun dato di navigazione viene raccolto.</p>
+<p>Lettore Codici riconosce automaticamente i tipi di codice speciali e mostra azioni contestuali:</p>
+<table>
+  <thead><tr><th>Tipo di codice</th><th>Cosa puoi fare</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / Link</td><td>Apri nel browser predefinito · Copia · Condividi</td></tr>
+    <tr><td>📶 Rete Wi-Fi</td><td><b>Connetti</b> direttamente · Copia password</td></tr>
+    <tr><td>👤 Contatto (vCard / MECARD)</td><td><b>Salva nei Contatti</b> con anteprima</td></tr>
+    <tr><td>📅 Evento calendario</td><td><b>Aggiungi al Calendario</b></td></tr>
+    <tr><td>✉️ Email</td><td><b>Componi</b> email precompilata</td></tr>
+    <tr><td>💬 SMS / Messaggio</td><td><b>Invia messaggio</b></td></tr>
+    <tr><td>📞 Numero di telefono</td><td><b>Chiama</b></td></tr>
+    <tr><td>📍 Posizione / Geo</td><td><b>Apri in Mappe</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> o FaceTime Audio</td></tr>
+    <tr><td>₿ Bitcoin</td><td><b>Copia indirizzo</b></td></tr>
+    <tr><td>✈️ Carta d'imbarco</td><td>Dettagli del volo estratti da Aztec / PDF417</td></tr>
+  </tbody>
+</table>
+<h3>Dettagli base e dettagli avanzati</h3>
+<p>Per impostazione predefinita, la pagina dei risultati mostra solo le informazioni più utili: il contenuto decodificato e i pulsanti di azione pertinenti.</p>
+<p>Con <b>Mostra dettagli avanzati</b> attivo (nelle Impostazioni), nella pagina dei risultati appaiono due sezioni aggiuntive:</p>
+<ul>
+  <li><b>Dati decodificati:</b> la stringa grezza codificata nel codice a barre, prima di qualsiasi elaborazione.</li>
+  <li><b>Struttura:</b> analisi tecnica del codice a barre: caratteri di inizio/fine, cifra di controllo, pattern di guardia ed elementi simili a seconda del tipo di codice.</li>
+</ul>
+<p>Per i QR code, appaiono anche chip di metadati che mostrano il numero di versione, il livello di correzione degli errori e lo schema di mascheramento.</p>
+<h3>Rilevamento dei parametri di tracciamento</h3>
+<p>Quando un URL contiene parametri di tracciamento, Lettore Codici mostra un pulsante <b>Apri senza tracciamento</b>. Questo include i tag UTM e gli ID clic di Facebook, Google Ads, Microsoft, TikTok e altri. Toccalo per aprire il link senza quei parametri. Raggiungi la stessa pagina senza essere tracciato.</p>
+
+<h2>Scansione da un'altra app</h2>
+<p>Puoi scansionare un codice che appare in una foto all'interno di qualsiasi altra app (un messaggio, un'email, un visualizzatore di documenti o un browser web) senza lasciare quell'app.</p>
+<h3>Tramite Condividi</h3>
+<ol>
+  <li>Apri l'immagine nella galleria o in qualsiasi app, poi tocca il pulsante <b>Condividi</b>.</li>
+  <li>Nell'elenco delle app che appare, trova e tocca <b>Lettore Codici</b>. Se non lo vedi, scorri fino alla fine dell'elenco e tocca <b>Altro</b>.</li>
+  <li>L'app si apre e scansiona l'immagine automaticamente.</li>
+</ol>
+<h3>Tramite Azioni</h3>
+<ol>
+  <li>Apri l'immagine nella galleria o in qualsiasi app, poi tocca il pulsante <b>Condividi</b>.</li>
+  <li>Scorri la riga delle azioni sotto l'elenco delle app e tocca <b>Scan for Codes</b>.</li>
+  <li>L'app si apre e scansiona l'immagine automaticamente.</li>
+</ol>
+<div class="tip">💡 Entrambe le opzioni fanno la stessa cosa. "Lettore Codici" nella riga delle app e "Scan for Codes" nella riga delle azioni sono due modi per accedere alla stessa funzione.</div>
+
+<h2>Widget nella schermata Home</h2>
+<p>Puoi aggiungere un widget alla schermata Home come collegamento rapido all'app. Toccandolo si apre direttamente la fotocamera, pronta per la scansione. I widget sono disponibili in tre dimensioni (piccola, media, grande), così puoi scegliere quella più adatta al layout della tua schermata Home.</p>
+<p>Per aggiungere il widget:</p>
+<ol>
+  <li>Tieni premuto su un'area vuota della schermata Home finché le icone iniziano a tremare.</li>
+  <li>Tocca il pulsante <b>+</b> nell'angolo in alto a sinistra.</li>
+  <li>Cerca <b>Lettore Codici</b>.</li>
+  <li>Scegli una dimensione e tocca <b>Aggiungi widget</b>.</li>
+  <li>Puoi ridimensionarlo in seguito tenendo premuto il widget e scegliendo <b>Modifica widget</b>.</li>
+</ol>
+
+<h2>Control Center</h2>
+<p>Control Center è il pannello che scorre verso il basso quando scorri dall'angolo in alto a destra dello schermo. Puoi aggiungere un pulsante di Lettore Codici per avviare la fotocamera con un solo tocco da qualsiasi luogo, inclusa la schermata di blocco o mentre usi un'altra app.</p>
+<p>Per aggiungere il pulsante:</p>
+<ol>
+  <li>Scorri dall'angolo in alto a destra per aprire Control Center.</li>
+  <li>Tocca il pulsante <b>+</b> per entrare in modalità modifica.</li>
+  <li>Trova <b>Lettore Codici</b> nell'elenco e toccalo per aggiungerlo.</li>
+  <li>Puoi trascinarlo per riposizionarlo e ridimensionarlo mentre sei in modalità modifica.</li>
+</ol>
+
+<h2>Tipi di codice supportati</h2>
+<table>
+  <thead><tr><th>Codice</th><th>Note</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>Il codice 2D più comune. Usato per URL, Wi-Fi, contatti e altro</td></tr>
+    <tr><td>Micro QR</td><td>Variante compatta del QR Code per etichette piccole con spazio limitato</td></tr>
+    <tr><td>Aztec</td><td>Usato su carte d'imbarco e biglietti di trasporto</td></tr>
+    <tr><td>Data Matrix</td><td>Comune nella produzione, nella sanità e nella logistica</td></tr>
+    <tr><td>PDF417</td><td>Usato su patenti di guida, carte d'imbarco ed etichette di spedizione</td></tr>
+    <tr><td>Micro PDF417</td><td>PDF417 compatto per articoli piccoli come confezioni farmaceutiche</td></tr>
+    <tr><td>EAN-8</td><td>Codice a barre corto per prodotti al dettaglio di piccole dimensioni</td></tr>
+    <tr><td>EAN-13</td><td>Codice a barre standard presente sulla maggior parte dei prodotti di consumo nel mondo</td></tr>
+    <tr><td>UPC-E</td><td>Codice a barre compatto usato su piccole confezioni al dettaglio negli USA e in Canada</td></tr>
+    <tr><td>Code 39</td><td>Uno dei codici a barre più antichi, comune in ambienti industriali</td></tr>
+    <tr><td>Code 93</td><td>Successore ad alta densità del Code 39</td></tr>
+    <tr><td>Code 128</td><td>Codice a barre ad alta densità ampiamente usato nella logistica e nelle spedizioni</td></tr>
+    <tr><td>ITF-14</td><td>Codice a barre a 14 cifre stampato su scatole di spedizione in cartone ondulato</td></tr>
+    <tr><td>Codabar</td><td>Usato in biblioteche, banche del sangue e alcune società di spedizione</td></tr>
+    <tr><td>GS1 DataBar</td><td>Codice a barre compatto per articoli piccoli come prodotti freschi</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>Variante estesa che contiene dati aggiuntivi come peso e data di scadenza</td></tr>
+  </tbody>
+</table>
+<p><b>Non supportati:</b></p>
+<table>
+  <thead><tr><th>Codice</th><th>Note</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (add-on)</td><td>Supplementi numerici brevi allegati all'EAN-13, usati per i numeri di edizione delle riviste e il prezzo dei libri</td></tr>
+    <tr><td>rMQR</td><td>Micro QR rettangolare, una variante QR compatta più recente progettata per etichette strette</td></tr>
+    <tr><td>MaxiCode</td><td>Codice a matrice 2D usato da UPS sulle etichette di spedizione</td></tr>
+    <tr><td>SP Code</td><td>Codice a barre di accessibilità giapponese che codifica dati audio parlati</td></tr>
+    <tr><td>Codici postali</td><td>Codici a barre postali a 4 stati usati dai servizi postali nazionali (USPS Intelligent Mail, Royal Mail, Australia Post, Japan Post e altri)</td></tr>
+    <tr><td>Codici app proprietari</td><td>Codici visivi personalizzati che solo l'app emittente può scansionare</td></tr>
+  </tbody>
+</table>
+
+<h2>FAQ</h2>
+<ul>
+  <li><b>Richiede una connessione internet?</b><br>No. Lettore Codici funziona completamente offline.</li><br>
+  <li><b>Raccoglie i miei dati?</b><br>No. Nulla viene caricato da nessuna parte. La cronologia delle scansioni è archiviata solo sul tuo dispositivo.</li><br>
+  <li><b>Accede all'intera libreria foto?</b><br>No. Nella scheda Galleria, selezioni una singola foto tramite il selettore foto di sistema. Lettore Codici non accede mai alla tua libreria.</li><br>
+  <li><b>Perché la modalità multi-codice richiede un po' più di tempo?</b><br>La fotocamera raccoglie i codici in una breve finestra di frame per assicurarsi di catturare tutti i codici visibili prima di mostrare il risultato.</li><br>
+  <li><b>Per quanto tempo viene conservata la cronologia delle scansioni?</b><br>Le voci più vecchie di 6 mesi vengono rimosse automaticamente. La cronologia è limitata anche a 1.000 voci; le più vecchie vengono rimosse per fare spazio a quelle nuove.</li><br>
+  <li><b>Perché non naviga automaticamente verso un link?</b><br>È intenzionale. I QR code falsi o dannosi sono comuni: nei parcheggi, sui tavoli dei ristoranti e altrove. Mostrarti l'URL prima di aprirlo ti consente di verificare che sia sicuro.</li>
+</ul>
 
 <div class="sub-divider lang-anchor" id="legal-it"><span class="sub-divider-label">Note legali</span></div>
 
@@ -510,15 +834,170 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
 
 
 <!-- ══════════════════════════════════════════════════════════ -->
-<!--  ESPAÑOL                                                  -->
-<!-- ══════════════════════════════════════════════════════════ -->
 
-<div class="lang-divider lang-anchor" id="support-es">
+<div class="lang-divider" id="lang-es">
   <span class="lang-flag">ES</span><span class="lang-name">Español</span>
 </div>
 
-<h1>Escáner de Códigos – Manual</h1>
-<div class="placeholder-block">Manual en preparación — disponible próximamente.</div>
+<h1 class="lang-anchor" id="support-es">Escáner de Códigos</h1>
+
+<p>Escáner de Códigos escanea códigos de barras y QR codes con la cámara de tu iPhone o desde cualquier imagen de tu biblioteca de fotos.
+Funciona completamente sin conexión, no almacena nada en la nube y nunca muestra anuncios.</p>
+
+<h2>Download</h2>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <img src="../appstorebadge/es.svg" alt="Download on the App Store" height="72">
+  <span class="screenshot-placeholder" style="width:180px; height:180px; line-height:180px; border-radius:10px; font-size:12px; color:#999;">QR code</span>
+</div>
+
+<h2>Soporte</h2>
+
+<div class="screenshots">
+  <span class="screenshot-placeholder">&lt;Camera&gt;</span>
+  <span class="screenshot-placeholder">&lt;Gallery&gt;</span>
+  <span class="screenshot-placeholder">&lt;Scan Result&gt;</span>
+</div>
+
+<h2>Cámara</h2>
+<p>La pestaña Cámara se abre y comienza a escanear de inmediato. Apunta tu teléfono hacia cualquier código de barras o QR code y la app lo detecta automáticamente. Se requiere permiso para la cámara. Si aún no lo has concedido, aparecerá una solicitud. Toca <b>Abrir Ajustes</b> y activa el acceso a la <b>Cámara</b> para Escáner de Códigos.</p>
+<ul>
+  <li><b>Linterna:</b> toca el botón de linterna para iluminar entornos oscuros. Solo disponible con la cámara trasera.</li>
+  <li><b>Cámara frontal:</b> toca el botón de rotación para cambiar entre la cámara trasera y la frontal. Útil cuando la cámara trasera no está disponible (por ejemplo, dañada).</li>
+</ul>
+<div class="tip">💡 La app muestra una línea de escaneo roja mientras busca códigos. No necesitas presionar nada. El reconocimiento es automático.</div>
+
+<h2>Galería</h2>
+<p>La pestaña Galería te permite escanear códigos desde una imagen existente. Toca <b>Elegir foto</b> para seleccionar cualquier imagen de tu biblioteca. Solo la foto específica que eliges se comparte con la app. Escáner de Códigos no solicita acceso a toda tu biblioteca de fotos.</p>
+<p>Tras seleccionar una foto, la app la escanea y muestra el resultado de inmediato. Si no se encuentra ningún código, una alerta te lo indicará.</p>
+
+<h2>Historial</h2>
+<p>Cada escaneo se guarda automáticamente en la pestaña Historial. Los escaneos se conservan durante <b>6 meses</b> y el historial almacena hasta <b>1.000 entradas</b>; las más antiguas se eliminan automáticamente cuando se alcanza el límite.</p>
+<ul>
+  <li><b>Ver un escaneo anterior:</b> toca cualquier fila para volver a abrir el resultado completo.</li>
+  <li><b>Eliminar una entrada:</b> desliza hacia la izquierda en una fila y toca <b>Eliminar</b>.</li>
+  <li><b>Eliminar todo:</b> toca el icono de papelera en la esquina superior derecha.</li>
+  <li><b>Etiqueta de origen:</b> cada entrada indica si proviene de la Cámara, la Galería o un Compartir.</li>
+</ul>
+
+<h2>Ajustes</h2>
+<h3>Modo multi-código</h3>
+<p>De forma predeterminada, Escáner de Códigos se detiene en cuanto encuentra <b>un código</b>. Activa el <b>Modo multi-código</b> para escanear hasta <b>5 códigos a la vez</b>, útil para tarjetas de visita, fichas de producto o cualquier imagen que contenga varios códigos uno al lado del otro.</p>
+<p>Cuando el modo multi-código está activo, la cámara sigue escaneando un breve momento tras la primera detección para recopilar todos los códigos visibles antes de mostrar los resultados. Por eso tarda un poco más que el modo de código único.</p>
+<h3>Mostrar detalles avanzados</h3>
+<p>Activa <b>Mostrar detalles avanzados</b> para ver metadatos técnicos junto a cada resultado de escaneo: versión QR, nivel de corrección de errores, patrón de máscara o estructura del código de barras (caracteres de inicio/parada, dígito de comprobación). Esta información se muestra en la página de resultado y en las filas de la pestaña Historial.</p>
+<div class="tip">💡 Es una excelente manera de aprender más sobre cómo funcionan realmente los QR codes y los códigos de barras. Si tienes curiosidad por la tecnología detrás de lo que escaneas, ¡pruébalo!</div>
+
+<h2>Resultados de escaneo</h2>
+<p>Cuando se detecta un código, Escáner de Códigos te muestra su contenido antes de hacer nada. Siempre ves primero los datos sin procesar, junto con los botones <b>Copiar</b> y <b>Compartir</b>. Si el código contiene una URL (común en los QR codes), aparece un botón <b>Abrir</b>. Al tocarlo se abre el enlace en tu navegador predeterminado, no en un navegador integrado en la app. No se recopilan datos de navegación.</p>
+<p>Escáner de Códigos reconoce automáticamente los tipos de código especiales y muestra acciones contextuales:</p>
+<table>
+  <thead><tr><th>Tipo de código</th><th>Qué puedes hacer</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / Enlace</td><td>Abrir en tu navegador predeterminado · Copiar · Compartir</td></tr>
+    <tr><td>📶 Red Wi-Fi</td><td><b>Conectar</b> directamente · Copiar contraseña</td></tr>
+    <tr><td>👤 Contacto (vCard / MECARD)</td><td><b>Guardar en Contactos</b> con vista previa</td></tr>
+    <tr><td>📅 Evento de calendario</td><td><b>Añadir al Calendario</b></td></tr>
+    <tr><td>✉️ Correo electrónico</td><td><b>Redactar</b> correo prellenado</td></tr>
+    <tr><td>💬 SMS / Mensaje</td><td><b>Enviar mensaje</b></td></tr>
+    <tr><td>📞 Número de teléfono</td><td><b>Llamar</b></td></tr>
+    <tr><td>📍 Ubicación / Geo</td><td><b>Abrir en Mapas</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> o FaceTime Audio</td></tr>
+    <tr><td>₿ Bitcoin</td><td><b>Copiar dirección</b></td></tr>
+    <tr><td>✈️ Tarjeta de embarque</td><td>Detalles del vuelo extraídos de Aztec / PDF417</td></tr>
+  </tbody>
+</table>
+<h3>Detalles básicos frente a detalles avanzados</h3>
+<p>De forma predeterminada, la página de resultados muestra solo la información más útil: el contenido decodificado y los botones de acción relevantes.</p>
+<p>Con <b>Mostrar detalles avanzados</b> activado (en Ajustes), aparecen dos secciones adicionales en la página de resultados:</p>
+<ul>
+  <li><b>Datos decodificados:</b> la cadena sin procesar codificada dentro del código de barras, antes de cualquier procesamiento.</li>
+  <li><b>Estructura:</b> desglose técnico del código de barras: caracteres de inicio/parada, dígito de comprobación, patrones de guardia y elementos similares según el tipo de código.</li>
+</ul>
+<p>Para los QR codes, también aparecen chips de metadatos que muestran el número de versión, el nivel de corrección de errores y el patrón de máscara.</p>
+<h3>Detección de parámetros de seguimiento</h3>
+<p>Cuando una URL contiene parámetros de seguimiento, Escáner de Códigos muestra un botón <b>Abrir sin rastreo</b>. Esto incluye etiquetas UTM e identificadores de clic de Facebook, Google Ads, Microsoft, TikTok y otros. Tócalo para abrir el enlace sin esos parámetros. Llegas a la misma página sin ser rastreado.</p>
+
+<h2>Escanear desde otra app</h2>
+<p>Puedes escanear un código que aparece en una foto dentro de cualquier otra app (un mensaje, correo electrónico, visor de documentos o navegador web) sin salir de esa app.</p>
+<h3>Usando Compartir</h3>
+<ol>
+  <li>Abre la imagen en tu galería o en cualquier app y toca el botón <b>Compartir</b>.</li>
+  <li>En la lista de apps que aparece, busca y toca <b>Escáner de Códigos</b>. Si no lo ves, desplázate hasta el final de la lista y toca <b>Más</b>.</li>
+  <li>La app se abre y escanea la imagen automáticamente.</li>
+</ol>
+<h3>Usando Acciones</h3>
+<ol>
+  <li>Abre la imagen en tu galería o en cualquier app y toca el botón <b>Compartir</b>.</li>
+  <li>Desplázate por la fila de acciones debajo de la lista de apps y toca <b>Scan for Codes</b>.</li>
+  <li>La app se abre y escanea la imagen automáticamente.</li>
+</ol>
+<div class="tip">💡 Ambas opciones hacen lo mismo. "Escáner de Códigos" en la fila de apps y "Scan for Codes" en la fila de acciones son dos formas de acceder a la misma función.</div>
+
+<h2>Widget en la pantalla de inicio</h2>
+<p>Puedes añadir un widget a tu pantalla de inicio como acceso directo a la app. Al tocarlo se abre la cámara directamente, lista para escanear. Los widgets están disponibles en tres tamaños (pequeño, mediano, grande), así que puedes elegir el que mejor se adapte a tu pantalla de inicio.</p>
+<p>Para añadir el widget:</p>
+<ol>
+  <li>Mantén pulsada un área vacía de tu pantalla de inicio hasta que los iconos comiencen a moverse.</li>
+  <li>Toca el botón <b>+</b> en la esquina superior izquierda.</li>
+  <li>Busca <b>Escáner de Códigos</b>.</li>
+  <li>Elige un tamaño y toca <b>Añadir widget</b>.</li>
+  <li>Puedes redimensionarlo más tarde manteniendo pulsado el widget y eligiendo <b>Editar widget</b>.</li>
+</ol>
+
+<h2>Control Center</h2>
+<p>Control Center es el panel que aparece al deslizar hacia abajo desde la esquina superior derecha de la pantalla. Puedes añadir un botón de Escáner de Códigos para abrir la cámara con un solo toque desde cualquier lugar, incluida la pantalla de bloqueo o mientras usas otra app.</p>
+<p>Para añadir el botón:</p>
+<ol>
+  <li>Desliza hacia abajo desde la esquina superior derecha para abrir Control Center.</li>
+  <li>Toca el botón <b>+</b> para entrar en el modo de edición.</li>
+  <li>Busca <b>Escáner de Códigos</b> en la lista y tócalo para añadirlo.</li>
+  <li>Puedes arrastrarlo para reposicionarlo y redimensionarlo en el modo de edición.</li>
+</ol>
+
+<h2>Tipos de código compatibles</h2>
+<table>
+  <thead><tr><th>Código</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>El código 2D más común. Usado para URL, Wi-Fi, contactos y más</td></tr>
+    <tr><td>Micro QR</td><td>Variante compacta del QR Code para etiquetas pequeñas con espacio limitado</td></tr>
+    <tr><td>Aztec</td><td>Usado en tarjetas de embarque y billetes de transporte</td></tr>
+    <tr><td>Data Matrix</td><td>Común en fabricación, sanidad y logística</td></tr>
+    <tr><td>PDF417</td><td>Usado en licencias de conducir, tarjetas de embarque y etiquetas de envío</td></tr>
+    <tr><td>Micro PDF417</td><td>PDF417 compacto para artículos pequeños como envases farmacéuticos</td></tr>
+    <tr><td>EAN-8</td><td>Código de barras corto para productos pequeños de venta minorista</td></tr>
+    <tr><td>EAN-13</td><td>Código de barras estándar que se encuentra en la mayoría de los productos de consumo del mundo</td></tr>
+    <tr><td>UPC-E</td><td>Código de barras compacto usado en pequeños envases minoristas en EE. UU. y Canadá</td></tr>
+    <tr><td>Code 39</td><td>Uno de los códigos de barras más antiguos, común en entornos industriales</td></tr>
+    <tr><td>Code 93</td><td>Sucesor de mayor densidad del Code 39</td></tr>
+    <tr><td>Code 128</td><td>Código de barras de alta densidad ampliamente usado en logística y envíos</td></tr>
+    <tr><td>ITF-14</td><td>Código de barras de 14 dígitos impreso en cajas de envío de cartón corrugado</td></tr>
+    <tr><td>Codabar</td><td>Usado en bibliotecas, bancos de sangre y algunas empresas de envío</td></tr>
+    <tr><td>GS1 DataBar</td><td>Código de barras compacto para artículos pequeños como productos frescos</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>Variante extendida que incluye datos adicionales como peso y fecha de caducidad</td></tr>
+  </tbody>
+</table>
+<p><b>No compatibles:</b></p>
+<table>
+  <thead><tr><th>Código</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (complementos)</td><td>Suplementos cortos de dígitos adjuntos al EAN-13, usados para números de edición de revistas y precios de libros</td></tr>
+    <tr><td>rMQR</td><td>Micro QR rectangular, una variante QR compacta más reciente diseñada para etiquetas estrechas</td></tr>
+    <tr><td>MaxiCode</td><td>Código de matriz 2D usado por UPS en etiquetas de envío</td></tr>
+    <tr><td>SP Code</td><td>Código de barras de accesibilidad japonés que codifica datos de audio hablado</td></tr>
+    <tr><td>Códigos postales</td><td>Códigos de barras postales de 4 estados usados por servicios postales nacionales (USPS Intelligent Mail, Royal Mail, Australia Post, Japan Post y otros)</td></tr>
+    <tr><td>Códigos de apps propietarias</td><td>Códigos visuales personalizados que solo la app emisora puede escanear</td></tr>
+  </tbody>
+</table>
+
+<h2>FAQ</h2>
+<ul>
+  <li><b>¿Necesita conexión a internet?</b><br>No. Escáner de Códigos funciona completamente sin conexión.</li><br>
+  <li><b>¿Recopila mis datos?</b><br>No. Nada se sube a ningún lugar. El historial de escaneos se almacena únicamente en tu dispositivo.</li><br>
+  <li><b>¿Accede a toda mi biblioteca de fotos?</b><br>No. En la pestaña Galería, seleccionas una sola foto usando el selector de fotos del sistema. Escáner de Códigos nunca accede a tu biblioteca.</li><br>
+  <li><b>¿Por qué el modo multi-código tarda un poco más?</b><br>La cámara recopila códigos en una breve ventana de fotogramas para asegurarse de capturar todos los códigos visibles antes de mostrar el resultado.</li><br>
+  <li><b>¿Cuánto tiempo se conserva el historial de escaneos?</b><br>Las entradas con más de 6 meses se eliminan automáticamente. El historial también tiene un límite de 1.000 entradas; las más antiguas se eliminan para dar paso a las nuevas.</li><br>
+  <li><b>¿Por qué no navega automáticamente a un enlace?</b><br>Es intencional. Los QR codes falsos o maliciosos son comunes: en estacionamientos, mesas de restaurantes y otros lugares. Mostrarte la URL antes de abrirla te permite verificar que es segura.</li>
+</ul>
 
 <div class="sub-divider lang-anchor" id="legal-es"><span class="sub-divider-label">Legal</span></div>
 
@@ -564,15 +1043,379 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
 
 
 <!-- ══════════════════════════════════════════════════════════ -->
-<!--  DEUTSCH                                                  -->
+
+<div class="lang-divider" id="lang-pt">
+  <span class="lang-flag">PT</span><span class="lang-name">Português</span>
+</div>
+
+<h1 class="lang-anchor" id="support-pt">Leitor de Códigos</h1>
+
+<p>Leitor de Códigos escaneia códigos de barras e QR codes usando a câmera do seu iPhone ou qualquer imagem da sua biblioteca de fotos.
+Funciona totalmente offline, não armazena nada na nuvem e nunca exibe anúncios.</p>
+
+<h2>Download</h2>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <img src="../appstorebadge/pt.svg" alt="Download on the App Store" height="72">
+  <span class="screenshot-placeholder" style="width:180px; height:180px; line-height:180px; border-radius:10px; font-size:12px; color:#999;">QR code</span>
+</div>
+
+<h2>Suporte</h2>
+
+<div class="screenshots">
+  <span class="screenshot-placeholder">&lt;Camera&gt;</span>
+  <span class="screenshot-placeholder">&lt;Gallery&gt;</span>
+  <span class="screenshot-placeholder">&lt;Scan Result&gt;</span>
+</div>
+
+<h2>Câmera</h2>
+<p>A aba Câmera abre e começa a escanear imediatamente. Aponte seu telefone para qualquer código de barras ou QR code e o app o detecta automaticamente. É necessária permissão para a câmera. Se você ainda não a concedeu, uma solicitação aparecerá. Toque em <b>Abrir Ajustes</b> e ative o acesso à <b>Câmera</b> para Leitor de Códigos.</p>
+<ul>
+  <li><b>Lanterna:</b> toque no botão de lanterna para iluminar ambientes escuros. Disponível apenas com a câmera traseira.</li>
+  <li><b>Câmera frontal:</b> toque no botão de rotação para alternar entre as câmeras traseira e frontal. Útil quando a câmera traseira não está disponível (por exemplo, danificada).</li>
+</ul>
+<div class="tip">💡 O app exibe uma linha de escaneamento vermelha enquanto procura códigos. Você não precisa pressionar nada. O reconhecimento é automático.</div>
+
+<h2>Galeria</h2>
+<p>A aba Galeria permite escanear códigos a partir de uma imagem existente. Toque em <b>Escolher Foto</b> para selecionar qualquer imagem da sua biblioteca. Apenas a foto específica que você escolher é compartilhada com o app. Leitor de Códigos não solicita acesso à sua biblioteca de fotos completa.</p>
+<p>Após escolher uma foto, o app a escaneia e exibe o resultado imediatamente. Se nenhum código for encontrado, um alerta informará você.</p>
+
+<h2>Histórico</h2>
+<p>Cada escaneamento é salvo automaticamente na aba Histórico. Os escaneamentos são mantidos por <b>6 meses</b> e o histórico comporta até <b>1.000 entradas</b>; as mais antigas são removidas automaticamente quando o limite é atingido.</p>
+<ul>
+  <li><b>Ver um escaneamento anterior:</b> toque em qualquer linha para reabrir o resultado completo.</li>
+  <li><b>Excluir uma entrada:</b> deslize para a esquerda em uma linha e toque em <b>Excluir</b>.</li>
+  <li><b>Excluir tudo:</b> toque no ícone de lixeira no canto superior direito.</li>
+  <li><b>Rótulo de origem:</b> cada entrada mostra se veio da Câmera, Galeria ou Compartilhamento.</li>
+</ul>
+
+<h2>Ajustes</h2>
+<h3>Modo Multi-Código</h3>
+<p>Por padrão, Leitor de Códigos para assim que encontra <b>um código</b>. Ative o <b>Modo Multi-Código</b> para escanear até <b>5 códigos de uma vez</b>, útil para cartões de visita, fichas de produto ou qualquer imagem com vários códigos lado a lado.</p>
+<p>Quando o modo multi-código está ativo, a câmera continua escaneando por um breve momento após a primeira detecção para capturar todos os códigos visíveis antes de exibir os resultados. É por isso que demora um pouco mais do que o modo de código único.</p>
+<h3>Mostrar Detalhes Avançados</h3>
+<p>Ative <b>Mostrar Detalhes Avançados</b> para revelar metadados técnicos junto a cada resultado: coisas como versão do QR, nível de correção de erros, padrão de máscara ou estrutura do código de barras (caracteres de início/parada, dígito de verificação). Isso é exibido na página de Resultado e nas linhas da aba Histórico.</p>
+<div class="tip">💡 É uma ótima forma de aprender mais sobre como QR codes e códigos de barras realmente funcionam. Se você tem curiosidade sobre a tecnologia por trás do que escaneia, experimente!</div>
+
+<h2>Resultados do Escaneamento</h2>
+<p>Quando um código é detectado, Leitor de Códigos mostra seu conteúdo antes de fazer qualquer coisa. Você sempre vê os dados brutos primeiro, junto com os botões <b>Copiar</b> e <b>Compartilhar</b>. Se o código contém uma URL (comum em QR codes), um botão <b>Abrir</b> aparece. Ao tocá-lo, o link abre no seu navegador padrão, não em um navegador integrado. Nenhum dado de navegação é coletado.</p>
+<p>Leitor de Códigos reconhece automaticamente tipos de código especiais e exibe ações contextuais:</p>
+<table>
+  <thead><tr><th>Tipo de código</th><th>O que você pode fazer</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / Link</td><td>Abrir no navegador padrão · Copiar · Compartilhar</td></tr>
+    <tr><td>📶 Rede Wi-Fi</td><td><b>Conectar</b> diretamente · Copiar senha</td></tr>
+    <tr><td>👤 Contato (vCard / MECARD)</td><td><b>Salvar nos Contatos</b> com prévia</td></tr>
+    <tr><td>📅 Evento de calendário</td><td><b>Adicionar ao Calendário</b></td></tr>
+    <tr><td>✉️ E-mail</td><td><b>Redigir</b> e-mail pré-preenchido</td></tr>
+    <tr><td>💬 SMS / Mensagem</td><td><b>Enviar Mensagem</b></td></tr>
+    <tr><td>📞 Número de telefone</td><td><b>Ligar</b></td></tr>
+    <tr><td>📍 Localização / Geo</td><td><b>Abrir no Mapas</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> ou FaceTime Áudio</td></tr>
+    <tr><td>₿ Bitcoin</td><td><b>Copiar endereço</b></td></tr>
+    <tr><td>✈️ Cartão de embarque</td><td>Detalhes do voo extraídos de Aztec / PDF417</td></tr>
+  </tbody>
+</table>
+<h3>Detalhes Básicos vs. Avançados</h3>
+<p>Por padrão, a página de resultado exibe apenas as informações mais úteis: o conteúdo decodificado e os botões de ação relevantes.</p>
+<p>Com <b>Mostrar Detalhes Avançados</b> ativado (em Ajustes), duas seções adicionais aparecem na página de resultado:</p>
+<ul>
+  <li><b>Dados Decodificados:</b> a string bruta codificada dentro do código de barras, antes de qualquer análise.</li>
+  <li><b>Estrutura:</b> análise técnica do código de barras: caracteres de início/parada, dígito de verificação, padrões de guarda e elementos similares dependendo do tipo de código.</li>
+</ul>
+<p>Para QR codes, chips de metadados também aparecem mostrando número de versão, nível de correção de erros e padrão de máscara.</p>
+<h3>Detecção de parâmetros de rastreamento</h3>
+<p>Quando uma URL contém parâmetros de rastreamento, Leitor de Códigos exibe um botão <b>Abrir sem Rastreamento</b>. Isso inclui tags UTM e IDs de clique do Facebook, Google Ads, Microsoft, TikTok e outros. Toque nele para abrir o link sem esses parâmetros. Você acessa a mesma página sem ser rastreado.</p>
+
+<h2>Escanear de Outro App</h2>
+<p>Você pode escanear um código que aparece em uma foto dentro de qualquer outro app (uma mensagem, e-mail, visualizador de documentos ou navegador) sem sair desse app.</p>
+<h3>Usando Compartilhar</h3>
+<ol>
+  <li>Abra a imagem na sua galeria ou em qualquer app e toque no botão <b>Compartilhar</b>.</li>
+  <li>Na lista de apps que aparece, encontre e toque em <b>Leitor de Códigos</b>. Se não o vir, role até o final da lista e toque em <b>Mais</b>.</li>
+  <li>O app abre e escaneia a imagem automaticamente.</li>
+</ol>
+<h3>Usando Ações</h3>
+<ol>
+  <li>Abra a imagem na sua galeria ou em qualquer app e toque no botão <b>Compartilhar</b>.</li>
+  <li>Role a linha de ações abaixo da lista de apps e toque em <b>Scan for Codes</b>.</li>
+  <li>O app abre e escaneia a imagem automaticamente.</li>
+</ol>
+<div class="tip">💡 As duas opções fazem a mesma coisa. "Leitor de Códigos" na linha de apps e "Scan for Codes" na linha de ações são duas formas de acessar o mesmo recurso.</div>
+
+<h2>Widget da Tela Inicial</h2>
+<p>Você pode adicionar um widget à sua tela inicial como um atalho maior para o app. Tocá-lo abre a câmera diretamente, pronta para escanear. Os widgets vêm em três tamanhos (pequeno, médio, grande), para que você escolha o que melhor se encaixa no seu layout.</p>
+<p>Para adicionar o widget:</p>
+<ol>
+  <li>Pressione e segure uma área vazia da tela inicial até os ícones começarem a tremer.</li>
+  <li>Toque no botão <b>+</b> no canto superior esquerdo.</li>
+  <li>Pesquise por <b>Leitor de Códigos</b>.</li>
+  <li>Escolha um tamanho e toque em <b>Adicionar Widget</b>.</li>
+  <li>Você pode redimensioná-lo depois pressionando e segurando o widget e escolhendo <b>Editar Widget</b>.</li>
+</ol>
+
+<h2>Control Center</h2>
+<p>O Control Center é o painel que desce quando você desliza de cima para baixo a partir do canto superior direito da tela. Você pode adicionar um botão de Leitor de Códigos para abrir a câmera com um único toque de qualquer lugar, incluindo a tela de bloqueio ou enquanto usa outro app.</p>
+<p>Para adicionar o botão:</p>
+<ol>
+  <li>Deslize do canto superior direito para abrir o Control Center.</li>
+  <li>Toque no botão <b>+</b> para entrar no modo de edição.</li>
+  <li>Encontre <b>Leitor de Códigos</b> na lista e toque para adicionar.</li>
+  <li>Você pode arrastá-lo para reposicioná-lo e redimensioná-lo no modo de edição.</li>
+</ol>
+
+<h2>Tipos de Código Suportados</h2>
+<table>
+  <thead><tr><th>Código</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>Código 2D mais comum. Usado para URLs, Wi-Fi, contatos e mais</td></tr>
+    <tr><td>Micro QR</td><td>Variante compacta do QR Code para etiquetas pequenas com espaço limitado</td></tr>
+    <tr><td>Aztec</td><td>Usado em cartões de embarque e bilhetes de transporte</td></tr>
+    <tr><td>Data Matrix</td><td>Comum em fabricação, saúde e logística</td></tr>
+    <tr><td>PDF417</td><td>Usado em carteiras de motorista, cartões de embarque e etiquetas de envio</td></tr>
+    <tr><td>Micro PDF417</td><td>PDF417 compacto para itens pequenos como embalagens farmacêuticas</td></tr>
+    <tr><td>EAN-8</td><td>Código de barras curto para produtos pequenos</td></tr>
+    <tr><td>EAN-13</td><td>Código de barras padrão encontrado na maioria dos produtos de consumo</td></tr>
+    <tr><td>UPC-E</td><td>Código de barras compacto usado em embalagens pequenas nos EUA/Canadá</td></tr>
+    <tr><td>Code 39</td><td>Um dos códigos de barras mais antigos, comum em ambientes industriais</td></tr>
+    <tr><td>Code 93</td><td>Sucessor de maior densidade do Code 39</td></tr>
+    <tr><td>Code 128</td><td>Código de barras de alta densidade amplamente usado em logística e transporte</td></tr>
+    <tr><td>ITF-14</td><td>Código de barras de 14 dígitos impresso em caixas de papelão corrugado</td></tr>
+    <tr><td>Codabar</td><td>Usado em bibliotecas, bancos de sangue e algumas transportadoras</td></tr>
+    <tr><td>GS1 DataBar</td><td>Código de barras compacto para itens pequenos como frutas e alimentos frescos</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>Variante estendida que carrega dados adicionais como peso e validade</td></tr>
+  </tbody>
+</table>
+<p><b>Não suportado:</b></p>
+<table>
+  <thead><tr><th>Código</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (complementos)</td><td>Suplementos curtos anexados ao EAN-13, usados para números de edição de revistas e preços de livros</td></tr>
+    <tr><td>rMQR</td><td>Micro QR Retangular, uma variante QR compacta mais recente para etiquetas estreitas</td></tr>
+    <tr><td>MaxiCode</td><td>Código de pontos 2D usado pela UPS em etiquetas de envio</td></tr>
+    <tr><td>SP Code</td><td>Código de barras de acessibilidade japonês que codifica dados de áudio falado</td></tr>
+    <tr><td>Códigos Postais</td><td>Códigos de barras postais de 4 estados usados por serviços postais nacionais (USPS, Royal Mail, Australia Post, Japan Post e outros)</td></tr>
+    <tr><td>Códigos proprietários</td><td>Códigos visuais personalizados que apenas o app emissor consegue escanear</td></tr>
+  </tbody>
+</table>
+
+<h2>Perguntas Frequentes</h2>
+<ul>
+  <li><b>Precisa de conexão com a internet?</b><br>Não. Leitor de Códigos funciona completamente offline.</li><br>
+  <li><b>Coleta meus dados?</b><br>Não. Nada é enviado a lugar algum. O histórico de escaneamentos é armazenado apenas no seu dispositivo.</li><br>
+  <li><b>Acessa toda a minha biblioteca de fotos?</b><br>Não. Na aba Galeria, você escolhe uma única foto usando o seletor de fotos do sistema. Leitor de Códigos nunca recebe acesso à sua biblioteca.</li><br>
+  <li><b>Por que o modo multi-código demora um pouco mais?</b><br>A câmera coleta códigos em uma janela curta de frames para garantir que captura todos os códigos visíveis antes de exibir o resultado.</li><br>
+  <li><b>Por quanto tempo o histórico é mantido?</b><br>Entradas com mais de 6 meses são removidas automaticamente. O histórico também tem limite de 1.000 entradas; as mais antigas são removidas para dar espaço às novas.</li><br>
+  <li><b>Por que não navega para um link automaticamente?</b><br>Isso é intencional. QR codes falsos ou maliciosos são comuns, encontrados em estacionamentos, mesas de restaurantes e outros lugares. Mostrar a URL antes de abri-la permite verificar se é segura.</li>
+</ul>
+
+<div class="sub-divider lang-anchor" id="legal-pt"><span class="sub-divider-label">Legal</span></div>
+
+<h2 class="lang-anchor" id="privacy-pt">Política de Privacidade</h2>
+<p><b>Última atualização:</b> abril de 2026</p>
+<h3>Introdução</h3>
+<p>Leitor de Códigos é construído em torno de um princípio simples: seus dados pertencem a você. Esta Política de Privacidade explica quais informações o app acessa e como elas são tratadas.</p>
+<h3>Acesso à Câmera</h3>
+<p>O app usa a câmera do seu dispositivo para escanear códigos de barras e QR codes em tempo real. O feed da câmera é processado inteiramente no seu dispositivo. Nenhuma imagem ou frame de vídeo é armazenado, enviado ou compartilhado com ninguém.</p>
+<h3>Histórico de Escaneamentos</h3>
+<p>Os resultados dos escaneamentos são salvos localmente no seu dispositivo usando o armazenamento integrado da Apple. Esses dados nunca saem do seu dispositivo e nunca são transmitidos a nenhum servidor. Você pode excluir seu histórico a qualquer momento dentro do app.</p>
+<h3>Sem Conexão com a Internet</h3>
+<p>Leitor de Códigos funciona totalmente offline. O app não faz nenhuma solicitação de rede. Seus dados nunca saem do seu dispositivo.</p>
+<h3>Sem Coleta de Dados</h3>
+<p>Não coletamos, armazenamos nem processamos nenhuma informação pessoal. O app não requer conta nem qualquer forma de registro.</p>
+<h3>Serviços de Terceiros</h3>
+<p>Leitor de Códigos não utiliza nenhum serviço de análise, publicidade ou rastreamento de terceiros. Nenhum dado é compartilhado com terceiros.</p>
+<h3>Privacidade de Crianças</h3>
+<p>Como nenhum dado pessoal é coletado, Leitor de Códigos é seguro para usuários de todas as idades e está em conformidade com a COPPA e regulamentações similares em todo o mundo.</p>
+<h3>Alterações nesta Política</h3>
+<p>Podemos atualizar esta Política de Privacidade periodicamente. As alterações entram em vigor imediatamente após a publicação. Recomendamos que você revise esta página regularmente.</p>
+<h3>Fale Conosco</h3>
+<p>Se tiver dúvidas sobre esta Política de Privacidade, entre em contato: support [at] hoshinosoftware [dot] com</p>
+
+<h2 class="lang-anchor" id="terms-pt">Termos de Uso</h2>
+<p><b>Última atualização:</b> abril de 2026</p>
+<h3>Aceitação dos Termos</h3>
+<p>Ao baixar ou usar Leitor de Códigos, você concorda em ficar vinculado a estes Termos de Uso. Se não concordar, por favor não use o app.</p>
+<h3>Licença</h3>
+<p>A Hoshino Software concede a você uma licença pessoal, intransferível e não exclusiva para usar Leitor de Códigos nos seus dispositivos Apple, de acordo com estes termos e os Termos de Serviço da App Store da Apple.</p>
+<h3>Uso Permitido</h3>
+<p>Você pode usar Leitor de Códigos apenas para fins lícitos. Você concorda em não usar o app de nenhuma forma que viole leis ou regulamentações aplicáveis.</p>
+<h3>Sem Garantia</h3>
+<p>Leitor de Códigos é fornecido "no estado em que se encontra", sem garantia de qualquer tipo, expressa ou implícita. Não garantimos que o app estará livre de erros, ininterrupto ou adequado a qualquer finalidade específica.</p>
+<h3>Limitação de Responsabilidade</h3>
+<p>Na máxima extensão permitida pela lei aplicável, a Hoshino Software não será responsável por danos diretos, indiretos, incidentais, especiais ou consequenciais decorrentes do uso ou da impossibilidade de uso de Leitor de Códigos.</p>
+<h3>Alterações nestes Termos</h3>
+<p>Podemos atualizar estes Termos de Uso periodicamente. O uso contínuo do app após a publicação das alterações constitui sua aceitação dos termos revisados.</p>
+<h3>Lei Aplicável</h3>
+<p>Estes termos são regidos pelas leis da jurisdição em que a Hoshino Software opera.</p>
+<h3>Fale Conosco</h3>
+<p>Se tiver dúvidas sobre estes Termos de Uso, entre em contato: support [at] hoshinosoftware [dot] com</p>
+
+
 <!-- ══════════════════════════════════════════════════════════ -->
 
-<div class="lang-divider lang-anchor" id="support-de">
+<div class="lang-divider" id="lang-de">
   <span class="lang-flag">DE</span><span class="lang-name">Deutsch</span>
 </div>
 
-<h1>Codeleser – Anleitung</h1>
-<div class="placeholder-block">Anleitung in Vorbereitung — demnächst verfügbar.</div>
+<h1 class="lang-anchor" id="support-de">Codeleser</h1>
+
+<p>Codeleser scannt Barcodes und QR-Codes mit der Kamera deines iPhone oder aus beliebigen Bildern deiner Fotomediathek.
+Die App funktioniert vollständig offline, speichert nichts in der Cloud und zeigt niemals Werbung an.</p>
+
+<h2>Download</h2>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <img src="../appstorebadge/de.svg" alt="Download on the App Store" height="72">
+  <span class="screenshot-placeholder" style="width:180px; height:180px; line-height:180px; border-radius:10px; font-size:12px; color:#999;">QR code</span>
+</div>
+
+<h2>Support</h2>
+
+<div class="screenshots">
+  <span class="screenshot-placeholder">&lt;Camera&gt;</span>
+  <span class="screenshot-placeholder">&lt;Gallery&gt;</span>
+  <span class="screenshot-placeholder">&lt;Scan Result&gt;</span>
+</div>
+
+<h2>Kamera</h2>
+<p>Der Tab „Kamera" öffnet sich und beginnt sofort mit dem Scannen. Halte dein Telefon auf einen beliebigen Barcode oder QR-Code, und die App erkennt ihn automatisch. Die Kameraerlaubnis ist erforderlich. Falls du sie noch nicht erteilt hast, wird eine Aufforderung angezeigt. Tippe auf <b>Einstellungen öffnen</b> und aktiviere den <b>Kamera</b>-Zugriff für Codeleser.</p>
+<ul>
+  <li><b>Taschenlampe:</b> tippe auf den Taschenlampentaste, um dunkle Umgebungen auszuleuchten. Nur mit der Rückkamera verfügbar.</li>
+  <li><b>Frontkamera:</b> tippe auf die Drehtaste, um zwischen Rück- und Frontkamera zu wechseln. Praktisch, wenn die Rückkamera nicht verfügbar ist (z. B. beschädigt).</li>
+</ul>
+<div class="tip">💡 Die App zeigt eine rote Scanlinie, während sie nach Codes sucht. Du musst nichts drücken. Die Erkennung erfolgt automatisch.</div>
+
+<h2>Galerie</h2>
+<p>Im Tab „Galerie" kannst du Codes aus einem vorhandenen Bild scannen. Tippe auf <b>Foto auswählen</b>, um ein beliebiges Bild aus deiner Mediathek auszuwählen. Nur das von dir ausgewählte Foto wird mit der App geteilt. Codeleser fordert keinen Zugriff auf deine gesamte Fotomediathek an.</p>
+<p>Nach der Auswahl eines Fotos scannt die App es und zeigt das Ergebnis sofort an. Falls kein Code gefunden wird, wirst du durch einen Hinweis darüber informiert.</p>
+
+<h2>Verlauf</h2>
+<p>Jeder Scan wird automatisch im Tab „Verlauf" gespeichert. Scans werden <b>6 Monate</b> lang aufbewahrt, und der Verlauf fasst bis zu <b>1.000 Einträge</b>; die ältesten werden automatisch entfernt, wenn das Limit erreicht ist.</p>
+<ul>
+  <li><b>Vergangenen Scan ansehen:</b> tippe auf eine beliebige Zeile, um das vollständige Ergebnis erneut zu öffnen.</li>
+  <li><b>Eintrag löschen:</b> wische eine Zeile nach links und tippe auf <b>Löschen</b>.</li>
+  <li><b>Alles löschen:</b> tippe auf das Papierkorbsymbol oben rechts.</li>
+  <li><b>Quellenkennung:</b> jeder Eintrag zeigt an, ob er von der Kamera, der Galerie oder einer Freigabe stammt.</li>
+</ul>
+
+<h2>Einstellungen</h2>
+<h3>Multi-Code-Modus</h3>
+<p>Standardmäßig hält Codeleser an, sobald es <b>einen Code</b> findet. Aktiviere den <b>Multi-Code-Modus</b>, um bis zu <b>5 Codes gleichzeitig</b> zu scannen. Das ist nützlich für Visitenkarten, Produktblätter oder Bilder, die mehrere nebeneinanderliegende Codes enthalten.</p>
+<p>Wenn der Multi-Code-Modus aktiv ist, scannt die Kamera nach der ersten Erkennung noch kurz weiter, um alle sichtbaren Codes zu erfassen, bevor die Ergebnisse angezeigt werden. Deshalb dauert es etwas länger als im Einzelcode-Modus.</p>
+<h3>Erweiterte Details anzeigen</h3>
+<p>Aktiviere <b>Erweiterte Details anzeigen</b>, um technische Metadaten neben jedem Scan-Ergebnis einzublenden: QR-Version, Fehlerkorrekturlevel, Maskenmuster oder Barcode-Struktur (Start-/Stoppzeichen, Prüfziffer). Diese Informationen werden auf der Ergebnisseite und in den Zeilen des Verlauf-Tabs angezeigt.</p>
+<div class="tip">💡 Das ist eine tolle Möglichkeit, mehr darüber zu erfahren, wie QR-Codes und Barcodes tatsächlich funktionieren. Falls du neugierig auf die Technologie hinter dem bist, was du scannst, probiere es aus!</div>
+
+<h2>Scan-Ergebnisse</h2>
+<p>Wenn ein Code erkannt wird, zeigt Codeleser dir seinen Inhalt, bevor irgendetwas damit passiert. Du siehst zunächst immer die Rohdaten, zusammen mit den Schaltflächen <b>Kopieren</b> und <b>Teilen</b>. Wenn der Code eine URL enthält (bei QR-Codes üblich), erscheint eine Schaltfläche <b>Öffnen</b>. Ein Tippen darauf öffnet den Link in deinem Standardbrowser und nicht in einem In-App-Browser. Es werden keine Browsing-Daten erfasst.</p>
+<p>Codeleser erkennt automatisch besondere Code-Typen und zeigt kontextbezogene Aktionen an:</p>
+<table>
+  <thead><tr><th>Code-Typ</th><th>Was du tun kannst</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / Link</td><td>Im Standardbrowser öffnen · Kopieren · Teilen</td></tr>
+    <tr><td>📶 WLAN-Netzwerk</td><td>Direkt <b>verbinden</b> · Passwort kopieren</td></tr>
+    <tr><td>👤 Kontakt (vCard / MECARD)</td><td><b>In Kontakte speichern</b> mit Vorschau</td></tr>
+    <tr><td>📅 Kalenderereignis</td><td><b>Zum Kalender hinzufügen</b></td></tr>
+    <tr><td>✉️ E-Mail</td><td>Vorausgefüllte E-Mail <b>verfassen</b></td></tr>
+    <tr><td>💬 SMS / Nachricht</td><td><b>Nachricht senden</b></td></tr>
+    <tr><td>📞 Telefonnummer</td><td><b>Anrufen</b></td></tr>
+    <tr><td>📍 Standort / Geo</td><td><b>In Karten öffnen</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> oder FaceTime Audio</td></tr>
+    <tr><td>₿ Bitcoin</td><td><b>Adresse kopieren</b></td></tr>
+    <tr><td>✈️ Bordkarte</td><td>Flugdetails aus Aztec / PDF417 ausgelesen</td></tr>
+  </tbody>
+</table>
+<h3>Einfache und erweiterte Details</h3>
+<p>Standardmäßig zeigt die Ergebnisseite nur die nützlichsten Informationen: den dekodierten Inhalt und relevante Aktionsschaltflächen.</p>
+<p>Mit aktiviertem <b>Erweiterte Details anzeigen</b> (in den Einstellungen) erscheinen zwei zusätzliche Abschnitte auf der Ergebnisseite:</p>
+<ul>
+  <li><b>Dekodierte Daten:</b> die im Barcode kodierte Rohzeichenkette vor jeglicher Verarbeitung.</li>
+  <li><b>Struktur:</b> technische Aufschlüsselung des Barcodes: Start-/Stoppzeichen, Prüfziffer, Guard-Muster und ähnliche Elemente je nach Code-Typ.</li>
+</ul>
+<p>Bei QR-Codes erscheinen außerdem Metadaten-Chips, die Versionsnummer, Fehlerkorrekturlevel und Maskenmuster anzeigen.</p>
+<h3>Erkennung von Tracking-Parametern</h3>
+<p>Wenn eine URL Tracking-Parameter enthält, zeigt Codeleser eine Schaltfläche <b>Ohne Tracking öffnen</b> an. Dazu gehören UTM-Tags sowie Klick-IDs von Facebook, Google Ads, Microsoft, TikTok und anderen. Tippe darauf, um den Link ohne diese Parameter zu öffnen. Du erreichst dieselbe Seite, ohne getrackt zu werden.</p>
+
+<h2>Aus einer anderen App scannen</h2>
+<p>Du kannst einen Code, der in einem Foto in einer anderen App erscheint (einer Nachricht, E-Mail, einem Dokumentenbetrachter oder Webbrowser), scannen, ohne diese App zu verlassen.</p>
+<h3>Über „Teilen"</h3>
+<ol>
+  <li>Öffne das Bild in deiner Galerie oder einer beliebigen App und tippe auf die Schaltfläche <b>Teilen</b>.</li>
+  <li>Suche in der angezeigten App-Liste nach <b>Codeleser</b> und tippe darauf. Falls du es nicht siehst, scrolle bis zum Ende der Liste und tippe auf <b>Mehr</b>.</li>
+  <li>Die App öffnet sich und scannt das Bild automatisch.</li>
+</ol>
+<h3>Über Aktionen</h3>
+<ol>
+  <li>Öffne das Bild in deiner Galerie oder einer beliebigen App und tippe auf die Schaltfläche <b>Teilen</b>.</li>
+  <li>Scrolle in der Aktionsreihe unterhalb der App-Liste und tippe auf <b>Scan for Codes</b>.</li>
+  <li>Die App öffnet sich und scannt das Bild automatisch.</li>
+</ol>
+<div class="tip">💡 Beide Optionen tun dasselbe. "Codeleser" in der App-Reihe und "Scan for Codes" in der Aktionsreihe sind zwei Wege zur selben Funktion.</div>
+
+<h2>Homescreen-Widget</h2>
+<p>Du kannst ein Widget als größere Verknüpfung zur App zu deinem Homescreen hinzufügen. Ein Tippen darauf öffnet direkt die Kamera, bereit zum Scannen. Widgets sind in drei Größen erhältlich (klein, mittel, groß), damit du die passende für dein Homescreen-Layout wählen kannst.</p>
+<p>So fügst du das Widget hinzu:</p>
+<ol>
+  <li>Halte einen leeren Bereich deines Homescreens gedrückt, bis die Symbole zu wackeln beginnen.</li>
+  <li>Tippe auf die Schaltfläche <b>+</b> oben links.</li>
+  <li>Suche nach <b>Codeleser</b>.</li>
+  <li>Wähle eine Größe und tippe auf <b>Widget hinzufügen</b>.</li>
+  <li>Du kannst es später durch langes Drücken auf das Widget und Auswahl von <b>Widget bearbeiten</b> in der Größe ändern.</li>
+</ol>
+
+<h2>Control Center</h2>
+<p>Control Center ist das Fenster, das erscheint, wenn du von der oberen rechten Ecke des Bildschirms nach unten wischst. Du kannst dort eine Codeleser-Schaltfläche hinzufügen, um die Kamera mit einem einzigen Tippen von überall aus zu starten, auch vom Sperrbildschirm oder während du eine andere App verwendest.</p>
+<p>So fügst du die Schaltfläche hinzu:</p>
+<ol>
+  <li>Wische von der oberen rechten Ecke nach unten, um Control Center zu öffnen.</li>
+  <li>Tippe auf die Schaltfläche <b>+</b>, um den Bearbeitungsmodus aufzurufen.</li>
+  <li>Suche <b>Codeleser</b> in der Liste und tippe darauf, um es hinzuzufügen.</li>
+  <li>Du kannst es im Bearbeitungsmodus durch Ziehen neu positionieren und in der Größe ändern.</li>
+</ol>
+
+<h2>Unterstützte Code-Typen</h2>
+<table>
+  <thead><tr><th>Code</th><th>Hinweise</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>Häufigster 2D-Code. Verwendet für URLs, WLAN, Kontakte und mehr</td></tr>
+    <tr><td>Micro QR</td><td>Kompakte Variante des QR Code für kleine Etiketten mit begrenztem Platz</td></tr>
+    <tr><td>Aztec</td><td>Verwendet auf Bordkarten und Fahrkarten</td></tr>
+    <tr><td>Data Matrix</td><td>Verbreitet in Fertigung, Gesundheitswesen und Logistik</td></tr>
+    <tr><td>PDF417</td><td>Verwendet auf Führerscheinen, Bordkarten und Versandetiketten</td></tr>
+    <tr><td>Micro PDF417</td><td>Kompaktes PDF417 für kleine Artikel wie Pharmaverpackungen</td></tr>
+    <tr><td>EAN-8</td><td>Kurzer Einzelhandels-Barcode für kleine Produkte</td></tr>
+    <tr><td>EAN-13</td><td>Standard-Barcode auf den meisten Konsumgütern weltweit</td></tr>
+    <tr><td>UPC-E</td><td>Kompakter Barcode für kleine US-/kanadische Einzelhandelsverpackungen</td></tr>
+    <tr><td>Code 39</td><td>Einer der ältesten Barcodes, verbreitet in industriellen Umgebungen</td></tr>
+    <tr><td>Code 93</td><td>Nachfolger von Code 39 mit höherer Datendichte</td></tr>
+    <tr><td>Code 128</td><td>Hochdichter Barcode, weit verbreitet in Logistik und Versand</td></tr>
+    <tr><td>ITF-14</td><td>14-stelliger Barcode auf Wellpappe-Versandkartons</td></tr>
+    <tr><td>Codabar</td><td>Verwendet in Bibliotheken, Blutbanken und einigen Versandunternehmen</td></tr>
+    <tr><td>GS1 DataBar</td><td>Kompakter Einzelhandels-Barcode für kleine Artikel wie Frischwaren</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>Erweiterte Variante mit zusätzlichen Daten wie Gewicht und Ablaufdatum</td></tr>
+  </tbody>
+</table>
+<p><b>Nicht unterstützt:</b></p>
+<table>
+  <thead><tr><th>Code</th><th>Hinweise</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (Add-ons)</td><td>Kurze Ziffernergänzungen, die an EAN-13 angehängt werden, verwendet für Zeitschriftennummern und Buchpreise</td></tr>
+    <tr><td>rMQR</td><td>Rechteckiger Micro QR, eine neuere kompakte QR-Variante für schmale Etiketten</td></tr>
+    <tr><td>MaxiCode</td><td>2D-Punktmatrixcode, der von UPS auf Versandetiketten verwendet wird</td></tr>
+    <tr><td>SP Code</td><td>Japanischer Barrierefreiheits-Barcode, der gesprochene Audiodaten kodiert</td></tr>
+    <tr><td>Postbarcodes</td><td>4-Zustands-Postbarcodes der nationalen Postdienste (USPS Intelligent Mail, Royal Mail, Australia Post, Japan Post und andere)</td></tr>
+    <tr><td>Proprietäre App-Codes</td><td>Benutzerdefinierte visuelle Codes, die nur von der herausgebenden App gescannt werden können</td></tr>
+  </tbody>
+</table>
+
+<h2>FAQ</h2>
+<ul>
+  <li><b>Ist eine Internetverbindung erforderlich?</b><br>Nein. Codeleser funktioniert vollständig offline.</li><br>
+  <li><b>Werden meine Daten erfasst?</b><br>Nein. Es wird nichts hochgeladen. Der Scan-Verlauf wird nur auf deinem Gerät gespeichert.</li><br>
+  <li><b>Wird auf meine gesamte Fotomediathek zugegriffen?</b><br>Nein. Im Tab „Galerie" wählst du ein einzelnes Foto über die System-Fotoauswahl aus. Codeleser erhält niemals Zugriff auf deine Mediathek.</li><br>
+  <li><b>Warum dauert der Multi-Code-Modus etwas länger?</b><br>Die Kamera sammelt Codes über ein kurzes Zeitfenster von Frames, um sicherzustellen, dass alle sichtbaren Codes erfasst werden, bevor das Ergebnis angezeigt wird.</li><br>
+  <li><b>Wie lange wird der Scan-Verlauf aufbewahrt?</b><br>Einträge, die älter als 6 Monate sind, werden automatisch entfernt. Der Verlauf ist außerdem auf 1.000 Einträge begrenzt; die ältesten werden entfernt, um Platz für neue zu schaffen.</li><br>
+  <li><b>Warum wird nicht automatisch zu einem Link navigiert?</b><br>Das ist beabsichtigt. Gefälschte oder bösartige QR-Codes kommen häufig vor, auf Parkplätzen, Restauranttischen und anderswo. Die URL vor dem Öffnen anzuzeigen gibt dir die Möglichkeit zu prüfen, ob sie sicher ist.</li>
+</ul>
 
 <div class="sub-divider lang-anchor" id="legal-de"><span class="sub-divider-label">Rechtliches</span></div>
 
@@ -618,15 +1461,170 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
 
 
 <!-- ══════════════════════════════════════════════════════════ -->
-<!--  TÜRKÇE                                                   -->
-<!-- ══════════════════════════════════════════════════════════ -->
 
-<div class="lang-divider lang-anchor" id="support-tr">
+<div class="lang-divider" id="lang-tr">
   <span class="lang-flag">TR</span><span class="lang-name">Türkçe</span>
 </div>
 
-<h1>Kod Okuyucu – Kılavuz</h1>
-<div class="placeholder-block">Kılavuz hazırlanıyor — yakında yayımlanacak.</div>
+<h1 class="lang-anchor" id="support-tr">Kod Okuyucu</h1>
+
+<p>Kod Okuyucu, iPhone'unuzun kamerası veya fotoğraf kütüphanenizden herhangi bir görüntü kullanarak barkodları ve QR kodlarını tarar.
+Tamamen çevrimdışı çalışır, buluta hiçbir şey kaydetmez ve asla reklam göstermez.</p>
+
+<h2>Download</h2>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <img src="../appstorebadge/tr.svg" alt="Download on the App Store" height="72">
+  <span class="screenshot-placeholder" style="width:180px; height:180px; line-height:180px; border-radius:10px; font-size:12px; color:#999;">QR code</span>
+</div>
+
+<h2>Destek</h2>
+
+<div class="screenshots">
+  <span class="screenshot-placeholder">&lt;Camera&gt;</span>
+  <span class="screenshot-placeholder">&lt;Gallery&gt;</span>
+  <span class="screenshot-placeholder">&lt;Scan Result&gt;</span>
+</div>
+
+<h2>Kamera</h2>
+<p>Kamera sekmesi açılır ve hemen taramaya başlar. Telefonunuzu herhangi bir barkod veya QR koda doğrultun, uygulama onu otomatik olarak algılar. Kamera izni gereklidir. Henüz vermediyseniz bir istem görünecektir. <b>Ayarları Aç</b> seçeneğine dokunun ve Kod Okuyucu için <b>Kamera</b> erişimini etkinleştirin.</p>
+<ul>
+  <li><b>El feneri:</b> karanlık ortamları aydınlatmak için el feneri düğmesine dokunun. Yalnızca arka kamerayla kullanılabilir.</li>
+  <li><b>Ön kamera:</b> arka ve ön kamera arasında geçiş yapmak için döndürme düğmesine dokunun. Arka kamera kullanılamadığında (örneğin hasar gördüğünde) kullanışlıdır.</li>
+</ul>
+<div class="tip">💡 Uygulama, kod ararken kırmızı bir tarama çizgisi gösterir. Herhangi bir şeye basmanıza gerek yoktur. Tanıma otomatiktir.</div>
+
+<h2>Galeri</h2>
+<p>Galeri sekmesi, mevcut bir görüntüden kodları taramanıza olanak tanır. Kütüphanenizden herhangi bir görüntü seçmek için <b>Fotoğraf Seç</b> seçeneğine dokunun. Yalnızca seçtiğiniz fotoğraf uygulamayla paylaşılır. Kod Okuyucu tüm fotoğraf kütüphanenize erişim talep etmez.</p>
+<p>Bir fotoğraf seçtikten sonra uygulama onu tarar ve sonucu hemen gösterir. Herhangi bir kod bulunamazsa bir uyarı sizi bilgilendirir.</p>
+
+<h2>Geçmiş</h2>
+<p>Her tarama otomatik olarak Geçmiş sekmesine kaydedilir. Taramalar <b>6 ay</b> boyunca saklanır ve geçmişte en fazla <b>1.000 kayıt</b> tutulur; limite ulaşıldığında en eskiler otomatik olarak kaldırılır.</p>
+<ul>
+  <li><b>Geçmiş bir taramayı görüntüle:</b> tam sonucu yeniden açmak için herhangi bir satıra dokunun.</li>
+  <li><b>Bir kaydı sil:</b> bir satırı sola kaydırın ve <b>Sil</b> seçeneğine dokunun.</li>
+  <li><b>Tümünü sil:</b> sağ üst köşedeki çöp kutusu simgesine dokunun.</li>
+  <li><b>Kaynak etiketi:</b> her kayıt, Kamera, Galeri veya Paylaşım kaynaklı olup olmadığını gösterir.</li>
+</ul>
+
+<h2>Ayarlar</h2>
+<h3>Çoklu Kod Modu</h3>
+<p>Varsayılan olarak Kod Okuyucu, <b>bir kod</b> bulduğunda durur. Kartvizitler, ürün sayfaları veya yan yana birden fazla kod içeren görüntüler için kullanışlı olan <b>Çoklu Kod Modu</b>'nu etkinleştirerek aynı anda en fazla <b>5 kod</b> tarayabilirsiniz.</p>
+<p>Çoklu kod modu etkinken kamera, tüm görünür kodları toplamak için ilk algılamadan sonra kısa bir süre daha taramaya devam eder. Bu nedenle tek kod moduna göre biraz daha uzun sürer.</p>
+<h3>Gelişmiş Ayrıntıları Göster</h3>
+<p>Her tarama sonucunun yanında teknik meta verileri görmek için <b>Gelişmiş Ayrıntıları Göster</b> seçeneğini etkinleştirin: QR sürümü, hata düzeltme düzeyi, maske deseni veya barkod yapısı (başlangıç/bitiş karakterleri, kontrol rakamı) gibi bilgiler. Bu bilgiler Tarama Sonucu sayfasında ve Geçmiş sekmesi satırlarında gösterilir.</p>
+<div class="tip">💡 Bu, QR kodlarının ve barkodların gerçekte nasıl çalıştığı hakkında daha fazla bilgi edinmenin harika bir yoludur. Taradıklarınızın arkasındaki teknolojiyi merak ediyorsanız deneyin!</div>
+
+<h2>Tarama Sonuçları</h2>
+<p>Bir kod algılandığında, Kod Okuyucu herhangi bir işlem yapmadan önce içeriğini size gösterir. Her zaman önce ham verileri görürsünüz; yanında <b>Kopyala</b> ve <b>Paylaş</b> düğmeleri yer alır. Kod bir URL içeriyorsa (QR kodlarda yaygındır) bir <b>Aç</b> düğmesi belirir. Buna dokunmak, bağlantıyı uygulama içi tarayıcıda değil varsayılan tarayıcınızda açar. Hiçbir tarama verisi toplanmaz.</p>
+<p>Kod Okuyucu özel kod türlerini otomatik olarak tanır ve bağlamsal eylemler sunar:</p>
+<table>
+  <thead><tr><th>Kod türü</th><th>Yapabilecekleriniz</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / Bağlantı</td><td>Varsayılan tarayıcınızda aç · Kopyala · Paylaş</td></tr>
+    <tr><td>📶 Wi-Fi ağı</td><td>Doğrudan <b>bağlan</b> · Şifreyi kopyala</td></tr>
+    <tr><td>👤 Kişi (vCard / MECARD)</td><td>Önizlemeyle <b>Kişilere Kaydet</b></td></tr>
+    <tr><td>📅 Takvim etkinliği</td><td><b>Takvime Ekle</b></td></tr>
+    <tr><td>✉️ E-posta</td><td>Önceden doldurulmuş e-posta <b>oluştur</b></td></tr>
+    <tr><td>💬 SMS / Mesaj</td><td><b>Mesaj Gönder</b></td></tr>
+    <tr><td>📞 Telefon numarası</td><td><b>Ara</b></td></tr>
+    <tr><td>📍 Konum / Geo</td><td><b>Haritalarda Aç</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> veya FaceTime Audio</td></tr>
+    <tr><td>₿ Bitcoin</td><td><b>Adresi kopyala</b></td></tr>
+    <tr><td>✈️ Biniş kartı</td><td>Aztec / PDF417'den ayrıştırılan uçuş ayrıntıları</td></tr>
+  </tbody>
+</table>
+<h3>Temel ve Gelişmiş Ayrıntılar</h3>
+<p>Varsayılan olarak sonuç sayfası yalnızca en kullanışlı bilgileri gösterir: kodu çözülmüş içerik ve ilgili eylem düğmeleri.</p>
+<p>(Ayarlar'da) <b>Gelişmiş Ayrıntıları Göster</b> etkinleştirildiğinde, sonuç sayfasında iki ek bölüm görünür:</p>
+<ul>
+  <li><b>Kodu Çözülmüş Veri:</b> herhangi bir ayrıştırma yapılmadan önce barkodun içinde kodlanmış ham dize.</li>
+  <li><b>Yapı:</b> barkodun teknik dökümü: başlangıç/bitiş karakterleri, kontrol rakamı, koruyucu desenler ve kod türüne göre değişen benzer öğeler.</li>
+</ul>
+<p>QR kodlarında ayrıca sürüm numarasını, hata düzeltme düzeyini ve maske desenini gösteren meta veri etiketleri de görünür.</p>
+<h3>İzleme parametresi tespiti</h3>
+<p>Bir URL izleme parametreleri içerdiğinde, Kod Okuyucu bir <b>İzleme Olmadan Aç</b> düğmesi gösterir. Bu; UTM etiketlerini, Facebook, Google Ads, Microsoft, TikTok ve diğerlerinden gelen tıklama kimliklerini kapsar. Bağlantıyı bu parametreler kaldırılmış şekilde açmak için düğmeye dokunun. İzlenmeden aynı sayfaya ulaşırsınız.</p>
+
+<h2>Başka Bir Uygulamadan Tarama</h2>
+<p>Bir mesaj, e-posta, belge görüntüleyici veya web tarayıcısı gibi başka herhangi bir uygulamadaki bir fotoğrafta görünen bir kodu, o uygulamadan çıkmadan tarayabilirsiniz.</p>
+<h3>Paylaş Kullanarak</h3>
+<ol>
+  <li>Görüntüyü galerinizde veya herhangi bir uygulamada açın, ardından <b>Paylaş</b> düğmesine dokunun.</li>
+  <li>Görünen uygulamalar listesinde <b>Kod Okuyucu</b>'ı bulup dokunun. Göremiyorsanız listenin sonuna kaydırın ve <b>Daha Fazla</b> seçeneğine dokunun.</li>
+  <li>Uygulama açılır ve görüntüyü otomatik olarak tarar.</li>
+</ol>
+<h3>Eylemler Kullanarak</h3>
+<ol>
+  <li>Görüntüyü galerinizde veya herhangi bir uygulamada açın, ardından <b>Paylaş</b> düğmesine dokunun.</li>
+  <li>Uygulama listesinin altındaki eylemler satırını kaydırın ve <b>Scan for Codes</b> seçeneğine dokunun.</li>
+  <li>Uygulama açılır ve görüntüyü otomatik olarak tarar.</li>
+</ol>
+<div class="tip">💡 Her iki seçenek de aynı şeyi yapar. Uygulama satırındaki "Kod Okuyucu" ve eylemler satırındaki "Scan for Codes", aynı özelliğe ulaşmanın iki farklı yoludur.</div>
+
+<h2>Ana Ekran Widget'ı</h2>
+<p>Ana ekranınıza uygulamaya daha büyük bir kısayol olarak widget ekleyebilirsiniz. Üzerine dokunmak, taramaya hazır şekilde kamerayı doğrudan açar. Widget'lar üç boyutta gelir (küçük, orta, büyük); ana ekran düzeninize en uygun olanı seçebilirsiniz.</p>
+<p>Widget eklemek için:</p>
+<ol>
+  <li>Simgeler titreşmeye başlayana kadar ana ekranınızdaki boş bir alana uzun basın.</li>
+  <li>Sol üst köşedeki <b>+</b> düğmesine dokunun.</li>
+  <li><b>Kod Okuyucu</b>'ı arayın.</li>
+  <li>Bir boyut seçin ve <b>Widget Ekle</b> seçeneğine dokunun.</li>
+  <li>Daha sonra widget'a uzun basarak ve <b>Widget'ı Düzenle</b> seçeneğini seçerek boyutunu değiştirebilirsiniz.</li>
+</ol>
+
+<h2>Control Center</h2>
+<p>Control Center, ekranın sağ üst köşesinden aşağı kaydırdığınızda açılan paneldir. Kilit ekranından veya başka bir uygulama kullanırken bile tek bir dokunuşla kamerayı başlatmak için oraya bir Kod Okuyucu düğmesi ekleyebilirsiniz.</p>
+<p>Düğmeyi eklemek için:</p>
+<ol>
+  <li>Control Center'ı açmak için sağ üst köşeden aşağı kaydırın.</li>
+  <li>Düzenleme moduna girmek için <b>+</b> düğmesine dokunun.</li>
+  <li>Listede <b>Kod Okuyucu</b>'ı bulun ve eklemek için üzerine dokunun.</li>
+  <li>Düzenleme modunda sürükleyerek konumunu değiştirebilir ve yeniden boyutlandırabilirsiniz.</li>
+</ol>
+
+<h2>Desteklenen Kod Türleri</h2>
+<table>
+  <thead><tr><th>Kod</th><th>Notlar</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>En yaygın 2B kod. URL'ler, Wi-Fi, kişiler ve daha fazlası için kullanılır</td></tr>
+    <tr><td>Micro QR</td><td>Sınırlı alana sahip küçük etiketler için QR Code'un kompakt çeşidi</td></tr>
+    <tr><td>Aztec</td><td>Biniş kartlarında ve toplu taşıma biletlerinde kullanılır</td></tr>
+    <tr><td>Data Matrix</td><td>Üretim, sağlık ve lojistikte yaygındır</td></tr>
+    <tr><td>PDF417</td><td>Sürücü ehliyetlerinde, biniş kartlarında ve kargo etiketlerinde kullanılır</td></tr>
+    <tr><td>Micro PDF417</td><td>İlaç ambalajı gibi küçük ürünler için kompakt PDF417</td></tr>
+    <tr><td>EAN-8</td><td>Küçük ürünler için kısa perakende barkodu</td></tr>
+    <tr><td>EAN-13</td><td>Dünya genelinde çoğu tüketici ürününde bulunan standart perakende barkodu</td></tr>
+    <tr><td>UPC-E</td><td>ABD/Kanada'daki küçük perakende ambalajlarda kullanılan kompakt barkod</td></tr>
+    <tr><td>Code 39</td><td>En eski barkodlardan biri, endüstriyel ortamlarda yaygındır</td></tr>
+    <tr><td>Code 93</td><td>Code 39'un daha yüksek yoğunluklu halefi</td></tr>
+    <tr><td>Code 128</td><td>Lojistik ve nakliyede yaygın olarak kullanılan yüksek yoğunluklu barkod</td></tr>
+    <tr><td>ITF-14</td><td>Oluklu mukavva nakliye kutularına basılan 14 haneli barkod</td></tr>
+    <tr><td>Codabar</td><td>Kütüphanelerde, kan bankalarında ve bazı kargo şirketlerinde kullanılır</td></tr>
+    <tr><td>GS1 DataBar</td><td>Sebze ve taze gıdalar gibi küçük ürünler için kompakt perakende barkodu</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>Ağırlık ve son kullanma tarihi gibi ek veriler taşıyan genişletilmiş çeşit</td></tr>
+  </tbody>
+</table>
+<p><b>Desteklenmeyenler:</b></p>
+<table>
+  <thead><tr><th>Kod</th><th>Notlar</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (eklentiler)</td><td>EAN-13'e eklenen kısa rakam takıları; dergi sayı numaraları ve kitap fiyatlandırması için kullanılır</td></tr>
+    <tr><td>rMQR</td><td>Dikdörtgen Micro QR, dar etiketler için tasarlanmış daha yeni bir kompakt QR çeşidi</td></tr>
+    <tr><td>MaxiCode</td><td>UPS'in kargo etiketlerinde kullandığı 2B nokta matris kodu</td></tr>
+    <tr><td>SP Code</td><td>Konuşma ses verilerini kodlayan Japon erişilebilirlik barkodu</td></tr>
+    <tr><td>Posta Kodları</td><td>Ulusal posta hizmetleri tarafından kullanılan 4 durumlu posta barkodları (USPS Intelligent Mail, Royal Mail, Australia Post, Japan Post ve diğerleri)</td></tr>
+    <tr><td>Özel uygulama kodları</td><td>Yalnızca yayımlayan uygulamanın tarayabildiği özel görsel kodlar</td></tr>
+  </tbody>
+</table>
+
+<h2>SSS</h2>
+<ul>
+  <li><b>İnternet bağlantısı gerekiyor mu?</b><br>Hayır. Kod Okuyucu tamamen çevrimdışı çalışır.</li><br>
+  <li><b>Verilerimi topluyor mu?</b><br>Hayır. Hiçbir şey herhangi bir yere yüklenmez. Tarama geçmişi yalnızca cihazınızda saklanır.</li><br>
+  <li><b>Tüm fotoğraf kütüphaneme erişiyor mu?</b><br>Hayır. Galeri sekmesinde, sistem fotoğraf seçiciyi kullanarak tek bir fotoğraf seçersiniz. Kod Okuyucu kütüphanenize hiçbir zaman erişim almaz.</li><br>
+  <li><b>Çoklu kod modu neden biraz daha uzun sürer?</b><br>Kamera, sonucu göstermeden önce görüş alanındaki tüm kodları yakaladığından emin olmak için kısa bir kare penceresi boyunca kod toplar.</li><br>
+  <li><b>Tarama geçmişi ne kadar süre saklanır?</b><br>6 aydan eski kayıtlar otomatik olarak kaldırılır. Geçmiş aynı zamanda 1.000 kayıtla da sınırlıdır; yenilere yer açmak için en eskiler kaldırılır.</li><br>
+  <li><b>Neden bir bağlantıya otomatik olarak gitmiyor?</b><br>Bu kasıtlıdır. Sahte veya kötü amaçlı QR kodlar otoparklarda, restoran masalarında ve başka yerlerde yaygın olarak bulunur. URL'yi açmadan önce size göstermek, güvenli olup olmadığını doğrulamanıza olanak tanır.</li>
+</ul>
 
 <div class="sub-divider lang-anchor" id="legal-tr"><span class="sub-divider-label">Yasal</span></div>
 
@@ -672,15 +1670,170 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
 
 
 <!-- ══════════════════════════════════════════════════════════ -->
-<!--  한국어                                                    -->
-<!-- ══════════════════════════════════════════════════════════ -->
 
-<div class="lang-divider lang-anchor" id="support-ko">
+<div class="lang-divider" id="lang-ko">
   <span class="lang-flag">KO</span><span class="lang-name">한국어</span>
 </div>
 
-<h1>코드 리더 – 매뉴얼</h1>
-<div class="placeholder-block">매뉴얼 준비 중 — 곧 제공될 예정입니다.</div>
+<h1 class="lang-anchor" id="support-ko">코드 리더</h1>
+
+<p>코드 리더는 iPhone 카메라 또는 사진 보관함의 이미지를 사용하여 바코드와 QR 코드를 스캔합니다.
+완전히 오프라인으로 작동하며, 클라우드에 아무것도 저장하지 않고 광고를 표시하지 않습니다.</p>
+
+<h2>Download</h2>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <img src="../appstorebadge/ko.svg" alt="Download on the App Store" height="72">
+  <span class="screenshot-placeholder" style="width:180px; height:180px; line-height:180px; border-radius:10px; font-size:12px; color:#999;">QR code</span>
+</div>
+
+<h2>지원</h2>
+
+<div class="screenshots">
+  <span class="screenshot-placeholder">&lt;Camera&gt;</span>
+  <span class="screenshot-placeholder">&lt;Gallery&gt;</span>
+  <span class="screenshot-placeholder">&lt;Scan Result&gt;</span>
+</div>
+
+<h2>카메라</h2>
+<p>카메라 탭이 열리면 바로 스캔을 시작합니다. 바코드나 QR 코드에 폰을 갖다 대면 앱이 자동으로 감지합니다. 카메라 권한이 필요합니다. 아직 허용하지 않았다면 요청 창이 나타납니다. <b>설정 열기</b>를 탭하고 코드 리더의 <b>카메라</b> 접근을 활성화하세요.</p>
+<ul>
+  <li><b>손전등:</b> 어두운 환경을 밝히려면 손전등 버튼을 탭하세요. 후면 카메라에서만 사용 가능합니다.</li>
+  <li><b>전면 카메라:</b> 후면과 전면 카메라를 전환하려면 회전 버튼을 탭하세요. 후면 카메라를 사용할 수 없을 때(예: 파손된 경우) 유용합니다.</li>
+</ul>
+<div class="tip">💡 앱은 코드를 찾는 동안 빨간 스캔 선을 표시합니다. 아무것도 누를 필요가 없습니다. 인식은 자동으로 이루어집니다.</div>
+
+<h2>갤러리</h2>
+<p>갤러리 탭에서는 기존 이미지에서 코드를 스캔할 수 있습니다. <b>사진 선택</b>을 탭하여 보관함에서 이미지를 선택하세요. 선택한 특정 사진만 앱과 공유됩니다. 코드 리더는 전체 사진 보관함에 대한 접근을 요청하지 않습니다.</p>
+<p>사진을 선택하면 앱이 즉시 스캔하고 결과를 표시합니다. 코드가 발견되지 않으면 알림이 표시됩니다.</p>
+
+<h2>기록</h2>
+<p>모든 스캔은 기록 탭에 자동으로 저장됩니다. 스캔은 <b>6개월</b> 동안 보관되며 기록에는 최대 <b>1,000개</b>의 항목이 저장됩니다. 한도에 도달하면 가장 오래된 항목이 자동으로 삭제됩니다.</p>
+<ul>
+  <li><b>이전 스캔 보기:</b> 전체 결과를 다시 열려면 행을 탭하세요.</li>
+  <li><b>항목 하나 삭제:</b> 행을 왼쪽으로 밀고 <b>삭제</b>를 탭하세요.</li>
+  <li><b>전체 삭제:</b> 오른쪽 상단의 휴지통 아이콘을 탭하세요.</li>
+  <li><b>출처 레이블:</b> 각 항목은 카메라, 갤러리, 또는 공유에서 가져온 것인지 표시합니다.</li>
+</ul>
+
+<h2>설정</h2>
+<h3>다중 코드 모드</h3>
+<p>기본적으로 코드 리더는 <b>코드 하나</b>를 찾으면 바로 멈춥니다. <b>다중 코드 모드</b>를 켜면 한 번에 최대 <b>5개의 코드</b>를 스캔할 수 있어, 명함이나 제품 시트처럼 여러 코드가 나란히 있는 이미지에 유용합니다.</p>
+<p>다중 코드 모드가 활성화되면 카메라는 첫 감지 후 잠깐 더 스캔을 계속하여 결과를 표시하기 전에 모든 보이는 코드를 수집합니다. 그래서 단일 코드 모드보다 약간 더 시간이 걸립니다.</p>
+<h3>고급 세부 정보 표시</h3>
+<p><b>고급 세부 정보 표시</b>를 켜면 각 스캔 결과 옆에 QR 버전, 오류 수정 레벨, 마스크 패턴, 바코드 구조(시작/종료 문자, 체크 숫자) 같은 기술적 메타데이터가 표시됩니다. 이 정보는 스캔 결과 페이지와 기록 탭의 행에 표시됩니다.</p>
+<div class="tip">💡 QR 코드와 바코드의 실제 작동 방식에 대해 더 알아볼 수 있는 좋은 방법입니다. 스캔하는 기술이 궁금하다면 한번 사용해 보세요!</div>
+
+<h2>스캔 결과</h2>
+<p>코드가 감지되면 코드 리더는 아무 작업도 수행하기 전에 내용을 먼저 보여줍니다. 항상 원시 데이터를 먼저 보여주며 <b>복사</b> 및 <b>공유</b> 버튼이 함께 표시됩니다. 코드에 URL이 포함된 경우(QR 코드에서 일반적) <b>열기</b> 버튼이 나타납니다. 이를 탭하면 앱 내 브라우저가 아닌 기본 브라우저에서 링크가 열립니다. 탐색 데이터는 수집되지 않습니다.</p>
+<p>코드 리더는 특수 코드 유형을 자동으로 인식하고 상황별 작업을 표시합니다:</p>
+<table>
+  <thead><tr><th>코드 유형</th><th>할 수 있는 작업</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / 링크</td><td>기본 브라우저에서 열기 · 복사 · 공유</td></tr>
+    <tr><td>📶 Wi-Fi 네트워크</td><td>직접 <b>연결</b> · 비밀번호 복사</td></tr>
+    <tr><td>👤 연락처 (vCard / MECARD)</td><td>미리보기와 함께 <b>연락처에 저장</b></td></tr>
+    <tr><td>📅 캘린더 이벤트</td><td><b>캘린더에 추가</b></td></tr>
+    <tr><td>✉️ 이메일</td><td>미리 채워진 이메일 <b>작성</b></td></tr>
+    <tr><td>💬 SMS / 메시지</td><td><b>메시지 보내기</b></td></tr>
+    <tr><td>📞 전화번호</td><td><b>전화하기</b></td></tr>
+    <tr><td>📍 위치 / 지리</td><td><b>지도에서 열기</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> 또는 FaceTime 오디오</td></tr>
+    <tr><td>₿ 비트코인</td><td><b>주소 복사</b></td></tr>
+    <tr><td>✈️ 탑승권</td><td>Aztec / PDF417에서 파싱된 항공편 세부 정보</td></tr>
+  </tbody>
+</table>
+<h3>기본 세부 정보와 고급 세부 정보</h3>
+<p>기본적으로 결과 페이지는 가장 유용한 정보만 표시합니다: 디코딩된 내용과 관련 작업 버튼.</p>
+<p>(설정에서) <b>고급 세부 정보 표시</b>를 켜면 결과 페이지에 두 개의 추가 섹션이 나타납니다:</p>
+<ul>
+  <li><b>디코딩된 데이터:</b> 파싱 전에 바코드 안에 인코딩된 원시 문자열.</li>
+  <li><b>구조:</b> 바코드의 기술적 분석: 시작/종료 문자, 체크 숫자, 가드 패턴 및 코드 유형에 따른 유사 요소.</li>
+</ul>
+<p>QR 코드의 경우 버전 번호, 오류 수정 레벨, 마스크 패턴을 보여주는 메타데이터 칩도 표시됩니다.</p>
+<h3>추적 매개변수 감지</h3>
+<p>URL에 추적 매개변수가 포함된 경우 코드 리더는 <b>추적 없이 열기</b> 버튼을 표시합니다. 여기에는 UTM 태그, Facebook, Google Ads, Microsoft, TikTok 등의 클릭 ID가 포함됩니다. 이를 탭하면 해당 매개변수가 제거된 상태로 링크가 열립니다. 추적 없이 동일한 페이지에 접근할 수 있습니다.</p>
+
+<h2>다른 앱에서 스캔하기</h2>
+<p>메시지, 이메일, 문서 뷰어, 웹 브라우저 등 다른 앱 내 사진에 나타나는 코드를 해당 앱을 떠나지 않고 스캔할 수 있습니다.</p>
+<h3>공유 사용</h3>
+<ol>
+  <li>갤러리 또는 앱에서 이미지를 열고 <b>공유</b> 버튼을 탭하세요.</li>
+  <li>나타나는 앱 목록에서 <b>코드 리더</b>를 찾아 탭하세요. 보이지 않으면 목록 끝까지 스크롤하여 <b>더 보기</b>를 탭하세요.</li>
+  <li>앱이 열리고 이미지를 자동으로 스캔합니다.</li>
+</ol>
+<h3>동작 사용</h3>
+<ol>
+  <li>갤러리 또는 앱에서 이미지를 열고 <b>공유</b> 버튼을 탭하세요.</li>
+  <li>앱 목록 아래의 동작 행을 스크롤하고 <b>Scan for Codes</b>를 탭하세요.</li>
+  <li>앱이 열리고 이미지를 자동으로 스캔합니다.</li>
+</ol>
+<div class="tip">💡 두 옵션 모두 동일한 작업을 수행합니다. 앱 행의 "코드 리더"와 동작 행의 "Scan for Codes"는 동일한 기능에 접근하는 두 가지 방법입니다.</div>
+
+<h2>홈 화면 위젯</h2>
+<p>홈 화면에 앱으로 바로 이동하는 더 큰 단축키로 위젯을 추가할 수 있습니다. 탭하면 카메라가 바로 열려 스캔 준비가 됩니다. 위젯은 세 가지 크기(소, 중, 대)로 제공되므로 홈 화면 레이아웃에 맞는 크기를 선택할 수 있습니다.</p>
+<p>위젯을 추가하려면:</p>
+<ol>
+  <li>아이콘이 흔들릴 때까지 홈 화면의 빈 영역을 길게 누르세요.</li>
+  <li>왼쪽 상단의 <b>+</b> 버튼을 탭하세요.</li>
+  <li><b>코드 리더</b>를 검색하세요.</li>
+  <li>크기를 선택하고 <b>위젯 추가</b>를 탭하세요.</li>
+  <li>나중에 위젯을 길게 눌러 <b>위젯 편집</b>을 선택하면 크기를 조정할 수 있습니다.</li>
+</ol>
+
+<h2>Control Center</h2>
+<p>Control Center는 화면 오른쪽 상단 모서리에서 아래로 스와이프하면 나타나는 패널입니다. 잠금 화면이나 다른 앱을 사용하는 중에도 어디서든 한 번의 탭으로 카메라를 실행하는 코드 리더 버튼을 추가할 수 있습니다.</p>
+<p>버튼을 추가하려면:</p>
+<ol>
+  <li>오른쪽 상단 모서리에서 아래로 스와이프하여 Control Center를 여세요.</li>
+  <li><b>+</b> 버튼을 탭하여 편집 모드로 진입하세요.</li>
+  <li>목록에서 <b>코드 리더</b>를 찾아 탭하여 추가하세요.</li>
+  <li>편집 모드에서 드래그하여 위치를 변경하고 크기를 조정할 수 있습니다.</li>
+</ol>
+
+<h2>지원되는 코드 유형</h2>
+<table>
+  <thead><tr><th>코드</th><th>비고</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>가장 일반적인 2D 코드. URL, Wi-Fi, 연락처 등에 사용됨</td></tr>
+    <tr><td>Micro QR</td><td>공간이 제한된 작은 라벨을 위한 QR Code의 소형 변형</td></tr>
+    <tr><td>Aztec</td><td>탑승권 및 교통 티켓에 사용됨</td></tr>
+    <tr><td>Data Matrix</td><td>제조, 의료, 물류 분야에서 일반적으로 사용됨</td></tr>
+    <tr><td>PDF417</td><td>운전 면허증, 탑승권, 배송 라벨에 사용됨</td></tr>
+    <tr><td>Micro PDF417</td><td>의약품 포장 같은 소형 품목을 위한 소형 PDF417</td></tr>
+    <tr><td>EAN-8</td><td>소형 제품용 짧은 소매 바코드</td></tr>
+    <tr><td>EAN-13</td><td>전 세계 대부분의 소비자 제품에서 발견되는 표준 소매 바코드</td></tr>
+    <tr><td>UPC-E</td><td>미국/캐나다 소형 소매 포장에 사용되는 소형 바코드</td></tr>
+    <tr><td>Code 39</td><td>가장 오래된 바코드 중 하나로 산업 환경에서 흔히 사용됨</td></tr>
+    <tr><td>Code 93</td><td>Code 39의 고밀도 후속 버전</td></tr>
+    <tr><td>Code 128</td><td>물류 및 배송 분야에서 널리 사용되는 고밀도 바코드</td></tr>
+    <tr><td>ITF-14</td><td>골판지 배송 박스에 인쇄된 14자리 바코드</td></tr>
+    <tr><td>Codabar</td><td>도서관, 혈액 은행, 일부 배송 회사에서 사용됨</td></tr>
+    <tr><td>GS1 DataBar</td><td>농산물이나 신선 식품 같은 소형 품목을 위한 소형 소매 바코드</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>무게와 유통 기한 같은 추가 데이터를 담는 확장 변형</td></tr>
+  </tbody>
+</table>
+<p><b>미지원:</b></p>
+<table>
+  <thead><tr><th>코드</th><th>비고</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (부가 코드)</td><td>EAN-13에 붙는 짧은 숫자 보충 코드. 잡지 호수와 도서 가격 표시에 사용됨</td></tr>
+    <tr><td>rMQR</td><td>좁은 라벨용으로 설계된 새로운 소형 QR 변형인 직사각형 Micro QR</td></tr>
+    <tr><td>MaxiCode</td><td>UPS가 배송 라벨에 사용하는 2D 점 행렬 코드</td></tr>
+    <tr><td>SP Code</td><td>음성 오디오 데이터를 인코딩하는 일본 접근성 바코드</td></tr>
+    <tr><td>우편 코드</td><td>국가 우편 서비스에서 사용하는 4-state 우편 바코드 (USPS Intelligent Mail, Royal Mail, Australia Post, Japan Post 등)</td></tr>
+    <tr><td>독점 앱 코드</td><td>해당 앱만 스캔할 수 있는 맞춤형 시각 코드</td></tr>
+  </tbody>
+</table>
+
+<h2>자주 묻는 질문</h2>
+<ul>
+  <li><b>인터넷 연결이 필요한가요?</b><br>아니요. 코드 리더는 완전히 오프라인으로 작동합니다.</li><br>
+  <li><b>내 데이터를 수집하나요?</b><br>아니요. 어디에도 업로드되지 않습니다. 스캔 기록은 기기에만 저장됩니다.</li><br>
+  <li><b>전체 사진 보관함에 접근하나요?</b><br>아니요. 갤러리 탭에서는 시스템 사진 선택기를 사용하여 사진 한 장만 선택합니다. 코드 리더는 보관함에 대한 접근 권한을 받지 않습니다.</li><br>
+  <li><b>다중 코드 모드가 조금 더 오래 걸리는 이유는 무엇인가요?</b><br>카메라는 결과를 표시하기 전에 시야 내의 모든 코드를 캡처하기 위해 짧은 프레임 창에 걸쳐 코드를 수집합니다.</li><br>
+  <li><b>스캔 기록은 얼마나 오래 보관되나요?</b><br>6개월이 지난 항목은 자동으로 삭제됩니다. 기록은 1,000개 항목으로도 제한되며, 새 항목을 위한 공간을 만들기 위해 가장 오래된 항목이 삭제됩니다.</li><br>
+  <li><b>링크로 자동으로 이동하지 않는 이유는 무엇인가요?</b><br>이는 의도적인 것입니다. 가짜 또는 악의적인 QR 코드는 주차장, 식당 테이블 등 어디서나 흔히 발견됩니다. 열기 전에 URL을 보여주면 안전한지 확인할 수 있습니다.</li>
+</ul>
 
 <div class="sub-divider lang-anchor" id="legal-ko"><span class="sub-divider-label">법적 고지</span></div>
 
@@ -726,15 +1879,170 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
 
 
 <!-- ══════════════════════════════════════════════════════════ -->
-<!--  日本語                                                    -->
-<!-- ══════════════════════════════════════════════════════════ -->
 
-<div class="lang-divider lang-anchor" id="support-ja">
+<div class="lang-divider" id="lang-ja">
   <span class="lang-flag">JA</span><span class="lang-name">日本語</span>
 </div>
 
-<h1>万能スキャナー – マニュアル</h1>
-<div class="placeholder-block">マニュアル準備中 — 近日公開予定です。</div>
+<h1 class="lang-anchor" id="support-ja">万能スキャナー</h1>
+
+<p>万能スキャナー は、iPhone のカメラまたはフォトライブラリの画像を使ってバーコードや QR コードをスキャンします。
+完全オフラインで動作し、クラウドには何も保存せず、広告も表示しません。</p>
+
+<h2>Download</h2>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <img src="../appstorebadge/ja.svg" alt="Download on the App Store" height="72">
+  <span class="screenshot-placeholder" style="width:180px; height:180px; line-height:180px; border-radius:10px; font-size:12px; color:#999;">QR code</span>
+</div>
+
+<h2>サポート</h2>
+
+<div class="screenshots">
+  <span class="screenshot-placeholder">&lt;Camera&gt;</span>
+  <span class="screenshot-placeholder">&lt;Gallery&gt;</span>
+  <span class="screenshot-placeholder">&lt;Scan Result&gt;</span>
+</div>
+
+<h2>カメラ</h2>
+<p>カメラタブを開くと、すぐにスキャンが始まります。バーコードや QR コードにスマートフォンを向けると、アプリが自動的に検出します。カメラのアクセス許可が必要です。まだ許可していない場合は確認ダイアログが表示されます。<b>設定を開く</b>をタップし、万能スキャナー の<b>カメラ</b>アクセスを有効にしてください。</p>
+<ul>
+  <li><b>懐中電灯:</b> 暗い環境を照らすには懐中電灯ボタンをタップします。背面カメラでのみ使用できます。</li>
+  <li><b>フロントカメラ:</b> 背面カメラと前面カメラを切り替えるには回転ボタンをタップします。背面カメラが使用できない場合（故障など）に便利です。</li>
+</ul>
+<div class="tip">💡 コードを探している間、アプリは赤いスキャンラインを表示します。何もタップする必要はありません。認識は自動です。</div>
+
+<h2>ギャラリー</h2>
+<p>ギャラリータブでは、既存の画像からコードをスキャンできます。<b>写真を選択</b>をタップして、ライブラリから任意の画像を選んでください。選択した特定の写真だけがアプリと共有されます。万能スキャナー はフォトライブラリ全体へのアクセスを要求しません。</p>
+<p>写真を選ぶと、アプリが即座にスキャンして結果を表示します。コードが見つからない場合は、アラートでその旨をお知らせします。</p>
+
+<h2>履歴</h2>
+<p>すべてのスキャンは履歴タブに自動保存されます。スキャン結果は<b>6 ヶ月間</b>保持され、履歴には最大<b>1,000 件</b>まで保存されます。上限に達すると、最も古いものから自動的に削除されます。</p>
+<ul>
+  <li><b>過去のスキャンを見る:</b> 任意の行をタップして、完全な結果を再度開きます。</li>
+  <li><b>1 件削除:</b> 行を左にスワイプして<b>削除</b>をタップします。</li>
+  <li><b>すべて削除:</b> 右上のゴミ箱アイコンをタップします。</li>
+  <li><b>ソースラベル:</b> 各エントリには、カメラ、ギャラリー、または共有のどこから来たかが表示されます。</li>
+</ul>
+
+<h2>設定</h2>
+<h3>マルチコードモード</h3>
+<p>デフォルトでは、万能スキャナー は<b>1 つのコード</b>を見つけると停止します。<b>マルチコードモード</b>をオンにすると、一度に最大<b>5 つのコード</b>をスキャンできます。名刺、製品シート、複数のコードが並んだ画像に便利です。</p>
+<p>マルチコードモードが有効な場合、カメラは最初の検出後も短時間スキャンを続け、結果を表示する前にすべての見えているコードを収集します。そのため、シングルコードモードよりわずかに時間がかかります。</p>
+<h3>詳細情報を表示</h3>
+<p><b>詳細情報を表示</b>をオンにすると、各スキャン結果の横に技術的なメタデータが表示されます。QR バージョン、誤り訂正レベル、マスクパターン、バーコード構造（スタート/ストップ文字、チェックデジット）などです。この情報はスキャン結果ページと履歴タブの各行に表示されます。</p>
+<div class="tip">💡 QR コードやバーコードの実際の仕組みをもっと詳しく知る絶好の方法です。スキャンしているものの技術に興味があれば、ぜひ試してみてください！</div>
+
+<h2>スキャン結果</h2>
+<p>コードが検出されると、万能スキャナー は何もする前にその内容を表示します。常に生データが最初に表示され、<b>コピー</b>と<b>共有</b>ボタンが並びます。コードに URL が含まれている場合（QR コードでよく見られます）、<b>開く</b>ボタンが表示されます。タップすると、アプリ内ブラウザではなくデフォルトのブラウザでリンクが開きます。閲覧データは収集されません。</p>
+<p>万能スキャナー は特殊なコードの種類を自動的に認識し、状況に応じたアクションを表示します：</p>
+<table>
+  <thead><tr><th>コードの種類</th><th>できること</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / リンク</td><td>デフォルトのブラウザで開く · コピー · 共有</td></tr>
+    <tr><td>📶 Wi-Fi ネットワーク</td><td>直接<b>接続</b> · パスワードをコピー</td></tr>
+    <tr><td>👤 連絡先 (vCard / MECARD)</td><td>プレビュー付きで<b>連絡先に保存</b></td></tr>
+    <tr><td>📅 カレンダーイベント</td><td><b>カレンダーに追加</b></td></tr>
+    <tr><td>✉️ メール</td><td>下書き済みメールを<b>作成</b></td></tr>
+    <tr><td>💬 SMS / メッセージ</td><td><b>メッセージを送信</b></td></tr>
+    <tr><td>📞 電話番号</td><td><b>電話をかける</b></td></tr>
+    <tr><td>📍 位置情報 / ジオ</td><td><b>マップで開く</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> または FaceTime オーディオ</td></tr>
+    <tr><td>₿ ビットコイン</td><td><b>アドレスをコピー</b></td></tr>
+    <tr><td>✈️ 搭乗券</td><td>Aztec / PDF417 から解析されたフライト詳細</td></tr>
+  </tbody>
+</table>
+<h3>基本情報と詳細情報</h3>
+<p>デフォルトでは、結果ページには最も役立つ情報のみが表示されます。デコードされたコンテンツと関連するアクションボタンです。</p>
+<p>（設定で）<b>詳細情報を表示</b>をオンにすると、結果ページに 2 つの追加セクションが表示されます：</p>
+<ul>
+  <li><b>デコードされたデータ:</b> 解析前の、バーコード内にエンコードされた生の文字列。</li>
+  <li><b>構造:</b> バーコードの技術的な内訳。スタート/ストップ文字、チェックデジット、ガードパターン、コードの種類に応じた類似要素。</li>
+</ul>
+<p>QR コードの場合は、バージョン番号、誤り訂正レベル、マスクパターンを示すメタデータチップも表示されます。</p>
+<h3>トラッキングパラメータの検出</h3>
+<p>URL にトラッキングパラメータが含まれている場合、万能スキャナー は<b>トラッキングなしで開く</b>ボタンを表示します。これには UTM タグ、Facebook、Google Ads、Microsoft、TikTok などのクリック ID が含まれます。タップすると、それらのパラメータが削除された状態でリンクが開きます。追跡されることなく同じページにアクセスできます。</p>
+
+<h2>別のアプリからスキャン</h2>
+<p>メッセージ、メール、ドキュメントビューア、ウェブブラウザなど、他のアプリ内の写真に表示されたコードを、そのアプリを離れることなくスキャンできます。</p>
+<h3>共有を使う</h3>
+<ol>
+  <li>ギャラリーまたは任意のアプリで画像を開き、<b>共有</b>ボタンをタップします。</li>
+  <li>表示されたアプリの一覧から<b>万能スキャナー</b>を見つけてタップします。見つからない場合は一覧の末尾までスクロールし、<b>その他</b>をタップしてください。</li>
+  <li>アプリが開き、画像を自動的にスキャンします。</li>
+</ol>
+<h3>アクションを使う</h3>
+<ol>
+  <li>ギャラリーまたは任意のアプリで画像を開き、<b>共有</b>ボタンをタップします。</li>
+  <li>アプリ一覧の下のアクション行をスクロールして<b>Scan for Codes</b>をタップします。</li>
+  <li>アプリが開き、画像を自動的にスキャンします。</li>
+</ol>
+<div class="tip">💡 どちらのオプションも同じことをします。アプリ行の「万能スキャナー」とアクション行の「Scan for Codes」は、同じ機能にアクセスする 2 つの方法です。</div>
+
+<h2>ホーム画面ウィジェット</h2>
+<p>ホーム画面にウィジェットを追加して、アプリへのショートカットとして使用できます。タップするとカメラが直接開き、スキャンの準備が整います。ウィジェットは 3 つのサイズ（小・中・大）で提供されているので、ホーム画面のレイアウトに合わせて選択できます。</p>
+<p>ウィジェットを追加するには：</p>
+<ol>
+  <li>ホーム画面の空いている場所を、アイコンが揺れるまで長押しします。</li>
+  <li>左上の<b>+</b>ボタンをタップします。</li>
+  <li><b>万能スキャナー</b>を検索します。</li>
+  <li>サイズを選択して<b>ウィジェットを追加</b>をタップします。</li>
+  <li>後からウィジェットを長押しして<b>ウィジェットを編集</b>を選択することで、サイズを変更できます。</li>
+</ol>
+
+<h2>Control Center</h2>
+<p>Control Center は、画面右上の角から下にスワイプすると現れるパネルです。万能スキャナー のボタンを追加すると、ロック画面や他のアプリの使用中など、どこからでもワンタップでカメラを起動できます。</p>
+<p>ボタンを追加するには：</p>
+<ol>
+  <li>右上の角から下にスワイプして Control Center を開きます。</li>
+  <li><b>+</b>ボタンをタップして編集モードに入ります。</li>
+  <li>一覧から<b>万能スキャナー</b>を見つけてタップして追加します。</li>
+  <li>編集モード中にドラッグして位置を変更したり、サイズを変更したりできます。</li>
+</ol>
+
+<h2>対応コード一覧</h2>
+<table>
+  <thead><tr><th>コード</th><th>備考</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>最も一般的な 2D コード。URL、Wi-Fi、連絡先などに使用</td></tr>
+    <tr><td>Micro QR</td><td>スペースが限られた小さなラベル向けの QR Code のコンパクト版</td></tr>
+    <tr><td>Aztec</td><td>搭乗券や交通機関のチケットに使用</td></tr>
+    <tr><td>Data Matrix</td><td>製造業、医療、物流で一般的に使用</td></tr>
+    <tr><td>PDF417</td><td>運転免許証、搭乗券、配送ラベルに使用</td></tr>
+    <tr><td>Micro PDF417</td><td>医薬品包装などの小型品向けのコンパクトな PDF417</td></tr>
+    <tr><td>EAN-8</td><td>小型商品向けの短い小売バーコード</td></tr>
+    <tr><td>EAN-13</td><td>世界中の多くの消費者製品に見られる標準的な小売バーコード</td></tr>
+    <tr><td>UPC-E</td><td>米国・カナダの小型小売包装に使用されるコンパクトなバーコード</td></tr>
+    <tr><td>Code 39</td><td>最も古いバーコードの 1 つ。産業環境でよく見られる</td></tr>
+    <tr><td>Code 93</td><td>Code 39 の高密度後継版</td></tr>
+    <tr><td>Code 128</td><td>物流や配送で広く使われる高密度バーコード</td></tr>
+    <tr><td>ITF-14</td><td>段ボール製の配送箱に印刷された 14 桁のバーコード</td></tr>
+    <tr><td>Codabar</td><td>図書館、血液バンク、一部の宅配会社で使用</td></tr>
+    <tr><td>GS1 DataBar</td><td>農産物や生鮮食品などの小型品向けのコンパクトな小売バーコード</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>重量や有効期限などの追加データを持つ拡張バリアント</td></tr>
+  </tbody>
+</table>
+<p><b>非対応：</b></p>
+<table>
+  <thead><tr><th>コード</th><th>備考</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (アドオン)</td><td>EAN-13 に付加される短い数字補足。雑誌の号数と書籍の価格表示に使用</td></tr>
+    <tr><td>rMQR</td><td>細長いラベル向けに設計された新しいコンパクトな QR バリアント、矩形マイクロ QR</td></tr>
+    <tr><td>MaxiCode</td><td>UPS が配送ラベルに使用する 2D ドットマトリックスコード</td></tr>
+    <tr><td>SP Code</td><td>音声データをエンコードする日本のアクセシビリティバーコード</td></tr>
+    <tr><td>郵便バーコード</td><td>各国の郵便サービスが使用する 4 ステート郵便バーコード（USPS Intelligent Mail、Royal Mail、Australia Post、Japan Post など）</td></tr>
+    <tr><td>独自アプリコード</td><td>発行元のアプリのみがスキャンできるカスタム視覚コード</td></tr>
+  </tbody>
+</table>
+
+<h2>よくある質問</h2>
+<ul>
+  <li><b>インターネット接続は必要ですか？</b><br>いいえ。万能スキャナー は完全にオフラインで動作します。</li><br>
+  <li><b>データは収集されますか？</b><br>いいえ。どこにもアップロードされません。スキャン履歴はデバイス上にのみ保存されます。</li><br>
+  <li><b>フォトライブラリ全体にアクセスしますか？</b><br>いいえ。ギャラリータブでは、システムの写真ピッカーを使って 1 枚の写真を選択します。万能スキャナー はライブラリへのアクセス権限を受け取ることはありません。</li><br>
+  <li><b>マルチコードモードが少し時間がかかるのはなぜですか？</b><br>カメラは、結果を表示する前に視野内のすべてのコードを確実にキャプチャするため、短いフレームの時間枠にわたってコードを収集します。</li><br>
+  <li><b>スキャン履歴はどのくらい保存されますか？</b><br>6 ヶ月以上経過したエントリは自動的に削除されます。履歴は 1,000 件にも制限されており、新しいもののために最も古いものが削除されます。</li><br>
+  <li><b>なぜリンクに自動的に移動しないのですか？</b><br>これは意図的なものです。偽の QR コードや悪意のある QR コードは、駐車場やレストランのテーブルなどで一般的に見られます。開く前に URL を表示することで、安全かどうかを確認できます。</li>
+</ul>
 
 <div class="sub-divider lang-anchor" id="legal-ja"><span class="sub-divider-label">法的情報</span></div>
 
@@ -780,15 +2088,170 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
 
 
 <!-- ══════════════════════════════════════════════════════════ -->
-<!--  简体中文                                                  -->
-<!-- ══════════════════════════════════════════════════════════ -->
 
-<div class="lang-divider lang-anchor" id="support-zh-hans">
+<div class="lang-divider" id="lang-zh-hans">
   <span class="lang-flag">ZH</span><span class="lang-name">简体中文</span>
 </div>
 
-<h1>全能扫码器 – 使用手册</h1>
-<div class="placeholder-block">使用手册准备中 — 即将发布。</div>
+<h1 class="lang-anchor" id="support-zh-hans">全能扫码器</h1>
+
+<p>全能扫码器 使用 iPhone 摄像头或照片图库中的任意图片扫描条形码和 QR 码。
+完全离线运行，不在云端存储任何内容，且从不显示广告。</p>
+
+<h2>Download</h2>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <img src="../appstorebadge/zh-hans.svg" alt="Download on the App Store" height="72">
+  <span class="screenshot-placeholder" style="width:180px; height:180px; line-height:180px; border-radius:10px; font-size:12px; color:#999;">QR code</span>
+</div>
+
+<h2>支持</h2>
+
+<div class="screenshots">
+  <span class="screenshot-placeholder">&lt;Camera&gt;</span>
+  <span class="screenshot-placeholder">&lt;Gallery&gt;</span>
+  <span class="screenshot-placeholder">&lt;Scan Result&gt;</span>
+</div>
+
+<h2>相机</h2>
+<p>相机标签页打开后立即开始扫描。将手机对准任意条形码或 QR 码，应用会自动检测。需要相机权限。如果尚未授权，将出现提示。点击<b>打开设置</b>，为 全能扫码器 启用<b>相机</b>访问权限。</p>
+<ul>
+  <li><b>手电筒：</b>点击手电筒按钮，照亮较暗的环境。仅在后置摄像头下可用。</li>
+  <li><b>前置摄像头：</b>点击旋转按钮，在后置和前置摄像头之间切换。当后置摄像头不可用时（例如损坏）非常便捷。</li>
+</ul>
+<div class="tip">💡 应用在查找码时会显示一条红色扫描线。无需按任何按钮，识别自动完成。</div>
+
+<h2>相册</h2>
+<p>相册标签页允许您从现有图片中扫描码。点击<b>选择照片</b>，从图库中选取任意图片。只有您选择的特定照片会与应用共享。全能扫码器 不会请求访问您的整个照片图库。</p>
+<p>选择照片后，应用立即扫描并显示结果。如果未找到任何码，将弹出提示告知您。</p>
+
+<h2>历史记录</h2>
+<p>每次扫描都会自动保存到历史记录标签页。扫描记录保存 <b>6 个月</b>，历史记录最多保存 <b>1,000 条</b>；达到上限时，最旧的记录会自动删除。</p>
+<ul>
+  <li><b>查看过去的扫描：</b>点击任意行，重新打开完整结果。</li>
+  <li><b>删除单条记录：</b>向左滑动某行，点击<b>删除</b>。</li>
+  <li><b>删除全部：</b>点击右上角的垃圾桶图标。</li>
+  <li><b>来源标签：</b>每条记录显示其来自相机、相册还是分享。</li>
+</ul>
+
+<h2>设置</h2>
+<h3>多码模式</h3>
+<p>默认情况下，全能扫码器 找到<b>一个码</b>后立即停止。开启<b>多码模式</b>可一次扫描最多 <b>5 个码</b>，适用于名片、产品单页或包含多个并排码的图片。</p>
+<p>多码模式激活时，摄像头在首次检测到码后会继续短暂扫描，以收集所有可见的码再显示结果。因此会比单码模式稍微慢一点。</p>
+<h3>显示高级详情</h3>
+<p>开启<b>显示高级详情</b>，可在每个扫描结果旁显示技术元数据：QR 版本、纠错级别、掩码图案或条形码结构（起始/终止字符、校验位）。此信息显示在扫描结果页面和历史记录标签页的各行中。</p>
+<div class="tip">💡 这是深入了解 QR 码和条形码实际工作原理的好方法。如果您对所扫描内容背后的技术感到好奇，不妨试一试！</div>
+
+<h2>扫描结果</h2>
+<p>检测到码后，全能扫码器 会在执行任何操作之前先显示其内容。您始终会先看到原始数据，以及<b>复制</b>和<b>分享</b>按钮。如果码包含 URL（QR 码中常见），则会出现<b>打开</b>按钮。点击后将在默认浏览器中打开链接，而非应用内浏览器。不会收集任何浏览数据。</p>
+<p>全能扫码器 自动识别特殊码类型，并显示相应操作：</p>
+<table>
+  <thead><tr><th>码类型</th><th>可执行操作</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / 链接</td><td>在默认浏览器中打开 · 复制 · 分享</td></tr>
+    <tr><td>📶 Wi-Fi 网络</td><td>直接<b>连接</b> · 复制密码</td></tr>
+    <tr><td>👤 联系人 (vCard / MECARD)</td><td>带预览<b>保存到通讯录</b></td></tr>
+    <tr><td>📅 日历事件</td><td><b>添加到日历</b></td></tr>
+    <tr><td>✉️ 电子邮件</td><td><b>撰写</b>预填邮件</td></tr>
+    <tr><td>💬 短信 / 消息</td><td><b>发送消息</b></td></tr>
+    <tr><td>📞 电话号码</td><td><b>拨打电话</b></td></tr>
+    <tr><td>📍 位置 / 地理</td><td><b>在地图中打开</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> 或 FaceTime 音频</td></tr>
+    <tr><td>₿ 比特币</td><td><b>复制地址</b></td></tr>
+    <tr><td>✈️ 登机牌</td><td>从 Aztec / PDF417 解析的航班详情</td></tr>
+  </tbody>
+</table>
+<h3>基本详情与高级详情</h3>
+<p>默认情况下，结果页面仅显示最有用的信息：解码内容和相关操作按钮。</p>
+<p>在设置中开启<b>显示高级详情</b>后，结果页面会出现两个额外部分：</p>
+<ul>
+  <li><b>解码数据：</b>条形码内编码的原始字符串，在任何解析之前的状态。</li>
+  <li><b>结构：</b>条形码的技术分解：起始/终止字符、校验位、保护图案以及根据码类型不同而存在的类似元素。</li>
+</ul>
+<p>对于 QR 码，还会出现显示版本号、纠错级别和掩码图案的元数据标签。</p>
+<h3>追踪参数检测</h3>
+<p>当 URL 包含追踪参数时，全能扫码器 会显示<b>无追踪打开</b>按钮。这包括 UTM 标签以及来自 Facebook、Google Ads、Microsoft、TikTok 等平台的点击 ID。点击后将在去除这些参数的情况下打开链接。您可以在不被追踪的情况下访问同一页面。</p>
+
+<h2>从其他应用扫描</h2>
+<p>您可以扫描出现在其他应用（消息、电子邮件、文档查看器或浏览器）中照片里的码，无需离开该应用。</p>
+<h3>使用分享</h3>
+<ol>
+  <li>在相册或任意应用中打开图片，然后点击<b>分享</b>按钮。</li>
+  <li>在出现的应用列表中，找到并点击 <b>全能扫码器</b>。如果看不到，请滚动到列表末尾并点击<b>更多</b>。</li>
+  <li>应用打开并自动扫描图片。</li>
+</ol>
+<h3>使用动作</h3>
+<ol>
+  <li>在相册或任意应用中打开图片，然后点击<b>分享</b>按钮。</li>
+  <li>滚动应用列表下方的动作栏，点击 <b>Scan for Codes</b>。</li>
+  <li>应用打开并自动扫描图片。</li>
+</ol>
+<div class="tip">💡 两个选项的作用相同。应用栏中的"全能扫码器"和动作栏中的"Scan for Codes"是访问同一功能的两种方式。</div>
+
+<h2>主屏幕小组件</h2>
+<p>您可以在主屏幕上添加小组件，作为进入应用的快捷方式。点击即可直接打开摄像头，随时可以扫描。小组件有三种尺寸（小、中、大），您可以根据主屏幕布局选择合适的尺寸。</p>
+<p>添加小组件的步骤：</p>
+<ol>
+  <li>长按主屏幕空白区域，直到图标开始抖动。</li>
+  <li>点击左上角的 <b>+</b> 按钮。</li>
+  <li>搜索 <b>全能扫码器</b>。</li>
+  <li>选择尺寸，然后点击<b>添加小组件</b>。</li>
+  <li>之后可以长按小组件，选择<b>编辑小组件</b>来调整大小。</li>
+</ol>
+
+<h2>Control Center</h2>
+<p>Control Center 是从屏幕右上角向下滑动时出现的面板。您可以在其中添加 全能扫码器 按钮，从任何地方（包括锁屏或使用其他应用时）一键启动摄像头。</p>
+<p>添加按钮的步骤：</p>
+<ol>
+  <li>从右上角向下滑动，打开 Control Center。</li>
+  <li>点击 <b>+</b> 按钮进入编辑模式。</li>
+  <li>在列表中找到 <b>全能扫码器</b>，点击以添加。</li>
+  <li>在编辑模式下，您可以拖动来重新定位并调整大小。</li>
+</ol>
+
+<h2>支持的码类型</h2>
+<table>
+  <thead><tr><th>码</th><th>备注</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>最常见的 2D 码，用于 URL、Wi-Fi、联系人等</td></tr>
+    <tr><td>Micro QR</td><td>QR Code 的紧凑变体，适用于空间有限的小标签</td></tr>
+    <tr><td>Aztec</td><td>用于登机牌和交通票务</td></tr>
+    <tr><td>Data Matrix</td><td>常用于制造业、医疗和物流领域</td></tr>
+    <tr><td>PDF417</td><td>用于驾照、登机牌和快递标签</td></tr>
+    <tr><td>Micro PDF417</td><td>紧凑型 PDF417，适用于药品包装等小型物品</td></tr>
+    <tr><td>EAN-8</td><td>用于小型零售商品的短条形码</td></tr>
+    <tr><td>EAN-13</td><td>全球大多数消费品上的标准零售条形码</td></tr>
+    <tr><td>UPC-E</td><td>用于美国/加拿大小型零售包装的紧凑型条形码</td></tr>
+    <tr><td>Code 39</td><td>最古老的条形码之一，常见于工业场景</td></tr>
+    <tr><td>Code 93</td><td>Code 39 的高密度后继版本</td></tr>
+    <tr><td>Code 128</td><td>广泛用于物流和快递的高密度条形码</td></tr>
+    <tr><td>ITF-14</td><td>印刷在瓦楞纸板运输箱上的 14 位条形码</td></tr>
+    <tr><td>Codabar</td><td>用于图书馆、血库和部分快递公司</td></tr>
+    <tr><td>GS1 DataBar</td><td>用于农产品和生鲜食品等小型商品的紧凑型零售条形码</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>扩展变体，可携带重量和有效期等额外数据</td></tr>
+  </tbody>
+</table>
+<p><b>不支持：</b></p>
+<table>
+  <thead><tr><th>码</th><th>备注</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5（附加码）</td><td>附加在 EAN-13 上的短数字补充码，用于杂志期号和书籍定价</td></tr>
+    <tr><td>rMQR</td><td>矩形微型 QR，一种为窄标签设计的新型紧凑 QR 变体</td></tr>
+    <tr><td>MaxiCode</td><td>UPS 在运输标签上使用的 2D 点阵码</td></tr>
+    <tr><td>SP Code</td><td>编码语音音频数据的日本无障碍条形码</td></tr>
+    <tr><td>邮政条形码</td><td>各国邮政服务使用的 4 状态邮政条形码（USPS Intelligent Mail、Royal Mail、Australia Post、Japan Post 等）</td></tr>
+    <tr><td>专有应用码</td><td>只有发行方应用才能扫描的自定义视觉码</td></tr>
+  </tbody>
+</table>
+
+<h2>常见问题</h2>
+<ul>
+  <li><b>需要联网吗？</b><br>不需要。全能扫码器 完全离线运行。</li><br>
+  <li><b>会收集我的数据吗？</b><br>不会。任何内容都不会上传到任何地方。扫描历史记录仅存储在您的设备上。</li><br>
+  <li><b>会访问我的整个照片图库吗？</b><br>不会。在相册标签页中，您通过系统照片选择器选取单张照片。全能扫码器 从不获得访问您图库的权限。</li><br>
+  <li><b>为什么多码模式会稍慢一些？</b><br>摄像头在显示结果前，会在短暂的帧时间窗口内收集码，以确保捕获所有可见的码。</li><br>
+  <li><b>扫描历史记录保存多久？</b><br>超过 6 个月的记录会自动删除。历史记录同时也有 1,000 条的上限，最旧的记录会被删除以为新记录腾出空间。</li><br>
+  <li><b>为什么不自动跳转到链接？</b><br>这是有意为之的。虚假或恶意 QR 码随处可见，在停车场、餐厅桌上等地方都很常见。在打开链接前显示 URL，让您能够验证其是否安全。</li>
+</ul>
 
 <div class="sub-divider lang-anchor" id="legal-zh-hans"><span class="sub-divider-label">法律信息</span></div>
 
@@ -834,15 +2297,170 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
 
 
 <!-- ══════════════════════════════════════════════════════════ -->
-<!--  繁體中文                                                  -->
-<!-- ══════════════════════════════════════════════════════════ -->
 
-<div class="lang-divider lang-anchor" id="support-zh-hant">
+<div class="lang-divider" id="lang-zh-hant">
   <span class="lang-flag">ZH</span><span class="lang-name">繁體中文</span>
 </div>
 
-<h1>掃碼器 – 使用手冊</h1>
-<div class="placeholder-block">使用手冊準備中 — 即將發布。</div>
+<h1 class="lang-anchor" id="support-zh-hant">掃碼器</h1>
+
+<p>掃碼器 使用 iPhone 相機或相片圖庫中的任何圖片來掃描條碼和 QR 碼。
+完全離線運作，不在雲端儲存任何內容，且從不顯示廣告。</p>
+
+<h2>Download</h2>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <img src="../appstorebadge/zh-hant.svg" alt="Download on the App Store" height="72">
+  <span class="screenshot-placeholder" style="width:180px; height:180px; line-height:180px; border-radius:10px; font-size:12px; color:#999;">QR code</span>
+</div>
+
+<h2>支援</h2>
+
+<div class="screenshots">
+  <span class="screenshot-placeholder">&lt;Camera&gt;</span>
+  <span class="screenshot-placeholder">&lt;Gallery&gt;</span>
+  <span class="screenshot-placeholder">&lt;Scan Result&gt;</span>
+</div>
+
+<h2>相機</h2>
+<p>相機標籤頁開啟後立即開始掃描。將手機對準任意條碼或 QR 碼，應用程式會自動偵測。需要相機權限。如果尚未授權，將出現提示。點選<b>開啟設定</b>，為 掃碼器 啟用<b>相機</b>存取權限。</p>
+<ul>
+  <li><b>手電筒：</b>點選手電筒按鈕，照亮較暗的環境。僅在後置相機下可用。</li>
+  <li><b>前置相機：</b>點選旋轉按鈕，在後置和前置相機之間切換。當後置相機無法使用時（例如損壞）非常方便。</li>
+</ul>
+<div class="tip">💡 應用程式在尋找碼時會顯示一條紅色掃描線。無需按任何按鈕，識別自動完成。</div>
+
+<h2>相簿</h2>
+<p>相簿標籤頁可讓您從現有圖片中掃描碼。點選<b>選擇照片</b>，從圖庫中選取任意圖片。只有您選擇的特定照片會與應用程式共享。掃碼器 不會要求存取您的整個相片圖庫。</p>
+<p>選擇照片後，應用程式立即掃描並顯示結果。如果未找到任何碼，將彈出提示通知您。</p>
+
+<h2>歷史記錄</h2>
+<p>每次掃描都會自動儲存到歷史記錄標籤頁。掃描記錄保存 <b>6 個月</b>，歷史記錄最多保存 <b>1,000 筆</b>；達到上限時，最舊的記錄會自動刪除。</p>
+<ul>
+  <li><b>查看過去的掃描：</b>點選任意列，重新開啟完整結果。</li>
+  <li><b>刪除單筆記錄：</b>向左滑動某列，點選<b>刪除</b>。</li>
+  <li><b>刪除全部：</b>點選右上角的垃圾桶圖示。</li>
+  <li><b>來源標籤：</b>每筆記錄顯示其來自相機、相簿還是分享。</li>
+</ul>
+
+<h2>設定</h2>
+<h3>多碼模式</h3>
+<p>預設情況下，掃碼器 找到<b>一個碼</b>後立即停止。開啟<b>多碼模式</b>可一次掃描最多 <b>5 個碼</b>，適用於名片、產品單頁或包含多個並排碼的圖片。</p>
+<p>多碼模式啟動時，相機在首次偵測到碼後會繼續短暫掃描，以收集所有可見的碼再顯示結果。因此會比單碼模式稍微慢一點。</p>
+<h3>顯示進階詳細資訊</h3>
+<p>開啟<b>顯示進階詳細資訊</b>，可在每個掃描結果旁顯示技術中繼資料：QR 版本、錯誤校正等級、遮罩圖案或條碼結構（起始/終止字元、校驗位）。此資訊顯示在掃描結果頁面和歷史記錄標籤頁的各列中。</p>
+<div class="tip">💡 這是深入了解 QR 碼和條碼實際運作方式的好方法。如果您對所掃描內容背後的技術感到好奇，不妨試一試！</div>
+
+<h2>掃描結果</h2>
+<p>偵測到碼後，掃碼器 會在執行任何操作之前先顯示其內容。您始終會先看到原始資料，以及<b>複製</b>和<b>分享</b>按鈕。如果碼包含 URL（QR 碼中常見），則會出現<b>開啟</b>按鈕。點選後將在預設瀏覽器中開啟連結，而非應用程式內瀏覽器。不會收集任何瀏覽資料。</p>
+<p>掃碼器 自動識別特殊碼類型，並顯示相應操作：</p>
+<table>
+  <thead><tr><th>碼類型</th><th>可執行操作</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / 連結</td><td>在預設瀏覽器中開啟 · 複製 · 分享</td></tr>
+    <tr><td>📶 Wi-Fi 網路</td><td>直接<b>連線</b> · 複製密碼</td></tr>
+    <tr><td>👤 聯絡人 (vCard / MECARD)</td><td>帶預覽<b>儲存至聯絡人</b></td></tr>
+    <tr><td>📅 行事曆事件</td><td><b>加入行事曆</b></td></tr>
+    <tr><td>✉️ 電子郵件</td><td><b>撰寫</b>預填郵件</td></tr>
+    <tr><td>💬 簡訊 / 訊息</td><td><b>傳送訊息</b></td></tr>
+    <tr><td>📞 電話號碼</td><td><b>撥打電話</b></td></tr>
+    <tr><td>📍 位置 / 地理</td><td><b>在地圖中開啟</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> 或 FaceTime 音訊</td></tr>
+    <tr><td>₿ 比特幣</td><td><b>複製地址</b></td></tr>
+    <tr><td>✈️ 登機證</td><td>從 Aztec / PDF417 解析的航班詳情</td></tr>
+  </tbody>
+</table>
+<h3>基本詳細資訊與進階詳細資訊</h3>
+<p>預設情況下，結果頁面僅顯示最有用的資訊：解碼內容和相關操作按鈕。</p>
+<p>在設定中開啟<b>顯示進階詳細資訊</b>後，結果頁面會出現兩個額外部分：</p>
+<ul>
+  <li><b>解碼資料：</b>條碼內編碼的原始字串，在任何解析之前的狀態。</li>
+  <li><b>結構：</b>條碼的技術分解：起始/終止字元、校驗位、保護圖案以及根據碼類型不同而存在的類似元素。</li>
+</ul>
+<p>對於 QR 碼，還會出現顯示版本號、錯誤校正等級和遮罩圖案的中繼資料標籤。</p>
+<h3>追蹤參數偵測</h3>
+<p>當 URL 包含追蹤參數時，掃碼器 會顯示<b>無追蹤開啟</b>按鈕。這包括 UTM 標籤以及來自 Facebook、Google Ads、Microsoft、TikTok 等平台的點擊 ID。點選後將在移除這些參數的情況下開啟連結。您可以在不被追蹤的情況下存取同一頁面。</p>
+
+<h2>從其他應用程式掃描</h2>
+<p>您可以掃描出現在其他應用程式（訊息、電子郵件、文件檢視器或網路瀏覽器）中照片裡的碼，無需離開該應用程式。</p>
+<h3>使用分享</h3>
+<ol>
+  <li>在相簿或任意應用程式中開啟圖片，然後點選<b>分享</b>按鈕。</li>
+  <li>在出現的應用程式列表中，找到並點選 <b>掃碼器</b>。如果看不到，請捲動到列表末尾並點選<b>更多</b>。</li>
+  <li>應用程式開啟並自動掃描圖片。</li>
+</ol>
+<h3>使用動作</h3>
+<ol>
+  <li>在相簿或任意應用程式中開啟圖片，然後點選<b>分享</b>按鈕。</li>
+  <li>捲動應用程式列表下方的動作列，點選 <b>Scan for Codes</b>。</li>
+  <li>應用程式開啟並自動掃描圖片。</li>
+</ol>
+<div class="tip">💡 兩個選項的作用相同。應用程式列中的「掃碼器」和動作列中的「Scan for Codes」是存取同一功能的兩種方式。</div>
+
+<h2>主畫面小工具</h2>
+<p>您可以在主畫面上新增小工具，作為進入應用程式的捷徑。點選即可直接開啟相機，隨時可以掃描。小工具有三種尺寸（小、中、大），您可以根據主畫面版面選擇合適的尺寸。</p>
+<p>新增小工具的步驟：</p>
+<ol>
+  <li>長按主畫面空白區域，直到圖示開始搖晃。</li>
+  <li>點選左上角的 <b>+</b> 按鈕。</li>
+  <li>搜尋 <b>掃碼器</b>。</li>
+  <li>選擇尺寸，然後點選<b>加入小工具</b>。</li>
+  <li>之後可以長按小工具，選擇<b>編輯小工具</b>來調整大小。</li>
+</ol>
+
+<h2>Control Center</h2>
+<p>Control Center 是從螢幕右上角向下滑動時出現的面板。您可以在其中新增 掃碼器 按鈕，從任何地方（包括鎖定畫面或使用其他應用程式時）一鍵啟動相機。</p>
+<p>新增按鈕的步驟：</p>
+<ol>
+  <li>從右上角向下滑動，開啟 Control Center。</li>
+  <li>點選 <b>+</b> 按鈕進入編輯模式。</li>
+  <li>在列表中找到 <b>掃碼器</b>，點選以新增。</li>
+  <li>在編輯模式下，您可以拖曳來重新定位並調整大小。</li>
+</ol>
+
+<h2>支援的碼類型</h2>
+<table>
+  <thead><tr><th>碼</th><th>備註</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>最常見的 2D 碼，用於 URL、Wi-Fi、聯絡人等</td></tr>
+    <tr><td>Micro QR</td><td>QR Code 的緊湊變體，適用於空間有限的小標籤</td></tr>
+    <tr><td>Aztec</td><td>用於登機證和交通票務</td></tr>
+    <tr><td>Data Matrix</td><td>常用於製造業、醫療和物流領域</td></tr>
+    <tr><td>PDF417</td><td>用於駕照、登機證和快遞標籤</td></tr>
+    <tr><td>Micro PDF417</td><td>緊湊型 PDF417，適用於藥品包裝等小型物品</td></tr>
+    <tr><td>EAN-8</td><td>用於小型零售商品的短條碼</td></tr>
+    <tr><td>EAN-13</td><td>全球大多數消費品上的標準零售條碼</td></tr>
+    <tr><td>UPC-E</td><td>用於美國/加拿大小型零售包裝的緊湊型條碼</td></tr>
+    <tr><td>Code 39</td><td>最古老的條碼之一，常見於工業場景</td></tr>
+    <tr><td>Code 93</td><td>Code 39 的高密度後繼版本</td></tr>
+    <tr><td>Code 128</td><td>廣泛用於物流和快遞的高密度條碼</td></tr>
+    <tr><td>ITF-14</td><td>印刷在瓦楞紙板運輸箱上的 14 位條碼</td></tr>
+    <tr><td>Codabar</td><td>用於圖書館、血庫和部分快遞公司</td></tr>
+    <tr><td>GS1 DataBar</td><td>用於農產品和生鮮食品等小型商品的緊湊型零售條碼</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>擴充變體，可攜帶重量和有效期等額外資料</td></tr>
+  </tbody>
+</table>
+<p><b>不支援：</b></p>
+<table>
+  <thead><tr><th>碼</th><th>備註</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5（附加碼）</td><td>附加在 EAN-13 上的短數字補充碼，用於雜誌期號和書籍定價</td></tr>
+    <tr><td>rMQR</td><td>矩形微型 QR，一種為窄標籤設計的新型緊湊 QR 變體</td></tr>
+    <tr><td>MaxiCode</td><td>UPS 在運輸標籤上使用的 2D 點陣碼</td></tr>
+    <tr><td>SP Code</td><td>編碼語音音訊資料的日本無障礙條碼</td></tr>
+    <tr><td>郵政條碼</td><td>各國郵政服務使用的 4 狀態郵政條碼（USPS Intelligent Mail、Royal Mail、Australia Post、Japan Post 等）</td></tr>
+    <tr><td>專有應用程式碼</td><td>只有發行方應用程式才能掃描的自訂視覺碼</td></tr>
+  </tbody>
+</table>
+
+<h2>常見問題</h2>
+<ul>
+  <li><b>需要網際網路連線嗎？</b><br>不需要。掃碼器 完全離線運作。</li><br>
+  <li><b>會收集我的資料嗎？</b><br>不會。任何內容都不會上傳到任何地方。掃描歷史記錄僅儲存在您的裝置上。</li><br>
+  <li><b>會存取我的整個相片圖庫嗎？</b><br>不會。在相簿標籤頁中，您透過系統照片選擇器選取單張照片。掃碼器 從不獲得存取您圖庫的權限。</li><br>
+  <li><b>為什麼多碼模式會稍慢一些？</b><br>相機在顯示結果前，會在短暫的影格時間視窗內收集碼，以確保捕捉所有可見的碼。</li><br>
+  <li><b>掃描歷史記錄保存多久？</b><br>超過 6 個月的記錄會自動刪除。歷史記錄同時也有 1,000 筆的上限，最舊的記錄會被刪除以為新記錄騰出空間。</li><br>
+  <li><b>為什麼不自動跳轉到連結？</b><br>這是有意為之的。偽造或惡意 QR 碼隨處可見，在停車場、餐廳桌上等地方都很常見。在開啟連結前顯示 URL，讓您能夠驗證其是否安全。</li>
+</ul>
 
 <div class="sub-divider lang-anchor" id="legal-zh-hant"><span class="sub-divider-label">法律資訊</span></div>
 
@@ -888,17 +2506,172 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
 
 
 <!-- ══════════════════════════════════════════════════════════ -->
-<!--  العربية                                                  -->
-<!-- ══════════════════════════════════════════════════════════ -->
 
-<div class="lang-divider lang-anchor" id="support-ar">
+<div class="lang-divider" id="lang-ar">
   <span class="lang-flag">AR</span><span class="lang-name">العربية</span>
 </div>
 
 <div class="rtl">
 
-<h1>قارئ الرموز – الدليل</h1>
-<div class="placeholder-block">الدليل قيد الإعداد — سيتوفر قريبًا.</div>
+<h1 class="lang-anchor" id="support-ar">قارئ الرموز</h1>
+
+<p>يقوم قارئ الرموز بمسح الباركود ورموز QR باستخدام كاميرا iPhone أو أي صورة من مكتبة صورك.
+يعمل بشكل كامل دون اتصال بالإنترنت، ولا يخزن أي شيء في السحابة، ولا يعرض إعلانات أبدًا.</p>
+
+<h2>Download</h2>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <img src="../appstorebadge/ar.svg" alt="Download on the App Store" height="72">
+  <span class="screenshot-placeholder" style="width:180px; height:180px; line-height:180px; border-radius:10px; font-size:12px; color:#999;">QR code</span>
+</div>
+
+<h2>الدعم</h2>
+
+<div class="screenshots">
+  <span class="screenshot-placeholder">&lt;Camera&gt;</span>
+  <span class="screenshot-placeholder">&lt;Gallery&gt;</span>
+  <span class="screenshot-placeholder">&lt;Scan Result&gt;</span>
+</div>
+
+<h2>الكاميرا</h2>
+<p>تفتح علامة تبويب الكاميرا وتبدأ المسح فورًا. وجّه هاتفك نحو أي باركود أو رمز QR وسيكتشفه التطبيق تلقائيًا. يُشترط منح إذن الكاميرا. إن لم تمنحه بعد، ستظهر نافذة طلب الإذن. اضغط على <b>فتح الإعدادات</b> وفعّل وصول <b>الكاميرا</b> لتطبيق قارئ الرموز.</p>
+<ul>
+  <li><b>المصباح اليدوي:</b> اضغط على زر المصباح لإضاءة البيئات المظلمة. متاح فقط مع الكاميرا الخلفية.</li>
+  <li><b>الكاميرا الأمامية:</b> اضغط على زر التدوير للتبديل بين الكاميرا الخلفية والأمامية. مفيد حين تكون الكاميرا الخلفية غير متاحة (مثلًا عند تلفها).</li>
+</ul>
+<div class="tip">💡 يعرض التطبيق خطًا أحمر للمسح أثناء البحث عن الرموز. لا تحتاج إلى الضغط على أي شيء. التعرف يتم تلقائيًا.</div>
+
+<h2>المعرض</h2>
+<p>تتيح لك علامة تبويب المعرض مسح الرموز من صورة موجودة. اضغط على <b>اختيار صورة</b> لتحديد أي صورة من مكتبتك. تُشارَك مع التطبيق الصورة المحددة فقط. لا يطلب قارئ الرموز الوصول إلى مكتبة صورك بأكملها.</p>
+<p>بعد اختيار صورة، يمسحها التطبيق ويعرض النتيجة فورًا. وإن لم يُعثر على أي رمز، ستظهر تنبيه يخبرك بذلك.</p>
+
+<h2>السجل</h2>
+<p>تُحفظ كل عملية مسح تلقائيًا في علامة تبويب السجل. تُحتفظ بعمليات المسح لمدة <b>6 أشهر</b>، ويستوعب السجل ما يصل إلى <b>1,000 إدخال</b>، وتُزال الأقدم منها تلقائيًا عند الوصول إلى الحد الأقصى.</p>
+<ul>
+  <li><b>عرض مسح سابق:</b> اضغط على أي صف لإعادة فتح النتيجة كاملة.</li>
+  <li><b>حذف إدخال واحد:</b> اسحب الصف نحو اليسار واضغط على <b>حذف</b>.</li>
+  <li><b>حذف الكل:</b> اضغط على أيقونة سلة المهملات في الزاوية العلوية اليمنى.</li>
+  <li><b>تسمية المصدر:</b> يوضح كل إدخال ما إذا كان مصدره الكاميرا أو المعرض أو المشاركة.</li>
+</ul>
+
+<h2>الإعدادات</h2>
+<h3>وضع الرموز المتعددة</h3>
+<p>بشكل افتراضي، يتوقف قارئ الرموز فور اكتشاف <b>رمز واحد</b>. شغّل <b>وضع الرموز المتعددة</b> لمسح ما يصل إلى <b>5 رموز دفعة واحدة</b>، وهو مفيد لبطاقات العمل وأوراق المنتجات وأي صورة تحتوي على رموز متعددة جنبًا إلى جنب.</p>
+<p>حين يكون وضع الرموز المتعددة نشطًا، تواصل الكاميرا المسح لفترة وجيزة بعد الاكتشاف الأول لجمع جميع الرموز المرئية قبل عرض النتائج. لهذا السبب يستغرق وقتًا أطول قليلًا من وضع الرمز الواحد.</p>
+<h3>إظهار التفاصيل المتقدمة</h3>
+<p>شغّل <b>إظهار التفاصيل المتقدمة</b> للكشف عن البيانات الوصفية التقنية إلى جانب كل نتيجة مسح: مثل إصدار QR ومستوى تصحيح الأخطاء ونمط القناع وبنية الباركود (أحرف البداية/النهاية والرقم التدقيقي). تظهر هذه المعلومات في صفحة نتيجة المسح وفي صفوف علامة تبويب السجل.</p>
+<div class="tip">💡 هذه طريقة رائعة لمعرفة المزيد حول كيفية عمل رموز QR والباركود فعليًا. إن كنت فضوليًا بشأن التقنية الكامنة وراء ما تمسحه، جرّبها!</div>
+
+<h2>نتائج المسح</h2>
+<p>عند اكتشاف رمز، يعرض قارئ الرموز محتواه قبل القيام بأي شيء. ترى دائمًا البيانات الخام أولًا، مع زرَّي <b>نسخ</b> و<b>مشاركة</b>. إن احتوى الرمز على رابط URL (شائع في رموز QR)، يظهر زر <b>فتح</b>. الضغط عليه يفتح الرابط في متصفحك الافتراضي لا في متصفح داخل التطبيق. لا تُجمع أي بيانات تصفح.</p>
+<p>يتعرف قارئ الرموز تلقائيًا على أنواع الرموز الخاصة ويعرض إجراءات سياقية:</p>
+<table>
+  <thead><tr><th>نوع الرمز</th><th>ما يمكنك فعله</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / رابط</td><td>فتح في المتصفح الافتراضي · نسخ · مشاركة</td></tr>
+    <tr><td>📶 شبكة Wi-Fi</td><td><b>الاتصال</b> مباشرة · نسخ كلمة المرور</td></tr>
+    <tr><td>👤 جهة اتصال (vCard / MECARD)</td><td><b>الحفظ في جهات الاتصال</b> مع معاينة</td></tr>
+    <tr><td>📅 حدث تقويم</td><td><b>إضافة إلى التقويم</b></td></tr>
+    <tr><td>✉️ بريد إلكتروني</td><td><b>إنشاء</b> بريد مُعبأ مسبقًا</td></tr>
+    <tr><td>💬 رسالة SMS</td><td><b>إرسال رسالة</b></td></tr>
+    <tr><td>📞 رقم هاتف</td><td><b>اتصال</b></td></tr>
+    <tr><td>📍 موقع جغرافي</td><td><b>الفتح في الخرائط</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> أو FaceTime صوت</td></tr>
+    <tr><td>₿ بيتكوين</td><td><b>نسخ العنوان</b></td></tr>
+    <tr><td>✈️ بطاقة الصعود</td><td>تفاصيل الرحلة مستخرجة من Aztec / PDF417</td></tr>
+  </tbody>
+</table>
+<h3>التفاصيل الأساسية مقابل التفاصيل المتقدمة</h3>
+<p>بشكل افتراضي، تعرض صفحة النتائج المعلومات الأكثر فائدة فقط: المحتوى المفكوك وأزرار الإجراءات ذات الصلة.</p>
+<p>مع تفعيل <b>إظهار التفاصيل المتقدمة</b> (في الإعدادات)، يظهر قسمان إضافيان في صفحة النتائج:</p>
+<ul>
+  <li><b>البيانات المفككة:</b> السلسلة الخام المشفرة داخل الباركود قبل أي معالجة.</li>
+  <li><b>البنية:</b> التفصيل التقني للباركود: أحرف البداية والنهاية والرقم التدقيقي وأنماط الحراسة وعناصر مشابهة بحسب نوع الرمز.</li>
+</ul>
+<p>بالنسبة لرموز QR، تظهر أيضًا شرائح بيانات وصفية تعرض رقم الإصدار ومستوى تصحيح الأخطاء ونمط القناع.</p>
+<h3>الكشف عن معاملات التتبع</h3>
+<p>حين يحتوي رابط URL على معاملات تتبع، يعرض قارئ الرموز زر <b>الفتح بدون تتبع</b>. يشمل ذلك علامات UTM ومعرفات النقر من Facebook وGoogle Ads وMicrosoft وTikTok وغيرها. اضغط عليه لفتح الرابط بعد إزالة تلك المعاملات. ستصل إلى الصفحة ذاتها دون أن يُتتبع نشاطك.</p>
+
+<h2>المسح من تطبيق آخر</h2>
+<p>يمكنك مسح رمز يظهر في صورة داخل أي تطبيق آخر (رسالة أو بريد إلكتروني أو عارض مستندات أو متصفح ويب) دون مغادرة ذلك التطبيق.</p>
+<h3>باستخدام المشاركة</h3>
+<ol>
+  <li>افتح الصورة في معرضك أو في أي تطبيق، ثم اضغط على زر <b>مشاركة</b>.</li>
+  <li>في قائمة التطبيقات التي تظهر، ابحث عن <b>قارئ الرموز</b> واضغط عليه. إن لم تره، مرر للنهاية واضغط على <b>المزيد</b>.</li>
+  <li>يفتح التطبيق ويمسح الصورة تلقائيًا.</li>
+</ol>
+<h3>باستخدام الإجراءات</h3>
+<ol>
+  <li>افتح الصورة في معرضك أو في أي تطبيق، ثم اضغط على زر <b>مشاركة</b>.</li>
+  <li>مرر صف الإجراءات أسفل قائمة التطبيقات واضغط على <b>Scan for Codes</b>.</li>
+  <li>يفتح التطبيق ويمسح الصورة تلقائيًا.</li>
+</ol>
+<div class="tip">💡 كلا الخيارين يؤديان الغرض ذاته. "قارئ الرموز" في صف التطبيقات و"Scan for Codes" في صف الإجراءات طريقتان للوصول إلى الميزة نفسها.</div>
+
+<h2>ودجت الشاشة الرئيسية</h2>
+<p>يمكنك إضافة ودجت إلى شاشتك الرئيسية كاختصار أكبر للتطبيق. الضغط عليه يفتح الكاميرا مباشرة جاهزة للمسح. تتوفر الودجت بثلاثة أحجام (صغير ومتوسط وكبير)، لتختار ما يناسب تخطيط شاشتك الرئيسية.</p>
+<p>لإضافة الودجت:</p>
+<ol>
+  <li>اضغط مطولًا على منطقة فارغة في شاشتك الرئيسية حتى تبدأ الأيقونات بالاهتزاز.</li>
+  <li>اضغط على زر <b>+</b> في الزاوية العلوية اليسرى.</li>
+  <li>ابحث عن <b>قارئ الرموز</b>.</li>
+  <li>اختر حجمًا واضغط على <b>إضافة ودجت</b>.</li>
+  <li>يمكنك تغيير حجمه لاحقًا بالضغط المطوّل على الودجت واختيار <b>تعديل الودجت</b>.</li>
+</ol>
+
+<h2>Control Center</h2>
+<p>Control Center هو اللوحة التي تنزلق حين تسحب من الزاوية العلوية اليمنى للشاشة. يمكنك إضافة زر قارئ الرموز هناك لتشغيل الكاميرا بنقرة واحدة من أي مكان، بما في ذلك شاشة القفل أو أثناء استخدام تطبيق آخر.</p>
+<p>لإضافة الزر:</p>
+<ol>
+  <li>اسحب من الزاوية العلوية اليمنى لفتح Control Center.</li>
+  <li>اضغط على زر <b>+</b> للدخول إلى وضع التعديل.</li>
+  <li>ابحث عن <b>قارئ الرموز</b> في القائمة واضغط عليه للإضافة.</li>
+  <li>يمكنك سحبه لإعادة تموضعه وتغيير حجمه أثناء وضع التعديل.</li>
+</ol>
+
+<h2>أنواع الرموز المدعومة</h2>
+<table>
+  <thead><tr><th>الرمز</th><th>ملاحظات</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>أكثر رموز 2D شيوعًا. يُستخدم للروابط والشبكات اللاسلكية وجهات الاتصال وغيرها</td></tr>
+    <tr><td>Micro QR</td><td>نسخة مضغوطة من QR Code للملصقات الصغيرة ذات المساحة المحدودة</td></tr>
+    <tr><td>Aztec</td><td>يُستخدم في بطاقات الصعود وتذاكر وسائل النقل</td></tr>
+    <tr><td>Data Matrix</td><td>شائع في التصنيع والرعاية الصحية واللوجستيات</td></tr>
+    <tr><td>PDF417</td><td>يُستخدم في رخص القيادة وبطاقات الصعود وملصقات الشحن</td></tr>
+    <tr><td>Micro PDF417</td><td>PDF417 مضغوط للعناصر الصغيرة كالتغليف الدوائي</td></tr>
+    <tr><td>EAN-8</td><td>باركود قصير للمنتجات الصغيرة في التجزئة</td></tr>
+    <tr><td>EAN-13</td><td>باركود التجزئة المعياري الموجود على معظم منتجات المستهلك في العالم</td></tr>
+    <tr><td>UPC-E</td><td>باركود مضغوط يُستخدم في التغليف الصغير بالتجزئة في الولايات المتحدة وكندا</td></tr>
+    <tr><td>Code 39</td><td>أحد أقدم أنواع الباركود، شائع في البيئات الصناعية</td></tr>
+    <tr><td>Code 93</td><td>خليفة Code 39 ذو الكثافة الأعلى</td></tr>
+    <tr><td>Code 128</td><td>باركود عالي الكثافة مستخدم على نطاق واسع في اللوجستيات والشحن</td></tr>
+    <tr><td>ITF-14</td><td>باركود مكوّن من 14 رقمًا يُطبع على صناديق الشحن المقوّاة</td></tr>
+    <tr><td>Codabar</td><td>يُستخدم في المكتبات وبنوك الدم وبعض شركات الشحن</td></tr>
+    <tr><td>GS1 DataBar</td><td>باركود مضغوط للعناصر الصغيرة كالمنتجات الطازجة</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>نسخة موسّعة تحمل بيانات إضافية كالوزن وتاريخ الانتهاء</td></tr>
+  </tbody>
+</table>
+<p><b>غير مدعوم:</b></p>
+<table>
+  <thead><tr><th>الرمز</th><th>ملاحظات</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (ملحقات)</td><td>ملحقات أرقام قصيرة مرفقة بـ EAN-13، تُستخدم لأرقام إصدارات المجلات وتسعير الكتب</td></tr>
+    <tr><td>rMQR</td><td>Micro QR المستطيل، نوع QR مضغوط أحدث مصمم للملصقات الضيقة</td></tr>
+    <tr><td>MaxiCode</td><td>رمز نقطي ثنائي الأبعاد تستخدمه UPS على ملصقات الشحن</td></tr>
+    <tr><td>SP Code</td><td>باركود يمكّن إمكانية الوصول في اليابان ويشفّر بيانات صوتية منطوقة</td></tr>
+    <tr><td>الرموز البريدية</td><td>باركود بريدي رباعي الحالات تستخدمه خدمات البريد الوطنية (USPS Intelligent Mail وRoyal Mail وAustralia Post وJapan Post وغيرها)</td></tr>
+    <tr><td>رموز التطبيقات الخاصة</td><td>رموز بصرية مخصصة لا يمكن مسحها إلا بالتطبيق المُصدر لها</td></tr>
+  </tbody>
+</table>
+
+<h2>الأسئلة الشائعة</h2>
+<ul>
+  <li><b>هل يحتاج اتصالًا بالإنترنت؟</b><br>لا. يعمل قارئ الرموز بشكل كامل دون اتصال.</li><br>
+  <li><b>هل يجمع بياناتي؟</b><br>لا. لا يُرفع أي شيء إلى أي مكان. يُخزَّن سجل المسح على جهازك فقط.</li><br>
+  <li><b>هل يصل إلى مكتبة صوري بأكملها؟</b><br>لا. في علامة تبويب المعرض، تختار صورة واحدة باستخدام منتقي الصور النظامي. لا يحصل قارئ الرموز على إذن الوصول إلى مكتبتك.</li><br>
+  <li><b>لماذا يستغرق وضع الرموز المتعددة وقتًا أطول قليلًا؟</b><br>تجمع الكاميرا الرموز عبر نافذة زمنية قصيرة من الإطارات لضمان التقاط جميع الرموز المرئية قبل عرض النتيجة.</li><br>
+  <li><b>كم تُحتفظ بسجل المسح؟</b><br>تُزال الإدخالات الأقدم من 6 أشهر تلقائيًا. كذلك يقتصر السجل على 1,000 إدخال، وتُحذف الأقدم لإفساح المجال للجديدة.</li><br>
+  <li><b>لماذا لا ينتقل إلى الرابط تلقائيًا؟</b><br>هذا مقصود. رموز QR المزيفة أو الخبيثة شائعة في مواقف السيارات وطاولات المطاعم وأماكن أخرى. إظهار الرابط قبل فتحه يتيح لك التحقق من أنه آمن.</li>
+</ul>
 
 <div class="sub-divider lang-anchor" id="legal-ar"><span class="sub-divider-label">قانوني</span></div>
 
@@ -949,7 +2722,7 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
 <!--  FOOTER                                                   -->
 <!-- ══════════════════════════════════════════════════════════ -->
 
-<footer>© 2026 Hoshino Software</footer>
+<footer>© 2026 Hoshino Software &amp; Security</footer>
 
 </main>
 
@@ -969,10 +2742,10 @@ var sections  = Array.from(langLinks).map(function(a) {
 });
 
 function updateActive() {
-  var scrollY = window.scrollY + 90; /* matches scroll-margin-top on .lang-anchor */
+  var threshold = 95; /* just above scroll-margin-top (90px) to absorb sub-pixel rounding */
   var current = sections[0];
   sections.forEach(function(s) {
-    if (s && s.offsetTop <= scrollY) current = s;
+    if (s && s.getBoundingClientRect().top <= threshold) current = s;
   });
   langLinks.forEach(function(a) {
     var lang = a.dataset.lang;
