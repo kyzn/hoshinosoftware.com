@@ -20,7 +20,7 @@ body {
 main {
   max-width: 700px;
   margin: 0 auto;
-  padding: 20px 20px 80px;
+  padding: 52px 20px 80px;
 }
 
 /* ── Sub-section divider (Manual / Legal) ───── */
@@ -101,6 +101,25 @@ thead th {
 tbody td { padding: 10px; border-bottom: 1px solid #eee; }
 tbody tr:nth-child(even) { background: #fafafa; }
 
+/* ── Top bar ─────────────────────────────────── */
+#top-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid #e5e5e5;
+  padding: 8px 20px;
+}
+#top-bar a {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+}
+#top-bar a:hover { color: #555; }
+
 /* ── Footer ─────────────────────────────────── */
 footer {
   position: fixed;
@@ -119,6 +138,10 @@ footer {
 </style>
 </head>
 <body>
+
+<header id="top-bar">
+  <a href="../">Hoshino Software &amp; Security</a>
+</header>
 
 <main>
 
