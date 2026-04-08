@@ -4,54 +4,84 @@
 <meta charset="UTF-8">
 <title>Metronome Watch Special – Support</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style>
+
+/* ── Reset & Base ───────────────────────────── */
+* { box-sizing: border-box; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   margin: 0;
-  background: #ffffff;
+  background: #fff;
   color: #111;
   line-height: 1.6;
 }
 
+/* ── Main content ───────────────────────────── */
 main {
   max-width: 700px;
-  margin: 40px auto;
-  padding: 0 20px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
 }
 
-h1 {
-  font-weight: 600;
-  margin-bottom: 10px;
+/* ── Sub-section divider (Manual / Legal) ───── */
+.sub-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 40px 0 24px;
+}
+.sub-divider::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.sub-divider-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bbb;
+  white-space: nowrap;
+}
+.sub-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
 }
 
-h2 {
-  margin-top: 40px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 5px;
-}
+/* ── Typography ─────────────────────────────── */
+h1 { font-weight: 600; margin-bottom: 10px; margin-top: 0; }
+h2 { margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+h3 { margin-top: 20px; margin-bottom: 4px; }
+p  { margin: 10px 0; }
+ul, ol { padding-left: 20px; }
+li { margin: 4px 0; }
 
-p {
-  margin: 10px 0;
-}
-
-ul {
-  padding-left: 20px;
-}
-
+/* ── Screenshots ────────────────────────────── */
 .screenshots {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
   margin-top: 15px;
 }
-
 .screenshots img {
   width: 180px;
   border-radius: 12px;
   border: 1px solid #ddd;
 }
 
+/* ── Tip box ────────────────────────────────── */
+.tip {
+  background: #f5f5f7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 15px;
+}
+
+/* ── Table ──────────────────────────────────── */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -61,7 +91,6 @@ table {
   border-radius: 8px;
   overflow: hidden;
 }
-
 thead th {
   text-align: left;
   background: #f5f5f7;
@@ -69,70 +98,72 @@ thead th {
   padding: 10px;
   border-bottom: 1px solid #ddd;
 }
+tbody td { padding: 10px; border-bottom: 1px solid #eee; }
+tbody tr:nth-child(even) { background: #fafafa; }
 
-tbody td {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-}
-
-tbody tr:nth-child(even) {
-  background: #fafafa;
-}
-
-tbody tr:hover {
-  background: #f0f0f0;
-}
-
+/* ── Footer ─────────────────────────────────── */
 footer {
-  margin-top: 60px;
-  padding-top: 10px;
-  border-top: 1px solid #eee;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-top: 1px solid #e5e5e5;
   font-size: 12px;
   color: #666;
   text-align: center;
+  padding: 8px 20px;
 }
+
 </style>
 </head>
-
 <body>
+
 <main>
 
-<h1>Metronome Watch Special – Support</h1>
-
-<h2>About the app</h2>
-
-<p>
-Metronome Watch Special is a simple, precise metronome for Apple Watch.
+<h1 id="top">Metronome Watch Special</h1>
+<p>A simple, precise metronome for Apple Watch.
 Set BPM from 40 to 240, choose from preset tempos (Largo, Andante, Allegro and more),
-1–8 beats per measure with automatic first-beat accent,
+1–9 beats per measure with automatic first-beat accent,
 sound and haptic feedback, Digital Crown volume control.
-Works with wrist down, no phone needed.
-</p>
+Works with wrist down, no phone needed.</p>
 
-<div class="screenshots">
-<img src="./metronome1.png" alt="Metronome screen">
-<img src="./metronome2.png" alt="Tempo list">
+<h2 id="download">Download</h2>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <a href="https://apps.apple.com/us/app/metronome-watch-special/id6760964847" target="_blank">
+    <img src="../appstorebadge/en.svg" alt="Download on the App Store" height="72">
+  </a>
+  <a href="https://apps.apple.com/us/app/metronome-watch-special/id6760964847" target="_blank">
+    <img src="./qr.png" alt="QR code" style="width:180px; height:180px; border-radius:10px; border:1px solid #eee;">
+  </a>
 </div>
 
-<h2>How to use</h2>
+<h2 id="support">Support</h2>
+<div class="screenshots">
+  <img src="./metronome1.png" alt="Metronome screen">
+  <img src="./metronome2.png" alt="Tempo list">
+</div>
 
+
+<!-- ─────────────────────────────────────────── -->
+<div class="sub-divider"><span class="sub-divider-label">Manual</span></div>
+
+<h2>How to use</h2>
 <ul>
-<li>Adjust BPM with the &lt; &gt; and ≪ ≫ buttons</li>
-<li>Tap the tempo name (e.g. "Allegro") to pick from a preset list</li>
-<li>Adjust beats per measure with the &lt; &gt; buttons on the second row</li>
-<li>Turn haptics on with ⚡︎ (zap) and off with the ⏚ (ground) button</li>
-<li>Use the Digital Crown to adjust volume</li>
-<li>Press the green play button to start, red stop button to reset</li>
+  <li>Adjust BPM with the &lt; &gt; and ≪ ≫ buttons</li>
+  <li>Tap the tempo name (e.g. "Allegro") to pick from a preset list</li>
+  <li>Adjust beats per measure with the &lt; &gt; buttons on the second row</li>
+  <li>Toggle haptic vibration with the ⏚ / ⚡︎ button</li>
+  <li>Use the Digital Crown to adjust volume</li>
+  <li>Press the green play button to start, red stop button to reset</li>
 </ul>
+<div class="tip">💡 The metronome keeps playing even when your wrist is down — audio and haptics continue in the background.</div>
 
 <h2>Tempo Reference</h2>
 <table>
   <thead>
-    <tr>
-      <th>Tempo</th>
-      <th>BPM Range</th>
-      <th>Feel</th>
-    </tr>
+    <tr><th>Tempo</th><th>BPM Range</th><th>Feel</th></tr>
   </thead>
   <tbody>
     <tr><td><i>Largo</i></td><td>40 – 59</td><td>Very slow, broad</td></tr>
@@ -147,83 +178,54 @@ Works with wrist down, no phone needed.
   </tbody>
 </table>
 
-
 <h2>FAQ</h2>
-
 <ul>
-<li><b>Does it work without my iPhone?</b><br>
-Yes, fully standalone.</li>
-<br>
-<li><b>Does it work when my wrist is down?</b><br>
-Yes, audio and haptics continue.</li>
-<br>
-<li><b>Does it collect any data?</b><br>
-No data is collected or shared.</li>
-<br>
-<li><b>What does the ⏚ (ground) button do?</b><br>
-It toggles haptic vibration off.</li>
-<br>
-<li><b>What does the ⚡︎ (zap) button do?</b><br>
-It toggles haptic vibration on.</li>
-<br>
-<li><b>Can I use just sound or just haptics?</b><br>
-Yes. Turn volume down for haptics only, or disable haptics for sound only.</li>
-<br>
-<li><b>It sounds like there are two separate sounds played at once. Is this expected?</b><br>
-If your Apple Watch is not in silent mode, the haptic engine may produce an audible click alongside the app's beat sound. Try enabling silent mode on your watch to hear only the app's audio.</li>
-
+  <li><b>Does it work without my iPhone?</b><br>Yes, fully standalone.</li>
+  <li><b>Does it work when my wrist is down?</b><br>Yes, audio and haptics continue.</li>
+  <li><b>Does it collect any data?</b><br>No data is collected or shared.</li>
+  <li><b>What does the ⏚ button do?</b><br>Toggles haptic vibration off.</li>
+  <li><b>What does the ⚡︎ button do?</b><br>Toggles haptic vibration on.</li>
+  <li><b>Can I use just sound or just haptics?</b><br>Yes. Turn volume down for haptics only, or disable haptics for sound only.</li>
+  <li><b>It sounds like there are two sounds at once. Is this expected?</b><br>
+  If your Apple Watch is not in silent mode, the haptic engine may produce an audible click alongside the app's beat sound. Enable silent mode on your watch to hear only the app's audio.</li>
 </ul>
 
 
-<h2 id="privacy">Privacy Policy</h2>
+<!-- ─────────────────────────────────────────── -->
+<div class="sub-divider"><span class="sub-divider-label">Legal</span></div>
 
+<h2 id="privacy">Privacy Policy</h2>
 <p><b>Last Updated:</b> March 2026</p>
 
 <h3>Introduction</h3>
-
-<p>
-Welcome to Metronome Watch Special. We are committed to respecting and protecting your privacy. This Privacy Policy outlines the type of information we collect, or in this case, do not collect, and the methods we use to ensure your privacy.
-</p>
+<p>Welcome to Metronome Watch Special. We are committed to respecting and protecting your privacy.
+This Privacy Policy outlines the type of information we collect, or in this case, do not collect,
+and the methods we use to ensure your privacy.</p>
 
 <h3>Information We Do Not Collect</h3>
-
-<p>
-Metronome Watch Special is designed on a principle of zero data collection. We do not collect, store, use, share, or transfer any personal data from our users. The app operates entirely on your Apple Watch with no data processed or stored on any server.
-</p>
+<p>Metronome Watch Special is designed on a principle of zero data collection. We do not collect,
+store, use, share, or transfer any personal data from our users. The app operates entirely on your
+Apple Watch with no data processed or stored on any server.</p>
 
 <h3>Third-Party Services</h3>
-
-<p>
-Metronome Watch Special does not integrate with any third-party services,
-such as analytics tools, advertising networks, or social media platforms. No data is shared with any third party.
-</p>
+<p>Metronome Watch Special does not integrate with any third-party services, such as analytics
+tools, advertising networks, or social media platforms. No data is shared with any third party.</p>
 
 <h3>Children's Privacy</h3>
-
-<p>
-Since we do not collect any data, we comply with all relevant regulations related to children's privacy, such as the Children's Online Privacy Protection Act (COPPA).
-</p>
-
+<p>Since we do not collect any data, we comply with all relevant regulations related to children's
+privacy, such as the Children's Online Privacy Protection Act (COPPA).</p>
 
 <h3>Changes to This Privacy Policy</h3>
-
-<p>
-We may update our Privacy Policy from time to time. We advise you to review this page periodically for any changes. Changes are effective immediately after they are posted on this page.
-</p>
-
+<p>We may update our Privacy Policy from time to time. We advise you to review this page
+periodically for any changes. Changes are effective immediately after they are posted on this page.</p>
 
 <h3>Contact Us</h3>
-
-<p>
-If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at the address: support [at] hoshinosoftware [dot] com
-</p>
-
-
-<footer>
-© 2026 Hoshino Software & Security
-</footer>
+<p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us
+at: support [at] hoshinosoftware [dot] com</p>
 
 </main>
+
+<footer>© 2026 Hoshino Software &amp; Security</footer>
 
 </body>
 </html>
