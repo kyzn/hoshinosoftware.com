@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Kod Okuyucu – Türkçe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+/* ── Reset & Base ───────────────────────────── */
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #111;
+  line-height: 1.6;
+}
+
+/* ── Fixed language strip ───────────────────── */
+#lang-strip {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid #e5e5e5;
+}
+#lang-strip .strip-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+}
+#lang-strip .strip-brand {
+  position: absolute;
+  left: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  white-space: nowrap;
+}
+#lang-strip .strip-brand:hover { color: #555; }
+@media (max-width: 1000px) { #lang-strip .strip-brand { display: none; } }
+#lang-strip .strip-langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  font-size: 13px;
+  justify-content: center;
+  width: 100%;
+}
+#lang-strip .strip-langs a {
+  color: #666;
+  text-decoration: none;
+  padding: 2px 10px 2px 0;
+  white-space: nowrap;
+}
+#lang-strip .strip-langs a:hover { color: #000; }
+#lang-strip .strip-langs a.active { color: #000; font-weight: 700; }
+#lang-strip .strip-langs .dot {
+  color: #ccc;
+  padding-right: 10px;
+  user-select: none;
+}
+
+/* ── Main content ───────────────────────────── */
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
+}
+
+/* ── Table of Contents ──────────────────────── */
+#toc {
+  background: #f5f5f7;
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin: 28px 0 40px;
+}
+#toc h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  margin: 0 0 12px;
+  border: none;
+  padding: 0;
+}
+#toc ol {
+  margin: 0;
+  padding-left: 20px;
+  counter-reset: toc-counter;
+  list-style: none;
+}
+#toc ol li {
+  counter-increment: toc-counter;
+  margin: 6px 0;
+}
+#toc ol li::before {
+  content: counter(toc-counter) ". ";
+  font-weight: 600;
+  color: #bbb;
+}
+#toc a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
+}
+#toc a:hover { text-decoration: underline; }
+
+/* ── Section h2 (top-level sections) ───────── */
+h2.section-h2 {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 2px solid #e5e5e5;
+  border-bottom: none;
+  font-size: 1.5rem;
+  padding-bottom: 0;
+}
+h2.section-h2.first-section {
+  margin-top: 0;
+  border-top: none;
+  padding-top: 0;
+}
+
+/* ── Sub-section divider ────────────────────── */
+.sub-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 40px 0 24px;
+}
+.sub-divider::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.sub-divider-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bbb;
+  white-space: nowrap;
+}
+.sub-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+/* ── Typography ─────────────────────────────── */
+h1 { font-weight: 600; margin-bottom: 10px; margin-top: 0; }
+h2 { margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+h3 { margin-top: 20px; margin-bottom: 4px; }
+p  { margin: 10px 0; }
+ul, ol { padding-left: 20px; }
+li { margin: 4px 0; }
+
+/* ── Section scroll anchors ─────────────────── */
+.section-anchor {
+  scroll-margin-top: 60px;
+}
+
+/* ── Support contact box ────────────────────── */
+.contact-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #f0f8ff;
+  border: 1px solid #c5dff0;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.contact-box .contact-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+.contact-box .contact-body {
+  flex: 1;
+}
+.contact-box .contact-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6a9ab5;
+  margin-bottom: 2px;
+}
+.contact-box .contact-email {
+  font-size: 17px;
+  font-weight: 600;
+  color: #111;
+}
+.contact-box .contact-note {
+  font-size: 13px;
+  color: #666;
+  margin-top: 3px;
+}
+
+/* ── Screenshots ────────────────────────────── */
+.screenshots {
+  display: flex; gap: 16px; flex-wrap: wrap; margin: 20px 0;
+}
+.screenshots img {
+  width: 160px;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  display: block;
+}
+
+/* ── Tip ────────────────────────────────────── */
+.tip {
+  background: #f5f5f7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 15px;
+}
+
+/* ── Tables ─────────────────────────────────── */
+table {
+  width: 100%; border-collapse: collapse;
+  margin-top: 15px; font-size: 14px;
+  border: 1px solid #eee; border-radius: 8px; overflow: hidden;
+}
+thead th {
+  text-align: left; background: #f5f5f7;
+  font-weight: 600; padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+tbody td { padding: 10px; border-bottom: 1px solid #eee; }
+tbody tr:nth-child(even) { background: #fafafa; }
+
+/* ── Demo codes table ───────────────────────── */
+.demo-codes-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 24px 0;
+  font-size: 14px;
+}
+.demo-codes-table td {
+  padding: 40px 10px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+.demo-codes-table td:first-child {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  text-align: center;
+}
+.demo-codes-table img {
+  max-width: 300px;
+  max-height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.demo-codes-table img.dc-rect {
+  max-height: 400px;
+}
+.dc-type { font-weight: 600; color: #111; }
+.dc-sub  { font-size: 12px; color: #777; margin-top: 2px; }
+.dc-val  { font-size: 11px; color: #aaa; font-family: monospace; margin-top: 4px; word-break: break-all; }
+pre.dc-val { white-space: pre-wrap; margin: 4px 0 0; padding: 0; background: none; border: none; }
+
+/* ── RTL support ────────────────────────────── */
+.rtl { direction: rtl; text-align: right; }
+.rtl ul, .rtl ol { padding-left: 0; padding-right: 20px; }
+.rtl thead th { text-align: right; }
+
+/* ── Footer ─────────────────────────────────── */
+footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-top: 1px solid #e5e5e5;
+  font-size: 12px; color: #666; text-align: center;
+  padding: 8px 20px;
+}
+
+</style>
+</head>
+<body>
+
+<div id="lang-strip">
+  <div class="strip-inner">
+    <a href="../../" class="strip-brand">Hoshino Software &amp; Security</a>
+    <nav class="strip-langs">
+      <a href="/codereader/en">EN</a>
+      <span class="dot">·</span>
+      <a href="/codereader/fr">FR</a>
+      <span class="dot">·</span>
+      <a href="/codereader/it">IT</a>
+      <span class="dot">·</span>
+      <a href="/codereader/es">ES</a>
+      <span class="dot">·</span>
+      <a href="/codereader/pt">PT</a>
+      <span class="dot">·</span>
+      <a href="/codereader/de">DE</a>
+      <span class="dot">·</span>
+      <a href="/codereader/tr" class="active">TR</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ko">한국어</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ja">日本語</a>
+      <span class="dot">·</span>
+      <a href="/codereader/zh-hans">简体中文</a>
+      <span class="dot">·</span>
+      <a href="/codereader/zh-hant">繁體中文</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ar">العربية</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+<h1 class="section-anchor" id="top">Kod Okuyucu</h1>
+<p>Kod Okuyucu, iPhone'unuzun kamerası veya fotoğraf kütüphanenizden herhangi bir görüntü kullanarak barkodları ve QR kodlarını tarar.
+Tamamen çevrimdışı çalışır, buluta hiçbir şey kaydetmez ve asla reklam göstermez.</p>
+
+<nav id="toc" aria-label="Sayfa içeriği">
+  <h2>İçindekiler</h2>
+  <ol>
+    <li><a href="#download">Download</a></li>
+    <li><a href="#support">Destek</a></li>
+    <li><a href="#manual">Kılavuz</a></li>
+    <li><a href="#democodes">Demo Kodlar</a></li>
+    <li><a href="#legal">Yasal</a></li>
+  </ol>
+</nav>
+
+<h2 class="section-h2 first-section section-anchor" id="download">Download</h2>
+
+<p class="tip">Uygulama henüz yayınlanmadı. App Store bağlantıları ve QR kodu yayına girince burada yer alacak.</p>
+
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0; opacity:0.45;">
+  <img src="../../appstorebadge/tr.svg" alt="App Store'dan İndir" height="72">
+  <div style="width:180px; height:180px; background:#f5f5f7; border-radius:10px; border:1px dashed #ccc; display:flex; align-items:center; justify-content:center; font-size:12px; color:#999;">QR kod yakında</div>
+</div>
+<p>Kod Okuyucu App Store'dan ücretsiz indirilebilir. Hesap gerekmez. iOS 26 veya sonrasını gerektirir.</p>
+
+<h2 class="section-h2 section-anchor" id="support">Destek</h2>
+
+<p>Sorunuz mu var, hata mı buldunuz ya da uygulama hakkında yardıma mı ihtiyacınız var? Bize ulaşın. Her mesajı okuyoruz.</p>
+
+<div class="contact-box">
+  <div class="contact-icon">✉️</div>
+  <div class="contact-body">
+    <div class="contact-label">E-posta Desteği</div>
+    <div class="contact-email">support [at] hoshinosoftware [dot] com</div>
+    <div class="contact-note">Genellikle 5 iş günü içinde yanıt veririz.</div>
+  </div>
+</div>
+
+<h3>Yazmadan önce</h3>
+<p>Sık karşılaşılan pek çok sorunun yanıtı aşağıdaki <a href="#manual">Kılavuz</a> ve SSS bölümünde yer almaktadır. Birkaç hızlı kontrol:</p>
+<ul>
+  <li><b>Kamera çalışmıyor mu?</b> iPhone Ayarları → Gizlilik ve Güvenlik → Kamera yolunu izle → Kod Okuyucu için erişimi etkinleştir.</li>
+  <li><b>Geçmişi bulamıyor musun?</b> Geçmiş sekmesine dokun. Kayıtlar 6 ay boyunca saklanır ve 1.000 girişle sınırlıdır.</li>
+  <li><b>Kod taranmıyor mu?</b> İyi aydınlatma sağla ve kodu sabit tut. Bir resim dosyan varsa Galeri modunu dene.</li>
+  <li><b>Uygulama çöküyor mu?</b> Zorla kapat ve yeniden aç. Sorun devam ederse iPhone modelini ve iOS sürümünü belirterek bize e-posta gönder.</li>
+</ul>
+
+<h3>Sık Sorulan Sorular</h3>
+<ul>
+  <li><b>İnternet bağlantısı gerekiyor mu?</b><br>Hayır. Kod Okuyucu tamamen çevrimdışı çalışır.</li><br>
+  <li><b>Verilerimi topluyor mu?</b><br>Hayır. Hiçbir şey herhangi bir yere yüklenmez. Tarama geçmişi yalnızca cihazınızda saklanır.</li><br>
+  <li><b>Tüm fotoğraf kütüphaneme erişiyor mu?</b><br>Hayır. Galeri sekmesinde, sistem fotoğraf seçiciyi kullanarak tek bir fotoğraf seçersiniz. Kod Okuyucu kütüphanenize hiçbir zaman erişim almaz.</li><br>
+  <li><b>Çoklu kod modu neden biraz daha uzun sürer?</b><br>Kamera, sonucu göstermeden önce görüş alanındaki tüm kodları yakaladığından emin olmak için kısa bir kare penceresi boyunca kod toplar.</li><br>
+  <li><b>Tarama geçmişi ne kadar süre saklanır?</b><br>6 aydan eski kayıtlar otomatik olarak kaldırılır. Geçmiş aynı zamanda 1.000 kayıtla da sınırlıdır; yenilere yer açmak için en eskiler kaldırılır.</li><br>
+  <li><b>Neden bir bağlantıya otomatik olarak gitmiyor?</b><br>Bu kasıtlıdır. Sahte veya kötü amaçlı QR kodlar otoparklarda, restoran masalarında ve başka yerlerde yaygın olarak bulunur. URL'yi açmadan önce size göstermek, güvenli olup olmadığını doğrulamanıza olanak tanır.</li>
+</ul>
+
+<h2 class="section-h2 section-anchor" id="manual">Kılavuz</h2>
+
+<div class="screenshots">
+  <img src="../screenshots/tr/camera.png" alt="Kamera ekranı">
+  <img src="../screenshots/tr/result.png" alt="Tarama sonucu ekranı">
+  <img src="../screenshots/tr/settings.png" alt="Ayarlar ekranı">
+</div>
+
+<h3>Kamera</h3>
+<p>Kamera sekmesi açılır ve hemen taramaya başlar. Telefonunuzu herhangi bir barkod veya QR koda doğrultun, uygulama onu otomatik olarak algılar. Kamera izni gereklidir. Henüz vermediyseniz bir istem görünecektir. <b>Ayarları Aç</b> seçeneğine dokunun ve Kod Okuyucu için <b>Kamera</b> erişimini etkinleştirin.</p>
+<ul>
+  <li><b>El feneri:</b> karanlık ortamları aydınlatmak için el feneri düğmesine dokunun. Yalnızca arka kamerayla kullanılabilir.</li>
+  <li><b>Ön kamera:</b> arka ve ön kamera arasında geçiş yapmak için döndürme düğmesine dokunun. Arka kamera kullanılamadığında (örneğin hasar gördüğünde) kullanışlıdır.</li>
+</ul>
+<div class="tip">💡 Uygulama, kod ararken kırmızı bir tarama çizgisi gösterir. Herhangi bir şeye basmanıza gerek yoktur. Tanıma otomatiktir.</div>
+
+<h3>Galeri</h3>
+<p>Galeri sekmesi, mevcut bir görüntüden kodları taramanıza olanak tanır. Kütüphanenizden herhangi bir görüntü seçmek için <b>Fotoğraf Seç</b> seçeneğine dokunun. Yalnızca seçtiğiniz fotoğraf uygulamayla paylaşılır. Kod Okuyucu tüm fotoğraf kütüphanenize erişim talep etmez.</p>
+<p>Bir fotoğraf seçtikten sonra uygulama onu tarar ve sonucu hemen gösterir. Herhangi bir kod bulunamazsa bir uyarı sizi bilgilendirir.</p>
+
+<h3>Geçmiş</h3>
+<p>Her tarama otomatik olarak Geçmiş sekmesine kaydedilir. Taramalar <b>6 ay</b> boyunca saklanır ve geçmişte en fazla <b>1.000 kayıt</b> tutulur; limite ulaşıldığında en eskiler otomatik olarak kaldırılır.</p>
+<ul>
+  <li><b>Geçmiş bir taramayı görüntüle:</b> tam sonucu yeniden açmak için herhangi bir satıra dokunun.</li>
+  <li><b>Bir kaydı sil:</b> bir satırı sola kaydırın ve <b>Sil</b> seçeneğine dokunun.</li>
+  <li><b>Tümünü sil:</b> sağ üst köşedeki çöp kutusu simgesine dokunun.</li>
+  <li><b>Kaynak etiketi:</b> her kayıt, Kamera, Galeri veya Paylaşım kaynaklı olup olmadığını gösterir.</li>
+</ul>
+
+<h3>Ayarlar</h3>
+<p><b>Çoklu Kod Modu</b><br>
+Varsayılan olarak Kod Okuyucu, <b>bir kod</b> bulduğunda durur. Kartvizitler, ürün sayfaları veya yan yana birden fazla kod içeren görüntüler için kullanışlı olan <b>Çoklu Kod Modu</b>'nu etkinleştirerek aynı anda en fazla <b>5 kod</b> tarayabilirsiniz.</p>
+<p>Çoklu kod modu etkinken kamera, tüm görünür kodları toplamak için ilk algılamadan sonra kısa bir süre daha taramaya devam eder. Bu nedenle tek kod moduna göre biraz daha uzun sürer.</p>
+
+<p><b>Gelişmiş Ayrıntıları Göster</b><br>
+Her tarama sonucunun yanında teknik meta verileri görmek için <b>Gelişmiş Ayrıntıları Göster</b> seçeneğini etkinleştirin: QR sürümü, hata düzeltme düzeyi, maske deseni veya barkod yapısı (başlangıç/bitiş karakterleri, kontrol rakamı). Bu bilgiler Tarama Sonucu sayfasında ve Geçmiş sekmesi satırlarında gösterilir.</p>
+<div class="tip">💡 Bu, QR kodlarının ve barkodların gerçekte nasıl çalıştığı hakkında daha fazla bilgi edinmenin harika bir yoludur. Taradıklarınızın arkasındaki teknolojiyi merak ediyorsanız deneyin!</div>
+
+<h3>Tarama Sonuçları</h3>
+<p>Bir kod algılandığında, Kod Okuyucu herhangi bir işlem yapmadan önce içeriğini size gösterir. Her zaman önce ham verileri görürsünüz; yanında <b>Kopyala</b> ve <b>Paylaş</b> düğmeleri yer alır. Kod bir URL içeriyorsa (QR kodlarda yaygındır) bir <b>Aç</b> düğmesi belirir. Buna dokunmak, bağlantıyı uygulama içi tarayıcıda değil varsayılan tarayıcınızda açar. Hiçbir tarama verisi toplanmaz.</p>
+<p>Kod Okuyucu özel kod türlerini otomatik olarak tanır ve bağlamsal eylemler sunar:</p>
+<table>
+  <thead><tr><th>Kod türü</th><th>Yapabilecekleriniz</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / Bağlantı</td><td>Varsayılan tarayıcınızda aç · Kopyala · Paylaş</td></tr>
+    <tr><td>📶 Wi-Fi ağı</td><td>Doğrudan <b>bağlan</b> · Şifreyi kopyala</td></tr>
+    <tr><td>👤 Kişi (vCard / MECARD)</td><td>Önizlemeyle <b>Kişilere Kaydet</b></td></tr>
+    <tr><td>📅 Takvim etkinliği</td><td><b>Takvime Ekle</b></td></tr>
+    <tr><td>✉️ E-posta</td><td>Önceden doldurulmuş e-posta <b>oluştur</b></td></tr>
+    <tr><td>💬 SMS / Mesaj</td><td><b>Mesaj Gönder</b></td></tr>
+    <tr><td>📞 Telefon numarası</td><td><b>Ara</b></td></tr>
+    <tr><td>📍 Konum / Geo</td><td><b>Haritalarda Aç</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> veya FaceTime Audio</td></tr>
+    <tr><td>₿ Bitcoin</td><td><b>Adresi kopyala</b></td></tr>
+    <tr><td>✈️ Biniş kartı</td><td>Aztec / PDF417'den ayrıştırılan uçuş ayrıntıları</td></tr>
+  </tbody>
+</table>
+
+<p>(Ayarlar'da) <b>Gelişmiş Ayrıntıları Göster</b> etkinleştirildiğinde, sonuç sayfasında iki ek bölüm görünür:</p>
+<ul>
+  <li><b>Kodu Çözülmüş Veri:</b> herhangi bir ayrıştırma yapılmadan önce barkodun içinde kodlanmış ham dize.</li>
+  <li><b>Yapı:</b> barkodun teknik dökümü: başlangıç/bitiş karakterleri, kontrol rakamı, koruyucu desenler ve kod türüne göre değişen benzer öğeler.</li>
+</ul>
+<p>QR kodlarında ayrıca sürüm numarasını, hata düzeltme düzeyini ve maske desenini gösteren meta veri etiketleri de görünür.</p>
+
+<p><b>İzleme parametresi tespiti</b><br>
+Bir URL izleme parametreleri içerdiğinde, Kod Okuyucu bir <b>İzleme Olmadan Aç</b> düğmesi gösterir. Bu; UTM etiketlerini, Facebook, Google Ads, Microsoft, TikTok ve diğerlerinden gelen tıklama kimliklerini kapsar. Bağlantıyı bu parametreler kaldırılmış şekilde açmak için düğmeye dokunun. İzlenmeden aynı sayfaya ulaşırsınız.</p>
+
+<h3>Başka Bir Uygulamadan Tarama</h3>
+<p>Bir mesaj, e-posta, belge görüntüleyici veya web tarayıcısı gibi başka herhangi bir uygulamadaki bir fotoğrafta görünen bir kodu, o uygulamadan çıkmadan tarayabilirsiniz.</p>
+<p><b>Paylaş Kullanarak:</b></p>
+<ol>
+  <li>Görüntüyü galerinizde veya herhangi bir uygulamada açın, ardından <b>Paylaş</b> düğmesine dokunun.</li>
+  <li>Görünen uygulamalar listesinde <b>Kod Okuyucu</b>'ı bulup dokunun. Göremiyorsanız listenin sonuna kaydırın ve <b>Daha Fazla</b> seçeneğine dokunun.</li>
+  <li>Uygulama açılır ve görüntüyü otomatik olarak tarar.</li>
+</ol>
+<p><b>Eylemler Kullanarak:</b></p>
+<ol>
+  <li>Görüntüyü galerinizde veya herhangi bir uygulamada açın, ardından <b>Paylaş</b> düğmesine dokunun.</li>
+  <li>Uygulama listesinin altındaki eylemler satırını kaydırın ve <b>Scan for Codes</b> seçeneğine dokunun.</li>
+  <li>Uygulama açılır ve görüntüyü otomatik olarak tarar.</li>
+</ol>
+<div class="tip">💡 Her iki seçenek de aynı şeyi yapar. Uygulama satırındaki "Kod Okuyucu" ve eylemler satırındaki "Scan for Codes", aynı özelliğe ulaşmanın iki farklı yoludur.</div>
+
+<h3>Ana Ekran Widget'ı</h3>
+<p>Ana ekranınıza uygulamaya daha büyük bir kısayol olarak widget ekleyebilirsiniz. Üzerine dokunmak, taramaya hazır şekilde kamerayı doğrudan açar. Widget'lar üç boyutta gelir (küçük, orta, büyük); ana ekran düzeninize en uygun olanı seçebilirsiniz.</p>
+<ol>
+  <li>Simgeler titreşmeye başlayana kadar ana ekranınızdaki boş bir alana uzun basın.</li>
+  <li>Sol üst köşedeki <b>+</b> düğmesine dokunun.</li>
+  <li><b>Kod Okuyucu</b>'ı arayın.</li>
+  <li>Bir boyut seçin ve <b>Widget Ekle</b> seçeneğine dokunun.</li>
+  <li>Daha sonra widget'a uzun basarak ve <b>Widget'ı Düzenle</b> seçeneğini seçerek boyutunu değiştirebilirsiniz.</li>
+</ol>
+
+<h3>Control Center</h3>
+<p>Control Center, ekranın sağ üst köşesinden aşağı kaydırdığınızda açılan paneldir. Kilit ekranından veya başka bir uygulama kullanırken bile tek bir dokunuşla kamerayı başlatmak için oraya bir Kod Okuyucu düğmesi ekleyebilirsiniz.</p>
+<ol>
+  <li>Control Center'ı açmak için sağ üst köşeden aşağı kaydırın.</li>
+  <li>Düzenleme moduna girmek için <b>+</b> düğmesine dokunun.</li>
+  <li>Listede <b>Kod Okuyucu</b>'ı bulun ve eklemek için üzerine dokunun.</li>
+  <li>Düzenleme modunda sürükleyerek konumunu değiştirebilir ve yeniden boyutlandırabilirsiniz.</li>
+</ol>
+
+<h3 id="codetypes">Desteklenen Kod Türleri</h3>
+<table>
+  <thead><tr><th>Kod</th><th>Notlar</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>En yaygın 2B kod. URL'ler, Wi-Fi, kişiler ve daha fazlası için kullanılır</td></tr>
+    <tr><td>Micro QR</td><td>Sınırlı alana sahip küçük etiketler için QR Code'un kompakt çeşidi</td></tr>
+    <tr><td>Aztec</td><td>Biniş kartlarında ve toplu taşıma biletlerinde kullanılır</td></tr>
+    <tr><td>Data Matrix</td><td>Üretim, sağlık ve lojistikte yaygındır</td></tr>
+    <tr><td>PDF417</td><td>Sürücü ehliyetlerinde, biniş kartlarında ve kargo etiketlerinde kullanılır</td></tr>
+    <tr><td>Micro PDF417</td><td>İlaç ambalajı gibi küçük ürünler için kompakt PDF417</td></tr>
+    <tr><td>EAN-8</td><td>Küçük ürünler için kısa perakende barkodu</td></tr>
+    <tr><td>EAN-13</td><td>Dünya genelinde çoğu tüketici ürününde bulunan standart perakende barkodu</td></tr>
+    <tr><td>UPC-E</td><td>ABD/Kanada'daki küçük perakende ambalajlarda kullanılan kompakt barkod</td></tr>
+    <tr><td>Code 39</td><td>En eski barkodlardan biri, endüstriyel ortamlarda yaygındır</td></tr>
+    <tr><td>Code 93</td><td>Code 39'un daha yüksek yoğunluklu halefi</td></tr>
+    <tr><td>Code 128</td><td>Lojistik ve nakliyede yaygın olarak kullanılan yüksek yoğunluklu barkod</td></tr>
+    <tr><td>ITF-14</td><td>Oluklu mukavva nakliye kutularına basılan 14 haneli barkod</td></tr>
+    <tr><td>Codabar</td><td>Kütüphanelerde, kan bankalarında ve bazı kargo şirketlerinde kullanılır</td></tr>
+    <tr><td>GS1 DataBar</td><td>Sebze ve taze gıdalar gibi küçük ürünler için kompakt perakende barkodu</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>Ağırlık ve son kullanma tarihi gibi ek veriler taşıyan genişletilmiş çeşit</td></tr>
+  </tbody>
+</table>
+<p><b>Desteklenmeyenler:</b></p>
+<table>
+  <thead><tr><th>Kod</th><th>Notlar</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (eklentiler)</td><td>EAN-13'e eklenen kısa rakam takıları; dergi sayı numaraları ve kitap fiyatlandırması için kullanılır</td></tr>
+    <tr><td>rMQR</td><td>Dikdörtgen Micro QR, dar etiketler için tasarlanmış daha yeni bir kompakt QR çeşidi</td></tr>
+    <tr><td>MaxiCode</td><td>UPS'in kargo etiketlerinde kullandığı 2B nokta matris kodu</td></tr>
+    <tr><td>SP Code</td><td>Konuşma ses verilerini kodlayan Japon erişilebilirlik barkodu</td></tr>
+    <tr><td>Posta Kodları</td><td>Ulusal posta hizmetleri tarafından kullanılan 4 durumlu posta barkodları (USPS Intelligent Mail, Royal Mail, Australia Post, Japan Post ve diğerleri)</td></tr>
+    <tr><td>Özel uygulama kodları</td><td>Yalnızca yayımlayan uygulamanın tarayabildiği özel görsel kodlar</td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="democodes">Demo Kodlar</h2>
+
+<p>Bu kodları kamerayla doğrudan bu ekrandan tarayın veya ekran görüntüsü alıp Galeri sekmesini kullanın.</p>
+
+<table class="demo-codes-table">
+  <tbody>
+    <tr><td><img src="../codes/qr-url.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">İzleme parametreli URL</div><div class="dc-val">https://hoshinosoftware.com?utm_source=review&amp;utm_campaign=demo</div></td></tr>
+    <tr><td><img src="../codes/qr-wifi.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Wi-Fi ağı</div><div class="dc-val">WIFI:S:example-wifi;T:WPA;P:example-password;;</div></td></tr>
+    <tr><td><img src="../codes/qr-email.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">E-posta</div><div class="dc-val">mailto:test@example.com</div></td></tr>
+    <tr><td><img src="../codes/qr-vcard.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Kişi (vCard)</div><pre class="dc-val">BEGIN:VCARD
+VERSION:3.0
+N:Last;First
+FN:First Last
+ORG:Company
+TITLE:Job Title
+ADR:;;Street;City;CA;90401;USA
+TEL;WORK;VOICE:
+TEL;CELL:+1234567890123
+TEL;FAX:
+EMAIL;WORK;INTERNET:example@example.com
+URL:https://example.com
+END:VCARD</pre></td></tr>
+    <tr><td><img src="../codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">Küçük etiketler için kompakt QR</div><div class="dc-val">HELLO</div></td></tr>
+    <tr><td><img src="../codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">Toplu taşıma / biniş kartları</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">Küçük etiketler için kompakt çeşit</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-square.png" alt="Data Matrix (Square)"></td><td><div class="dc-type">Data Matrix (Square)</div><div class="dc-sub">Üretim / sağlık</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-rectangular.png" alt="Data Matrix (Rectangular)" class="dc-rect"></td><td><div class="dc-type">Data Matrix (Rectangular)</div><div class="dc-sub">Dar etiketler için dikdörtgen çeşit</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/pdf417.gif" alt="PDF417" class="dc-rect"></td><td><div class="dc-type">PDF417</div><div class="dc-sub">Kimlik belgeleri / kargo etiketleri</div><div class="dc-val">PDF417 SAMPLE DATA</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/micropdf417.gif" alt="Micro PDF417"></td><td><div class="dc-type">Micro PDF417</div><div class="dc-sub">Küçük ürünler için kompakt PDF417</div><div class="dc-val">MICROPDF417 SAMPLE DATA</div></td></tr>
+    <tr><td><img src="../codes/ean13.png" alt="EAN-13" class="dc-rect"></td><td><div class="dc-type">EAN-13</div><div class="dc-sub">Perakende barkodu</div><div class="dc-val">5901234123457</div></td></tr>
+    <tr><td><img src="../codes/upce.png" alt="UPC-E" class="dc-rect" style="max-width:150px;"></td><td><div class="dc-type">UPC-E</div><div class="dc-sub">Kompakt perakende barkodu (ABD/Kanada)</div><div class="dc-val">01234565</div></td></tr>
+    <tr><td><img src="../codes/code128.png" alt="Code 128" class="dc-rect"></td><td><div class="dc-type">Code 128</div><div class="dc-sub">Lojistik / nakliye</div><div class="dc-val">CODE-128-DEMO</div></td></tr>
+    <tr><td><img src="../codes/itf14.png" alt="ITF-14" class="dc-rect"></td><td><div class="dc-type">ITF-14</div><div class="dc-sub">Nakliye kutusu barkodu</div><div class="dc-val">12345678901231</div></td></tr>
+    <tr><td><img src="../codes/gs1databar.png" alt="GS1 DataBar" class="dc-rect"></td><td><div class="dc-type">GS1 DataBar</div><div class="dc-sub">Küçük ürünler için kompakt barkod</div><div class="dc-val">0112345678901231</div></td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="legal">Yasal</h2>
+
+<h3 id="privacy">Gizlilik Politikası</h3>
+<p><b>Son Güncelleme:</b> Nisan 2026</p>
+<h4>Giriş</h4>
+<p>Kod Okuyucu basit bir ilke üzerine inşa edilmiştir: verileriniz size aittir. Bu Gizlilik Politikası, uygulamanın hangi bilgilere eriştiğini ve bu bilgilerin nasıl işlendiğini açıklar.</p>
+<h4>Kamera Erişimi</h4>
+<p>Uygulama, barkodları ve QR kodlarını gerçek zamanlı olarak taramak için cihazınızın kamerasını kullanır. Kamera görüntüsü yalnızca cihazınızda işlenir. Hiçbir görüntü veya video karesi saklanmaz, yüklenmez veya paylaşılmaz.</p>
+<h4>Tarama Geçmişi</h4>
+<p>Tarama sonuçları, Apple'ın cihaz içi depolama teknolojisi kullanılarak cihazınızda yerel olarak kaydedilir. Bu veriler cihazınızı asla terk etmez ve hiçbir sunucuya iletilmez. Tarama geçmişinizi istediğiniz zaman uygulama içinden silebilirsiniz.</p>
+<h4>İnternet Bağlantısı Gerekmez</h4>
+<p>Kod Okuyucu tamamen çevrimdışı çalışır. Uygulama hiçbir ağ isteği göndermez. Verileriniz cihazınızı asla terk etmez.</p>
+<h4>Veri Toplama Yok</h4>
+<p>Hiçbir kişisel bilgiyi toplamaz, depolamaz veya işlemeyiz. Uygulama herhangi bir hesap veya kayıt gerektirmez.</p>
+<h4>Üçüncü Taraf Hizmetler</h4>
+<p>Kod Okuyucu herhangi bir üçüncü taraf analitik, reklam veya izleme hizmeti kullanmaz. Hiçbir veri üçüncü taraflarla paylaşılmaz.</p>
+<h4>Çocukların Gizliliği</h4>
+<p>Kişisel veri toplanmadığı için Kod Okuyucu her yaştan kullanıcı için güvenlidir ve COPPA ile dünya genelindeki benzer düzenlemelere uygundur.</p>
+<h4>Bu Politikadaki Değişiklikler</h4>
+<p>Bu Gizlilik Politikasını zaman zaman güncelleyebiliriz. Değişiklikler yayınlandıktan hemen sonra yürürlüğe girer. Bu sayfayı periyodik olarak gözden geçirmenizi öneririz.</p>
+<h4>Bize Ulaşın</h4>
+<p>Bu Gizlilik Politikasına ilişkin sorularınız için: support [at] hoshinosoftware [dot] com</p>
+
+<h3 id="terms" style="margin-top:40px; padding-top:24px; border-top:1px solid #e5e5e5;">Kullanım Koşulları</h3>
+<p><b>Son Güncelleme:</b> Nisan 2026</p>
+<h4>Koşulların Kabulü</h4>
+<p>Kod Okuyucu'yu indirerek veya kullanarak bu Kullanım Koşullarına bağlı olmayı kabul edersiniz. Kabul etmiyorsanız lütfen uygulamayı kullanmayın.</p>
+<h4>Lisans</h4>
+<p>Hoshino Software, bu koşullar ve Apple'ın App Store Kullanım Koşulları çerçevesinde Kod Okuyucu'yu Apple cihazlarınızda kullanmanız için kişisel, devredilemez ve münhasır olmayan bir lisans vermektedir.</p>
+<h4>İzin Verilen Kullanım</h4>
+<p>Kod Okuyucu'yu yalnızca yasal amaçlarla kullanabilirsiniz. Uygulamayı yürürlükteki yasa veya yönetmelikleri ihlal eden herhangi bir şekilde kullanmamayı kabul edersiniz.</p>
+<h4>Garanti Yok</h4>
+<p>Kod Okuyucu, açık veya zımni herhangi bir garanti olmaksızın "olduğu gibi" sağlanmaktadır. Uygulamanın hatasız, kesintisiz veya belirli bir amaca uygun olacağını garanti etmiyoruz.</p>
+<h4>Sorumluluk Sınırlaması</h4>
+<p>Yürürlükteki yasaların izin verdiği azami ölçüde Hoshino Software, Kod Okuyucu'nun kullanımından veya kullanılamamasından kaynaklanan doğrudan, dolaylı, arızi, özel veya sonuç olarak ortaya çıkan zararlardan sorumlu tutulamaz.</p>
+<h4>Bu Koşullardaki Değişiklikler</h4>
+<p>Bu Kullanım Koşullarını zaman zaman güncelleyebiliriz. Değişikliklerin yayınlanmasından sonra uygulamayı kullanmaya devam etmeniz, güncellenen koşulları kabul ettiğiniz anlamına gelir.</p>
+<h4>Geçerli Hukuk</h4>
+<p>Bu koşullar, Hoshino Software'in faaliyet gösterdiği yargı bölgesinin yasalarına tabidir.</p>
+<h4>Bize Ulaşın</h4>
+<p>Bu Kullanım Koşullarına ilişkin sorularınız için: support [at] hoshinosoftware [dot] com</p>
+
+</main>
+
+<footer>© 2026 Hoshino Software &amp; Security · support [at] hoshinosoftware [dot] com</footer>
+
+<script>
+
+function applyTopPad() {
+  var h = document.getElementById('lang-strip').offsetHeight;
+  document.querySelector('main').style.paddingTop = (h + 20) + 'px';
+}
+applyTopPad();
+window.addEventListener('resize', applyTopPad);
+
+</script>
+
+</body>
+</html>

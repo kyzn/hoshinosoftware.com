@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="UTF-8">
+<title>全能扫码器 – 简体中文</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+/* ── Reset & Base ───────────────────────────── */
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #111;
+  line-height: 1.6;
+}
+
+/* ── Fixed language strip ───────────────────── */
+#lang-strip {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid #e5e5e5;
+}
+#lang-strip .strip-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+}
+#lang-strip .strip-brand {
+  position: absolute;
+  left: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  white-space: nowrap;
+}
+#lang-strip .strip-brand:hover { color: #555; }
+@media (max-width: 1000px) { #lang-strip .strip-brand { display: none; } }
+#lang-strip .strip-langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  font-size: 13px;
+  justify-content: center;
+  width: 100%;
+}
+#lang-strip .strip-langs a {
+  color: #666;
+  text-decoration: none;
+  padding: 2px 10px 2px 0;
+  white-space: nowrap;
+}
+#lang-strip .strip-langs a:hover { color: #000; }
+#lang-strip .strip-langs a.active { color: #000; font-weight: 700; }
+#lang-strip .strip-langs .dot {
+  color: #ccc;
+  padding-right: 10px;
+  user-select: none;
+}
+
+/* ── Main content ───────────────────────────── */
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
+}
+
+/* ── Table of Contents ──────────────────────── */
+#toc {
+  background: #f5f5f7;
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin: 28px 0 40px;
+}
+#toc h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  margin: 0 0 12px;
+  border: none;
+  padding: 0;
+}
+#toc ol {
+  margin: 0;
+  padding-left: 20px;
+  counter-reset: toc-counter;
+  list-style: none;
+}
+#toc ol li {
+  counter-increment: toc-counter;
+  margin: 6px 0;
+}
+#toc ol li::before {
+  content: counter(toc-counter) ". ";
+  font-weight: 600;
+  color: #bbb;
+}
+#toc a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
+}
+#toc a:hover { text-decoration: underline; }
+
+/* ── Section h2 (top-level sections) ───────── */
+h2.section-h2 {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 2px solid #e5e5e5;
+  border-bottom: none;
+  font-size: 1.5rem;
+  padding-bottom: 0;
+}
+h2.section-h2.first-section {
+  margin-top: 0;
+  border-top: none;
+  padding-top: 0;
+}
+
+/* ── Sub-section divider ────────────────────── */
+.sub-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 40px 0 24px;
+}
+.sub-divider::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.sub-divider-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bbb;
+  white-space: nowrap;
+}
+.sub-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+/* ── Typography ─────────────────────────────── */
+h1 { font-weight: 600; margin-bottom: 10px; margin-top: 0; }
+h2 { margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+h3 { margin-top: 20px; margin-bottom: 4px; }
+p  { margin: 10px 0; }
+ul, ol { padding-left: 20px; }
+li { margin: 4px 0; }
+
+/* ── Section scroll anchors ─────────────────── */
+.section-anchor {
+  scroll-margin-top: 60px;
+}
+
+/* ── Support contact box ────────────────────── */
+.contact-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #f0f8ff;
+  border: 1px solid #c5dff0;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.contact-box .contact-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+.contact-box .contact-body {
+  flex: 1;
+}
+.contact-box .contact-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6a9ab5;
+  margin-bottom: 2px;
+}
+.contact-box .contact-email {
+  font-size: 17px;
+  font-weight: 600;
+  color: #111;
+}
+.contact-box .contact-note {
+  font-size: 13px;
+  color: #666;
+  margin-top: 3px;
+}
+
+/* ── Screenshots ────────────────────────────── */
+.screenshots {
+  display: flex; gap: 16px; flex-wrap: wrap; margin: 20px 0;
+}
+.screenshots img {
+  width: 160px;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  display: block;
+}
+
+/* ── Tip ────────────────────────────────────── */
+.tip {
+  background: #f5f5f7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 15px;
+}
+
+/* ── Tables ─────────────────────────────────── */
+table {
+  width: 100%; border-collapse: collapse;
+  margin-top: 15px; font-size: 14px;
+  border: 1px solid #eee; border-radius: 8px; overflow: hidden;
+}
+thead th {
+  text-align: left; background: #f5f5f7;
+  font-weight: 600; padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+tbody td { padding: 10px; border-bottom: 1px solid #eee; }
+tbody tr:nth-child(even) { background: #fafafa; }
+
+/* ── Demo codes table ───────────────────────── */
+.demo-codes-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 24px 0;
+  font-size: 14px;
+}
+.demo-codes-table td {
+  padding: 40px 10px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+.demo-codes-table td:first-child {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  text-align: center;
+}
+.demo-codes-table img {
+  max-width: 300px;
+  max-height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.demo-codes-table img.dc-rect {
+  max-height: 400px;
+}
+.dc-type { font-weight: 600; color: #111; }
+.dc-sub  { font-size: 12px; color: #777; margin-top: 2px; }
+.dc-val  { font-size: 11px; color: #aaa; font-family: monospace; margin-top: 4px; word-break: break-all; }
+pre.dc-val { white-space: pre-wrap; margin: 4px 0 0; padding: 0; background: none; border: none; }
+
+/* ── RTL support ────────────────────────────── */
+.rtl { direction: rtl; text-align: right; }
+.rtl ul, .rtl ol { padding-left: 0; padding-right: 20px; }
+.rtl thead th { text-align: right; }
+
+/* ── Footer ─────────────────────────────────── */
+footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-top: 1px solid #e5e5e5;
+  font-size: 12px; color: #666; text-align: center;
+  padding: 8px 20px;
+}
+
+</style>
+</head>
+<body>
+
+<div id="lang-strip">
+  <div class="strip-inner">
+    <a href="../../" class="strip-brand">Hoshino Software &amp; Security</a>
+    <nav class="strip-langs">
+      <a href="/codereader/en">EN</a>
+      <span class="dot">·</span>
+      <a href="/codereader/fr">FR</a>
+      <span class="dot">·</span>
+      <a href="/codereader/it">IT</a>
+      <span class="dot">·</span>
+      <a href="/codereader/es">ES</a>
+      <span class="dot">·</span>
+      <a href="/codereader/pt">PT</a>
+      <span class="dot">·</span>
+      <a href="/codereader/de">DE</a>
+      <span class="dot">·</span>
+      <a href="/codereader/tr">TR</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ko">한국어</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ja">日本語</a>
+      <span class="dot">·</span>
+      <a href="/codereader/zh-hans" class="active">简体中文</a>
+      <span class="dot">·</span>
+      <a href="/codereader/zh-hant">繁體中文</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ar">العربية</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+<h1 class="section-anchor" id="top">全能扫码器</h1>
+<p>全能扫码器 使用 iPhone 摄像头或照片图库中的任意图片扫描条形码和 QR 码。
+完全离线运行，不在云端存储任何内容，且从不显示广告。</p>
+
+<nav id="toc" aria-label="页面目录">
+  <h2>目录</h2>
+  <ol>
+    <li><a href="#download">下载</a></li>
+    <li><a href="#support">支持</a></li>
+    <li><a href="#manual">使用手册</a></li>
+    <li><a href="#democodes">演示码</a></li>
+    <li><a href="#legal">法律信息</a></li>
+  </ol>
+</nav>
+
+<h2 class="section-h2 first-section section-anchor" id="download">下载</h2>
+
+<p class="tip">应用尚未发布。发布后，App Store 链接和 QR 码将在此处显示。</p>
+
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0; opacity:0.45;">
+  <img src="../../appstorebadge/zh-hans.svg" alt="在 App Store 上下载" height="72">
+  <div style="width:180px; height:180px; background:#f5f5f7; border-radius:10px; border:1px dashed #ccc; display:flex; align-items:center; justify-content:center; font-size:12px; color:#999;">QR 码即将推出</div>
+</div>
+<p>全能扫码器可在 App Store 免费下载。无需账户。需要 iOS 26 或更高版本。</p>
+
+<h2 class="section-h2 section-anchor" id="support">支持</h2>
+
+<p>有问题、发现 bug，或需要应用使用帮助？请联系我们，我们阅读每一条消息。</p>
+
+<div class="contact-box">
+  <div class="contact-icon">✉️</div>
+  <div class="contact-body">
+    <div class="contact-label">电子邮件支持</div>
+    <div class="contact-email">support [at] hoshinosoftware [dot] com</div>
+    <div class="contact-note">我们通常在 5 个工作日内回复。</div>
+  </div>
+</div>
+
+<h3>联系前请先确认</h3>
+<p>许多常见问题已在下方的<a href="#manual">使用手册</a>和常见问题中解答。请先进行以下快速检查：</p>
+<ul>
+  <li><b>相机无法使用？</b>前往 iPhone 设置 → 隐私与安全性 → 相机 → 为全能扫码器开启访问权限。</li>
+  <li><b>找不到历史记录？</b>点击历史选项卡。记录保存 6 个月，最多保存 1,000 条。</li>
+  <li><b>无法扫描条码？</b>请确保光线充足并保持条码稳定。如有图片文件，可尝试图库模式。</li>
+  <li><b>应用闪退？</b>强制退出后重新打开。如问题持续，请发送邮件并注明您的 iPhone 型号和 iOS 版本。</li>
+</ul>
+
+<h3>常见问题</h3>
+<ul>
+  <li><b>需要联网吗？</b><br>不需要。全能扫码器 完全离线运行。</li><br>
+  <li><b>会收集我的数据吗？</b><br>不会。任何内容都不会上传到任何地方。扫描历史记录仅存储在您的设备上。</li><br>
+  <li><b>会访问我的整个照片图库吗？</b><br>不会。在相册标签页中，您通过系统照片选择器选取单张照片。全能扫码器 从不获得访问您图库的权限。</li><br>
+  <li><b>为什么多码模式会稍慢一些？</b><br>摄像头在显示结果前，会在短暂的帧时间窗口内收集码，以确保捕获所有可见的码。</li><br>
+  <li><b>扫描历史记录保存多久？</b><br>超过 6 个月的记录会自动删除。历史记录同时也有 1,000 条的上限，最旧的记录会被删除以为新记录腾出空间。</li><br>
+  <li><b>为什么不自动跳转到链接？</b><br>这是有意为之的。虚假或恶意 QR 码随处可见，在停车场、餐厅桌上等地方都很常见。在打开链接前显示 URL，让您能够验证其是否安全。</li>
+</ul>
+
+<h2 class="section-h2 section-anchor" id="manual">使用手册</h2>
+
+<div class="screenshots">
+  <img src="../screenshots/zh-hans/camera.png" alt="相机界面">
+  <img src="../screenshots/zh-hans/result.png" alt="扫描结果界面">
+  <img src="../screenshots/zh-hans/settings.png" alt="设置界面">
+</div>
+
+<h3>相机</h3>
+<p>相机标签页打开后立即开始扫描。将手机对准任意条形码或 QR 码，应用会自动检测。需要相机权限。如果尚未授权，将出现提示。点击<b>打开设置</b>，为 全能扫码器 启用<b>相机</b>访问权限。</p>
+<ul>
+  <li><b>手电筒：</b>点击手电筒按钮，照亮较暗的环境。仅在后置摄像头下可用。</li>
+  <li><b>前置摄像头：</b>点击旋转按钮，在后置和前置摄像头之间切换。当后置摄像头不可用时（例如损坏）非常便捷。</li>
+</ul>
+<div class="tip">💡 应用在查找码时会显示一条红色扫描线。无需按任何按钮，识别自动完成。</div>
+
+<h3>相册</h3>
+<p>相册标签页允许您从现有图片中扫描码。点击<b>选择照片</b>，从图库中选取任意图片。只有您选择的特定照片会与应用共享。全能扫码器 不会请求访问您的整个照片图库。</p>
+<p>选择照片后，应用立即扫描并显示结果。如果未找到任何码，将弹出提示告知您。</p>
+
+<h3>历史记录</h3>
+<p>每次扫描都会自动保存到历史记录标签页。扫描记录保存 <b>6 个月</b>，历史记录最多保存 <b>1,000 条</b>；达到上限时，最旧的记录会自动删除。</p>
+<ul>
+  <li><b>查看过去的扫描：</b>点击任意行，重新打开完整结果。</li>
+  <li><b>删除单条记录：</b>向左滑动某行，点击<b>删除</b>。</li>
+  <li><b>删除全部：</b>点击右上角的垃圾桶图标。</li>
+  <li><b>来源标签：</b>每条记录显示其来自相机、相册还是分享。</li>
+</ul>
+
+<h3>设置</h3>
+<p><b>多码模式</b><br>
+默认情况下，全能扫码器 找到<b>一个码</b>后立即停止。开启<b>多码模式</b>可一次扫描最多 <b>5 个码</b>，适用于名片、产品单页或包含多个并排码的图片。</p>
+<p>多码模式激活时，摄像头在首次检测到码后会继续短暂扫描，以收集所有可见的码再显示结果。因此会比单码模式稍微慢一点。</p>
+
+<p><b>显示高级详情</b><br>
+开启<b>显示高级详情</b>，可在每个扫描结果旁显示技术元数据：QR 版本、纠错级别、掩码图案或条形码结构（起始/终止字符、校验位）。此信息显示在扫描结果页面和历史记录标签页的各行中。</p>
+<div class="tip">💡 这是深入了解 QR 码和条形码实际工作原理的好方法。如果您对所扫描内容背后的技术感到好奇，不妨试一试！</div>
+
+<h3>扫描结果</h3>
+<p>检测到码后，全能扫码器 会在执行任何操作之前先显示其内容。您始终会先看到原始数据，以及<b>复制</b>和<b>分享</b>按钮。如果码包含 URL（QR 码中常见），则会出现<b>打开</b>按钮。点击后将在默认浏览器中打开链接，而非应用内浏览器。不会收集任何浏览数据。</p>
+<p>全能扫码器 自动识别特殊码类型，并显示相应操作：</p>
+<table>
+  <thead><tr><th>码类型</th><th>可执行操作</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / 链接</td><td>在默认浏览器中打开 · 复制 · 分享</td></tr>
+    <tr><td>📶 Wi-Fi 网络</td><td>直接<b>连接</b> · 复制密码</td></tr>
+    <tr><td>👤 联系人 (vCard / MECARD)</td><td>带预览<b>保存到通讯录</b></td></tr>
+    <tr><td>📅 日历事件</td><td><b>添加到日历</b></td></tr>
+    <tr><td>✉️ 电子邮件</td><td><b>撰写</b>预填邮件</td></tr>
+    <tr><td>💬 短信 / 消息</td><td><b>发送消息</b></td></tr>
+    <tr><td>📞 电话号码</td><td><b>拨打电话</b></td></tr>
+    <tr><td>📍 位置 / 地理</td><td><b>在地图中打开</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> 或 FaceTime 音频</td></tr>
+    <tr><td>₿ 比特币</td><td><b>复制地址</b></td></tr>
+    <tr><td>✈️ 登机牌</td><td>从 Aztec / PDF417 解析的航班详情</td></tr>
+  </tbody>
+</table>
+
+<p>在设置中开启<b>显示高级详情</b>后，结果页面会出现两个额外部分：</p>
+<ul>
+  <li><b>解码数据：</b>条形码内编码的原始字符串，在任何解析之前的状态。</li>
+  <li><b>结构：</b>条形码的技术分解：起始/终止字符、校验位、保护图案以及根据码类型不同而存在的类似元素。</li>
+</ul>
+<p>对于 QR 码，还会出现显示版本号、纠错级别和掩码图案的元数据标签。</p>
+
+<p><b>追踪参数检测</b><br>
+当 URL 包含追踪参数时，全能扫码器 会显示<b>无追踪打开</b>按钮。这包括 UTM 标签以及来自 Facebook、Google Ads、Microsoft、TikTok 等平台的点击 ID。点击后将在去除这些参数的情况下打开链接。您可以在不被追踪的情况下访问同一页面。</p>
+
+<h3>从其他应用扫描</h3>
+<p>您可以扫描出现在其他应用（消息、电子邮件、文档查看器或浏览器）中照片里的码，无需离开该应用。</p>
+<p><b>使用分享：</b></p>
+<ol>
+  <li>在相册或任意应用中打开图片，然后点击<b>分享</b>按钮。</li>
+  <li>在出现的应用列表中，找到并点击 <b>全能扫码器</b>。如果看不到，请滚动到列表末尾并点击<b>更多</b>。</li>
+  <li>应用打开并自动扫描图片。</li>
+</ol>
+<p><b>使用动作：</b></p>
+<ol>
+  <li>在相册或任意应用中打开图片，然后点击<b>分享</b>按钮。</li>
+  <li>滚动应用列表下方的动作栏，点击 <b>Scan for Codes</b>。</li>
+  <li>应用打开并自动扫描图片。</li>
+</ol>
+<div class="tip">💡 两个选项的作用相同。应用栏中的"全能扫码器"和动作栏中的"Scan for Codes"是访问同一功能的两种方式。</div>
+
+<h3>主屏幕小组件</h3>
+<p>您可以在主屏幕上添加小组件，作为进入应用的快捷方式。点击即可直接打开摄像头，随时可以扫描。小组件有三种尺寸（小、中、大），您可以根据主屏幕布局选择合适的尺寸。</p>
+<ol>
+  <li>长按主屏幕空白区域，直到图标开始抖动。</li>
+  <li>点击左上角的 <b>+</b> 按钮。</li>
+  <li>搜索 <b>全能扫码器</b>。</li>
+  <li>选择尺寸，然后点击<b>添加小组件</b>。</li>
+  <li>之后可以长按小组件，选择<b>编辑小组件</b>来调整大小。</li>
+</ol>
+
+<h3>Control Center</h3>
+<p>Control Center 是从屏幕右上角向下滑动时出现的面板。您可以在其中添加 全能扫码器 按钮，从任何地方（包括锁屏或使用其他应用时）一键启动摄像头。</p>
+<ol>
+  <li>从右上角向下滑动，打开 Control Center。</li>
+  <li>点击 <b>+</b> 按钮进入编辑模式。</li>
+  <li>在列表中找到 <b>全能扫码器</b>，点击以添加。</li>
+  <li>在编辑模式下，您可以拖动来重新定位并调整大小。</li>
+</ol>
+
+<h3 id="codetypes">支持的码类型</h3>
+<table>
+  <thead><tr><th>码</th><th>备注</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>最常见的 2D 码，用于 URL、Wi-Fi、联系人等</td></tr>
+    <tr><td>Micro QR</td><td>QR Code 的紧凑变体，适用于空间有限的小标签</td></tr>
+    <tr><td>Aztec</td><td>用于登机牌和交通票务</td></tr>
+    <tr><td>Data Matrix</td><td>常用于制造业、医疗和物流领域</td></tr>
+    <tr><td>PDF417</td><td>用于驾照、登机牌和快递标签</td></tr>
+    <tr><td>Micro PDF417</td><td>紧凑型 PDF417，适用于药品包装等小型物品</td></tr>
+    <tr><td>EAN-8</td><td>用于小型零售商品的短条形码</td></tr>
+    <tr><td>EAN-13</td><td>全球大多数消费品上的标准零售条形码</td></tr>
+    <tr><td>UPC-E</td><td>用于美国/加拿大小型零售包装的紧凑型条形码</td></tr>
+    <tr><td>Code 39</td><td>最古老的条形码之一，常见于工业场景</td></tr>
+    <tr><td>Code 93</td><td>Code 39 的高密度后继版本</td></tr>
+    <tr><td>Code 128</td><td>广泛用于物流和快递的高密度条形码</td></tr>
+    <tr><td>ITF-14</td><td>印刷在瓦楞纸板运输箱上的 14 位条形码</td></tr>
+    <tr><td>Codabar</td><td>用于图书馆、血库和部分快递公司</td></tr>
+    <tr><td>GS1 DataBar</td><td>用于农产品和生鲜食品等小型商品的紧凑型零售条形码</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>扩展变体，可携带重量和有效期等额外数据</td></tr>
+  </tbody>
+</table>
+<p><b>不支持：</b></p>
+<table>
+  <thead><tr><th>码</th><th>备注</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5（附加码）</td><td>附加在 EAN-13 上的短数字补充码，用于杂志期号和书籍定价</td></tr>
+    <tr><td>rMQR</td><td>矩形微型 QR，一种为窄标签设计的新型紧凑 QR 变体</td></tr>
+    <tr><td>MaxiCode</td><td>UPS 在运输标签上使用的 2D 点阵码</td></tr>
+    <tr><td>SP Code</td><td>编码语音音频数据的日本无障碍条形码</td></tr>
+    <tr><td>邮政条形码</td><td>各国邮政服务使用的 4 状态邮政条形码（USPS Intelligent Mail、Royal Mail、Australia Post、Japan Post 等）</td></tr>
+    <tr><td>专有应用码</td><td>只有发行方应用才能扫描的自定义视觉码</td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="democodes">演示码</h2>
+
+<p>用相机直接从屏幕扫描，或截图后使用相册标签页。</p>
+
+<table class="demo-codes-table">
+  <tbody>
+    <tr><td><img src="../codes/qr-url.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">含追踪参数的 URL</div><div class="dc-val">https://hoshinosoftware.com?utm_source=review&amp;utm_campaign=demo</div></td></tr>
+    <tr><td><img src="../codes/qr-wifi.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Wi-Fi 网络</div><div class="dc-val">WIFI:S:example-wifi;T:WPA;P:example-password;;</div></td></tr>
+    <tr><td><img src="../codes/qr-email.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">电子邮件</div><div class="dc-val">mailto:test@example.com</div></td></tr>
+    <tr><td><img src="../codes/qr-vcard.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">联系人 (vCard)</div><pre class="dc-val">BEGIN:VCARD
+VERSION:3.0
+N:Last;First
+FN:First Last
+ORG:Company
+TITLE:Job Title
+ADR:;;Street;City;CA;90401;USA
+TEL;WORK;VOICE:
+TEL;CELL:+1234567890123
+TEL;FAX:
+EMAIL;WORK;INTERNET:example@example.com
+URL:https://example.com
+END:VCARD</pre></td></tr>
+    <tr><td><img src="../codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">适用于小标签的紧凑 QR</div><div class="dc-val">HELLO</div></td></tr>
+    <tr><td><img src="../codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">交通 / 登机牌</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">适用于小标签的紧凑变体</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-square.png" alt="Data Matrix (Square)"></td><td><div class="dc-type">Data Matrix (Square)</div><div class="dc-sub">制造业 / 医疗</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-rectangular.png" alt="Data Matrix (Rectangular)" class="dc-rect"></td><td><div class="dc-type">Data Matrix (Rectangular)</div><div class="dc-sub">适用于窄标签的矩形变体</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/pdf417.gif" alt="PDF417" class="dc-rect"></td><td><div class="dc-type">PDF417</div><div class="dc-sub">身份证件 / 快递标签</div><div class="dc-val">PDF417 SAMPLE DATA</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/micropdf417.gif" alt="Micro PDF417"></td><td><div class="dc-type">Micro PDF417</div><div class="dc-sub">适用于小型物品的紧凑 PDF417</div><div class="dc-val">MICROPDF417 SAMPLE DATA</div></td></tr>
+    <tr><td><img src="../codes/ean13.png" alt="EAN-13" class="dc-rect"></td><td><div class="dc-type">EAN-13</div><div class="dc-sub">零售条形码</div><div class="dc-val">5901234123457</div></td></tr>
+    <tr><td><img src="../codes/upce.png" alt="UPC-E" class="dc-rect" style="max-width:150px;"></td><td><div class="dc-type">UPC-E</div><div class="dc-sub">紧凑零售条形码（美国/加拿大）</div><div class="dc-val">01234565</div></td></tr>
+    <tr><td><img src="../codes/code128.png" alt="Code 128" class="dc-rect"></td><td><div class="dc-type">Code 128</div><div class="dc-sub">物流 / 快递</div><div class="dc-val">CODE-128-DEMO</div></td></tr>
+    <tr><td><img src="../codes/itf14.png" alt="ITF-14" class="dc-rect"></td><td><div class="dc-type">ITF-14</div><div class="dc-sub">运输箱条形码</div><div class="dc-val">12345678901231</div></td></tr>
+    <tr><td><img src="../codes/gs1databar.png" alt="GS1 DataBar" class="dc-rect"></td><td><div class="dc-type">GS1 DataBar</div><div class="dc-sub">适用于小型商品的紧凑条形码</div><div class="dc-val">0112345678901231</div></td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="legal">法律信息</h2>
+
+<h3 id="privacy">隐私政策</h3>
+<p><b>最后更新：</b>2026年4月</p>
+<h4>简介</h4>
+<p>全能扫码器建立在一个简单的原则上：您的数据属于您自己。本隐私政策说明了应用访问哪些信息以及如何处理这些信息。</p>
+<h4>相机访问</h4>
+<p>应用使用您设备的相机实时扫描条码和二维码。相机画面完全在您的设备上处理。任何图像或视频帧都不会被存储、上传或共享。</p>
+<h4>扫描历史</h4>
+<p>扫描结果使用 Apple 的设备端存储技术本地保存在您的设备上。这些数据永远不会离开您的设备，也不会传输到任何服务器。您可以随时在应用内删除扫描历史。</p>
+<h4>无需网络连接</h4>
+<p>全能扫码器完全离线运行。应用不发出任何网络请求。您的数据永远不会离开您的设备。</p>
+<h4>不收集数据</h4>
+<p>我们不收集、存储或处理任何个人信息。应用不需要账户或任何形式的注册。</p>
+<h4>第三方服务</h4>
+<p>全能扫码器不使用任何第三方分析、广告或追踪服务。任何数据都不会与第三方共享。</p>
+<h4>儿童隐私</h4>
+<p>由于不收集任何个人数据，全能扫码器对所有年龄段的用户都是安全的，并符合 COPPA 及全球类似法规。</p>
+<h4>政策变更</h4>
+<p>我们可能会不时更新本隐私政策。变更在发布后立即生效。建议您定期查阅本页面。</p>
+<h4>联系我们</h4>
+<p>如有关于本隐私政策的问题：support [at] hoshinosoftware [dot] com</p>
+
+<h3 id="terms" style="margin-top:40px; padding-top:24px; border-top:1px solid #e5e5e5;">服务条款</h3>
+<p><b>最后更新：</b>2026年4月</p>
+<h4>接受条款</h4>
+<p>下载或使用全能扫码器即表示您同意受本服务条款的约束。如不同意，请勿使用本应用。</p>
+<h4>许可</h4>
+<p>Hoshino Software 根据本条款及 Apple App Store 服务条款，授予您在 Apple 设备上使用全能扫码器的个人、不可转让、非独家许可。</p>
+<h4>允许的使用</h4>
+<p>您只能将全能扫码器用于合法目的。您同意不以任何违反适用法律或法规的方式使用本应用。</p>
+<h4>无保证</h4>
+<p>全能扫码器以"现状"提供，不附带任何明示或暗示的保证。我们不保证应用无错误、不中断或适合任何特定用途。</p>
+<h4>责任限制</h4>
+<p>在适用法律允许的最大范围内，Hoshino Software 对因使用或无法使用全能扫码器而产生的任何直接、间接、偶发、特殊或后果性损害不承担责任。</p>
+<h4>条款变更</h4>
+<p>我们可能会不时更新本服务条款。变更发布后继续使用应用即表示您接受修订后的条款。</p>
+<h4>适用法律</h4>
+<p>本条款受 Hoshino Software 运营所在司法管辖区的法律管辖。</p>
+<h4>联系我们</h4>
+<p>如有关于本服务条款的问题：support [at] hoshinosoftware [dot] com</p>
+
+</main>
+
+<footer>© 2026 Hoshino Software &amp; Security · support [at] hoshinosoftware [dot] com</footer>
+
+<script>
+
+function applyTopPad() {
+  var h = document.getElementById('lang-strip').offsetHeight;
+  document.querySelector('main').style.paddingTop = (h + 20) + 'px';
+}
+applyTopPad();
+window.addEventListener('resize', applyTopPad);
+
+</script>
+
+</body>
+</html>

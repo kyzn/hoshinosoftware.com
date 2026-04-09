@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>코드 리더 – 한국어</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+/* ── Reset & Base ───────────────────────────── */
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #111;
+  line-height: 1.6;
+}
+
+/* ── Fixed language strip ───────────────────── */
+#lang-strip {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid #e5e5e5;
+}
+#lang-strip .strip-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+}
+#lang-strip .strip-brand {
+  position: absolute;
+  left: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  white-space: nowrap;
+}
+#lang-strip .strip-brand:hover { color: #555; }
+@media (max-width: 1000px) { #lang-strip .strip-brand { display: none; } }
+#lang-strip .strip-langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  font-size: 13px;
+  justify-content: center;
+  width: 100%;
+}
+#lang-strip .strip-langs a {
+  color: #666;
+  text-decoration: none;
+  padding: 2px 10px 2px 0;
+  white-space: nowrap;
+}
+#lang-strip .strip-langs a:hover { color: #000; }
+#lang-strip .strip-langs a.active { color: #000; font-weight: 700; }
+#lang-strip .strip-langs .dot {
+  color: #ccc;
+  padding-right: 10px;
+  user-select: none;
+}
+
+/* ── Main content ───────────────────────────── */
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
+}
+
+/* ── Table of Contents ──────────────────────── */
+#toc {
+  background: #f5f5f7;
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin: 28px 0 40px;
+}
+#toc h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  margin: 0 0 12px;
+  border: none;
+  padding: 0;
+}
+#toc ol {
+  margin: 0;
+  padding-left: 20px;
+  counter-reset: toc-counter;
+  list-style: none;
+}
+#toc ol li {
+  counter-increment: toc-counter;
+  margin: 6px 0;
+}
+#toc ol li::before {
+  content: counter(toc-counter) ". ";
+  font-weight: 600;
+  color: #bbb;
+}
+#toc a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
+}
+#toc a:hover { text-decoration: underline; }
+
+/* ── Section h2 (top-level sections) ───────── */
+h2.section-h2 {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 2px solid #e5e5e5;
+  border-bottom: none;
+  font-size: 1.5rem;
+  padding-bottom: 0;
+}
+h2.section-h2.first-section {
+  margin-top: 0;
+  border-top: none;
+  padding-top: 0;
+}
+
+/* ── Sub-section divider ────────────────────── */
+.sub-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 40px 0 24px;
+}
+.sub-divider::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.sub-divider-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bbb;
+  white-space: nowrap;
+}
+.sub-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+/* ── Typography ─────────────────────────────── */
+h1 { font-weight: 600; margin-bottom: 10px; margin-top: 0; }
+h2 { margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+h3 { margin-top: 20px; margin-bottom: 4px; }
+p  { margin: 10px 0; }
+ul, ol { padding-left: 20px; }
+li { margin: 4px 0; }
+
+/* ── Section scroll anchors ─────────────────── */
+.section-anchor {
+  scroll-margin-top: 60px;
+}
+
+/* ── Support contact box ────────────────────── */
+.contact-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #f0f8ff;
+  border: 1px solid #c5dff0;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.contact-box .contact-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+.contact-box .contact-body {
+  flex: 1;
+}
+.contact-box .contact-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6a9ab5;
+  margin-bottom: 2px;
+}
+.contact-box .contact-email {
+  font-size: 17px;
+  font-weight: 600;
+  color: #111;
+}
+.contact-box .contact-note {
+  font-size: 13px;
+  color: #666;
+  margin-top: 3px;
+}
+
+/* ── Screenshots ────────────────────────────── */
+.screenshots {
+  display: flex; gap: 16px; flex-wrap: wrap; margin: 20px 0;
+}
+.screenshots img {
+  width: 160px;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  display: block;
+}
+
+/* ── Tip ────────────────────────────────────── */
+.tip {
+  background: #f5f5f7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 15px;
+}
+
+/* ── Tables ─────────────────────────────────── */
+table {
+  width: 100%; border-collapse: collapse;
+  margin-top: 15px; font-size: 14px;
+  border: 1px solid #eee; border-radius: 8px; overflow: hidden;
+}
+thead th {
+  text-align: left; background: #f5f5f7;
+  font-weight: 600; padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+tbody td { padding: 10px; border-bottom: 1px solid #eee; }
+tbody tr:nth-child(even) { background: #fafafa; }
+
+/* ── Demo codes table ───────────────────────── */
+.demo-codes-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 24px 0;
+  font-size: 14px;
+}
+.demo-codes-table td {
+  padding: 40px 10px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+.demo-codes-table td:first-child {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  text-align: center;
+}
+.demo-codes-table img {
+  max-width: 300px;
+  max-height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.demo-codes-table img.dc-rect {
+  max-height: 400px;
+}
+.dc-type { font-weight: 600; color: #111; }
+.dc-sub  { font-size: 12px; color: #777; margin-top: 2px; }
+.dc-val  { font-size: 11px; color: #aaa; font-family: monospace; margin-top: 4px; word-break: break-all; }
+pre.dc-val { white-space: pre-wrap; margin: 4px 0 0; padding: 0; background: none; border: none; }
+
+/* ── RTL support ────────────────────────────── */
+.rtl { direction: rtl; text-align: right; }
+.rtl ul, .rtl ol { padding-left: 0; padding-right: 20px; }
+.rtl thead th { text-align: right; }
+
+/* ── Footer ─────────────────────────────────── */
+footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-top: 1px solid #e5e5e5;
+  font-size: 12px; color: #666; text-align: center;
+  padding: 8px 20px;
+}
+
+</style>
+</head>
+<body>
+
+<div id="lang-strip">
+  <div class="strip-inner">
+    <a href="../../" class="strip-brand">Hoshino Software &amp; Security</a>
+    <nav class="strip-langs">
+      <a href="/codereader/en">EN</a>
+      <span class="dot">·</span>
+      <a href="/codereader/fr">FR</a>
+      <span class="dot">·</span>
+      <a href="/codereader/it">IT</a>
+      <span class="dot">·</span>
+      <a href="/codereader/es">ES</a>
+      <span class="dot">·</span>
+      <a href="/codereader/pt">PT</a>
+      <span class="dot">·</span>
+      <a href="/codereader/de">DE</a>
+      <span class="dot">·</span>
+      <a href="/codereader/tr">TR</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ko" class="active">한국어</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ja">日本語</a>
+      <span class="dot">·</span>
+      <a href="/codereader/zh-hans">简体中文</a>
+      <span class="dot">·</span>
+      <a href="/codereader/zh-hant">繁體中文</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ar">العربية</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+<h1 class="section-anchor" id="top">코드 리더</h1>
+<p>코드 리더는 iPhone 카메라 또는 사진 보관함의 이미지를 사용하여 바코드와 QR 코드를 스캔합니다.
+완전히 오프라인으로 작동하며, 클라우드에 아무것도 저장하지 않고 광고를 표시하지 않습니다.</p>
+
+<nav id="toc" aria-label="페이지 내용">
+  <h2>목차</h2>
+  <ol>
+    <li><a href="#download">다운로드</a></li>
+    <li><a href="#support">지원</a></li>
+    <li><a href="#manual">설명서</a></li>
+    <li><a href="#democodes">데모 코드</a></li>
+    <li><a href="#legal">법적 고지</a></li>
+  </ol>
+</nav>
+
+<h2 class="section-h2 first-section section-anchor" id="download">다운로드</h2>
+
+<p class="tip">앱이 아직 출시되지 않았습니다. 출시 후 App Store 링크와 QR 코드를 여기에서 확인할 수 있습니다.</p>
+
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0; opacity:0.45;">
+  <img src="../../appstorebadge/ko.svg" alt="App Store에서 다운로드" height="72">
+  <div style="width:180px; height:180px; background:#f5f5f7; border-radius:10px; border:1px dashed #ccc; display:flex; align-items:center; justify-content:center; font-size:12px; color:#999;">QR 코드 준비 중</div>
+</div>
+<p>코드 리더는 App Store에서 무료로 다운로드할 수 있습니다. 계정이 필요하지 않습니다. iOS 26 이상이 필요합니다.</p>
+
+<h2 class="section-h2 section-anchor" id="support">지원</h2>
+
+<p>질문이 있거나 버그를 발견하거나 앱 사용에 도움이 필요하신가요? 연락주세요. 모든 메시지를 읽습니다.</p>
+
+<div class="contact-box">
+  <div class="contact-icon">✉️</div>
+  <div class="contact-body">
+    <div class="contact-label">이메일 지원</div>
+    <div class="contact-email">support [at] hoshinosoftware [dot] com</div>
+    <div class="contact-note">보통 영업일 기준 5일 이내에 답변드립니다.</div>
+  </div>
+</div>
+
+<h3>문의 전 확인 사항</h3>
+<p>자주 묻는 질문은 아래 <a href="#manual">설명서</a>와 FAQ에서 확인하실 수 있습니다. 빠른 점검 사항:</p>
+<ul>
+  <li><b>카메라가 작동하지 않나요?</b> iPhone 설정 → 개인 정보 보호 및 보안 → 카메라 → 코드 리더 접근 권한을 활성화하세요.</li>
+  <li><b>히스토리를 찾을 수 없나요?</b> 히스토리 탭을 누르세요. 항목은 6개월간 보관되며 최대 1,000개까지 저장됩니다.</li>
+  <li><b>코드가 스캔되지 않나요?</b> 조명을 밝게 하고 코드를 흔들리지 않게 고정하세요. 이미지 파일이 있다면 갤러리 모드를 사용해 보세요.</li>
+  <li><b>앱이 충돌하나요?</b> 강제 종료 후 다시 실행하세요. 문제가 지속되면 iPhone 모델과 iOS 버전을 알려주시고 이메일로 문의해 주세요.</li>
+</ul>
+
+<h3>자주 묻는 질문</h3>
+<ul>
+  <li><b>인터넷 연결이 필요한가요?</b><br>아니요. 코드 리더는 완전히 오프라인으로 작동합니다.</li><br>
+  <li><b>내 데이터를 수집하나요?</b><br>아니요. 어디에도 업로드되지 않습니다. 스캔 기록은 기기에만 저장됩니다.</li><br>
+  <li><b>전체 사진 보관함에 접근하나요?</b><br>아니요. 갤러리 탭에서는 시스템 사진 선택기를 사용하여 사진 한 장만 선택합니다. 코드 리더는 보관함에 대한 접근 권한을 받지 않습니다.</li><br>
+  <li><b>다중 코드 모드가 조금 더 오래 걸리는 이유는 무엇인가요?</b><br>카메라는 결과를 표시하기 전에 시야 내의 모든 코드를 캡처하기 위해 짧은 프레임 창에 걸쳐 코드를 수집합니다.</li><br>
+  <li><b>스캔 기록은 얼마나 오래 보관되나요?</b><br>6개월이 지난 항목은 자동으로 삭제됩니다. 기록은 1,000개 항목으로도 제한되며, 새 항목을 위한 공간을 만들기 위해 가장 오래된 항목이 삭제됩니다.</li><br>
+  <li><b>링크로 자동으로 이동하지 않는 이유는 무엇인가요?</b><br>이는 의도적인 것입니다. 가짜 또는 악의적인 QR 코드는 주차장, 식당 테이블 등 어디서나 흔히 발견됩니다. 열기 전에 URL을 보여주면 안전한지 확인할 수 있습니다.</li>
+</ul>
+
+<h2 class="section-h2 section-anchor" id="manual">설명서</h2>
+
+<div class="screenshots">
+  <img src="../screenshots/ko/camera.png" alt="카메라 화면">
+  <img src="../screenshots/ko/result.png" alt="스캔 결과 화면">
+  <img src="../screenshots/ko/settings.png" alt="설정 화면">
+</div>
+
+<h3>카메라</h3>
+<p>카메라 탭이 열리면 바로 스캔을 시작합니다. 바코드나 QR 코드에 폰을 갖다 대면 앱이 자동으로 감지합니다. 카메라 권한이 필요합니다. 아직 허용하지 않았다면 요청 창이 나타납니다. <b>설정 열기</b>를 탭하고 코드 리더의 <b>카메라</b> 접근을 활성화하세요.</p>
+<ul>
+  <li><b>손전등:</b> 어두운 환경을 밝히려면 손전등 버튼을 탭하세요. 후면 카메라에서만 사용 가능합니다.</li>
+  <li><b>전면 카메라:</b> 후면과 전면 카메라를 전환하려면 회전 버튼을 탭하세요. 후면 카메라를 사용할 수 없을 때(예: 파손된 경우) 유용합니다.</li>
+</ul>
+<div class="tip">💡 앱은 코드를 찾는 동안 빨간 스캔 선을 표시합니다. 아무것도 누를 필요가 없습니다. 인식은 자동으로 이루어집니다.</div>
+
+<h3>갤러리</h3>
+<p>갤러리 탭에서는 기존 이미지에서 코드를 스캔할 수 있습니다. <b>사진 선택</b>을 탭하여 보관함에서 이미지를 선택하세요. 선택한 특정 사진만 앱과 공유됩니다. 코드 리더는 전체 사진 보관함에 대한 접근을 요청하지 않습니다.</p>
+<p>사진을 선택하면 앱이 즉시 스캔하고 결과를 표시합니다. 코드가 발견되지 않으면 알림이 표시됩니다.</p>
+
+<h3>기록</h3>
+<p>모든 스캔은 기록 탭에 자동으로 저장됩니다. 스캔은 <b>6개월</b> 동안 보관되며 기록에는 최대 <b>1,000개</b>의 항목이 저장됩니다. 한도에 도달하면 가장 오래된 항목이 자동으로 삭제됩니다.</p>
+<ul>
+  <li><b>이전 스캔 보기:</b> 전체 결과를 다시 열려면 행을 탭하세요.</li>
+  <li><b>항목 하나 삭제:</b> 행을 왼쪽으로 밀고 <b>삭제</b>를 탭하세요.</li>
+  <li><b>전체 삭제:</b> 오른쪽 상단의 휴지통 아이콘을 탭하세요.</li>
+  <li><b>출처 레이블:</b> 각 항목은 카메라, 갤러리, 또는 공유에서 가져온 것인지 표시합니다.</li>
+</ul>
+
+<h3>설정</h3>
+<p><b>다중 코드 모드</b><br>
+기본적으로 코드 리더는 <b>코드 하나</b>를 찾으면 바로 멈춥니다. <b>다중 코드 모드</b>를 켜면 한 번에 최대 <b>5개의 코드</b>를 스캔할 수 있어, 명함이나 제품 시트처럼 여러 코드가 나란히 있는 이미지에 유용합니다.</p>
+<p>다중 코드 모드가 활성화되면 카메라는 첫 감지 후 잠깐 더 스캔을 계속하여 결과를 표시하기 전에 모든 보이는 코드를 수집합니다. 그래서 단일 코드 모드보다 약간 더 시간이 걸립니다.</p>
+
+<p><b>고급 세부 정보 표시</b><br>
+<b>고급 세부 정보 표시</b>를 켜면 각 스캔 결과 옆에 QR 버전, 오류 수정 레벨, 마스크 패턴, 바코드 구조(시작/종료 문자, 체크 숫자) 같은 기술적 메타데이터가 표시됩니다. 이 정보는 스캔 결과 페이지와 기록 탭의 행에 표시됩니다.</p>
+<div class="tip">💡 QR 코드와 바코드의 실제 작동 방식에 대해 더 알아볼 수 있는 좋은 방법입니다. 스캔하는 기술이 궁금하다면 한번 사용해 보세요!</div>
+
+<h3>스캔 결과</h3>
+<p>코드가 감지되면 코드 리더는 아무 작업도 수행하기 전에 내용을 먼저 보여줍니다. 항상 원시 데이터를 먼저 보여주며 <b>복사</b> 및 <b>공유</b> 버튼이 함께 표시됩니다. 코드에 URL이 포함된 경우(QR 코드에서 일반적) <b>열기</b> 버튼이 나타납니다. 이를 탭하면 앱 내 브라우저가 아닌 기본 브라우저에서 링크가 열립니다. 탐색 데이터는 수집되지 않습니다.</p>
+<p>코드 리더는 특수 코드 유형을 자동으로 인식하고 상황별 작업을 표시합니다:</p>
+<table>
+  <thead><tr><th>코드 유형</th><th>할 수 있는 작업</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / 링크</td><td>기본 브라우저에서 열기 · 복사 · 공유</td></tr>
+    <tr><td>📶 Wi-Fi 네트워크</td><td>직접 <b>연결</b> · 비밀번호 복사</td></tr>
+    <tr><td>👤 연락처 (vCard / MECARD)</td><td>미리보기와 함께 <b>연락처에 저장</b></td></tr>
+    <tr><td>📅 캘린더 이벤트</td><td><b>캘린더에 추가</b></td></tr>
+    <tr><td>✉️ 이메일</td><td>미리 채워진 이메일 <b>작성</b></td></tr>
+    <tr><td>💬 SMS / 메시지</td><td><b>메시지 보내기</b></td></tr>
+    <tr><td>📞 전화번호</td><td><b>전화하기</b></td></tr>
+    <tr><td>📍 위치 / 지리</td><td><b>지도에서 열기</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> 또는 FaceTime 오디오</td></tr>
+    <tr><td>₿ 비트코인</td><td><b>주소 복사</b></td></tr>
+    <tr><td>✈️ 탑승권</td><td>Aztec / PDF417에서 파싱된 항공편 세부 정보</td></tr>
+  </tbody>
+</table>
+
+<p>(설정에서) <b>고급 세부 정보 표시</b>를 켜면 결과 페이지에 두 개의 추가 섹션이 나타납니다:</p>
+<ul>
+  <li><b>디코딩된 데이터:</b> 파싱 전에 바코드 안에 인코딩된 원시 문자열.</li>
+  <li><b>구조:</b> 바코드의 기술적 분석: 시작/종료 문자, 체크 숫자, 가드 패턴 및 코드 유형에 따른 유사 요소.</li>
+</ul>
+<p>QR 코드의 경우 버전 번호, 오류 수정 레벨, 마스크 패턴을 보여주는 메타데이터 칩도 표시됩니다.</p>
+
+<p><b>추적 매개변수 감지</b><br>
+URL에 추적 매개변수가 포함된 경우 코드 리더는 <b>추적 없이 열기</b> 버튼을 표시합니다. 여기에는 UTM 태그, Facebook, Google Ads, Microsoft, TikTok 등의 클릭 ID가 포함됩니다. 이를 탭하면 해당 매개변수가 제거된 상태로 링크가 열립니다. 추적 없이 동일한 페이지에 접근할 수 있습니다.</p>
+
+<h3>다른 앱에서 스캔하기</h3>
+<p>메시지, 이메일, 문서 뷰어, 웹 브라우저 등 다른 앱 내 사진에 나타나는 코드를 해당 앱을 떠나지 않고 스캔할 수 있습니다.</p>
+<p><b>공유 사용:</b></p>
+<ol>
+  <li>갤러리 또는 앱에서 이미지를 열고 <b>공유</b> 버튼을 탭하세요.</li>
+  <li>나타나는 앱 목록에서 <b>코드 리더</b>를 찾아 탭하세요. 보이지 않으면 목록 끝까지 스크롤하여 <b>더 보기</b>를 탭하세요.</li>
+  <li>앱이 열리고 이미지를 자동으로 스캔합니다.</li>
+</ol>
+<p><b>동작 사용:</b></p>
+<ol>
+  <li>갤러리 또는 앱에서 이미지를 열고 <b>공유</b> 버튼을 탭하세요.</li>
+  <li>앱 목록 아래의 동작 행을 스크롤하고 <b>Scan for Codes</b>를 탭하세요.</li>
+  <li>앱이 열리고 이미지를 자동으로 스캔합니다.</li>
+</ol>
+<div class="tip">💡 두 옵션 모두 동일한 작업을 수행합니다. 앱 행의 "코드 리더"와 동작 행의 "Scan for Codes"는 동일한 기능에 접근하는 두 가지 방법입니다.</div>
+
+<h3>홈 화면 위젯</h3>
+<p>홈 화면에 앱으로 바로 이동하는 더 큰 단축키로 위젯을 추가할 수 있습니다. 탭하면 카메라가 바로 열려 스캔 준비가 됩니다. 위젯은 세 가지 크기(소, 중, 대)로 제공되므로 홈 화면 레이아웃에 맞는 크기를 선택할 수 있습니다.</p>
+<ol>
+  <li>아이콘이 흔들릴 때까지 홈 화면의 빈 영역을 길게 누르세요.</li>
+  <li>왼쪽 상단의 <b>+</b> 버튼을 탭하세요.</li>
+  <li><b>코드 리더</b>를 검색하세요.</li>
+  <li>크기를 선택하고 <b>위젯 추가</b>를 탭하세요.</li>
+  <li>나중에 위젯을 길게 눌러 <b>위젯 편집</b>을 선택하면 크기를 조정할 수 있습니다.</li>
+</ol>
+
+<h3>Control Center</h3>
+<p>Control Center는 화면 오른쪽 상단 모서리에서 아래로 스와이프하면 나타나는 패널입니다. 잠금 화면이나 다른 앱을 사용하는 중에도 어디서든 한 번의 탭으로 카메라를 실행하는 코드 리더 버튼을 추가할 수 있습니다.</p>
+<ol>
+  <li>오른쪽 상단 모서리에서 아래로 스와이프하여 Control Center를 여세요.</li>
+  <li><b>+</b> 버튼을 탭하여 편집 모드로 진입하세요.</li>
+  <li>목록에서 <b>코드 리더</b>를 찾아 탭하여 추가하세요.</li>
+  <li>편집 모드에서 드래그하여 위치를 변경하고 크기를 조정할 수 있습니다.</li>
+</ol>
+
+<h3 id="codetypes">지원되는 코드 유형</h3>
+<table>
+  <thead><tr><th>코드</th><th>비고</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>가장 일반적인 2D 코드. URL, Wi-Fi, 연락처 등에 사용됨</td></tr>
+    <tr><td>Micro QR</td><td>공간이 제한된 작은 라벨을 위한 QR Code의 소형 변형</td></tr>
+    <tr><td>Aztec</td><td>탑승권 및 교통 티켓에 사용됨</td></tr>
+    <tr><td>Data Matrix</td><td>제조, 의료, 물류 분야에서 일반적으로 사용됨</td></tr>
+    <tr><td>PDF417</td><td>운전 면허증, 탑승권, 배송 라벨에 사용됨</td></tr>
+    <tr><td>Micro PDF417</td><td>의약품 포장 같은 소형 품목을 위한 소형 PDF417</td></tr>
+    <tr><td>EAN-8</td><td>소형 제품용 짧은 소매 바코드</td></tr>
+    <tr><td>EAN-13</td><td>전 세계 대부분의 소비자 제품에서 발견되는 표준 소매 바코드</td></tr>
+    <tr><td>UPC-E</td><td>미국/캐나다 소형 소매 포장에 사용되는 소형 바코드</td></tr>
+    <tr><td>Code 39</td><td>가장 오래된 바코드 중 하나로 산업 환경에서 흔히 사용됨</td></tr>
+    <tr><td>Code 93</td><td>Code 39의 고밀도 후속 버전</td></tr>
+    <tr><td>Code 128</td><td>물류 및 배송 분야에서 널리 사용되는 고밀도 바코드</td></tr>
+    <tr><td>ITF-14</td><td>골판지 배송 박스에 인쇄된 14자리 바코드</td></tr>
+    <tr><td>Codabar</td><td>도서관, 혈액 은행, 일부 배송 회사에서 사용됨</td></tr>
+    <tr><td>GS1 DataBar</td><td>농산물이나 신선 식품 같은 소형 품목을 위한 소형 소매 바코드</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>무게와 유통 기한 같은 추가 데이터를 담는 확장 변형</td></tr>
+  </tbody>
+</table>
+<p><b>미지원:</b></p>
+<table>
+  <thead><tr><th>코드</th><th>비고</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (부가 코드)</td><td>EAN-13에 붙는 짧은 숫자 보충 코드. 잡지 호수와 도서 가격 표시에 사용됨</td></tr>
+    <tr><td>rMQR</td><td>좁은 라벨용으로 설계된 새로운 소형 QR 변형인 직사각형 Micro QR</td></tr>
+    <tr><td>MaxiCode</td><td>UPS가 배송 라벨에 사용하는 2D 점 행렬 코드</td></tr>
+    <tr><td>SP Code</td><td>음성 오디오 데이터를 인코딩하는 일본 접근성 바코드</td></tr>
+    <tr><td>우편 코드</td><td>국가 우편 서비스에서 사용하는 4-state 우편 바코드 (USPS Intelligent Mail, Royal Mail, Australia Post, Japan Post 등)</td></tr>
+    <tr><td>독점 앱 코드</td><td>해당 앱만 스캔할 수 있는 맞춤형 시각 코드</td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="democodes">데모 코드</h2>
+
+<p>카메라로 이 화면에서 직접 스캔하거나 스크린샷을 찍어 갤러리 탭을 사용하세요.</p>
+
+<table class="demo-codes-table">
+  <tbody>
+    <tr><td><img src="../codes/qr-url.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">추적 매개변수가 포함된 URL</div><div class="dc-val">https://hoshinosoftware.com?utm_source=review&amp;utm_campaign=demo</div></td></tr>
+    <tr><td><img src="../codes/qr-wifi.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Wi-Fi 네트워크</div><div class="dc-val">WIFI:S:example-wifi;T:WPA;P:example-password;;</div></td></tr>
+    <tr><td><img src="../codes/qr-email.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">이메일</div><div class="dc-val">mailto:test@example.com</div></td></tr>
+    <tr><td><img src="../codes/qr-vcard.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">연락처 (vCard)</div><pre class="dc-val">BEGIN:VCARD
+VERSION:3.0
+N:Last;First
+FN:First Last
+ORG:Company
+TITLE:Job Title
+ADR:;;Street;City;CA;90401;USA
+TEL;WORK;VOICE:
+TEL;CELL:+1234567890123
+TEL;FAX:
+EMAIL;WORK;INTERNET:example@example.com
+URL:https://example.com
+END:VCARD</pre></td></tr>
+    <tr><td><img src="../codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">작은 라벨을 위한 소형 QR</div><div class="dc-val">HELLO</div></td></tr>
+    <tr><td><img src="../codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">교통 / 탑승권</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">작은 라벨을 위한 소형 변형</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-square.png" alt="Data Matrix (Square)"></td><td><div class="dc-type">Data Matrix (Square)</div><div class="dc-sub">제조 / 의료</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-rectangular.png" alt="Data Matrix (Rectangular)" class="dc-rect"></td><td><div class="dc-type">Data Matrix (Rectangular)</div><div class="dc-sub">좁은 라벨을 위한 직사각형 변형</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/pdf417.gif" alt="PDF417" class="dc-rect"></td><td><div class="dc-type">PDF417</div><div class="dc-sub">신분증 / 배송 라벨</div><div class="dc-val">PDF417 SAMPLE DATA</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/micropdf417.gif" alt="Micro PDF417"></td><td><div class="dc-type">Micro PDF417</div><div class="dc-sub">소형 품목을 위한 소형 PDF417</div><div class="dc-val">MICROPDF417 SAMPLE DATA</div></td></tr>
+    <tr><td><img src="../codes/ean13.png" alt="EAN-13" class="dc-rect"></td><td><div class="dc-type">EAN-13</div><div class="dc-sub">소매 바코드</div><div class="dc-val">5901234123457</div></td></tr>
+    <tr><td><img src="../codes/upce.png" alt="UPC-E" class="dc-rect" style="max-width:150px;"></td><td><div class="dc-type">UPC-E</div><div class="dc-sub">소형 소매 바코드 (미국/캐나다)</div><div class="dc-val">01234565</div></td></tr>
+    <tr><td><img src="../codes/code128.png" alt="Code 128" class="dc-rect"></td><td><div class="dc-type">Code 128</div><div class="dc-sub">물류 / 배송</div><div class="dc-val">CODE-128-DEMO</div></td></tr>
+    <tr><td><img src="../codes/itf14.png" alt="ITF-14" class="dc-rect"></td><td><div class="dc-type">ITF-14</div><div class="dc-sub">배송 박스 바코드</div><div class="dc-val">12345678901231</div></td></tr>
+    <tr><td><img src="../codes/gs1databar.png" alt="GS1 DataBar" class="dc-rect"></td><td><div class="dc-type">GS1 DataBar</div><div class="dc-sub">소형 품목을 위한 소형 바코드</div><div class="dc-val">0112345678901231</div></td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="legal">법적 고지</h2>
+
+<h3 id="privacy">개인정보 처리방침</h3>
+<p><b>최종 업데이트:</b> 2026년 4월</p>
+<h4>소개</h4>
+<p>코드 리더는 간단한 원칙을 바탕으로 만들어졌습니다: 당신의 데이터는 당신의 것입니다. 이 개인정보 처리방침은 앱이 어떤 정보에 접근하고 어떻게 처리하는지 설명합니다.</p>
+<h4>카메라 접근</h4>
+<p>앱은 바코드와 QR 코드를 실시간으로 스캔하기 위해 기기의 카메라를 사용합니다. 카메라 피드는 기기 내에서만 처리됩니다. 이미지나 동영상 프레임은 저장, 업로드, 공유되지 않습니다.</p>
+<h4>스캔 기록</h4>
+<p>스캔 결과는 Apple의 기기 내 저장 기술을 사용하여 기기에 로컬로 저장됩니다. 이 데이터는 기기를 떠나지 않으며 어떤 서버에도 전송되지 않습니다. 앱 내에서 언제든지 스캔 기록을 삭제할 수 있습니다.</p>
+<h4>인터넷 연결 불필요</h4>
+<p>코드 리더는 완전히 오프라인으로 작동합니다. 앱은 네트워크 요청을 보내지 않습니다. 데이터는 기기를 절대 떠나지 않습니다.</p>
+<h4>데이터 수집 없음</h4>
+<p>어떠한 개인정보도 수집, 저장, 처리하지 않습니다. 앱은 계정이나 등록이 필요하지 않습니다.</p>
+<h4>제3자 서비스</h4>
+<p>코드 리더는 제3자 분석, 광고 또는 추적 서비스를 사용하지 않습니다. 어떤 데이터도 제3자와 공유되지 않습니다.</p>
+<h4>아동 개인정보 보호</h4>
+<p>개인정보를 수집하지 않으므로 코드 리더는 모든 연령의 사용자에게 안전하며 COPPA 및 전 세계 유사 법규를 준수합니다.</p>
+<h4>방침 변경</h4>
+<p>이 개인정보 처리방침은 때때로 업데이트될 수 있습니다. 변경 사항은 게시 즉시 효력이 발생합니다. 이 페이지를 주기적으로 확인하시기 바랍니다.</p>
+<h4>문의</h4>
+<p>이 개인정보 처리방침에 관한 문의: support [at] hoshinosoftware [dot] com</p>
+
+<h3 id="terms" style="margin-top:40px; padding-top:24px; border-top:1px solid #e5e5e5;">이용약관</h3>
+<p><b>최종 업데이트:</b> 2026년 4월</p>
+<h4>약관 동의</h4>
+<p>코드 리더를 다운로드하거나 사용함으로써 이 이용약관에 동의하는 것으로 간주됩니다. 동의하지 않으시면 앱을 사용하지 마십시오.</p>
+<h4>라이선스</h4>
+<p>Hoshino Software는 이 약관 및 Apple App Store 이용약관에 따라 Apple 기기에서 코드 리더를 사용할 수 있는 개인적이고 양도 불가능한 비독점적 라이선스를 부여합니다.</p>
+<h4>허용된 사용</h4>
+<p>코드 리더는 합법적인 목적으로만 사용할 수 있습니다. 관련 법률 또는 규정을 위반하는 방식으로 앱을 사용하지 않기로 동의합니다.</p>
+<h4>무보증</h4>
+<p>코드 리더는 명시적이거나 묵시적인 어떠한 보증도 없이 "있는 그대로" 제공됩니다. 앱이 오류 없이 작동하거나 중단 없이 제공되거나 특정 목적에 적합하다고 보장하지 않습니다.</p>
+<h4>책임 제한</h4>
+<p>관련 법률이 허용하는 최대 범위 내에서 Hoshino Software는 코드 리더의 사용 또는 사용 불가로 인한 직접적, 간접적, 부수적, 특별 또는 결과적 손해에 대해 책임지지 않습니다.</p>
+<h4>약관 변경</h4>
+<p>이 이용약관은 때때로 업데이트될 수 있습니다. 변경 사항 게시 후 앱을 계속 사용하면 개정된 약관에 동의한 것으로 간주됩니다.</p>
+<h4>준거법</h4>
+<p>이 약관은 Hoshino Software가 운영되는 관할 지역의 법률에 의해 규율됩니다.</p>
+<h4>문의</h4>
+<p>이 이용약관에 관한 문의: support [at] hoshinosoftware [dot] com</p>
+
+</main>
+
+<footer>© 2026 Hoshino Software &amp; Security · support [at] hoshinosoftware [dot] com</footer>
+
+<script>
+
+function applyTopPad() {
+  var h = document.getElementById('lang-strip').offsetHeight;
+  document.querySelector('main').style.paddingTop = (h + 20) + 'px';
+}
+applyTopPad();
+window.addEventListener('resize', applyTopPad);
+
+</script>
+
+</body>
+</html>

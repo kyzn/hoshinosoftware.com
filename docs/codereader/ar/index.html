@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>قارئ الرموز – العربية</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+/* ── Reset & Base ───────────────────────────── */
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #111;
+  line-height: 1.6;
+}
+
+/* ── Fixed language strip ───────────────────── */
+#lang-strip {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid #e5e5e5;
+}
+#lang-strip .strip-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+}
+#lang-strip .strip-brand {
+  position: absolute;
+  left: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  white-space: nowrap;
+}
+#lang-strip .strip-brand:hover { color: #555; }
+@media (max-width: 1000px) { #lang-strip .strip-brand { display: none; } }
+#lang-strip .strip-langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  font-size: 13px;
+  justify-content: center;
+  width: 100%;
+}
+#lang-strip .strip-langs a {
+  color: #666;
+  text-decoration: none;
+  padding: 2px 10px 2px 0;
+  white-space: nowrap;
+}
+#lang-strip .strip-langs a:hover { color: #000; }
+#lang-strip .strip-langs a.active { color: #000; font-weight: 700; }
+#lang-strip .strip-langs .dot {
+  color: #ccc;
+  padding-right: 10px;
+  user-select: none;
+}
+
+/* ── Main content ───────────────────────────── */
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
+}
+
+/* ── Table of Contents ──────────────────────── */
+#toc {
+  background: #f5f5f7;
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin: 28px 0 40px;
+}
+#toc h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  margin: 0 0 12px;
+  border: none;
+  padding: 0;
+}
+#toc ol {
+  margin: 0;
+  padding-left: 20px;
+  counter-reset: toc-counter;
+  list-style: none;
+}
+#toc ol li {
+  counter-increment: toc-counter;
+  margin: 6px 0;
+}
+#toc ol li::before {
+  content: counter(toc-counter) ". ";
+  font-weight: 600;
+  color: #bbb;
+}
+#toc a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
+}
+#toc a:hover { text-decoration: underline; }
+
+/* ── Section h2 (top-level sections) ───────── */
+h2.section-h2 {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 2px solid #e5e5e5;
+  border-bottom: none;
+  font-size: 1.5rem;
+  padding-bottom: 0;
+}
+h2.section-h2.first-section {
+  margin-top: 0;
+  border-top: none;
+  padding-top: 0;
+}
+
+/* ── Sub-section divider ────────────────────── */
+.sub-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 40px 0 24px;
+}
+.sub-divider::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.sub-divider-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bbb;
+  white-space: nowrap;
+}
+.sub-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+/* ── Typography ─────────────────────────────── */
+h1 { font-weight: 600; margin-bottom: 10px; margin-top: 0; }
+h2 { margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+h3 { margin-top: 20px; margin-bottom: 4px; }
+p  { margin: 10px 0; }
+ul, ol { padding-left: 20px; }
+li { margin: 4px 0; }
+
+/* ── Section scroll anchors ─────────────────── */
+.section-anchor {
+  scroll-margin-top: 60px;
+}
+
+/* ── Support contact box ────────────────────── */
+.contact-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #f0f8ff;
+  border: 1px solid #c5dff0;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.contact-box .contact-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+.contact-box .contact-body {
+  flex: 1;
+}
+.contact-box .contact-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6a9ab5;
+  margin-bottom: 2px;
+}
+.contact-box .contact-email {
+  font-size: 17px;
+  font-weight: 600;
+  color: #111;
+}
+.contact-box .contact-note {
+  font-size: 13px;
+  color: #666;
+  margin-top: 3px;
+}
+
+/* ── Screenshots ────────────────────────────── */
+.screenshots {
+  display: flex; gap: 16px; flex-wrap: wrap; margin: 20px 0;
+}
+.screenshots img {
+  width: 160px;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  display: block;
+}
+
+/* ── Tip ────────────────────────────────────── */
+.tip {
+  background: #f5f5f7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 15px;
+}
+
+/* ── Tables ─────────────────────────────────── */
+table {
+  width: 100%; border-collapse: collapse;
+  margin-top: 15px; font-size: 14px;
+  border: 1px solid #eee; border-radius: 8px; overflow: hidden;
+}
+thead th {
+  text-align: left; background: #f5f5f7;
+  font-weight: 600; padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+tbody td { padding: 10px; border-bottom: 1px solid #eee; }
+tbody tr:nth-child(even) { background: #fafafa; }
+
+/* ── Demo codes table ───────────────────────── */
+.demo-codes-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 24px 0;
+  font-size: 14px;
+}
+.demo-codes-table td {
+  padding: 40px 10px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+.demo-codes-table td:first-child {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  text-align: center;
+}
+.demo-codes-table img {
+  max-width: 300px;
+  max-height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.demo-codes-table img.dc-rect {
+  max-height: 400px;
+}
+.dc-type { font-weight: 600; color: #111; }
+.dc-sub  { font-size: 12px; color: #777; margin-top: 2px; }
+.dc-val  { font-size: 11px; color: #aaa; font-family: monospace; margin-top: 4px; word-break: break-all; }
+pre.dc-val { white-space: pre-wrap; margin: 4px 0 0; padding: 0; background: none; border: none; }
+
+/* ── RTL support ────────────────────────────── */
+.rtl { direction: rtl; text-align: right; }
+.rtl ul, .rtl ol { padding-left: 0; padding-right: 20px; }
+.rtl thead th { text-align: right; }
+
+/* ── Footer ─────────────────────────────────── */
+footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-top: 1px solid #e5e5e5;
+  font-size: 12px; color: #666; text-align: center;
+  padding: 8px 20px;
+}
+
+</style>
+</head>
+<body>
+
+<div id="lang-strip">
+  <div class="strip-inner">
+    <a href="../../" class="strip-brand">Hoshino Software &amp; Security</a>
+    <nav class="strip-langs">
+      <a href="/codereader/en">EN</a>
+      <span class="dot">·</span>
+      <a href="/codereader/fr">FR</a>
+      <span class="dot">·</span>
+      <a href="/codereader/it">IT</a>
+      <span class="dot">·</span>
+      <a href="/codereader/es">ES</a>
+      <span class="dot">·</span>
+      <a href="/codereader/pt">PT</a>
+      <span class="dot">·</span>
+      <a href="/codereader/de">DE</a>
+      <span class="dot">·</span>
+      <a href="/codereader/tr">TR</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ko">한국어</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ja">日本語</a>
+      <span class="dot">·</span>
+      <a href="/codereader/zh-hans">简体中文</a>
+      <span class="dot">·</span>
+      <a href="/codereader/zh-hant">繁體中文</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ar" class="active">العربية</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+<div class="rtl">
+
+<h1 class="section-anchor" id="top">قارئ الرموز</h1>
+<p>يقوم قارئ الرموز بمسح الباركود ورموز QR باستخدام كاميرا iPhone أو أي صورة من مكتبة صورك.
+يعمل بشكل كامل دون اتصال بالإنترنت، ولا يخزن أي شيء في السحابة، ولا يعرض إعلانات أبدًا.</p>
+
+<nav id="toc" aria-label="محتويات الصفحة">
+  <h2>المحتويات</h2>
+  <ol>
+    <li><a href="#download">تنزيل</a></li>
+    <li><a href="#support">الدعم</a></li>
+    <li><a href="#manual">الدليل</a></li>
+    <li><a href="#democodes">رموز تجريبية</a></li>
+    <li><a href="#legal">قانوني</a></li>
+  </ol>
+</nav>
+
+<h2 class="section-h2 first-section section-anchor" id="download">تنزيل</h2>
+
+<p class="tip">لم يُنشر التطبيق بعد. ستتوفر روابط App Store ورمز QR هنا فور إطلاقه.</p>
+
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0; opacity:0.45;">
+  <img src="../../appstorebadge/ar.svg" alt="التنزيل من App Store" height="72">
+  <div style="width:180px; height:180px; background:#f5f5f7; border-radius:10px; border:1px dashed #ccc; display:flex; align-items:center; justify-content:center; font-size:12px; color:#999;">رمز QR قريبًا</div>
+</div>
+<p>قارئ الرموز متاح للتنزيل مجانًا من App Store. لا يلزم حساب. يتطلب iOS 26 أو إصدار أحدث.</p>
+
+<h2 class="section-h2 section-anchor" id="support">الدعم</h2>
+
+<p>هل لديك سؤال، أو وجدت خللًا، أو تحتاج مساعدة في التطبيق؟ تواصل معنا. نقرأ كل رسالة.</p>
+
+<div class="contact-box">
+  <div class="contact-icon">✉️</div>
+  <div class="contact-body">
+    <div class="contact-label">دعم البريد الإلكتروني</div>
+    <div class="contact-email">support [at] hoshinosoftware [dot] com</div>
+    <div class="contact-note">نرد عادةً خلال 5 أيام عمل.</div>
+  </div>
+</div>
+
+<h3>قبل أن تكتب</h3>
+<p>تجد إجابات لكثير من المشكلات الشائعة في <a href="#manual">الدليل</a> والأسئلة الشائعة أدناه. بعض الفحوصات السريعة:</p>
+<ul>
+  <li><b>الكاميرا لا تعمل؟</b> انتقل إلى إعدادات iPhone ← الخصوصية والأمان ← الكاميرا ← فعّل الوصول لتطبيق قارئ الرموز.</li>
+  <li><b>لا تجد السجل؟</b> اضغط على تبويب السجل. تُحفظ الإدخالات لمدة 6 أشهر بحد أقصى 1,000 إدخال.</li>
+  <li><b>الرمز لا يُمسح؟</b> تأكد من توفر إضاءة جيدة وثبّت الرمز. جرّب وضع المعرض إذا كان لديك ملف صورة.</li>
+  <li><b>التطبيق يتعطل؟</b> أغلقه إجباريًا ثم أعد تشغيله. إذا استمرت المشكلة، راسلنا عبر البريد الإلكتروني مع ذكر طراز iPhone ونسخة iOS.</li>
+</ul>
+
+<h3>الأسئلة الشائعة</h3>
+<ul>
+  <li><b>هل يحتاج اتصالًا بالإنترنت؟</b><br>لا. يعمل قارئ الرموز بشكل كامل دون اتصال.</li><br>
+  <li><b>هل يجمع بياناتي؟</b><br>لا. لا يُرفع أي شيء إلى أي مكان. يُخزَّن سجل المسح على جهازك فقط.</li><br>
+  <li><b>هل يصل إلى مكتبة صوري بأكملها؟</b><br>لا. في علامة تبويب المعرض، تختار صورة واحدة باستخدام منتقي الصور النظامي. لا يحصل قارئ الرموز على إذن الوصول إلى مكتبتك.</li><br>
+  <li><b>لماذا يستغرق وضع الرموز المتعددة وقتًا أطول قليلًا؟</b><br>تجمع الكاميرا الرموز عبر نافذة زمنية قصيرة من الإطارات لضمان التقاط جميع الرموز المرئية قبل عرض النتيجة.</li><br>
+  <li><b>كم تُحتفظ بسجل المسح؟</b><br>تُزال الإدخالات الأقدم من 6 أشهر تلقائيًا. كذلك يقتصر السجل على 1,000 إدخال، وتُحذف الأقدم لإفساح المجال للجديدة.</li><br>
+  <li><b>لماذا لا ينتقل إلى الرابط تلقائيًا؟</b><br>هذا مقصود. رموز QR المزيفة أو الخبيثة شائعة في مواقف السيارات وطاولات المطاعم وأماكن أخرى. إظهار الرابط قبل فتحه يتيح لك التحقق من أنه آمن.</li>
+</ul>
+
+<h2 class="section-h2 section-anchor" id="manual">الدليل</h2>
+
+<div class="screenshots">
+  <img src="../screenshots/ar/camera.png" alt="شاشة الكاميرا">
+  <img src="../screenshots/ar/result.png" alt="شاشة نتيجة المسح">
+  <img src="../screenshots/ar/settings.png" alt="شاشة الإعدادات">
+</div>
+
+<h3>الكاميرا</h3>
+<p>تفتح علامة تبويب الكاميرا وتبدأ المسح فورًا. وجّه هاتفك نحو أي باركود أو رمز QR وسيكتشفه التطبيق تلقائيًا. يُشترط منح إذن الكاميرا. إن لم تمنحه بعد، ستظهر نافذة طلب الإذن. اضغط على <b>فتح الإعدادات</b> وفعّل وصول <b>الكاميرا</b> لتطبيق قارئ الرموز.</p>
+<ul>
+  <li><b>المصباح اليدوي:</b> اضغط على زر المصباح لإضاءة البيئات المظلمة. متاح فقط مع الكاميرا الخلفية.</li>
+  <li><b>الكاميرا الأمامية:</b> اضغط على زر التدوير للتبديل بين الكاميرا الخلفية والأمامية. مفيد حين تكون الكاميرا الخلفية غير متاحة (مثلًا عند تلفها).</li>
+</ul>
+<div class="tip">💡 يعرض التطبيق خطًا أحمر للمسح أثناء البحث عن الرموز. لا تحتاج إلى الضغط على أي شيء. التعرف يتم تلقائيًا.</div>
+
+<h3>المعرض</h3>
+<p>تتيح لك علامة تبويب المعرض مسح الرموز من صورة موجودة. اضغط على <b>اختيار صورة</b> لتحديد أي صورة من مكتبتك. تُشارَك مع التطبيق الصورة المحددة فقط. لا يطلب قارئ الرموز الوصول إلى مكتبة صورك بأكملها.</p>
+<p>بعد اختيار صورة، يمسحها التطبيق ويعرض النتيجة فورًا. وإن لم يُعثر على أي رمز، ستظهر تنبيه يخبرك بذلك.</p>
+
+<h3>السجل</h3>
+<p>تُحفظ كل عملية مسح تلقائيًا في علامة تبويب السجل. تُحتفظ بعمليات المسح لمدة <b>6 أشهر</b>، ويستوعب السجل ما يصل إلى <b>1,000 إدخال</b>، وتُزال الأقدم منها تلقائيًا عند الوصول إلى الحد الأقصى.</p>
+<ul>
+  <li><b>عرض مسح سابق:</b> اضغط على أي صف لإعادة فتح النتيجة كاملة.</li>
+  <li><b>حذف إدخال واحد:</b> اسحب الصف نحو اليسار واضغط على <b>حذف</b>.</li>
+  <li><b>حذف الكل:</b> اضغط على أيقونة سلة المهملات في الزاوية العلوية اليمنى.</li>
+  <li><b>تسمية المصدر:</b> يوضح كل إدخال ما إذا كان مصدره الكاميرا أو المعرض أو المشاركة.</li>
+</ul>
+
+<h3>الإعدادات</h3>
+<p><b>وضع الرموز المتعددة</b><br>
+بشكل افتراضي، يتوقف قارئ الرموز فور اكتشاف <b>رمز واحد</b>. شغّل <b>وضع الرموز المتعددة</b> لمسح ما يصل إلى <b>5 رموز دفعة واحدة</b>، وهو مفيد لبطاقات العمل وأوراق المنتجات وأي صورة تحتوي على رموز متعددة جنبًا إلى جنب.</p>
+<p>حين يكون وضع الرموز المتعددة نشطًا، تواصل الكاميرا المسح لفترة وجيزة بعد الاكتشاف الأول لجمع جميع الرموز المرئية قبل عرض النتائج. لهذا السبب يستغرق وقتًا أطول قليلًا من وضع الرمز الواحد.</p>
+
+<p><b>إظهار التفاصيل المتقدمة</b><br>
+شغّل <b>إظهار التفاصيل المتقدمة</b> للكشف عن البيانات الوصفية التقنية إلى جانب كل نتيجة مسح: مثل إصدار QR ومستوى تصحيح الأخطاء ونمط القناع وبنية الباركود (أحرف البداية/النهاية والرقم التدقيقي). تظهر هذه المعلومات في صفحة نتيجة المسح وفي صفوف علامة تبويب السجل.</p>
+<div class="tip">💡 هذه طريقة رائعة لمعرفة المزيد حول كيفية عمل رموز QR والباركود فعليًا. إن كنت فضوليًا بشأن التقنية الكامنة وراء ما تمسحه، جرّبها!</div>
+
+<h3>نتائج المسح</h3>
+<p>عند اكتشاف رمز، يعرض قارئ الرموز محتواه قبل القيام بأي شيء. ترى دائمًا البيانات الخام أولًا، مع زرَّي <b>نسخ</b> و<b>مشاركة</b>. إن احتوى الرمز على رابط URL (شائع في رموز QR)، يظهر زر <b>فتح</b>. الضغط عليه يفتح الرابط في متصفحك الافتراضي لا في متصفح داخل التطبيق. لا تُجمع أي بيانات تصفح.</p>
+<p>يتعرف قارئ الرموز تلقائيًا على أنواع الرموز الخاصة ويعرض إجراءات سياقية:</p>
+<table>
+  <thead><tr><th>نوع الرمز</th><th>ما يمكنك فعله</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / رابط</td><td>فتح في المتصفح الافتراضي · نسخ · مشاركة</td></tr>
+    <tr><td>📶 شبكة Wi-Fi</td><td><b>الاتصال</b> مباشرة · نسخ كلمة المرور</td></tr>
+    <tr><td>👤 جهة اتصال (vCard / MECARD)</td><td><b>الحفظ في جهات الاتصال</b> مع معاينة</td></tr>
+    <tr><td>📅 حدث تقويم</td><td><b>إضافة إلى التقويم</b></td></tr>
+    <tr><td>✉️ بريد إلكتروني</td><td><b>إنشاء</b> بريد مُعبأ مسبقًا</td></tr>
+    <tr><td>💬 رسالة SMS</td><td><b>إرسال رسالة</b></td></tr>
+    <tr><td>📞 رقم هاتف</td><td><b>اتصال</b></td></tr>
+    <tr><td>📍 موقع جغرافي</td><td><b>الفتح في الخرائط</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> أو FaceTime صوت</td></tr>
+    <tr><td>₿ بيتكوين</td><td><b>نسخ العنوان</b></td></tr>
+    <tr><td>✈️ بطاقة الصعود</td><td>تفاصيل الرحلة مستخرجة من Aztec / PDF417</td></tr>
+  </tbody>
+</table>
+
+<p>مع تفعيل <b>إظهار التفاصيل المتقدمة</b> (في الإعدادات)، يظهر قسمان إضافيان في صفحة النتائج:</p>
+<ul>
+  <li><b>البيانات المفككة:</b> السلسلة الخام المشفرة داخل الباركود قبل أي معالجة.</li>
+  <li><b>البنية:</b> التفصيل التقني للباركود: أحرف البداية والنهاية والرقم التدقيقي وأنماط الحراسة وعناصر مشابهة بحسب نوع الرمز.</li>
+</ul>
+<p>بالنسبة لرموز QR، تظهر أيضًا شرائح بيانات وصفية تعرض رقم الإصدار ومستوى تصحيح الأخطاء ونمط القناع.</p>
+
+<p><b>الكشف عن معاملات التتبع</b><br>
+حين يحتوي رابط URL على معاملات تتبع، يعرض قارئ الرموز زر <b>الفتح بدون تتبع</b>. يشمل ذلك علامات UTM ومعرفات النقر من Facebook وGoogle Ads وMicrosoft وTikTok وغيرها. اضغط عليه لفتح الرابط بعد إزالة تلك المعاملات. ستصل إلى الصفحة ذاتها دون أن يُتتبع نشاطك.</p>
+
+<h3>المسح من تطبيق آخر</h3>
+<p>يمكنك مسح رمز يظهر في صورة داخل أي تطبيق آخر (رسالة أو بريد إلكتروني أو عارض مستندات أو متصفح ويب) دون مغادرة ذلك التطبيق.</p>
+<p><b>باستخدام المشاركة:</b></p>
+<ol>
+  <li>افتح الصورة في معرضك أو في أي تطبيق، ثم اضغط على زر <b>مشاركة</b>.</li>
+  <li>في قائمة التطبيقات التي تظهر، ابحث عن <b>قارئ الرموز</b> واضغط عليه. إن لم تره، مرر للنهاية واضغط على <b>المزيد</b>.</li>
+  <li>يفتح التطبيق ويمسح الصورة تلقائيًا.</li>
+</ol>
+<p><b>باستخدام الإجراءات:</b></p>
+<ol>
+  <li>افتح الصورة في معرضك أو في أي تطبيق، ثم اضغط على زر <b>مشاركة</b>.</li>
+  <li>مرر صف الإجراءات أسفل قائمة التطبيقات واضغط على <b>Scan for Codes</b>.</li>
+  <li>يفتح التطبيق ويمسح الصورة تلقائيًا.</li>
+</ol>
+<div class="tip">💡 كلا الخيارين يؤديان الغرض ذاته. "قارئ الرموز" في صف التطبيقات و"Scan for Codes" في صف الإجراءات طريقتان للوصول إلى الميزة نفسها.</div>
+
+<h3>ودجت الشاشة الرئيسية</h3>
+<p>يمكنك إضافة ودجت إلى شاشتك الرئيسية كاختصار أكبر للتطبيق. الضغط عليه يفتح الكاميرا مباشرة جاهزة للمسح. تتوفر الودجت بثلاثة أحجام (صغير ومتوسط وكبير)، لتختار ما يناسب تخطيط شاشتك الرئيسية.</p>
+<ol>
+  <li>اضغط مطولًا على منطقة فارغة في شاشتك الرئيسية حتى تبدأ الأيقونات بالاهتزاز.</li>
+  <li>اضغط على زر <b>+</b> في الزاوية العلوية اليسرى.</li>
+  <li>ابحث عن <b>قارئ الرموز</b>.</li>
+  <li>اختر حجمًا واضغط على <b>إضافة ودجت</b>.</li>
+  <li>يمكنك تغيير حجمه لاحقًا بالضغط المطوّل على الودجت واختيار <b>تعديل الودجت</b>.</li>
+</ol>
+
+<h3>Control Center</h3>
+<p>Control Center هو اللوحة التي تنزلق حين تسحب من الزاوية العلوية اليمنى للشاشة. يمكنك إضافة زر قارئ الرموز هناك لتشغيل الكاميرا بنقرة واحدة من أي مكان، بما في ذلك شاشة القفل أو أثناء استخدام تطبيق آخر.</p>
+<ol>
+  <li>اسحب من الزاوية العلوية اليمنى لفتح Control Center.</li>
+  <li>اضغط على زر <b>+</b> للدخول إلى وضع التعديل.</li>
+  <li>ابحث عن <b>قارئ الرموز</b> في القائمة واضغط عليه للإضافة.</li>
+  <li>يمكنك سحبه لإعادة تموضعه وتغيير حجمه أثناء وضع التعديل.</li>
+</ol>
+
+<h3 id="codetypes">أنواع الرموز المدعومة</h3>
+<table>
+  <thead><tr><th>الرمز</th><th>ملاحظات</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>أكثر رموز 2D شيوعًا. يُستخدم للروابط والشبكات اللاسلكية وجهات الاتصال وغيرها</td></tr>
+    <tr><td>Micro QR</td><td>نسخة مضغوطة من QR Code للملصقات الصغيرة ذات المساحة المحدودة</td></tr>
+    <tr><td>Aztec</td><td>يُستخدم في بطاقات الصعود وتذاكر وسائل النقل</td></tr>
+    <tr><td>Data Matrix</td><td>شائع في التصنيع والرعاية الصحية واللوجستيات</td></tr>
+    <tr><td>PDF417</td><td>يُستخدم في رخص القيادة وبطاقات الصعود وملصقات الشحن</td></tr>
+    <tr><td>Micro PDF417</td><td>PDF417 مضغوط للعناصر الصغيرة كالتغليف الدوائي</td></tr>
+    <tr><td>EAN-8</td><td>باركود قصير للمنتجات الصغيرة في التجزئة</td></tr>
+    <tr><td>EAN-13</td><td>باركود التجزئة المعياري الموجود على معظم منتجات المستهلك في العالم</td></tr>
+    <tr><td>UPC-E</td><td>باركود مضغوط يُستخدم في التغليف الصغير بالتجزئة في الولايات المتحدة وكندا</td></tr>
+    <tr><td>Code 39</td><td>أحد أقدم أنواع الباركود، شائع في البيئات الصناعية</td></tr>
+    <tr><td>Code 93</td><td>خليفة Code 39 ذو الكثافة الأعلى</td></tr>
+    <tr><td>Code 128</td><td>باركود عالي الكثافة مستخدم على نطاق واسع في اللوجستيات والشحن</td></tr>
+    <tr><td>ITF-14</td><td>باركود مكوّن من 14 رقمًا يُطبع على صناديق الشحن المقوّاة</td></tr>
+    <tr><td>Codabar</td><td>يُستخدم في المكتبات وبنوك الدم وبعض شركات الشحن</td></tr>
+    <tr><td>GS1 DataBar</td><td>باركود مضغوط للعناصر الصغيرة كالمنتجات الطازجة</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>نسخة موسّعة تحمل بيانات إضافية كالوزن وتاريخ الانتهاء</td></tr>
+  </tbody>
+</table>
+<p><b>غير مدعوم:</b></p>
+<table>
+  <thead><tr><th>الرمز</th><th>ملاحظات</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (ملحقات)</td><td>ملحقات أرقام قصيرة مرفقة بـ EAN-13، تُستخدم لأرقام إصدارات المجلات وتسعير الكتب</td></tr>
+    <tr><td>rMQR</td><td>Micro QR المستطيل، نوع QR مضغوط أحدث مصمم للملصقات الضيقة</td></tr>
+    <tr><td>MaxiCode</td><td>رمز نقطي ثنائي الأبعاد تستخدمه UPS على ملصقات الشحن</td></tr>
+    <tr><td>SP Code</td><td>باركود يمكّن إمكانية الوصول في اليابان ويشفّر بيانات صوتية منطوقة</td></tr>
+    <tr><td>الرموز البريدية</td><td>باركود بريدي رباعي الحالات تستخدمه خدمات البريد الوطنية (USPS Intelligent Mail وRoyal Mail وAustralia Post وJapan Post وغيرها)</td></tr>
+    <tr><td>رموز التطبيقات الخاصة</td><td>رموز بصرية مخصصة لا يمكن مسحها إلا بالتطبيق المُصدر لها</td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="democodes">رموز تجريبية</h2>
+
+<p>امسحها مباشرة من هذه الشاشة بالكاميرا، أو التقط لقطة شاشة واستخدم علامة تبويب المعرض.</p>
+
+<table class="demo-codes-table">
+  <tbody>
+    <tr><td><img src="../codes/qr-url.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">رابط URL مع معاملات تتبع</div><div class="dc-val">https://hoshinosoftware.com?utm_source=review&amp;utm_campaign=demo</div></td></tr>
+    <tr><td><img src="../codes/qr-wifi.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">شبكة Wi-Fi</div><div class="dc-val">WIFI:S:example-wifi;T:WPA;P:example-password;;</div></td></tr>
+    <tr><td><img src="../codes/qr-email.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">بريد إلكتروني</div><div class="dc-val">mailto:test@example.com</div></td></tr>
+    <tr><td><img src="../codes/qr-vcard.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">جهة اتصال (vCard)</div><pre class="dc-val">BEGIN:VCARD
+VERSION:3.0
+N:Last;First
+FN:First Last
+ORG:Company
+TITLE:Job Title
+ADR:;;Street;City;CA;90401;USA
+TEL;WORK;VOICE:
+TEL;CELL:+1234567890123
+TEL;FAX:
+EMAIL;WORK;INTERNET:example@example.com
+URL:https://example.com
+END:VCARD</pre></td></tr>
+    <tr><td><img src="../codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">QR مضغوط للملصقات الصغيرة</div><div class="dc-val">HELLO</div></td></tr>
+    <tr><td><img src="../codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">وسائل النقل / بطاقات الصعود</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">نوع مضغوط للملصقات الصغيرة</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-square.png" alt="Data Matrix (Square)"></td><td><div class="dc-type">Data Matrix (Square)</div><div class="dc-sub">التصنيع / الرعاية الصحية</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-rectangular.png" alt="Data Matrix (Rectangular)" class="dc-rect"></td><td><div class="dc-type">Data Matrix (Rectangular)</div><div class="dc-sub">نوع مستطيل للملصقات الضيقة</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/pdf417.gif" alt="PDF417" class="dc-rect"></td><td><div class="dc-type">PDF417</div><div class="dc-sub">وثائق الهوية / ملصقات الشحن</div><div class="dc-val">PDF417 SAMPLE DATA</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/micropdf417.gif" alt="Micro PDF417"></td><td><div class="dc-type">Micro PDF417</div><div class="dc-sub">PDF417 مضغوط للعناصر الصغيرة</div><div class="dc-val">MICROPDF417 SAMPLE DATA</div></td></tr>
+    <tr><td><img src="../codes/ean13.png" alt="EAN-13" class="dc-rect"></td><td><div class="dc-type">EAN-13</div><div class="dc-sub">باركود التجزئة</div><div class="dc-val">5901234123457</div></td></tr>
+    <tr><td><img src="../codes/upce.png" alt="UPC-E" class="dc-rect" style="max-width:150px;"></td><td><div class="dc-type">UPC-E</div><div class="dc-sub">باركود مضغوط (الولايات المتحدة/كندا)</div><div class="dc-val">01234565</div></td></tr>
+    <tr><td><img src="../codes/code128.png" alt="Code 128" class="dc-rect"></td><td><div class="dc-type">Code 128</div><div class="dc-sub">اللوجستيات / الشحن</div><div class="dc-val">CODE-128-DEMO</div></td></tr>
+    <tr><td><img src="../codes/itf14.png" alt="ITF-14" class="dc-rect"></td><td><div class="dc-type">ITF-14</div><div class="dc-sub">باركود صندوق الشحن</div><div class="dc-val">12345678901231</div></td></tr>
+    <tr><td><img src="../codes/gs1databar.png" alt="GS1 DataBar" class="dc-rect"></td><td><div class="dc-type">GS1 DataBar</div><div class="dc-sub">باركود مضغوط للعناصر الصغيرة</div><div class="dc-val">0112345678901231</div></td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="legal">قانوني</h2>
+
+<h3 id="privacy">سياسة الخصوصية</h3>
+<p><b>آخر تحديث:</b> أبريل 2026</p>
+<h4>مقدمة</h4>
+<p>قارئ الرموز مبني على مبدأ بسيط: بياناتك ملك لك. توضح سياسة الخصوصية هذه المعلومات التي يصل إليها التطبيق وكيفية التعامل معها.</p>
+<h4>الوصول إلى الكاميرا</h4>
+<p>يستخدم التطبيق كاميرا جهازك لمسح الباركود ورموز QR في الوقت الفعلي. تتم معالجة تغذية الكاميرا بالكامل على جهازك. لا يتم تخزين أي صور أو إطارات فيديو أو تحميلها أو مشاركتها مطلقًا.</p>
+<h4>سجل المسح</h4>
+<p>تُحفظ نتائج المسح محليًا على جهازك باستخدام تقنية التخزين المدمجة في Apple. لا تغادر هذه البيانات جهازك أبدًا ولا تُرسل إلى أي خادم. يمكنك حذف سجل المسح في أي وقت من داخل التطبيق.</p>
+<h4>لا حاجة لاتصال بالإنترنت</h4>
+<p>يعمل قارئ الرموز بالكامل دون اتصال بالإنترنت. لا يُرسل التطبيق أي طلبات شبكة. بياناتك لا تغادر جهازك أبدًا.</p>
+<h4>لا جمع للبيانات</h4>
+<p>لا نجمع أي معلومات شخصية أو نخزنها أو نعالجها. لا يتطلب التطبيق حسابًا أو أي شكل من أشكال التسجيل.</p>
+<h4>خدمات الأطراف الثالثة</h4>
+<p>لا يستخدم قارئ الرموز أي خدمات تحليلات أو إعلانات أو تتبع تابعة لأطراف ثالثة. لا تُشارَك أي بيانات مع أطراف ثالثة.</p>
+<h4>خصوصية الأطفال</h4>
+<p>نظرًا لعدم جمع أي بيانات شخصية، فإن قارئ الرموز آمن لمستخدمي جميع الأعمار ويتوافق مع قانون COPPA واللوائح المماثلة حول العالم.</p>
+<h4>التغييرات على هذه السياسة</h4>
+<p>قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. تسري التغييرات فور نشرها. نشجعك على مراجعة هذه الصفحة بشكل دوري.</p>
+<h4>تواصل معنا</h4>
+<p>لأي استفسارات حول سياسة الخصوصية هذه: support [at] hoshinosoftware [dot] com</p>
+
+<h3 id="terms" style="margin-top:40px; padding-top:24px; border-top:1px solid #e5e5e5;">شروط الخدمة</h3>
+<p><b>آخر تحديث:</b> أبريل 2026</p>
+<h4>قبول الشروط</h4>
+<p>بتنزيل قارئ الرموز أو استخدامه، فإنك توافق على الالتزام بشروط الخدمة هذه. إذا كنت لا توافق، يرجى عدم استخدام التطبيق.</p>
+<h4>الترخيص</h4>
+<p>تمنحك Hoshino Software ترخيصًا شخصيًا غير قابل للنقل وغير حصري لاستخدام قارئ الرموز على أجهزة Apple الخاصة بك وفقًا لهذه الشروط وشروط خدمة App Store من Apple.</p>
+<h4>الاستخدام المسموح به</h4>
+<p>يمكنك استخدام قارئ الرموز فقط لأغراض مشروعة. توافق على عدم استخدام التطبيق بأي طريقة تنتهك القوانين أو اللوائح المعمول بها.</p>
+<h4>إخلاء المسؤولية عن الضمانات</h4>
+<p>يُقدَّم قارئ الرموز "كما هو" دون أي ضمان من أي نوع، صريح أو ضمني. لا نضمن أن يكون التطبيق خاليًا من الأخطاء أو غير منقطع أو مناسبًا لأي غرض معين.</p>
+<h4>تحديد المسؤولية</h4>
+<p>إلى أقصى حد يسمح به القانون المعمول به، لن تكون Hoshino Software مسؤولة عن أي أضرار مباشرة أو غير مباشرة أو عرضية أو خاصة أو تبعية ناجمة عن استخدامك لقارئ الرموز أو عدم قدرتك على استخدامه.</p>
+<h4>التغييرات على هذه الشروط</h4>
+<p>قد نقوم بتحديث شروط الخدمة هذه من وقت لآخر. استمرار استخدام التطبيق بعد نشر التغييرات يُعدّ قبولًا للشروط المعدَّلة.</p>
+<h4>القانون الحاكم</h4>
+<p>تخضع هذه الشروط لقوانين الولاية القضائية التي تعمل فيها Hoshino Software.</p>
+<h4>تواصل معنا</h4>
+<p>لأي استفسارات حول شروط الخدمة هذه: support [at] hoshinosoftware [dot] com</p>
+
+</div><!-- /.rtl -->
+
+</main>
+
+<footer>© 2026 Hoshino Software &amp; Security · support [at] hoshinosoftware [dot] com</footer>
+
+<script>
+
+function applyTopPad() {
+  var h = document.getElementById('lang-strip').offsetHeight;
+  document.querySelector('main').style.paddingTop = (h + 20) + 'px';
+}
+applyTopPad();
+window.addEventListener('resize', applyTopPad);
+
+</script>
+
+</body>
+</html>

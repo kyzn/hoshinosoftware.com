@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Codeleser – Deutsch</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+/* ── Reset & Base ───────────────────────────── */
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #111;
+  line-height: 1.6;
+}
+
+/* ── Fixed language strip ───────────────────── */
+#lang-strip {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid #e5e5e5;
+}
+#lang-strip .strip-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+}
+#lang-strip .strip-brand {
+  position: absolute;
+  left: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  white-space: nowrap;
+}
+#lang-strip .strip-brand:hover { color: #555; }
+@media (max-width: 1000px) { #lang-strip .strip-brand { display: none; } }
+#lang-strip .strip-langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  font-size: 13px;
+  justify-content: center;
+  width: 100%;
+}
+#lang-strip .strip-langs a {
+  color: #666;
+  text-decoration: none;
+  padding: 2px 10px 2px 0;
+  white-space: nowrap;
+}
+#lang-strip .strip-langs a:hover { color: #000; }
+#lang-strip .strip-langs a.active { color: #000; font-weight: 700; }
+#lang-strip .strip-langs .dot {
+  color: #ccc;
+  padding-right: 10px;
+  user-select: none;
+}
+
+/* ── Main content ───────────────────────────── */
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
+}
+
+/* ── Table of Contents ──────────────────────── */
+#toc {
+  background: #f5f5f7;
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin: 28px 0 40px;
+}
+#toc h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  margin: 0 0 12px;
+  border: none;
+  padding: 0;
+}
+#toc ol {
+  margin: 0;
+  padding-left: 20px;
+  counter-reset: toc-counter;
+  list-style: none;
+}
+#toc ol li {
+  counter-increment: toc-counter;
+  margin: 6px 0;
+}
+#toc ol li::before {
+  content: counter(toc-counter) ". ";
+  font-weight: 600;
+  color: #bbb;
+}
+#toc a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
+}
+#toc a:hover { text-decoration: underline; }
+
+/* ── Section h2 (top-level sections) ───────── */
+h2.section-h2 {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 2px solid #e5e5e5;
+  border-bottom: none;
+  font-size: 1.5rem;
+  padding-bottom: 0;
+}
+h2.section-h2.first-section {
+  margin-top: 0;
+  border-top: none;
+  padding-top: 0;
+}
+
+/* ── Sub-section divider ────────────────────── */
+.sub-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 40px 0 24px;
+}
+.sub-divider::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.sub-divider-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bbb;
+  white-space: nowrap;
+}
+.sub-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+/* ── Typography ─────────────────────────────── */
+h1 { font-weight: 600; margin-bottom: 10px; margin-top: 0; }
+h2 { margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+h3 { margin-top: 20px; margin-bottom: 4px; }
+p  { margin: 10px 0; }
+ul, ol { padding-left: 20px; }
+li { margin: 4px 0; }
+
+/* ── Section scroll anchors ─────────────────── */
+.section-anchor {
+  scroll-margin-top: 60px;
+}
+
+/* ── Support contact box ────────────────────── */
+.contact-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #f0f8ff;
+  border: 1px solid #c5dff0;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.contact-box .contact-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+.contact-box .contact-body {
+  flex: 1;
+}
+.contact-box .contact-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6a9ab5;
+  margin-bottom: 2px;
+}
+.contact-box .contact-email {
+  font-size: 17px;
+  font-weight: 600;
+  color: #111;
+}
+.contact-box .contact-note {
+  font-size: 13px;
+  color: #666;
+  margin-top: 3px;
+}
+
+/* ── Screenshots ────────────────────────────── */
+.screenshots {
+  display: flex; gap: 16px; flex-wrap: wrap; margin: 20px 0;
+}
+.screenshots img {
+  width: 160px;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  display: block;
+}
+
+/* ── Tip ────────────────────────────────────── */
+.tip {
+  background: #f5f5f7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 15px;
+}
+
+/* ── Tables ─────────────────────────────────── */
+table {
+  width: 100%; border-collapse: collapse;
+  margin-top: 15px; font-size: 14px;
+  border: 1px solid #eee; border-radius: 8px; overflow: hidden;
+}
+thead th {
+  text-align: left; background: #f5f5f7;
+  font-weight: 600; padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+tbody td { padding: 10px; border-bottom: 1px solid #eee; }
+tbody tr:nth-child(even) { background: #fafafa; }
+
+/* ── Demo codes table ───────────────────────── */
+.demo-codes-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 24px 0;
+  font-size: 14px;
+}
+.demo-codes-table td {
+  padding: 40px 10px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+.demo-codes-table td:first-child {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  text-align: center;
+}
+.demo-codes-table img {
+  max-width: 300px;
+  max-height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.demo-codes-table img.dc-rect {
+  max-height: 400px;
+}
+.dc-type { font-weight: 600; color: #111; }
+.dc-sub  { font-size: 12px; color: #777; margin-top: 2px; }
+.dc-val  { font-size: 11px; color: #aaa; font-family: monospace; margin-top: 4px; word-break: break-all; }
+pre.dc-val { white-space: pre-wrap; margin: 4px 0 0; padding: 0; background: none; border: none; }
+
+/* ── RTL support ────────────────────────────── */
+.rtl { direction: rtl; text-align: right; }
+.rtl ul, .rtl ol { padding-left: 0; padding-right: 20px; }
+.rtl thead th { text-align: right; }
+
+/* ── Footer ─────────────────────────────────── */
+footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-top: 1px solid #e5e5e5;
+  font-size: 12px; color: #666; text-align: center;
+  padding: 8px 20px;
+}
+
+</style>
+</head>
+<body>
+
+<div id="lang-strip">
+  <div class="strip-inner">
+    <a href="../../" class="strip-brand">Hoshino Software &amp; Security</a>
+    <nav class="strip-langs">
+      <a href="/codereader/en">EN</a>
+      <span class="dot">·</span>
+      <a href="/codereader/fr">FR</a>
+      <span class="dot">·</span>
+      <a href="/codereader/it">IT</a>
+      <span class="dot">·</span>
+      <a href="/codereader/es">ES</a>
+      <span class="dot">·</span>
+      <a href="/codereader/pt">PT</a>
+      <span class="dot">·</span>
+      <a href="/codereader/de" class="active">DE</a>
+      <span class="dot">·</span>
+      <a href="/codereader/tr">TR</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ko">한국어</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ja">日本語</a>
+      <span class="dot">·</span>
+      <a href="/codereader/zh-hans">简体中文</a>
+      <span class="dot">·</span>
+      <a href="/codereader/zh-hant">繁體中文</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ar">العربية</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+<h1 class="section-anchor" id="top">Codeleser</h1>
+<p>Codeleser scannt Barcodes und QR-Codes mit der Kamera deines iPhone oder aus beliebigen Bildern deiner Fotomediathek.
+Die App funktioniert vollständig offline, speichert nichts in der Cloud und zeigt niemals Werbung an.</p>
+
+<nav id="toc" aria-label="Seiteninhalt">
+  <h2>Inhalt</h2>
+  <ol>
+    <li><a href="#download">Download</a></li>
+    <li><a href="#support">Support</a></li>
+    <li><a href="#manual">Handbuch</a></li>
+    <li><a href="#democodes">Demo-Codes</a></li>
+    <li><a href="#legal">Rechtliches</a></li>
+  </ol>
+</nav>
+
+<h2 class="section-h2 first-section section-anchor" id="download">Download</h2>
+
+<p class="tip">Die App wurde noch nicht veröffentlicht. App Store-Links und der QR-Code werden hier verfügbar sein, sobald sie live ist.</p>
+
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0; opacity:0.45;">
+  <img src="../../appstorebadge/de.svg" alt="Im App Store laden" height="72">
+  <div style="width:180px; height:180px; background:#f5f5f7; border-radius:10px; border:1px dashed #ccc; display:flex; align-items:center; justify-content:center; font-size:12px; color:#999;">QR-Code demnächst</div>
+</div>
+<p>Codeleser ist kostenlos im App Store erhältlich. Kein Konto erforderlich. Erfordert iOS 26 oder neuer.</p>
+
+<h2 class="section-h2 section-anchor" id="support">Support</h2>
+
+<p>Hast du eine Frage, einen Fehler gefunden oder brauchst Hilfe mit der App? Meld dich. Wir lesen jede Nachricht.</p>
+
+<div class="contact-box">
+  <div class="contact-icon">✉️</div>
+  <div class="contact-body">
+    <div class="contact-label">E-Mail-Support</div>
+    <div class="contact-email">support [at] hoshinosoftware [dot] com</div>
+    <div class="contact-note">Wir antworten in der Regel innerhalb von 5 Werktagen.</div>
+  </div>
+</div>
+
+<h3>Bevor du schreibst</h3>
+<p>Viele häufige Probleme werden im <a href="#manual">Handbuch</a> und in den FAQ unten beantwortet. Ein paar schnelle Überprüfungen:</p>
+<ul>
+  <li><b>Kamera funktioniert nicht?</b> Gehe zu iPhone-Einstellungen → Datenschutz &amp; Sicherheit → Kamera → Zugriff für Codeleser aktivieren.</li>
+  <li><b>Verlauf nicht gefunden?</b> Tippe auf den Tab Verlauf. Einträge werden 6 Monate gespeichert und auf 1.000 begrenzt.</li>
+  <li><b>Code wird nicht gescannt?</b> Sorge für gute Beleuchtung und halte den Code ruhig. Versuche den Galerie-Modus, wenn du eine Bilddatei hast.</li>
+  <li><b>App stürzt ab?</b> Beende sie erzwungen und öffne sie erneut. Falls das Problem weiterhin besteht, schreib uns mit deinem iPhone-Modell und deiner iOS-Version.</li>
+</ul>
+
+<h3>Häufig gestellte Fragen</h3>
+<ul>
+  <li><b>Ist eine Internetverbindung erforderlich?</b><br>Nein. Codeleser funktioniert vollständig offline.</li><br>
+  <li><b>Werden meine Daten erfasst?</b><br>Nein. Es wird nichts hochgeladen. Der Scan-Verlauf wird nur auf deinem Gerät gespeichert.</li><br>
+  <li><b>Wird auf meine gesamte Fotomediathek zugegriffen?</b><br>Nein. Im Tab „Galerie" wählst du ein einzelnes Foto über die System-Fotoauswahl aus. Codeleser erhält niemals Zugriff auf deine Mediathek.</li><br>
+  <li><b>Warum dauert der Multi-Code-Modus etwas länger?</b><br>Die Kamera sammelt Codes über ein kurzes Zeitfenster von Frames, um sicherzustellen, dass alle sichtbaren Codes erfasst werden, bevor das Ergebnis angezeigt wird.</li><br>
+  <li><b>Wie lange wird der Scan-Verlauf aufbewahrt?</b><br>Einträge, die älter als 6 Monate sind, werden automatisch entfernt. Der Verlauf ist außerdem auf 1.000 Einträge begrenzt; die ältesten werden entfernt, um Platz für neue zu schaffen.</li><br>
+  <li><b>Warum wird nicht automatisch zu einem Link navigiert?</b><br>Das ist beabsichtigt. Gefälschte oder bösartige QR-Codes kommen häufig vor, auf Parkplätzen, Restauranttischen und anderswo. Die URL vor dem Öffnen anzuzeigen gibt dir die Möglichkeit zu prüfen, ob sie sicher ist.</li>
+</ul>
+
+<h2 class="section-h2 section-anchor" id="manual">Handbuch</h2>
+
+<div class="screenshots">
+  <img src="../screenshots/de/camera.png" alt="Kamera-Bildschirm">
+  <img src="../screenshots/de/result.png" alt="Scan-Ergebnis-Bildschirm">
+  <img src="../screenshots/de/settings.png" alt="Einstellungs-Bildschirm">
+</div>
+
+<h3>Kamera</h3>
+<p>Der Tab „Kamera" öffnet sich und beginnt sofort mit dem Scannen. Halte dein Telefon auf einen beliebigen Barcode oder QR-Code, und die App erkennt ihn automatisch. Die Kameraerlaubnis ist erforderlich. Falls du sie noch nicht erteilt hast, wird eine Aufforderung angezeigt. Tippe auf <b>Einstellungen öffnen</b> und aktiviere den <b>Kamera</b>-Zugriff für Codeleser.</p>
+<ul>
+  <li><b>Taschenlampe:</b> tippe auf den Taschenlampentaste, um dunkle Umgebungen auszuleuchten. Nur mit der Rückkamera verfügbar.</li>
+  <li><b>Frontkamera:</b> tippe auf die Drehtaste, um zwischen Rück- und Frontkamera zu wechseln. Praktisch, wenn die Rückkamera nicht verfügbar ist (z. B. beschädigt).</li>
+</ul>
+<div class="tip">💡 Die App zeigt eine rote Scanlinie, während sie nach Codes sucht. Du musst nichts drücken. Die Erkennung erfolgt automatisch.</div>
+
+<h3>Galerie</h3>
+<p>Im Tab „Galerie" kannst du Codes aus einem vorhandenen Bild scannen. Tippe auf <b>Foto auswählen</b>, um ein beliebiges Bild aus deiner Mediathek auszuwählen. Nur das von dir ausgewählte Foto wird mit der App geteilt. Codeleser fordert keinen Zugriff auf deine gesamte Fotomediathek an.</p>
+<p>Nach der Auswahl eines Fotos scannt die App es und zeigt das Ergebnis sofort an. Falls kein Code gefunden wird, wirst du durch einen Hinweis darüber informiert.</p>
+
+<h3>Verlauf</h3>
+<p>Jeder Scan wird automatisch im Tab „Verlauf" gespeichert. Scans werden <b>6 Monate</b> lang aufbewahrt, und der Verlauf fasst bis zu <b>1.000 Einträge</b>; die ältesten werden automatisch entfernt, wenn das Limit erreicht ist.</p>
+<ul>
+  <li><b>Vergangenen Scan ansehen:</b> tippe auf eine beliebige Zeile, um das vollständige Ergebnis erneut zu öffnen.</li>
+  <li><b>Eintrag löschen:</b> wische eine Zeile nach links und tippe auf <b>Löschen</b>.</li>
+  <li><b>Alles löschen:</b> tippe auf das Papierkorbsymbol oben rechts.</li>
+  <li><b>Quellenkennung:</b> jeder Eintrag zeigt an, ob er von der Kamera, der Galerie oder einer Freigabe stammt.</li>
+</ul>
+
+<h3>Einstellungen</h3>
+<p><b>Multi-Code-Modus</b><br>
+Standardmäßig hält Codeleser an, sobald es <b>einen Code</b> findet. Aktiviere den <b>Multi-Code-Modus</b>, um bis zu <b>5 Codes gleichzeitig</b> zu scannen. Das ist nützlich für Visitenkarten, Produktblätter oder Bilder, die mehrere nebeneinanderliegende Codes enthalten.</p>
+<p>Wenn der Multi-Code-Modus aktiv ist, scannt die Kamera nach der ersten Erkennung noch kurz weiter, um alle sichtbaren Codes zu erfassen, bevor die Ergebnisse angezeigt werden. Deshalb dauert es etwas länger als im Einzelcode-Modus.</p>
+
+<p><b>Erweiterte Details anzeigen</b><br>
+Aktiviere <b>Erweiterte Details anzeigen</b>, um technische Metadaten neben jedem Scan-Ergebnis einzublenden: QR-Version, Fehlerkorrekturlevel, Maskenmuster oder Barcode-Struktur (Start-/Stoppzeichen, Prüfziffer). Diese Informationen werden auf der Ergebnisseite und in den Zeilen des Verlauf-Tabs angezeigt.</p>
+<div class="tip">💡 Das ist eine tolle Möglichkeit, mehr darüber zu erfahren, wie QR-Codes und Barcodes tatsächlich funktionieren. Falls du neugierig auf die Technologie hinter dem bist, was du scannst, probiere es aus!</div>
+
+<h3>Scan-Ergebnisse</h3>
+<p>Wenn ein Code erkannt wird, zeigt Codeleser dir seinen Inhalt, bevor irgendetwas damit passiert. Du siehst zunächst immer die Rohdaten, zusammen mit den Schaltflächen <b>Kopieren</b> und <b>Teilen</b>. Wenn der Code eine URL enthält (bei QR-Codes üblich), erscheint eine Schaltfläche <b>Öffnen</b>. Ein Tippen darauf öffnet den Link in deinem Standardbrowser und nicht in einem In-App-Browser. Es werden keine Browsing-Daten erfasst.</p>
+<p>Codeleser erkennt automatisch besondere Code-Typen und zeigt kontextbezogene Aktionen an:</p>
+<table>
+  <thead><tr><th>Code-Typ</th><th>Was du tun kannst</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / Link</td><td>Im Standardbrowser öffnen · Kopieren · Teilen</td></tr>
+    <tr><td>📶 WLAN-Netzwerk</td><td>Direkt <b>verbinden</b> · Passwort kopieren</td></tr>
+    <tr><td>👤 Kontakt (vCard / MECARD)</td><td><b>In Kontakte speichern</b> mit Vorschau</td></tr>
+    <tr><td>📅 Kalenderereignis</td><td><b>Zum Kalender hinzufügen</b></td></tr>
+    <tr><td>✉️ E-Mail</td><td>Vorausgefüllte E-Mail <b>verfassen</b></td></tr>
+    <tr><td>💬 SMS / Nachricht</td><td><b>Nachricht senden</b></td></tr>
+    <tr><td>📞 Telefonnummer</td><td><b>Anrufen</b></td></tr>
+    <tr><td>📍 Standort / Geo</td><td><b>In Karten öffnen</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> oder FaceTime Audio</td></tr>
+    <tr><td>₿ Bitcoin</td><td><b>Adresse kopieren</b></td></tr>
+    <tr><td>✈️ Bordkarte</td><td>Flugdetails aus Aztec / PDF417 ausgelesen</td></tr>
+  </tbody>
+</table>
+
+<p>Mit aktiviertem <b>Erweiterte Details anzeigen</b> (in den Einstellungen) erscheinen zwei zusätzliche Abschnitte auf der Ergebnisseite:</p>
+<ul>
+  <li><b>Dekodierte Daten:</b> die im Barcode kodierte Rohzeichenkette vor jeglicher Verarbeitung.</li>
+  <li><b>Struktur:</b> technische Aufschlüsselung des Barcodes: Start-/Stoppzeichen, Prüfziffer, Guard-Muster und ähnliche Elemente je nach Code-Typ.</li>
+</ul>
+<p>Bei QR-Codes erscheinen außerdem Metadaten-Chips, die Versionsnummer, Fehlerkorrekturlevel und Maskenmuster anzeigen.</p>
+
+<p><b>Erkennung von Tracking-Parametern</b><br>
+Wenn eine URL Tracking-Parameter enthält, zeigt Codeleser eine Schaltfläche <b>Ohne Tracking öffnen</b> an. Dazu gehören UTM-Tags sowie Klick-IDs von Facebook, Google Ads, Microsoft, TikTok und anderen. Tippe darauf, um den Link ohne diese Parameter zu öffnen. Du erreichst dieselbe Seite, ohne getrackt zu werden.</p>
+
+<h3>Aus einer anderen App scannen</h3>
+<p>Du kannst einen Code, der in einem Foto in einer anderen App erscheint (einer Nachricht, E-Mail, einem Dokumentenbetrachter oder Webbrowser), scannen, ohne diese App zu verlassen.</p>
+<p><b>Über „Teilen":</b></p>
+<ol>
+  <li>Öffne das Bild in deiner Galerie oder einer beliebigen App und tippe auf die Schaltfläche <b>Teilen</b>.</li>
+  <li>Suche in der angezeigten App-Liste nach <b>Codeleser</b> und tippe darauf. Falls du es nicht siehst, scrolle bis zum Ende der Liste und tippe auf <b>Mehr</b>.</li>
+  <li>Die App öffnet sich und scannt das Bild automatisch.</li>
+</ol>
+<p><b>Über Aktionen:</b></p>
+<ol>
+  <li>Öffne das Bild in deiner Galerie oder einer beliebigen App und tippe auf die Schaltfläche <b>Teilen</b>.</li>
+  <li>Scrolle in der Aktionsreihe unterhalb der App-Liste und tippe auf <b>Scan for Codes</b>.</li>
+  <li>Die App öffnet sich und scannt das Bild automatisch.</li>
+</ol>
+<div class="tip">💡 Beide Optionen tun dasselbe. "Codeleser" in der App-Reihe und "Scan for Codes" in der Aktionsreihe sind zwei Wege zur selben Funktion.</div>
+
+<h3>Homescreen-Widget</h3>
+<p>Du kannst ein Widget als größere Verknüpfung zur App zu deinem Homescreen hinzufügen. Ein Tippen darauf öffnet direkt die Kamera, bereit zum Scannen. Widgets sind in drei Größen verfügbar (klein, mittel, groß), damit du die passende für dein Homescreen-Layout wählen kannst.</p>
+<ol>
+  <li>Halte einen leeren Bereich deines Homescreens gedrückt, bis die Symbole zu wackeln beginnen.</li>
+  <li>Tippe auf die Schaltfläche <b>+</b> oben links.</li>
+  <li>Suche nach <b>Codeleser</b>.</li>
+  <li>Wähle eine Größe und tippe auf <b>Widget hinzufügen</b>.</li>
+  <li>Du kannst es später durch langes Drücken auf das Widget und Auswahl von <b>Widget bearbeiten</b> in der Größe ändern.</li>
+</ol>
+
+<h3>Control Center</h3>
+<p>Control Center ist das Fenster, das erscheint, wenn du von der oberen rechten Ecke des Bildschirms nach unten wischst. Du kannst dort eine Codeleser-Schaltfläche hinzufügen, um die Kamera mit einem einzigen Tippen von überall aus zu starten, auch vom Sperrbildschirm oder während du eine andere App verwendest.</p>
+<ol>
+  <li>Wische von der oberen rechten Ecke nach unten, um Control Center zu öffnen.</li>
+  <li>Tippe auf die Schaltfläche <b>+</b>, um den Bearbeitungsmodus aufzurufen.</li>
+  <li>Suche <b>Codeleser</b> in der Liste und tippe darauf, um es hinzuzufügen.</li>
+  <li>Du kannst es im Bearbeitungsmodus durch Ziehen neu positionieren und in der Größe ändern.</li>
+</ol>
+
+<h3 id="codetypes">Unterstützte Code-Typen</h3>
+<table>
+  <thead><tr><th>Code</th><th>Hinweise</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>Häufigster 2D-Code. Verwendet für URLs, WLAN, Kontakte und mehr</td></tr>
+    <tr><td>Micro QR</td><td>Kompakte Variante des QR Code für kleine Etiketten mit begrenztem Platz</td></tr>
+    <tr><td>Aztec</td><td>Verwendet auf Bordkarten und Fahrkarten</td></tr>
+    <tr><td>Data Matrix</td><td>Verbreitet in Fertigung, Gesundheitswesen und Logistik</td></tr>
+    <tr><td>PDF417</td><td>Verwendet auf Führerscheinen, Bordkarten und Versandetiketten</td></tr>
+    <tr><td>Micro PDF417</td><td>Kompaktes PDF417 für kleine Artikel wie Pharmaverpackungen</td></tr>
+    <tr><td>EAN-8</td><td>Kurzer Einzelhandels-Barcode für kleine Produkte</td></tr>
+    <tr><td>EAN-13</td><td>Standard-Barcode auf den meisten Konsumgütern weltweit</td></tr>
+    <tr><td>UPC-E</td><td>Kompakter Barcode für kleine US-/kanadische Einzelhandelsverpackungen</td></tr>
+    <tr><td>Code 39</td><td>Einer der ältesten Barcodes, verbreitet in industriellen Umgebungen</td></tr>
+    <tr><td>Code 93</td><td>Nachfolger von Code 39 mit höherer Datendichte</td></tr>
+    <tr><td>Code 128</td><td>Hochdichter Barcode, weit verbreitet in Logistik und Versand</td></tr>
+    <tr><td>ITF-14</td><td>14-stelliger Barcode auf Wellpappe-Versandkartons</td></tr>
+    <tr><td>Codabar</td><td>Verwendet in Bibliotheken, Blutbanken und einigen Versandunternehmen</td></tr>
+    <tr><td>GS1 DataBar</td><td>Kompakter Einzelhandels-Barcode für kleine Artikel wie Frischwaren</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>Erweiterte Variante mit zusätzlichen Daten wie Gewicht und Ablaufdatum</td></tr>
+  </tbody>
+</table>
+<p><b>Nicht unterstützt:</b></p>
+<table>
+  <thead><tr><th>Code</th><th>Hinweise</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (Add-ons)</td><td>Kurze Ziffernergänzungen, die an EAN-13 angehängt werden, verwendet für Zeitschriftennummern und Buchpreise</td></tr>
+    <tr><td>rMQR</td><td>Rechteckiger Micro QR, eine neuere kompakte QR-Variante für schmale Etiketten</td></tr>
+    <tr><td>MaxiCode</td><td>2D-Punktmatrixcode, der von UPS auf Versandetiketten verwendet wird</td></tr>
+    <tr><td>SP Code</td><td>Japanischer Barrierefreiheits-Barcode, der gesprochene Audiodaten kodiert</td></tr>
+    <tr><td>Postbarcodes</td><td>4-Zustands-Postbarcodes der nationalen Postdienste (USPS Intelligent Mail, Royal Mail, Australia Post, Japan Post und andere)</td></tr>
+    <tr><td>Proprietäre App-Codes</td><td>Benutzerdefinierte visuelle Codes, die nur von der herausgebenden App gescannt werden können</td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="democodes">Demo-Codes</h2>
+
+<p>Scanne diese direkt von diesem Bildschirm mit der Kamera, oder mache einen Screenshot und verwende den Galerie-Tab.</p>
+
+<table class="demo-codes-table">
+  <tbody>
+    <tr><td><img src="../codes/qr-url.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">URL mit Tracking-Parametern</div><div class="dc-val">https://hoshinosoftware.com?utm_source=review&amp;utm_campaign=demo</div></td></tr>
+    <tr><td><img src="../codes/qr-wifi.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">WLAN-Netzwerk</div><div class="dc-val">WIFI:S:example-wifi;T:WPA;P:example-password;;</div></td></tr>
+    <tr><td><img src="../codes/qr-email.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">E-Mail</div><div class="dc-val">mailto:test@example.com</div></td></tr>
+    <tr><td><img src="../codes/qr-vcard.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Kontakt (vCard)</div><pre class="dc-val">BEGIN:VCARD
+VERSION:3.0
+N:Last;First
+FN:First Last
+ORG:Company
+TITLE:Job Title
+ADR:;;Street;City;CA;90401;USA
+TEL;WORK;VOICE:
+TEL;CELL:+1234567890123
+TEL;FAX:
+EMAIL;WORK;INTERNET:example@example.com
+URL:https://example.com
+END:VCARD</pre></td></tr>
+    <tr><td><img src="../codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">Kompakter QR für kleine Etiketten</div><div class="dc-val">HELLO</div></td></tr>
+    <tr><td><img src="../codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">Transport / Bordkarten</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">Kompakte Variante für kleine Etiketten</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-square.png" alt="Data Matrix (Square)"></td><td><div class="dc-type">Data Matrix (Square)</div><div class="dc-sub">Fertigung / Gesundheitswesen</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-rectangular.png" alt="Data Matrix (Rectangular)" class="dc-rect"></td><td><div class="dc-type">Data Matrix (Rectangular)</div><div class="dc-sub">Rechteckige Variante für schmale Etiketten</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/pdf417.gif" alt="PDF417" class="dc-rect"></td><td><div class="dc-type">PDF417</div><div class="dc-sub">Ausweisdokumente / Versandetiketten</div><div class="dc-val">PDF417 SAMPLE DATA</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/micropdf417.gif" alt="Micro PDF417"></td><td><div class="dc-type">Micro PDF417</div><div class="dc-sub">Kompaktes PDF417 für kleine Artikel</div><div class="dc-val">MICROPDF417 SAMPLE DATA</div></td></tr>
+    <tr><td><img src="../codes/ean13.png" alt="EAN-13" class="dc-rect"></td><td><div class="dc-type">EAN-13</div><div class="dc-sub">Einzelhandels-Barcode</div><div class="dc-val">5901234123457</div></td></tr>
+    <tr><td><img src="../codes/upce.png" alt="UPC-E" class="dc-rect" style="max-width:150px;"></td><td><div class="dc-type">UPC-E</div><div class="dc-sub">Kompakter Einzelhandels-Barcode (USA/Kanada)</div><div class="dc-val">01234565</div></td></tr>
+    <tr><td><img src="../codes/code128.png" alt="Code 128" class="dc-rect"></td><td><div class="dc-type">Code 128</div><div class="dc-sub">Logistik / Versand</div><div class="dc-val">CODE-128-DEMO</div></td></tr>
+    <tr><td><img src="../codes/itf14.png" alt="ITF-14" class="dc-rect"></td><td><div class="dc-type">ITF-14</div><div class="dc-sub">Versandkarton-Barcode</div><div class="dc-val">12345678901231</div></td></tr>
+    <tr><td><img src="../codes/gs1databar.png" alt="GS1 DataBar" class="dc-rect"></td><td><div class="dc-type">GS1 DataBar</div><div class="dc-sub">Kompakter Barcode für kleine Artikel</div><div class="dc-val">0112345678901231</div></td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="legal">Rechtliches</h2>
+
+<h3 id="privacy">Datenschutzerklärung</h3>
+<p><b>Letzte Aktualisierung:</b> April 2026</p>
+<h4>Einleitung</h4>
+<p>Codeleser basiert auf einem einfachen Prinzip: Deine Daten gehören dir. Diese Datenschutzerklärung erläutert, auf welche Informationen die App zugreift und wie sie verwendet werden.</p>
+<h4>Kamerazugriff</h4>
+<p>Die App verwendet die Kamera deines Geräts, um Barcodes und QR-Codes in Echtzeit zu scannen. Der Kamerastream wird vollständig auf deinem Gerät verarbeitet. Keine Bilder oder Videoframes werden gespeichert, hochgeladen oder weitergegeben.</p>
+<h4>Scanverlauf</h4>
+<p>Scanergebnisse werden lokal auf deinem Gerät mithilfe der geräteeigenen Speichertechnologie von Apple gespeichert. Diese Daten verlassen dein Gerät nie und werden nie an einen Server übertragen. Du kannst deinen Scanverlauf jederzeit in der App löschen.</p>
+<h4>Keine Internetverbindung erforderlich</h4>
+<p>Codeleser funktioniert vollständig offline. Die App stellt keine Netzwerkanfragen. Deine Daten verlassen dein Gerät nie.</p>
+<h4>Keine Datenerhebung</h4>
+<p>Wir erheben, speichern oder verarbeiten keine personenbezogenen Daten. Die App erfordert kein Konto und keine Registrierung.</p>
+<h4>Drittanbieterdienste</h4>
+<p>Codeleser verwendet keine Analyse-, Werbe- oder Tracking-Dienste von Drittanbietern. Es werden keine Daten an Dritte weitergegeben.</p>
+<h4>Datenschutz für Kinder</h4>
+<p>Da keine personenbezogenen Daten erhoben werden, ist Codeleser für Benutzer jeden Alters sicher und erfüllt den COPPA sowie vergleichbare Vorschriften weltweit.</p>
+<h4>Änderungen dieser Erklärung</h4>
+<p>Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Änderungen werden sofort nach der Veröffentlichung wirksam. Wir empfehlen, diese Seite regelmäßig zu überprüfen.</p>
+<h4>Kontakt</h4>
+<p>Bei Fragen zu dieser Datenschutzerklärung: support [at] hoshinosoftware [dot] com</p>
+
+<h3 id="terms" style="margin-top:40px; padding-top:24px; border-top:1px solid #e5e5e5;">Nutzungsbedingungen</h3>
+<p><b>Letzte Aktualisierung:</b> April 2026</p>
+<h4>Annahme der Bedingungen</h4>
+<p>Durch das Herunterladen oder die Nutzung von Codeleser stimmst du diesen Nutzungsbedingungen zu. Wenn du nicht einverstanden bist, verwende die App bitte nicht.</p>
+<h4>Lizenz</h4>
+<p>Hoshino Software gewährt dir eine persönliche, nicht übertragbare und nicht ausschließliche Lizenz zur Nutzung von Codeleser auf deinen Apple-Geräten gemäß diesen Bedingungen und den App Store-Nutzungsbedingungen von Apple.</p>
+<h4>Zulässige Nutzung</h4>
+<p>Du darfst Codeleser nur für legale Zwecke verwenden. Du stimmst zu, die App nicht in einer Weise zu nutzen, die gegen geltende Gesetze oder Vorschriften verstößt.</p>
+<h4>Keine Gewährleistung</h4>
+<p>Codeleser wird „wie besehen" ohne jegliche ausdrückliche oder stillschweigende Gewährleistung bereitgestellt. Wir garantieren nicht, dass die App fehlerfrei, ununterbrochen oder für einen bestimmten Zweck geeignet ist.</p>
+<h4>Haftungsbeschränkung</h4>
+<p>Im größtmöglichen gesetzlich zulässigen Umfang haftet Hoshino Software nicht für direkte, indirekte, zufällige, besondere oder Folgeschäden, die aus der Nutzung oder Nichtnutzbarkeit von Codeleser entstehen.</p>
+<h4>Änderungen dieser Bedingungen</h4>
+<p>Wir können diese Nutzungsbedingungen von Zeit zu Zeit aktualisieren. Die fortgesetzte Nutzung der App nach der Veröffentlichung von Änderungen gilt als Zustimmung zu den überarbeiteten Bedingungen.</p>
+<h4>Anwendbares Recht</h4>
+<p>Diese Bedingungen unterliegen dem Recht der Gerichtsbarkeit, in der Hoshino Software tätig ist.</p>
+<h4>Kontakt</h4>
+<p>Bei Fragen zu diesen Nutzungsbedingungen: support [at] hoshinosoftware [dot] com</p>
+
+</main>
+
+<footer>© 2026 Hoshino Software &amp; Security · support [at] hoshinosoftware [dot] com</footer>
+
+<script>
+
+function applyTopPad() {
+  var h = document.getElementById('lang-strip').offsetHeight;
+  document.querySelector('main').style.paddingTop = (h + 20) + 'px';
+}
+applyTopPad();
+window.addEventListener('resize', applyTopPad);
+
+</script>
+
+</body>
+</html>

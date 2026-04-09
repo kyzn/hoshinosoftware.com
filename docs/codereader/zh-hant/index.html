@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>掃碼器 – 繁體中文</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+/* ── Reset & Base ───────────────────────────── */
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #111;
+  line-height: 1.6;
+}
+
+/* ── Fixed language strip ───────────────────── */
+#lang-strip {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid #e5e5e5;
+}
+#lang-strip .strip-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+}
+#lang-strip .strip-brand {
+  position: absolute;
+  left: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  white-space: nowrap;
+}
+#lang-strip .strip-brand:hover { color: #555; }
+@media (max-width: 1000px) { #lang-strip .strip-brand { display: none; } }
+#lang-strip .strip-langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  font-size: 13px;
+  justify-content: center;
+  width: 100%;
+}
+#lang-strip .strip-langs a {
+  color: #666;
+  text-decoration: none;
+  padding: 2px 10px 2px 0;
+  white-space: nowrap;
+}
+#lang-strip .strip-langs a:hover { color: #000; }
+#lang-strip .strip-langs a.active { color: #000; font-weight: 700; }
+#lang-strip .strip-langs .dot {
+  color: #ccc;
+  padding-right: 10px;
+  user-select: none;
+}
+
+/* ── Main content ───────────────────────────── */
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
+}
+
+/* ── Table of Contents ──────────────────────── */
+#toc {
+  background: #f5f5f7;
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin: 28px 0 40px;
+}
+#toc h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  margin: 0 0 12px;
+  border: none;
+  padding: 0;
+}
+#toc ol {
+  margin: 0;
+  padding-left: 20px;
+  counter-reset: toc-counter;
+  list-style: none;
+}
+#toc ol li {
+  counter-increment: toc-counter;
+  margin: 6px 0;
+}
+#toc ol li::before {
+  content: counter(toc-counter) ". ";
+  font-weight: 600;
+  color: #bbb;
+}
+#toc a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
+}
+#toc a:hover { text-decoration: underline; }
+
+/* ── Section h2 (top-level sections) ───────── */
+h2.section-h2 {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 2px solid #e5e5e5;
+  border-bottom: none;
+  font-size: 1.5rem;
+  padding-bottom: 0;
+}
+h2.section-h2.first-section {
+  margin-top: 0;
+  border-top: none;
+  padding-top: 0;
+}
+
+/* ── Sub-section divider ────────────────────── */
+.sub-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 40px 0 24px;
+}
+.sub-divider::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.sub-divider-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bbb;
+  white-space: nowrap;
+}
+.sub-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+/* ── Typography ─────────────────────────────── */
+h1 { font-weight: 600; margin-bottom: 10px; margin-top: 0; }
+h2 { margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+h3 { margin-top: 20px; margin-bottom: 4px; }
+p  { margin: 10px 0; }
+ul, ol { padding-left: 20px; }
+li { margin: 4px 0; }
+
+/* ── Section scroll anchors ─────────────────── */
+.section-anchor {
+  scroll-margin-top: 60px;
+}
+
+/* ── Support contact box ────────────────────── */
+.contact-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #f0f8ff;
+  border: 1px solid #c5dff0;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.contact-box .contact-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+.contact-box .contact-body {
+  flex: 1;
+}
+.contact-box .contact-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6a9ab5;
+  margin-bottom: 2px;
+}
+.contact-box .contact-email {
+  font-size: 17px;
+  font-weight: 600;
+  color: #111;
+}
+.contact-box .contact-note {
+  font-size: 13px;
+  color: #666;
+  margin-top: 3px;
+}
+
+/* ── Screenshots ────────────────────────────── */
+.screenshots {
+  display: flex; gap: 16px; flex-wrap: wrap; margin: 20px 0;
+}
+.screenshots img {
+  width: 160px;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  display: block;
+}
+
+/* ── Tip ────────────────────────────────────── */
+.tip {
+  background: #f5f5f7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 15px;
+}
+
+/* ── Tables ─────────────────────────────────── */
+table {
+  width: 100%; border-collapse: collapse;
+  margin-top: 15px; font-size: 14px;
+  border: 1px solid #eee; border-radius: 8px; overflow: hidden;
+}
+thead th {
+  text-align: left; background: #f5f5f7;
+  font-weight: 600; padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+tbody td { padding: 10px; border-bottom: 1px solid #eee; }
+tbody tr:nth-child(even) { background: #fafafa; }
+
+/* ── Demo codes table ───────────────────────── */
+.demo-codes-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 24px 0;
+  font-size: 14px;
+}
+.demo-codes-table td {
+  padding: 40px 10px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+.demo-codes-table td:first-child {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  text-align: center;
+}
+.demo-codes-table img {
+  max-width: 300px;
+  max-height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.demo-codes-table img.dc-rect {
+  max-height: 400px;
+}
+.dc-type { font-weight: 600; color: #111; }
+.dc-sub  { font-size: 12px; color: #777; margin-top: 2px; }
+.dc-val  { font-size: 11px; color: #aaa; font-family: monospace; margin-top: 4px; word-break: break-all; }
+pre.dc-val { white-space: pre-wrap; margin: 4px 0 0; padding: 0; background: none; border: none; }
+
+/* ── RTL support ────────────────────────────── */
+.rtl { direction: rtl; text-align: right; }
+.rtl ul, .rtl ol { padding-left: 0; padding-right: 20px; }
+.rtl thead th { text-align: right; }
+
+/* ── Footer ─────────────────────────────────── */
+footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-top: 1px solid #e5e5e5;
+  font-size: 12px; color: #666; text-align: center;
+  padding: 8px 20px;
+}
+
+</style>
+</head>
+<body>
+
+<div id="lang-strip">
+  <div class="strip-inner">
+    <a href="../../" class="strip-brand">Hoshino Software &amp; Security</a>
+    <nav class="strip-langs">
+      <a href="/codereader/en">EN</a>
+      <span class="dot">·</span>
+      <a href="/codereader/fr">FR</a>
+      <span class="dot">·</span>
+      <a href="/codereader/it">IT</a>
+      <span class="dot">·</span>
+      <a href="/codereader/es">ES</a>
+      <span class="dot">·</span>
+      <a href="/codereader/pt">PT</a>
+      <span class="dot">·</span>
+      <a href="/codereader/de">DE</a>
+      <span class="dot">·</span>
+      <a href="/codereader/tr">TR</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ko">한국어</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ja">日本語</a>
+      <span class="dot">·</span>
+      <a href="/codereader/zh-hans">简体中文</a>
+      <span class="dot">·</span>
+      <a href="/codereader/zh-hant" class="active">繁體中文</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ar">العربية</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+<h1 class="section-anchor" id="top">掃碼器</h1>
+<p>掃碼器 使用 iPhone 相機或相片圖庫中的任何圖片來掃描條碼和 QR 碼。
+完全離線運作，不在雲端儲存任何內容，且從不顯示廣告。</p>
+
+<nav id="toc" aria-label="頁面目錄">
+  <h2>目錄</h2>
+  <ol>
+    <li><a href="#download">下載</a></li>
+    <li><a href="#support">支援</a></li>
+    <li><a href="#manual">使用手冊</a></li>
+    <li><a href="#democodes">示範碼</a></li>
+    <li><a href="#legal">法律資訊</a></li>
+  </ol>
+</nav>
+
+<h2 class="section-h2 first-section section-anchor" id="download">下載</h2>
+
+<p class="tip">應用程式尚未發布。發布後，App Store 連結和 QR 碼將在此處顯示。</p>
+
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0; opacity:0.45;">
+  <img src="../../appstorebadge/zh-hant.svg" alt="在 App Store 上下載" height="72">
+  <div style="width:180px; height:180px; background:#f5f5f7; border-radius:10px; border:1px dashed #ccc; display:flex; align-items:center; justify-content:center; font-size:12px; color:#999;">QR 碼即將推出</div>
+</div>
+<p>掃碼器可在 App Store 免費下載。無需帳戶。需要 iOS 26 或更高版本。</p>
+
+<h2 class="section-h2 section-anchor" id="support">支援</h2>
+
+<p>有問題、發現 bug，或需要應用程式使用協助？請聯絡我們，我們閱讀每一條訊息。</p>
+
+<div class="contact-box">
+  <div class="contact-icon">✉️</div>
+  <div class="contact-body">
+    <div class="contact-label">電子郵件支援</div>
+    <div class="contact-email">support [at] hoshinosoftware [dot] com</div>
+    <div class="contact-note">我們通常在 5 個工作天內回覆。</div>
+  </div>
+</div>
+
+<h3>聯絡前請先確認</h3>
+<p>許多常見問題已在下方的<a href="#manual">使用手冊</a>和常見問題中解答。請先進行以下快速確認：</p>
+<ul>
+  <li><b>相機無法使用？</b>前往 iPhone 設定 → 隱私權與安全性 → 相機 → 為掃碼器開啟存取權限。</li>
+  <li><b>找不到歷史記錄？</b>點選歷史紀錄索引標籤。記錄保存 6 個月，最多保存 1,000 筆。</li>
+  <li><b>無法掃描條碼？</b>請確保光線充足並保持條碼穩定。如有圖片檔案，可嘗試圖庫模式。</li>
+  <li><b>應用程式閃退？</b>強制關閉後重新開啟。若問題持續，請來信並告知您的 iPhone 型號及 iOS 版本。</li>
+</ul>
+
+<h3>常見問題</h3>
+<ul>
+  <li><b>需要網際網路連線嗎？</b><br>不需要。掃碼器 完全離線運作。</li><br>
+  <li><b>會收集我的資料嗎？</b><br>不會。任何內容都不會上傳到任何地方。掃描歷史記錄僅儲存在您的裝置上。</li><br>
+  <li><b>會存取我的整個相片圖庫嗎？</b><br>不會。在相簿標籤頁中，您透過系統照片選擇器選取單張照片。掃碼器 從不獲得存取您圖庫的權限。</li><br>
+  <li><b>為什麼多碼模式會稍慢一些？</b><br>相機在顯示結果前，會在短暫的影格時間視窗內收集碼，以確保捕捉所有可見的碼。</li><br>
+  <li><b>掃描歷史記錄保存多久？</b><br>超過 6 個月的記錄會自動刪除。歷史記錄同時也有 1,000 筆的上限，最舊的記錄會被刪除以為新記錄騰出空間。</li><br>
+  <li><b>為什麼不自動跳轉到連結？</b><br>這是有意為之的。偽造或惡意 QR 碼隨處可見，在停車場、餐廳桌上等地方都很常見。在開啟連結前顯示 URL，讓您能夠驗證其是否安全。</li>
+</ul>
+
+<h2 class="section-h2 section-anchor" id="manual">使用手冊</h2>
+
+<div class="screenshots">
+  <img src="../screenshots/zh-hant/camera.png" alt="相機界面">
+  <img src="../screenshots/zh-hant/result.png" alt="掃描結果界面">
+  <img src="../screenshots/zh-hant/settings.png" alt="設定界面">
+</div>
+
+<h3>相機</h3>
+<p>相機標籤頁開啟後立即開始掃描。將手機對準任意條碼或 QR 碼，應用程式會自動偵測。需要相機權限。如果尚未授權，將出現提示。點選<b>開啟設定</b>，為 掃碼器 啟用<b>相機</b>存取權限。</p>
+<ul>
+  <li><b>手電筒：</b>點選手電筒按鈕，照亮較暗的環境。僅在後置相機下可用。</li>
+  <li><b>前置相機：</b>點選旋轉按鈕，在後置和前置相機之間切換。當後置相機無法使用時（例如損壞）非常方便。</li>
+</ul>
+<div class="tip">💡 應用程式在尋找碼時會顯示一條紅色掃描線。無需按任何按鈕，識別自動完成。</div>
+
+<h3>相簿</h3>
+<p>相簿標籤頁可讓您從現有圖片中掃描碼。點選<b>選擇照片</b>，從圖庫中選取任意圖片。只有您選擇的特定照片會與應用程式共享。掃碼器 不會要求存取您的整個相片圖庫。</p>
+<p>選擇照片後，應用程式立即掃描並顯示結果。如果未找到任何碼，將彈出提示通知您。</p>
+
+<h3>歷史記錄</h3>
+<p>每次掃描都會自動儲存到歷史記錄標籤頁。掃描記錄保存 <b>6 個月</b>，歷史記錄最多保存 <b>1,000 筆</b>；達到上限時，最舊的記錄會自動刪除。</p>
+<ul>
+  <li><b>查看過去的掃描：</b>點選任意列，重新開啟完整結果。</li>
+  <li><b>刪除單筆記錄：</b>向左滑動某列，點選<b>刪除</b>。</li>
+  <li><b>刪除全部：</b>點選右上角的垃圾桶圖示。</li>
+  <li><b>來源標籤：</b>每筆記錄顯示其來自相機、相簿還是分享。</li>
+</ul>
+
+<h3>設定</h3>
+<p><b>多碼模式</b><br>
+預設情況下，掃碼器 找到<b>一個碼</b>後立即停止。開啟<b>多碼模式</b>可一次掃描最多 <b>5 個碼</b>，適用於名片、產品單頁或包含多個並排碼的圖片。</p>
+<p>多碼模式啟動時，相機在首次偵測到碼後會繼續短暫掃描，以收集所有可見的碼再顯示結果。因此會比單碼模式稍微慢一點。</p>
+
+<p><b>顯示進階詳細資訊</b><br>
+開啟<b>顯示進階詳細資訊</b>，可在每個掃描結果旁顯示技術中繼資料：QR 版本、錯誤校正等級、遮罩圖案或條碼結構（起始/終止字元、校驗位）。此資訊顯示在掃描結果頁面和歷史記錄標籤頁的各列中。</p>
+<div class="tip">💡 這是深入了解 QR 碼和條碼實際運作方式的好方法。如果您對所掃描內容背後的技術感到好奇，不妨試一試！</div>
+
+<h3>掃描結果</h3>
+<p>偵測到碼後，掃碼器 會在執行任何操作之前先顯示其內容。您始終會先看到原始資料，以及<b>複製</b>和<b>分享</b>按鈕。如果碼包含 URL（QR 碼中常見），則會出現<b>開啟</b>按鈕。點選後將在預設瀏覽器中開啟連結，而非應用程式內瀏覽器。不會收集任何瀏覽資料。</p>
+<p>掃碼器 自動識別特殊碼類型，並顯示相應操作：</p>
+<table>
+  <thead><tr><th>碼類型</th><th>可執行操作</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / 連結</td><td>在預設瀏覽器中開啟 · 複製 · 分享</td></tr>
+    <tr><td>📶 Wi-Fi 網路</td><td>直接<b>連線</b> · 複製密碼</td></tr>
+    <tr><td>👤 聯絡人 (vCard / MECARD)</td><td>帶預覽<b>儲存至聯絡人</b></td></tr>
+    <tr><td>📅 行事曆事件</td><td><b>加入行事曆</b></td></tr>
+    <tr><td>✉️ 電子郵件</td><td><b>撰寫</b>預填郵件</td></tr>
+    <tr><td>💬 簡訊 / 訊息</td><td><b>傳送訊息</b></td></tr>
+    <tr><td>📞 電話號碼</td><td><b>撥打電話</b></td></tr>
+    <tr><td>📍 位置 / 地理</td><td><b>在地圖中開啟</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> 或 FaceTime 音訊</td></tr>
+    <tr><td>₿ 比特幣</td><td><b>複製地址</b></td></tr>
+    <tr><td>✈️ 登機證</td><td>從 Aztec / PDF417 解析的航班詳情</td></tr>
+  </tbody>
+</table>
+
+<p>在設定中開啟<b>顯示進階詳細資訊</b>後，結果頁面會出現兩個額外部分：</p>
+<ul>
+  <li><b>解碼資料：</b>條碼內編碼的原始字串，在任何解析之前的狀態。</li>
+  <li><b>結構：</b>條碼的技術分解：起始/終止字元、校驗位、保護圖案以及根據碼類型不同而存在的類似元素。</li>
+</ul>
+<p>對於 QR 碼，還會出現顯示版本號、錯誤校正等級和遮罩圖案的中繼資料標籤。</p>
+
+<p><b>追蹤參數偵測</b><br>
+當 URL 包含追蹤參數時，掃碼器 會顯示<b>無追蹤開啟</b>按鈕。這包括 UTM 標籤以及來自 Facebook、Google Ads、Microsoft、TikTok 等平台的點擊 ID。點選後將在移除這些參數的情況下開啟連結。您可以在不被追蹤的情況下存取同一頁面。</p>
+
+<h3>從其他應用程式掃描</h3>
+<p>您可以掃描出現在其他應用程式（訊息、電子郵件、文件檢視器或網路瀏覽器）中照片裡的碼，無需離開該應用程式。</p>
+<p><b>使用分享：</b></p>
+<ol>
+  <li>在相簿或任意應用程式中開啟圖片，然後點選<b>分享</b>按鈕。</li>
+  <li>在出現的應用程式列表中，找到並點選 <b>掃碼器</b>。如果看不到，請捲動到列表末尾並點選<b>更多</b>。</li>
+  <li>應用程式開啟並自動掃描圖片。</li>
+</ol>
+<p><b>使用動作：</b></p>
+<ol>
+  <li>在相簿或任意應用程式中開啟圖片，然後點選<b>分享</b>按鈕。</li>
+  <li>捲動應用程式列表下方的動作列，點選 <b>Scan for Codes</b>。</li>
+  <li>應用程式開啟並自動掃描圖片。</li>
+</ol>
+<div class="tip">💡 兩個選項的作用相同。應用程式列中的「掃碼器」和動作列中的「Scan for Codes」是存取同一功能的兩種方式。</div>
+
+<h3>主畫面小工具</h3>
+<p>您可以在主畫面上新增小工具，作為進入應用程式的捷徑。點選即可直接開啟相機，隨時可以掃描。小工具有三種尺寸（小、中、大），您可以根據主畫面版面選擇合適的尺寸。</p>
+<ol>
+  <li>長按主畫面空白區域，直到圖示開始搖晃。</li>
+  <li>點選左上角的 <b>+</b> 按鈕。</li>
+  <li>搜尋 <b>掃碼器</b>。</li>
+  <li>選擇尺寸，然後點選<b>加入小工具</b>。</li>
+  <li>之後可以長按小工具，選擇<b>編輯小工具</b>來調整大小。</li>
+</ol>
+
+<h3>Control Center</h3>
+<p>Control Center 是從螢幕右上角向下滑動時出現的面板。您可以在其中新增 掃碼器 按鈕，從任何地方（包括鎖定畫面或使用其他應用程式時）一鍵啟動相機。</p>
+<ol>
+  <li>從右上角向下滑動，開啟 Control Center。</li>
+  <li>點選 <b>+</b> 按鈕進入編輯模式。</li>
+  <li>在列表中找到 <b>掃碼器</b>，點選以新增。</li>
+  <li>在編輯模式下，您可以拖曳來重新定位並調整大小。</li>
+</ol>
+
+<h3 id="codetypes">支援的碼類型</h3>
+<table>
+  <thead><tr><th>碼</th><th>備註</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>最常見的 2D 碼，用於 URL、Wi-Fi、聯絡人等</td></tr>
+    <tr><td>Micro QR</td><td>QR Code 的緊湊變體，適用於空間有限的小標籤</td></tr>
+    <tr><td>Aztec</td><td>用於登機證和交通票務</td></tr>
+    <tr><td>Data Matrix</td><td>常用於製造業、醫療和物流領域</td></tr>
+    <tr><td>PDF417</td><td>用於駕照、登機證和快遞標籤</td></tr>
+    <tr><td>Micro PDF417</td><td>緊湊型 PDF417，適用於藥品包裝等小型物品</td></tr>
+    <tr><td>EAN-8</td><td>用於小型零售商品的短條碼</td></tr>
+    <tr><td>EAN-13</td><td>全球大多數消費品上的標準零售條碼</td></tr>
+    <tr><td>UPC-E</td><td>用於美國/加拿大小型零售包裝的緊湊型條碼</td></tr>
+    <tr><td>Code 39</td><td>最古老的條碼之一，常見於工業場景</td></tr>
+    <tr><td>Code 93</td><td>Code 39 的高密度後繼版本</td></tr>
+    <tr><td>Code 128</td><td>廣泛用於物流和快遞的高密度條碼</td></tr>
+    <tr><td>ITF-14</td><td>印刷在瓦楞紙板運輸箱上的 14 位條碼</td></tr>
+    <tr><td>Codabar</td><td>用於圖書館、血庫和部分快遞公司</td></tr>
+    <tr><td>GS1 DataBar</td><td>用於農產品和生鮮食品等小型商品的緊湊型零售條碼</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>擴充變體，可攜帶重量和有效期等額外資料</td></tr>
+  </tbody>
+</table>
+<p><b>不支援：</b></p>
+<table>
+  <thead><tr><th>碼</th><th>備註</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5（附加碼）</td><td>附加在 EAN-13 上的短數字補充碼，用於雜誌期號和書籍定價</td></tr>
+    <tr><td>rMQR</td><td>矩形微型 QR，一種為窄標籤設計的新型緊湊 QR 變體</td></tr>
+    <tr><td>MaxiCode</td><td>UPS 在運輸標籤上使用的 2D 點陣碼</td></tr>
+    <tr><td>SP Code</td><td>編碼語音音訊資料的日本無障礙條碼</td></tr>
+    <tr><td>郵政條碼</td><td>各國郵政服務使用的 4 狀態郵政條碼（USPS Intelligent Mail、Royal Mail、Australia Post、Japan Post 等）</td></tr>
+    <tr><td>專有應用程式碼</td><td>只有發行方應用程式才能掃描的自訂視覺碼</td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="democodes">示範碼</h2>
+
+<p>用相機直接從螢幕掃描，或截圖後使用相簿標籤頁。</p>
+
+<table class="demo-codes-table">
+  <tbody>
+    <tr><td><img src="../codes/qr-url.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">含追蹤參數的 URL</div><div class="dc-val">https://hoshinosoftware.com?utm_source=review&amp;utm_campaign=demo</div></td></tr>
+    <tr><td><img src="../codes/qr-wifi.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Wi-Fi 網路</div><div class="dc-val">WIFI:S:example-wifi;T:WPA;P:example-password;;</div></td></tr>
+    <tr><td><img src="../codes/qr-email.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">電子郵件</div><div class="dc-val">mailto:test@example.com</div></td></tr>
+    <tr><td><img src="../codes/qr-vcard.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">聯絡人 (vCard)</div><pre class="dc-val">BEGIN:VCARD
+VERSION:3.0
+N:Last;First
+FN:First Last
+ORG:Company
+TITLE:Job Title
+ADR:;;Street;City;CA;90401;USA
+TEL;WORK;VOICE:
+TEL;CELL:+1234567890123
+TEL;FAX:
+EMAIL;WORK;INTERNET:example@example.com
+URL:https://example.com
+END:VCARD</pre></td></tr>
+    <tr><td><img src="../codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">適用於小標籤的緊湊 QR</div><div class="dc-val">HELLO</div></td></tr>
+    <tr><td><img src="../codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">交通 / 登機證</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">適用於小標籤的緊湊變體</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-square.png" alt="Data Matrix (Square)"></td><td><div class="dc-type">Data Matrix (Square)</div><div class="dc-sub">製造業 / 醫療</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-rectangular.png" alt="Data Matrix (Rectangular)" class="dc-rect"></td><td><div class="dc-type">Data Matrix (Rectangular)</div><div class="dc-sub">適用於窄標籤的矩形變體</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/pdf417.gif" alt="PDF417" class="dc-rect"></td><td><div class="dc-type">PDF417</div><div class="dc-sub">身份證件 / 快遞標籤</div><div class="dc-val">PDF417 SAMPLE DATA</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/micropdf417.gif" alt="Micro PDF417"></td><td><div class="dc-type">Micro PDF417</div><div class="dc-sub">適用於小型物品的緊湊 PDF417</div><div class="dc-val">MICROPDF417 SAMPLE DATA</div></td></tr>
+    <tr><td><img src="../codes/ean13.png" alt="EAN-13" class="dc-rect"></td><td><div class="dc-type">EAN-13</div><div class="dc-sub">零售條碼</div><div class="dc-val">5901234123457</div></td></tr>
+    <tr><td><img src="../codes/upce.png" alt="UPC-E" class="dc-rect" style="max-width:150px;"></td><td><div class="dc-type">UPC-E</div><div class="dc-sub">緊湊零售條碼（美國/加拿大）</div><div class="dc-val">01234565</div></td></tr>
+    <tr><td><img src="../codes/code128.png" alt="Code 128" class="dc-rect"></td><td><div class="dc-type">Code 128</div><div class="dc-sub">物流 / 快遞</div><div class="dc-val">CODE-128-DEMO</div></td></tr>
+    <tr><td><img src="../codes/itf14.png" alt="ITF-14" class="dc-rect"></td><td><div class="dc-type">ITF-14</div><div class="dc-sub">運輸箱條碼</div><div class="dc-val">12345678901231</div></td></tr>
+    <tr><td><img src="../codes/gs1databar.png" alt="GS1 DataBar" class="dc-rect"></td><td><div class="dc-type">GS1 DataBar</div><div class="dc-sub">適用於小型商品的緊湊條碼</div><div class="dc-val">0112345678901231</div></td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="legal">法律資訊</h2>
+
+<h3 id="privacy">隱私政策</h3>
+<p><b>最後更新：</b>2026年4月</p>
+<h4>簡介</h4>
+<p>掃碼器建立在一個簡單的原則上：您的資料屬於您自己。本隱私政策說明了應用程式存取哪些資訊以及如何處理這些資訊。</p>
+<h4>相機存取</h4>
+<p>應用程式使用您裝置的相機即時掃描條碼和QR碼。相機畫面完全在您的裝置上處理。任何影像或視訊幀都不會被儲存、上傳或共享。</p>
+<h4>掃描記錄</h4>
+<p>掃描結果使用 Apple 的裝置端儲存技術本地儲存在您的裝置上。這些資料永遠不會離開您的裝置，也不會傳輸到任何伺服器。您可以隨時在應用程式內刪除掃描記錄。</p>
+<h4>無需網路連線</h4>
+<p>掃碼器完全離線運作。應用程式不發出任何網路請求。您的資料永遠不會離開您的裝置。</p>
+<h4>不收集資料</h4>
+<p>我們不收集、儲存或處理任何個人資訊。應用程式不需要帳戶或任何形式的註冊。</p>
+<h4>第三方服務</h4>
+<p>掃碼器不使用任何第三方分析、廣告或追蹤服務。任何資料都不會與第三方共享。</p>
+<h4>兒童隱私</h4>
+<p>由於不收集任何個人資料，掃碼器對所有年齡層的使用者都是安全的，並符合 COPPA 及全球類似法規。</p>
+<h4>政策變更</h4>
+<p>我們可能會不時更新本隱私政策。變更在發布後立即生效。建議您定期查閱本頁面。</p>
+<h4>聯絡我們</h4>
+<p>如有關於本隱私政策的問題：support [at] hoshinosoftware [dot] com</p>
+
+<h3 id="terms" style="margin-top:40px; padding-top:24px; border-top:1px solid #e5e5e5;">服務條款</h3>
+<p><b>最後更新：</b>2026年4月</p>
+<h4>接受條款</h4>
+<p>下載或使用掃碼器即表示您同意受本服務條款的約束。如不同意，請勿使用本應用程式。</p>
+<h4>授權</h4>
+<p>Hoshino Software 根據本條款及 Apple App Store 服務條款，授予您在 Apple 裝置上使用掃碼器的個人、不可轉讓、非獨家授權。</p>
+<h4>允許的使用</h4>
+<p>您只能將掃碼器用於合法目的。您同意不以任何違反適用法律或法規的方式使用本應用程式。</p>
+<h4>無保證</h4>
+<p>掃碼器以「現狀」提供，不附帶任何明示或暗示的保證。我們不保證應用程式無錯誤、不中斷或適合任何特定用途。</p>
+<h4>責任限制</h4>
+<p>在適用法律允許的最大範圍內，Hoshino Software 對因使用或無法使用掃碼器而產生的任何直接、間接、偶發、特殊或後果性損害不承擔責任。</p>
+<h4>條款變更</h4>
+<p>我們可能會不時更新本服務條款。變更發布後繼續使用應用程式即表示您接受修訂後的條款。</p>
+<h4>適用法律</h4>
+<p>本條款受 Hoshino Software 營運所在司法管轄區的法律管轄。</p>
+<h4>聯絡我們</h4>
+<p>如有關於本服務條款的問題：support [at] hoshinosoftware [dot] com</p>
+
+</main>
+
+<footer>© 2026 Hoshino Software &amp; Security · support [at] hoshinosoftware [dot] com</footer>
+
+<script>
+
+function applyTopPad() {
+  var h = document.getElementById('lang-strip').offsetHeight;
+  document.querySelector('main').style.paddingTop = (h + 20) + 'px';
+}
+applyTopPad();
+window.addEventListener('resize', applyTopPad);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Escáner de Códigos – Español</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; background: #fff; color: #111; line-height: 1.6; }
+#lang-strip { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px); border-bottom: 1px solid #e5e5e5; }
+#lang-strip .strip-inner { position: relative; display: flex; align-items: center; padding: 8px 20px; }
+#lang-strip .strip-brand { position: absolute; left: 20px; font-size: 13px; font-weight: 600; color: #111; text-decoration: none; white-space: nowrap; }
+#lang-strip .strip-brand:hover { color: #555; }
+@media (max-width: 1000px) { #lang-strip .strip-brand { display: none; } }
+#lang-strip .strip-langs { display: flex; flex-wrap: wrap; gap: 0; font-size: 13px; justify-content: center; width: 100%; }
+#lang-strip .strip-langs a { color: #666; text-decoration: none; padding: 2px 10px 2px 0; white-space: nowrap; }
+#lang-strip .strip-langs a:hover { color: #000; }
+#lang-strip .strip-langs a.active { color: #000; font-weight: 700; }
+#lang-strip .strip-langs .dot { color: #ccc; padding-right: 10px; user-select: none; }
+main { max-width: 700px; margin: 0 auto; padding: 20px 20px 80px; }
+#toc { background: #f5f5f7; border-radius: 12px; padding: 18px 24px; margin: 28px 0 40px; }
+#toc h2 { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #888; margin: 0 0 12px; border: none; padding: 0; }
+#toc ol { margin: 0; padding-left: 20px; counter-reset: toc-counter; list-style: none; }
+#toc ol li { counter-increment: toc-counter; margin: 6px 0; }
+#toc ol li::before { content: counter(toc-counter) ". "; font-weight: 600; color: #bbb; }
+#toc a { color: #111; text-decoration: none; font-weight: 500; }
+#toc a:hover { text-decoration: underline; }
+h2.section-h2 { margin-top: 56px; padding-top: 28px; border-top: 2px solid #e5e5e5; border-bottom: none; font-size: 1.5rem; padding-bottom: 0; }
+h2.section-h2.first-section { margin-top: 0; border-top: none; padding-top: 0; }
+.sub-divider { display: flex; align-items: center; gap: 10px; margin: 40px 0 24px; }
+.sub-divider::before { content: ''; flex: 1; height: 1px; background: #eee; }
+.sub-divider-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #bbb; white-space: nowrap; }
+.sub-divider::after { content: ''; flex: 1; height: 1px; background: #eee; }
+h1 { font-weight: 600; margin-bottom: 10px; margin-top: 0; }
+h2 { margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+h3 { margin-top: 20px; margin-bottom: 4px; }
+p  { margin: 10px 0; }
+ul, ol { padding-left: 20px; }
+li { margin: 4px 0; }
+.section-anchor { scroll-margin-top: 60px; }
+.contact-box { display: flex; align-items: center; gap: 16px; background: #f0f8ff; border: 1px solid #c5dff0; border-radius: 12px; padding: 18px 22px; margin: 24px 0; }
+.contact-box .contact-icon { font-size: 32px; flex-shrink: 0; }
+.contact-box .contact-body { flex: 1; }
+.contact-box .contact-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #6a9ab5; margin-bottom: 2px; }
+.contact-box .contact-email { font-size: 17px; font-weight: 600; color: #111; }
+.contact-box .contact-note { font-size: 13px; color: #666; margin-top: 3px; }
+.screenshots { display: flex; gap: 16px; flex-wrap: wrap; margin: 20px 0; }
+.screenshots img { width: 160px; border-radius: 20px; border: 1px solid #e0e0e0; display: block; }
+.tip { background: #f5f5f7; border-radius: 8px; padding: 10px 14px; margin: 12px 0; font-size: 15px; }
+table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; border: 1px solid #eee; border-radius: 8px; overflow: hidden; }
+thead th { text-align: left; background: #f5f5f7; font-weight: 600; padding: 10px; border-bottom: 1px solid #ddd; }
+tbody td { padding: 10px; border-bottom: 1px solid #eee; }
+tbody tr:nth-child(even) { background: #fafafa; }
+.demo-codes-table { width: 100%; border-collapse: collapse; table-layout: fixed; margin: 24px 0; font-size: 14px; }
+.demo-codes-table td { padding: 40px 10px; border-bottom: 1px solid #eee; vertical-align: middle; }
+.demo-codes-table td:first-child { width: 320px; min-width: 320px; max-width: 320px; text-align: center; }
+.demo-codes-table img { max-width: 300px; max-height: 200px; object-fit: contain; display: block; margin: 0 auto; }
+.demo-codes-table img.dc-rect { max-height: 400px; }
+.dc-type { font-weight: 600; color: #111; }
+.dc-sub  { font-size: 12px; color: #777; margin-top: 2px; }
+.dc-val  { font-size: 11px; color: #aaa; font-family: monospace; margin-top: 4px; word-break: break-all; }
+pre.dc-val { white-space: pre-wrap; margin: 4px 0 0; padding: 0; background: none; border: none; }
+footer { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px); border-top: 1px solid #e5e5e5; font-size: 12px; color: #666; text-align: center; padding: 8px 20px; }
+</style>
+</head>
+<body>
+<div id="lang-strip">
+  <div class="strip-inner">
+    <a href="../../" class="strip-brand">Hoshino Software &amp; Security</a>
+    <nav class="strip-langs">
+      <a href="/codereader/en">EN</a><span class="dot">·</span>
+      <a href="/codereader/fr">FR</a><span class="dot">·</span>
+      <a href="/codereader/it">IT</a><span class="dot">·</span>
+      <a href="/codereader/es" class="active">ES</a><span class="dot">·</span>
+      <a href="/codereader/pt">PT</a><span class="dot">·</span>
+      <a href="/codereader/de">DE</a><span class="dot">·</span>
+      <a href="/codereader/tr">TR</a><span class="dot">·</span>
+      <a href="/codereader/ko">한국어</a><span class="dot">·</span>
+      <a href="/codereader/ja">日本語</a><span class="dot">·</span>
+      <a href="/codereader/zh-hans">简体中文</a><span class="dot">·</span>
+      <a href="/codereader/zh-hant">繁體中文</a><span class="dot">·</span>
+      <a href="/codereader/ar">العربية</a>
+    </nav>
+  </div>
+</div>
+<main>
+<h1 class="section-anchor" id="top">Escáner de Códigos</h1>
+<p>Escáner de Códigos escanea códigos de barras y QR codes con la cámara de tu iPhone o desde cualquier imagen de tu biblioteca de fotos.
+Funciona completamente sin conexión, no almacena nada en la nube y nunca muestra anuncios.</p>
+<nav id="toc" aria-label="Contenido">
+  <h2>Contenido</h2>
+  <ol>
+    <li><a href="#download">Descargar</a></li>
+    <li><a href="#support">Soporte</a></li>
+    <li><a href="#manual">Manual</a></li>
+    <li><a href="#democodes">Códigos de demo</a></li>
+    <li><a href="#legal">Legal</a></li>
+  </ol>
+</nav>
+
+<h2 class="section-h2 first-section section-anchor" id="download">Descargar</h2>
+<p class="tip">La app aún no está publicada. Los enlaces al App Store y el QR code estarán disponibles aquí una vez que esté disponible.</p>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0; opacity:0.45;">
+  <img src="../../appstorebadge/es.svg" alt="Descargar en el App Store" height="72">
+  <div style="width:180px; height:180px; background:#f5f5f7; border-radius:10px; border:1px dashed #ccc; display:flex; align-items:center; justify-content:center; font-size:12px; color:#999;">QR code próximamente</div>
+</div>
+<p>Escáner de Códigos es gratuito en el App Store. No se requiere cuenta. Requiere iOS 26 o posterior.</p>
+
+<h2 class="section-h2 section-anchor" id="support">Soporte</h2>
+<p>¿Tienes alguna pregunta, encontraste un error o necesitas ayuda con la app? Contáctanos. Leemos cada mensaje.</p>
+<div class="contact-box">
+  <div class="contact-icon">✉️</div>
+  <div class="contact-body">
+    <div class="contact-label">Soporte por correo</div>
+    <div class="contact-email">support [at] hoshinosoftware [dot] com</div>
+    <div class="contact-note">Solemos responder en un plazo de 5 días hábiles.</div>
+  </div>
+</div>
+<h3>Antes de escribir</h3>
+<p>Muchos problemas comunes están resueltos en el <a href="#manual">Manual</a> y las preguntas frecuentes a continuación. Algunas comprobaciones rápidas:</p>
+<ul>
+  <li><b>¿La cámara no funciona?</b> Ve a Ajustes del iPhone → Privacidad y seguridad → Cámara → activa el acceso para Escáner de Códigos.</li>
+  <li><b>¿No encuentras el historial?</b> Toca la pestaña Historial. Las entradas se conservan 6 meses con un máximo de 1.000.</li>
+  <li><b>¿El código no se escanea?</b> Asegúrate de tener buena iluminación y mantén el código estable. Prueba el modo Galería si tienes un archivo de imagen.</li>
+  <li><b>¿La app se bloquea?</b> Ciérrala forzadamente y vuelve a abrirla. Si el problema continúa, escríbenos indicando tu modelo de iPhone y versión de iOS.</li>
+</ul>
+<h3>Preguntas frecuentes</h3>
+<ul>
+  <li><b>¿Necesita conexión a internet?</b><br>No. Escáner de Códigos funciona completamente sin conexión.</li><br>
+  <li><b>¿Recopila mis datos?</b><br>No. Nada se sube a ningún lugar. El historial de escaneos se almacena únicamente en tu dispositivo.</li><br>
+  <li><b>¿Accede a toda mi biblioteca de fotos?</b><br>No. En la pestaña Galería, seleccionas una sola foto usando el selector de fotos del sistema. Escáner de Códigos nunca accede a tu biblioteca.</li><br>
+  <li><b>¿Por qué el modo multi-código tarda un poco más?</b><br>La cámara recopila códigos en una breve ventana de fotogramas para asegurarse de capturar todos los códigos visibles antes de mostrar el resultado.</li><br>
+  <li><b>¿Cuánto tiempo se conserva el historial de escaneos?</b><br>Las entradas con más de 6 meses se eliminan automáticamente. El historial también tiene un límite de 1.000 entradas; las más antiguas se eliminan para dar paso a las nuevas.</li><br>
+  <li><b>¿Por qué no navega automáticamente a un enlace?</b><br>Es intencional. Los QR codes falsos o maliciosos son comunes: en estacionamientos, mesas de restaurantes y otros lugares. Mostrarte la URL antes de abrirla te permite verificar que es segura.</li>
+</ul>
+
+<h2 class="section-h2 section-anchor" id="manual">Manual</h2>
+<div class="screenshots">
+  <img src="../screenshots/es/camera.png" alt="Pantalla cámara">
+  <img src="../screenshots/es/result.png" alt="Pantalla resultado">
+  <img src="../screenshots/es/settings.png" alt="Pantalla ajustes">
+</div>
+<h3>Cámara</h3>
+<p>La pestaña Cámara se abre y comienza a escanear de inmediato. Apunta tu teléfono hacia cualquier código de barras o QR code y la app lo detecta automáticamente. Se requiere permiso para la cámara. Si aún no lo has concedido, aparecerá una solicitud. Toca <b>Abrir Ajustes</b> y activa el acceso a la <b>Cámara</b> para Escáner de Códigos.</p>
+<ul>
+  <li><b>Linterna:</b> toca el botón de linterna para iluminar entornos oscuros. Solo disponible con la cámara trasera.</li>
+  <li><b>Cámara frontal:</b> toca el botón de rotación para cambiar entre la cámara trasera y la frontal. Útil cuando la cámara trasera no está disponible (por ejemplo, dañada).</li>
+</ul>
+<div class="tip">💡 La app muestra una línea de escaneo roja mientras busca códigos. No necesitas presionar nada. El reconocimiento es automático.</div>
+<h3>Galería</h3>
+<p>La pestaña Galería te permite escanear códigos desde una imagen existente. Toca <b>Elegir foto</b> para seleccionar cualquier imagen de tu biblioteca. Solo la foto específica que eliges se comparte con la app. Escáner de Códigos no solicita acceso a toda tu biblioteca de fotos.</p>
+<p>Tras seleccionar una foto, la app la escanea y muestra el resultado de inmediato. Si no se encuentra ningún código, una alerta te lo indicará.</p>
+<h3>Historial</h3>
+<p>Cada escaneo se guarda automáticamente en la pestaña Historial. Los escaneos se conservan durante <b>6 meses</b> y el historial almacena hasta <b>1.000 entradas</b>; las más antiguas se eliminan automáticamente cuando se alcanza el límite.</p>
+<ul>
+  <li><b>Ver un escaneo anterior:</b> toca cualquier fila para volver a abrir el resultado completo.</li>
+  <li><b>Eliminar una entrada:</b> desliza hacia la izquierda en una fila y toca <b>Eliminar</b>.</li>
+  <li><b>Eliminar todo:</b> toca el icono de papelera en la esquina superior derecha.</li>
+  <li><b>Etiqueta de origen:</b> cada entrada indica si proviene de la Cámara, la Galería o un Compartir.</li>
+</ul>
+<h3>Ajustes</h3>
+<p><b>Modo multi-código</b><br>
+De forma predeterminada, Escáner de Códigos se detiene en cuanto encuentra <b>un código</b>. Activa el <b>Modo multi-código</b> para escanear hasta <b>5 códigos a la vez</b>, útil para tarjetas de visita, fichas de producto o cualquier imagen que contenga varios códigos uno al lado del otro.</p>
+<p>Cuando el modo multi-código está activo, la cámara sigue escaneando un breve momento tras la primera detección para recopilar todos los códigos visibles antes de mostrar los resultados. Por eso tarda un poco más que el modo de código único.</p>
+<p><b>Mostrar detalles avanzados</b><br>
+Activa <b>Mostrar detalles avanzados</b> para ver metadatos técnicos junto a cada resultado de escaneo: versión QR, nivel de corrección de errores, patrón de máscara o estructura del código de barras (caracteres de inicio/parada, dígito de comprobación). Esta información se muestra en la página de resultado y en las filas de la pestaña Historial.</p>
+<div class="tip">💡 Es una excelente manera de aprender más sobre cómo funcionan realmente los QR codes y los códigos de barras. Si tienes curiosidad por la tecnología detrás de lo que escaneas, ¡pruébalo!</div>
+<h3>Resultados de escaneo</h3>
+<p>Cuando se detecta un código, Escáner de Códigos te muestra su contenido antes de hacer nada. Siempre ves primero los datos sin procesar, junto con los botones <b>Copiar</b> y <b>Compartir</b>. Si el código contiene una URL (común en los QR codes), aparece un botón <b>Abrir</b>. Al tocarlo se abre el enlace en tu navegador predeterminado, no en un navegador integrado en la app. No se recopilan datos de navegación.</p>
+<p>Escáner de Códigos reconoce automáticamente los tipos de código especiales y muestra acciones contextuales:</p>
+<table>
+  <thead><tr><th>Tipo de código</th><th>Qué puedes hacer</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / Enlace</td><td>Abrir en tu navegador predeterminado · Copiar · Compartir</td></tr>
+    <tr><td>📶 Red Wi-Fi</td><td><b>Conectar</b> directamente · Copiar contraseña</td></tr>
+    <tr><td>👤 Contacto (vCard / MECARD)</td><td><b>Guardar en Contactos</b> con vista previa</td></tr>
+    <tr><td>📅 Evento de calendario</td><td><b>Añadir al Calendario</b></td></tr>
+    <tr><td>✉️ Correo electrónico</td><td><b>Redactar</b> correo prellenado</td></tr>
+    <tr><td>💬 SMS / Mensaje</td><td><b>Enviar mensaje</b></td></tr>
+    <tr><td>📞 Número de teléfono</td><td><b>Llamar</b></td></tr>
+    <tr><td>📍 Ubicación / Geo</td><td><b>Abrir en Mapas</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> o FaceTime Audio</td></tr>
+    <tr><td>₿ Bitcoin</td><td><b>Copiar dirección</b></td></tr>
+    <tr><td>✈️ Tarjeta de embarque</td><td>Detalles del vuelo extraídos de Aztec / PDF417</td></tr>
+  </tbody>
+</table>
+<p>Con <b>Mostrar detalles avanzados</b> activado (en Ajustes), aparecen dos secciones adicionales en la página de resultados:</p>
+<ul>
+  <li><b>Datos decodificados:</b> la cadena sin procesar codificada dentro del código de barras, antes de cualquier procesamiento.</li>
+  <li><b>Estructura:</b> desglose técnico del código de barras: caracteres de inicio/parada, dígito de comprobación, patrones de guardia y elementos similares según el tipo de código.</li>
+</ul>
+<p>Para los QR codes, también aparecen chips de metadatos que muestran el número de versión, el nivel de corrección de errores y el patrón de máscara.</p>
+<p><b>Detección de parámetros de seguimiento</b><br>
+Cuando una URL contiene parámetros de seguimiento, Escáner de Códigos muestra un botón <b>Abrir sin rastreo</b>. Esto incluye etiquetas UTM e identificadores de clic de Facebook, Google Ads, Microsoft, TikTok y otros. Tócalo para abrir el enlace sin esos parámetros. Llegas a la misma página sin ser rastreado.</p>
+<h3>Escanear desde otra app</h3>
+<p>Puedes escanear un código que aparece en una foto dentro de cualquier otra app (un mensaje, correo electrónico, visor de documentos o navegador web) sin salir de esa app.</p>
+<p><b>Usando Compartir:</b></p>
+<ol>
+  <li>Abre la imagen en tu galería o en cualquier app y toca el botón <b>Compartir</b>.</li>
+  <li>En la lista de apps que aparece, busca y toca <b>Escáner de Códigos</b>. Si no lo ves, desplázate hasta el final de la lista y toca <b>Más</b>.</li>
+  <li>La app se abre y escanea la imagen automáticamente.</li>
+</ol>
+<p><b>Usando Acciones:</b></p>
+<ol>
+  <li>Abre la imagen en tu galería o en cualquier app y toca el botón <b>Compartir</b>.</li>
+  <li>Desplázate por la fila de acciones debajo de la lista de apps y toca <b>Scan for Codes</b>.</li>
+  <li>La app se abre y escanea la imagen automáticamente.</li>
+</ol>
+<div class="tip">💡 Ambas opciones hacen lo mismo. "Escáner de Códigos" en la fila de apps y "Scan for Codes" en la fila de acciones son dos formas de acceder a la misma función.</div>
+<h3>Widget en la pantalla de inicio</h3>
+<p>Puedes añadir un widget a tu pantalla de inicio como acceso directo a la app. Al tocarlo se abre la cámara directamente, lista para escanear. Los widgets están disponibles en tres tamaños (pequeño, mediano, grande), así que puedes elegir el que mejor se adapte a tu pantalla de inicio.</p>
+<ol>
+  <li>Mantén pulsada un área vacía de tu pantalla de inicio hasta que los iconos comiencen a moverse.</li>
+  <li>Toca el botón <b>+</b> en la esquina superior izquierda.</li>
+  <li>Busca <b>Escáner de Códigos</b>.</li>
+  <li>Elige un tamaño y toca <b>Añadir widget</b>.</li>
+  <li>Puedes redimensionarlo más tarde manteniendo pulsado el widget y eligiendo <b>Editar widget</b>.</li>
+</ol>
+<h3>Control Center</h3>
+<p>Control Center es el panel que aparece al deslizar hacia abajo desde la esquina superior derecha de la pantalla. Puedes añadir un botón de Escáner de Códigos para abrir la cámara con un solo toque desde cualquier lugar, incluida la pantalla de bloqueo o mientras usas otra app.</p>
+<ol>
+  <li>Desliza hacia abajo desde la esquina superior derecha para abrir Control Center.</li>
+  <li>Toca el botón <b>+</b> para entrar en el modo de edición.</li>
+  <li>Busca <b>Escáner de Códigos</b> en la lista y tócalo para añadirlo.</li>
+  <li>Puedes arrastrarlo para reposicionarlo y redimensionarlo en el modo de edición.</li>
+</ol>
+<h3 id="codetypes">Tipos de código compatibles</h3>
+<table>
+  <thead><tr><th>Código</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>El código 2D más común. Usado para URL, Wi-Fi, contactos y más</td></tr>
+    <tr><td>Micro QR</td><td>Variante compacta del QR Code para etiquetas pequeñas con espacio limitado</td></tr>
+    <tr><td>Aztec</td><td>Usado en tarjetas de embarque y billetes de transporte</td></tr>
+    <tr><td>Data Matrix</td><td>Común en fabricación, sanidad y logística</td></tr>
+    <tr><td>PDF417</td><td>Usado en licencias de conducir, tarjetas de embarque y etiquetas de envío</td></tr>
+    <tr><td>Micro PDF417</td><td>PDF417 compacto para artículos pequeños como envases farmacéuticos</td></tr>
+    <tr><td>EAN-8</td><td>Código de barras corto para productos pequeños de venta minorista</td></tr>
+    <tr><td>EAN-13</td><td>Código de barras estándar que se encuentra en la mayoría de los productos de consumo del mundo</td></tr>
+    <tr><td>UPC-E</td><td>Código de barras compacto usado en pequeños envases minoristas en EE. UU. y Canadá</td></tr>
+    <tr><td>Code 39</td><td>Uno de los códigos de barras más antiguos, común en entornos industriales</td></tr>
+    <tr><td>Code 93</td><td>Sucesor de mayor densidad del Code 39</td></tr>
+    <tr><td>Code 128</td><td>Código de barras de alta densidad ampliamente usado en logística y envíos</td></tr>
+    <tr><td>ITF-14</td><td>Código de barras de 14 dígitos impreso en cajas de envío de cartón corrugado</td></tr>
+    <tr><td>Codabar</td><td>Usado en bibliotecas, bancos de sangre y algunas empresas de envío</td></tr>
+    <tr><td>GS1 DataBar</td><td>Código de barras compacto para artículos pequeños como productos frescos</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>Variante extendida que incluye datos adicionales como peso y fecha de caducidad</td></tr>
+  </tbody>
+</table>
+<p><b>No compatibles:</b></p>
+<table>
+  <thead><tr><th>Código</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (complementos)</td><td>Suplementos cortos de dígitos adjuntos al EAN-13, usados para números de edición de revistas y precios de libros</td></tr>
+    <tr><td>rMQR</td><td>Micro QR rectangular, una variante QR compacta más reciente diseñada para etiquetas estrechas</td></tr>
+    <tr><td>MaxiCode</td><td>Código de matriz 2D usado por UPS en etiquetas de envío</td></tr>
+    <tr><td>SP Code</td><td>Código de barras de accesibilidad japonés que codifica datos de audio hablado</td></tr>
+    <tr><td>Códigos postales</td><td>Códigos de barras postales de 4 estados usados por servicios postales nacionales (USPS Intelligent Mail, Royal Mail, Australia Post, Japan Post y otros)</td></tr>
+    <tr><td>Códigos de apps propietarias</td><td>Códigos visuales personalizados que solo la app emisora puede escanear</td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="democodes">Códigos de demo</h2>
+<p>Escanéalos directamente desde esta pantalla con la cámara, o toma una captura de pantalla y usa la pestaña Galería.</p>
+<table class="demo-codes-table">
+  <tbody>
+    <tr><td><img src="../codes/qr-url.png" alt="QR Code – URL"></td>          <td><div class="dc-type">QR Code</div><div class="dc-sub">URL con parámetros de seguimiento</div><div class="dc-val">https://hoshinosoftware.com?utm_source=review&amp;utm_campaign=demo</div></td></tr>
+    <tr><td><img src="../codes/qr-wifi.png" alt="QR Code – Wi-Fi"></td>        <td><div class="dc-type">QR Code</div><div class="dc-sub">Red Wi-Fi</div><div class="dc-val">WIFI:S:example-wifi;T:WPA;P:example-password;;</div></td></tr>
+    <tr><td><img src="../codes/qr-email.png" alt="QR Code – Email"></td>       <td><div class="dc-type">QR Code</div><div class="dc-sub">Correo electrónico</div><div class="dc-val">mailto:test@example.com</div></td></tr>
+    <tr><td><img src="../codes/qr-vcard.png" alt="QR Code – vCard"></td>       <td><div class="dc-type">QR Code</div><div class="dc-sub">Contacto (vCard)</div><pre class="dc-val">BEGIN:VCARD
+VERSION:3.0
+N:Last;First
+FN:First Last
+ORG:Company
+TITLE:Job Title
+ADR:;;Street;City;CA;90401;USA
+TEL;WORK;VOICE:
+TEL;CELL:+1234567890123
+TEL;FAX:
+EMAIL;WORK;INTERNET:example@example.com
+URL:https://example.com
+END:VCARD</pre></td></tr>
+    <tr><td><img src="../codes/microqr.png" alt="Micro QR"></td>               <td><div class="dc-type">Micro QR</div><div class="dc-sub">QR compacto para etiquetas pequeñas</div><div class="dc-val">HELLO</div></td></tr>
+    <tr><td><img src="../codes/aztec-full.png" alt="Aztec (Full)"></td>        <td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">Transporte / tarjetas de embarque</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/aztec-compact.png" alt="Aztec (Compact)"></td>  <td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">Variante compacta para etiquetas pequeñas</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-square.png" alt="Data Matrix (Square)"></td>          <td><div class="dc-type">Data Matrix (Square)</div><div class="dc-sub">Fabricación / sanidad</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-rectangular.png" alt="Data Matrix (Rectangular)" class="dc-rect"></td> <td><div class="dc-type">Data Matrix (Rectangular)</div><div class="dc-sub">Variante rectangular para etiquetas estrechas</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/pdf417.gif" alt="PDF417" class="dc-rect"></td>                  <td><div class="dc-type">PDF417</div><div class="dc-sub">Documentos de identidad / etiquetas de envío</div><div class="dc-val">PDF417 SAMPLE DATA</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/micropdf417.gif" alt="Micro PDF417"></td>       <td><div class="dc-type">Micro PDF417</div><div class="dc-sub">PDF417 compacto para artículos pequeños</div><div class="dc-val">MICROPDF417 SAMPLE DATA</div></td></tr>
+    <tr><td><img src="../codes/ean13.png" alt="EAN-13" class="dc-rect"></td>                   <td><div class="dc-type">EAN-13</div><div class="dc-sub">Código de barras de producto minorista</div><div class="dc-val">5901234123457</div></td></tr>
+    <tr><td><img src="../codes/upce.png" alt="UPC-E" class="dc-rect" style="max-width:150px;"></td>                     <td><div class="dc-type">UPC-E</div><div class="dc-sub">Código compacto minorista (EE. UU./Canadá)</div><div class="dc-val">01234565</div></td></tr>
+    <tr><td><img src="../codes/code128.png" alt="Code 128" class="dc-rect"></td>               <td><div class="dc-type">Code 128</div><div class="dc-sub">Logística / envíos</div><div class="dc-val">CODE-128-DEMO</div></td></tr>
+    <tr><td><img src="../codes/itf14.png" alt="ITF-14" class="dc-rect"></td>                   <td><div class="dc-type">ITF-14</div><div class="dc-sub">Código de barras de caja de envío</div><div class="dc-val">12345678901231</div></td></tr>
+    <tr><td><img src="../codes/gs1databar.png" alt="GS1 DataBar" class="dc-rect"></td>         <td><div class="dc-type">GS1 DataBar</div><div class="dc-sub">Código compacto para artículos pequeños</div><div class="dc-val">0112345678901231</div></td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="legal">Legal</h2>
+<h3 id="privacy">Política de Privacidad</h3>
+<p><b>Última actualización:</b> abril de 2026</p>
+<h4>Introducción</h4>
+<p>Escáner de Códigos está construido sobre un principio simple: tus datos te pertenecen. Esta Política de Privacidad explica a qué información accede la app y cómo se gestiona.</p>
+<h4>Acceso a la cámara</h4>
+<p>La app usa la cámara de tu dispositivo para escanear códigos de barras y códigos QR en tiempo real. El flujo de la cámara se procesa completamente en tu dispositivo. Ninguna imagen ni fotograma de video se almacena, carga o comparte jamás.</p>
+<h4>Historial de escaneos</h4>
+<p>Los resultados de los escaneos se guardan localmente en tu dispositivo usando la tecnología de almacenamiento integrada de Apple. Estos datos nunca salen de tu dispositivo ni se transmiten a ningún servidor. Puedes eliminar tu historial de escaneos en cualquier momento desde la app.</p>
+<h4>Sin conexión a Internet</h4>
+<p>Escáner de Códigos funciona completamente sin conexión. La app no realiza ninguna solicitud de red. Tus datos nunca abandonan tu dispositivo.</p>
+<h4>Sin recopilación de datos</h4>
+<p>No recopilamos, almacenamos ni procesamos ninguna información personal. La app no requiere cuenta ni ningún tipo de registro.</p>
+<h4>Servicios de terceros</h4>
+<p>Escáner de Códigos no usa ningún servicio de análisis, publicidad o seguimiento de terceros. Ningún dato se comparte con terceros.</p>
+<h4>Privacidad de menores</h4>
+<p>Dado que no se recopilan datos personales, Escáner de Códigos es seguro para usuarios de todas las edades y cumple con la ley COPPA y regulaciones similares en todo el mundo.</p>
+<h4>Cambios en esta política</h4>
+<p>Podemos actualizar esta Política de Privacidad ocasionalmente. Los cambios son efectivos inmediatamente después de su publicación. Te recomendamos revisar esta página periódicamente.</p>
+<h4>Contáctanos</h4>
+<p>Para preguntas sobre esta Política de Privacidad: support [at] hoshinosoftware [dot] com</p>
+<h3 id="terms" style="margin-top:40px; padding-top:24px; border-top:1px solid #e5e5e5;">Términos de Servicio</h3>
+<p><b>Última actualización:</b> abril de 2026</p>
+<h4>Aceptación de los términos</h4>
+<p>Al descargar o usar Escáner de Códigos, aceptas quedar vinculado por estos Términos de Servicio. Si no estás de acuerdo, por favor no uses la app.</p>
+<h4>Licencia</h4>
+<p>Hoshino Software te otorga una licencia personal, intransferible y no exclusiva para usar Escáner de Códigos en tus dispositivos Apple, conforme a estos términos y a los Términos de Servicio del App Store de Apple.</p>
+<h4>Uso permitido</h4>
+<p>Solo puedes usar Escáner de Códigos con fines legales. Aceptas no usar la app de ninguna manera que viole las leyes o regulaciones aplicables.</p>
+<h4>Sin garantía</h4>
+<p>Escáner de Códigos se proporciona "tal cual" sin garantía de ningún tipo, expresa o implícita. No garantizamos que la app esté libre de errores, sea ininterrumpida o adecuada para ningún propósito particular.</p>
+<h4>Limitación de responsabilidad</h4>
+<p>En la máxima medida permitida por la ley aplicable, Hoshino Software no será responsable de daños directos, indirectos, incidentales, especiales o consecuentes derivados del uso o imposibilidad de uso de Escáner de Códigos.</p>
+<h4>Cambios en estos términos</h4>
+<p>Podemos actualizar estos Términos de Servicio de vez en cuando. El uso continuado de la app tras la publicación de los cambios constituye tu aceptación de los términos revisados.</p>
+<h4>Ley aplicable</h4>
+<p>Estos términos se rigen por las leyes de la jurisdicción en la que opera Hoshino Software.</p>
+<h4>Contáctanos</h4>
+<p>Para preguntas sobre estos Términos de Servicio: support [at] hoshinosoftware [dot] com</p>
+</main>
+<footer>© 2026 Hoshino Software &amp; Security · support [at] hoshinosoftware [dot] com</footer>
+<script>
+function applyTopPad() {
+  var h = document.getElementById('lang-strip').offsetHeight;
+  document.querySelector('main').style.paddingTop = (h + 20) + 'px';
+}
+applyTopPad();
+window.addEventListener('resize', applyTopPad);
+</script>
+</body>
+</html>

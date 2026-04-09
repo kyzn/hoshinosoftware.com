@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>万能スキャナー – 日本語</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+/* ── Reset & Base ───────────────────────────── */
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #111;
+  line-height: 1.6;
+}
+
+/* ── Fixed language strip ───────────────────── */
+#lang-strip {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid #e5e5e5;
+}
+#lang-strip .strip-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+}
+#lang-strip .strip-brand {
+  position: absolute;
+  left: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  white-space: nowrap;
+}
+#lang-strip .strip-brand:hover { color: #555; }
+@media (max-width: 1000px) { #lang-strip .strip-brand { display: none; } }
+#lang-strip .strip-langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  font-size: 13px;
+  justify-content: center;
+  width: 100%;
+}
+#lang-strip .strip-langs a {
+  color: #666;
+  text-decoration: none;
+  padding: 2px 10px 2px 0;
+  white-space: nowrap;
+}
+#lang-strip .strip-langs a:hover { color: #000; }
+#lang-strip .strip-langs a.active { color: #000; font-weight: 700; }
+#lang-strip .strip-langs .dot {
+  color: #ccc;
+  padding-right: 10px;
+  user-select: none;
+}
+
+/* ── Main content ───────────────────────────── */
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
+}
+
+/* ── Table of Contents ──────────────────────── */
+#toc {
+  background: #f5f5f7;
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin: 28px 0 40px;
+}
+#toc h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  margin: 0 0 12px;
+  border: none;
+  padding: 0;
+}
+#toc ol {
+  margin: 0;
+  padding-left: 20px;
+  counter-reset: toc-counter;
+  list-style: none;
+}
+#toc ol li {
+  counter-increment: toc-counter;
+  margin: 6px 0;
+}
+#toc ol li::before {
+  content: counter(toc-counter) ". ";
+  font-weight: 600;
+  color: #bbb;
+}
+#toc a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
+}
+#toc a:hover { text-decoration: underline; }
+
+/* ── Section h2 (top-level sections) ───────── */
+h2.section-h2 {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 2px solid #e5e5e5;
+  border-bottom: none;
+  font-size: 1.5rem;
+  padding-bottom: 0;
+}
+h2.section-h2.first-section {
+  margin-top: 0;
+  border-top: none;
+  padding-top: 0;
+}
+
+/* ── Sub-section divider ────────────────────── */
+.sub-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 40px 0 24px;
+}
+.sub-divider::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.sub-divider-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bbb;
+  white-space: nowrap;
+}
+.sub-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+/* ── Typography ─────────────────────────────── */
+h1 { font-weight: 600; margin-bottom: 10px; margin-top: 0; }
+h2 { margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+h3 { margin-top: 20px; margin-bottom: 4px; }
+p  { margin: 10px 0; }
+ul, ol { padding-left: 20px; }
+li { margin: 4px 0; }
+
+/* ── Section scroll anchors ─────────────────── */
+.section-anchor {
+  scroll-margin-top: 60px;
+}
+
+/* ── Support contact box ────────────────────── */
+.contact-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #f0f8ff;
+  border: 1px solid #c5dff0;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.contact-box .contact-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+.contact-box .contact-body {
+  flex: 1;
+}
+.contact-box .contact-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6a9ab5;
+  margin-bottom: 2px;
+}
+.contact-box .contact-email {
+  font-size: 17px;
+  font-weight: 600;
+  color: #111;
+}
+.contact-box .contact-note {
+  font-size: 13px;
+  color: #666;
+  margin-top: 3px;
+}
+
+/* ── Screenshots ────────────────────────────── */
+.screenshots {
+  display: flex; gap: 16px; flex-wrap: wrap; margin: 20px 0;
+}
+.screenshots img {
+  width: 160px;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  display: block;
+}
+
+/* ── Tip ────────────────────────────────────── */
+.tip {
+  background: #f5f5f7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 15px;
+}
+
+/* ── Tables ─────────────────────────────────── */
+table {
+  width: 100%; border-collapse: collapse;
+  margin-top: 15px; font-size: 14px;
+  border: 1px solid #eee; border-radius: 8px; overflow: hidden;
+}
+thead th {
+  text-align: left; background: #f5f5f7;
+  font-weight: 600; padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+tbody td { padding: 10px; border-bottom: 1px solid #eee; }
+tbody tr:nth-child(even) { background: #fafafa; }
+
+/* ── Demo codes table ───────────────────────── */
+.demo-codes-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 24px 0;
+  font-size: 14px;
+}
+.demo-codes-table td {
+  padding: 40px 10px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+.demo-codes-table td:first-child {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  text-align: center;
+}
+.demo-codes-table img {
+  max-width: 300px;
+  max-height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.demo-codes-table img.dc-rect {
+  max-height: 400px;
+}
+.dc-type { font-weight: 600; color: #111; }
+.dc-sub  { font-size: 12px; color: #777; margin-top: 2px; }
+.dc-val  { font-size: 11px; color: #aaa; font-family: monospace; margin-top: 4px; word-break: break-all; }
+pre.dc-val { white-space: pre-wrap; margin: 4px 0 0; padding: 0; background: none; border: none; }
+
+/* ── RTL support ────────────────────────────── */
+.rtl { direction: rtl; text-align: right; }
+.rtl ul, .rtl ol { padding-left: 0; padding-right: 20px; }
+.rtl thead th { text-align: right; }
+
+/* ── Footer ─────────────────────────────────── */
+footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-top: 1px solid #e5e5e5;
+  font-size: 12px; color: #666; text-align: center;
+  padding: 8px 20px;
+}
+
+</style>
+</head>
+<body>
+
+<div id="lang-strip">
+  <div class="strip-inner">
+    <a href="../../" class="strip-brand">Hoshino Software &amp; Security</a>
+    <nav class="strip-langs">
+      <a href="/codereader/en">EN</a>
+      <span class="dot">·</span>
+      <a href="/codereader/fr">FR</a>
+      <span class="dot">·</span>
+      <a href="/codereader/it">IT</a>
+      <span class="dot">·</span>
+      <a href="/codereader/es">ES</a>
+      <span class="dot">·</span>
+      <a href="/codereader/pt">PT</a>
+      <span class="dot">·</span>
+      <a href="/codereader/de">DE</a>
+      <span class="dot">·</span>
+      <a href="/codereader/tr">TR</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ko">한국어</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ja" class="active">日本語</a>
+      <span class="dot">·</span>
+      <a href="/codereader/zh-hans">简体中文</a>
+      <span class="dot">·</span>
+      <a href="/codereader/zh-hant">繁體中文</a>
+      <span class="dot">·</span>
+      <a href="/codereader/ar">العربية</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+<h1 class="section-anchor" id="top">万能スキャナー</h1>
+<p>万能スキャナー は、iPhone のカメラまたはフォトライブラリの画像を使ってバーコードや QR コードをスキャンします。
+完全オフラインで動作し、クラウドには何も保存せず、広告も表示しません。</p>
+
+<nav id="toc" aria-label="ページの目次">
+  <h2>目次</h2>
+  <ol>
+    <li><a href="#download">ダウンロード</a></li>
+    <li><a href="#support">サポート</a></li>
+    <li><a href="#manual">マニュアル</a></li>
+    <li><a href="#democodes">デモコード</a></li>
+    <li><a href="#legal">法的情報</a></li>
+  </ol>
+</nav>
+
+<h2 class="section-h2 first-section section-anchor" id="download">ダウンロード</h2>
+
+<p class="tip">アプリはまだ公開されていません。公開後、App Store リンクと QR コードがここに表示されます。</p>
+
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0; opacity:0.45;">
+  <img src="../../appstorebadge/ja.svg" alt="App Store からダウンロード" height="72">
+  <div style="width:180px; height:180px; background:#f5f5f7; border-radius:10px; border:1px dashed #ccc; display:flex; align-items:center; justify-content:center; font-size:12px; color:#999;">QR コード準備中</div>
+</div>
+<p>万能スキャナーは App Store から無料でダウンロードできます。アカウント不要。iOS 26 以降が必要です。</p>
+
+<h2 class="section-h2 section-anchor" id="support">サポート</h2>
+
+<p>ご質問、バグの報告、アプリのサポートが必要な場合はご連絡ください。すべてのメッセージを読んでいます。</p>
+
+<div class="contact-box">
+  <div class="contact-icon">✉️</div>
+  <div class="contact-body">
+    <div class="contact-label">メールサポート</div>
+    <div class="contact-email">support [at] hoshinosoftware [dot] com</div>
+    <div class="contact-note">通常、5 営業日以内にご返答します。</div>
+  </div>
+</div>
+
+<h3>お問い合わせ前に</h3>
+<p>よくある問題の多くは、下記の<a href="#manual">マニュアル</a>とFAQに記載されています。まず以下をご確認ください。</p>
+<ul>
+  <li><b>カメラが使えない場合</b>：iPhoneの設定 → プライバシーとセキュリティ → カメラ → 万能スキャナーのアクセスを有効にしてください。</li>
+  <li><b>履歴が見つからない場合</b>：履歴タブをタップしてください。履歴は6か月間保存され、最大1,000件までです。</li>
+  <li><b>コードがスキャンできない場合</b>：照明を明るくし、コードをしっかり固定してください。画像ファイルがある場合はギャラリーモードをお試しください。</li>
+  <li><b>アプリが強制終了する場合</b>：強制終了してから再起動してください。問題が続く場合は、iPhoneのモデルとiOSバージョンをお知らせの上、メールでご連絡ください。</li>
+</ul>
+
+<h3>よくある質問</h3>
+<ul>
+  <li><b>インターネット接続は必要ですか？</b><br>いいえ。万能スキャナー は完全にオフラインで動作します。</li><br>
+  <li><b>データは収集されますか？</b><br>いいえ。どこにもアップロードされません。スキャン履歴はデバイス上にのみ保存されます。</li><br>
+  <li><b>フォトライブラリ全体にアクセスしますか？</b><br>いいえ。ギャラリータブでは、システムの写真ピッカーを使って 1 枚の写真を選択します。万能スキャナー はライブラリへのアクセス権限を受け取ることはありません。</li><br>
+  <li><b>マルチコードモードが少し時間がかかるのはなぜですか？</b><br>カメラは、結果を表示する前に視野内のすべてのコードを確実にキャプチャするため、短いフレームの時間枠にわたってコードを収集します。</li><br>
+  <li><b>スキャン履歴はどのくらい保存されますか？</b><br>6 ヶ月以上経過したエントリは自動的に削除されます。履歴は 1,000 件にも制限されており、新しいもののために最も古いものが削除されます。</li><br>
+  <li><b>なぜリンクに自動的に移動しないのですか？</b><br>これは意図的なものです。偽の QR コードや悪意のある QR コードは、駐車場やレストランのテーブルなどで一般的に見られます。開く前に URL を表示することで、安全かどうかを確認できます。</li>
+</ul>
+
+<h2 class="section-h2 section-anchor" id="manual">マニュアル</h2>
+
+<div class="screenshots">
+  <img src="../screenshots/ja/camera.png" alt="カメラ画面">
+  <img src="../screenshots/ja/result.png" alt="スキャン結果画面">
+  <img src="../screenshots/ja/settings.png" alt="設定画面">
+</div>
+
+<h3>カメラ</h3>
+<p>カメラタブを開くと、すぐにスキャンが始まります。バーコードや QR コードにスマートフォンを向けると、アプリが自動的に検出します。カメラのアクセス許可が必要です。まだ許可していない場合は確認ダイアログが表示されます。<b>設定を開く</b>をタップし、万能スキャナー の<b>カメラ</b>アクセスを有効にしてください。</p>
+<ul>
+  <li><b>懐中電灯:</b> 暗い環境を照らすには懐中電灯ボタンをタップします。背面カメラでのみ使用できます。</li>
+  <li><b>フロントカメラ:</b> 背面カメラと前面カメラを切り替えるには回転ボタンをタップします。背面カメラが使用できない場合（故障など）に便利です。</li>
+</ul>
+<div class="tip">💡 コードを探している間、アプリは赤いスキャンラインを表示します。何もタップする必要はありません。認識は自動です。</div>
+
+<h3>ギャラリー</h3>
+<p>ギャラリータブでは、既存の画像からコードをスキャンできます。<b>写真を選択</b>をタップして、ライブラリから任意の画像を選んでください。選択した特定の写真だけがアプリと共有されます。万能スキャナー はフォトライブラリ全体へのアクセスを要求しません。</p>
+<p>写真を選ぶと、アプリが即座にスキャンして結果を表示します。コードが見つからない場合は、アラートでその旨をお知らせします。</p>
+
+<h3>履歴</h3>
+<p>すべてのスキャンは履歴タブに自動保存されます。スキャン結果は<b>6 ヶ月間</b>保持され、履歴には最大<b>1,000 件</b>まで保存されます。上限に達すると、最も古いものから自動的に削除されます。</p>
+<ul>
+  <li><b>過去のスキャンを見る:</b> 任意の行をタップして、完全な結果を再度開きます。</li>
+  <li><b>1 件削除:</b> 行を左にスワイプして<b>削除</b>をタップします。</li>
+  <li><b>すべて削除:</b> 右上のゴミ箱アイコンをタップします。</li>
+  <li><b>ソースラベル:</b> 各エントリには、カメラ、ギャラリー、または共有のどこから来たかが表示されます。</li>
+</ul>
+
+<h3>設定</h3>
+<p><b>マルチコードモード</b><br>
+デフォルトでは、万能スキャナー は<b>1 つのコード</b>を見つけると停止します。<b>マルチコードモード</b>をオンにすると、一度に最大<b>5 つのコード</b>をスキャンできます。名刺、製品シート、複数のコードが並んだ画像に便利です。</p>
+<p>マルチコードモードが有効な場合、カメラは最初の検出後も短時間スキャンを続け、結果を表示する前にすべての見えているコードを収集します。そのため、シングルコードモードよりわずかに時間がかかります。</p>
+
+<p><b>詳細情報を表示</b><br>
+<b>詳細情報を表示</b>をオンにすると、各スキャン結果の横に技術的なメタデータが表示されます。QR バージョン、誤り訂正レベル、マスクパターン、バーコード構造（スタート/ストップ文字、チェックデジット）などです。この情報はスキャン結果ページと履歴タブの各行に表示されます。</p>
+<div class="tip">💡 QR コードやバーコードの実際の仕組みをもっと詳しく知る絶好の方法です。スキャンしているものの技術に興味があれば、ぜひ試してみてください！</div>
+
+<h3>スキャン結果</h3>
+<p>コードが検出されると、万能スキャナー は何もする前にその内容を表示します。常に生データが最初に表示され、<b>コピー</b>と<b>共有</b>ボタンが並びます。コードに URL が含まれている場合（QR コードでよく見られます）、<b>開く</b>ボタンが表示されます。タップすると、アプリ内ブラウザではなくデフォルトのブラウザでリンクが開きます。閲覧データは収集されません。</p>
+<p>万能スキャナー は特殊なコードの種類を自動的に認識し、状況に応じたアクションを表示します：</p>
+<table>
+  <thead><tr><th>コードの種類</th><th>できること</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / リンク</td><td>デフォルトのブラウザで開く · コピー · 共有</td></tr>
+    <tr><td>📶 Wi-Fi ネットワーク</td><td>直接<b>接続</b> · パスワードをコピー</td></tr>
+    <tr><td>👤 連絡先 (vCard / MECARD)</td><td>プレビュー付きで<b>連絡先に保存</b></td></tr>
+    <tr><td>📅 カレンダーイベント</td><td><b>カレンダーに追加</b></td></tr>
+    <tr><td>✉️ メール</td><td>下書き済みメールを<b>作成</b></td></tr>
+    <tr><td>💬 SMS / メッセージ</td><td><b>メッセージを送信</b></td></tr>
+    <tr><td>📞 電話番号</td><td><b>電話をかける</b></td></tr>
+    <tr><td>📍 位置情報 / ジオ</td><td><b>マップで開く</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> または FaceTime オーディオ</td></tr>
+    <tr><td>₿ ビットコイン</td><td><b>アドレスをコピー</b></td></tr>
+    <tr><td>✈️ 搭乗券</td><td>Aztec / PDF417 から解析されたフライト詳細</td></tr>
+  </tbody>
+</table>
+
+<p>（設定で）<b>詳細情報を表示</b>をオンにすると、結果ページに 2 つの追加セクションが表示されます：</p>
+<ul>
+  <li><b>デコードされたデータ:</b> 解析前の、バーコード内にエンコードされた生の文字列。</li>
+  <li><b>構造:</b> バーコードの技術的な内訳。スタート/ストップ文字、チェックデジット、ガードパターン、コードの種類に応じた類似要素。</li>
+</ul>
+<p>QR コードの場合は、バージョン番号、誤り訂正レベル、マスクパターンを示すメタデータチップも表示されます。</p>
+
+<p><b>トラッキングパラメータの検出</b><br>
+URL にトラッキングパラメータが含まれている場合、万能スキャナー は<b>トラッキングなしで開く</b>ボタンを表示します。これには UTM タグ、Facebook、Google Ads、Microsoft、TikTok などのクリック ID が含まれます。タップすると、それらのパラメータが削除された状態でリンクが開きます。追跡されることなく同じページにアクセスできます。</p>
+
+<h3>別のアプリからスキャン</h3>
+<p>メッセージ、メール、ドキュメントビューア、ウェブブラウザなど、他のアプリ内の写真に表示されたコードを、そのアプリを離れることなくスキャンできます。</p>
+<p><b>共有を使う:</b></p>
+<ol>
+  <li>ギャラリーまたは任意のアプリで画像を開き、<b>共有</b>ボタンをタップします。</li>
+  <li>表示されたアプリの一覧から<b>万能スキャナー</b>を見つけてタップします。見つからない場合は一覧の末尾までスクロールし、<b>その他</b>をタップしてください。</li>
+  <li>アプリが開き、画像を自動的にスキャンします。</li>
+</ol>
+<p><b>アクションを使う:</b></p>
+<ol>
+  <li>ギャラリーまたは任意のアプリで画像を開き、<b>共有</b>ボタンをタップします。</li>
+  <li>アプリ一覧の下のアクション行をスクロールして<b>Scan for Codes</b>をタップします。</li>
+  <li>アプリが開き、画像を自動的にスキャンします。</li>
+</ol>
+<div class="tip">💡 どちらのオプションも同じことをします。アプリ行の「万能スキャナー」とアクション行の「Scan for Codes」は、同じ機能にアクセスする 2 つの方法です。</div>
+
+<h3>ホーム画面ウィジェット</h3>
+<p>ホーム画面にウィジェットを追加して、アプリへのショートカットとして使用できます。タップするとカメラが直接開き、スキャンの準備が整います。ウィジェットは 3 つのサイズ（小・中・大）で提供されているので、ホーム画面のレイアウトに合わせて選択できます。</p>
+<ol>
+  <li>ホーム画面の空いている場所を、アイコンが揺れるまで長押しします。</li>
+  <li>左上の<b>+</b>ボタンをタップします。</li>
+  <li><b>万能スキャナー</b>を検索します。</li>
+  <li>サイズを選択して<b>ウィジェットを追加</b>をタップします。</li>
+  <li>後からウィジェットを長押しして<b>ウィジェットを編集</b>を選択することで、サイズを変更できます。</li>
+</ol>
+
+<h3>Control Center</h3>
+<p>Control Center は、画面右上の角から下にスワイプすると現れるパネルです。万能スキャナー のボタンを追加すると、ロック画面や他のアプリの使用中など、どこからでもワンタップでカメラを起動できます。</p>
+<ol>
+  <li>右上の角から下にスワイプして Control Center を開きます。</li>
+  <li><b>+</b>ボタンをタップして編集モードに入ります。</li>
+  <li>一覧から<b>万能スキャナー</b>を見つけてタップして追加します。</li>
+  <li>編集モード中にドラッグして位置を変更したり、サイズを変更したりできます。</li>
+</ol>
+
+<h3 id="codetypes">対応コード一覧</h3>
+<table>
+  <thead><tr><th>コード</th><th>備考</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>最も一般的な 2D コード。URL、Wi-Fi、連絡先などに使用</td></tr>
+    <tr><td>Micro QR</td><td>スペースが限られた小さなラベル向けの QR Code のコンパクト版</td></tr>
+    <tr><td>Aztec</td><td>搭乗券や交通機関のチケットに使用</td></tr>
+    <tr><td>Data Matrix</td><td>製造業、医療、物流で一般的に使用</td></tr>
+    <tr><td>PDF417</td><td>運転免許証、搭乗券、配送ラベルに使用</td></tr>
+    <tr><td>Micro PDF417</td><td>医薬品包装などの小型品向けのコンパクトな PDF417</td></tr>
+    <tr><td>EAN-8</td><td>小型商品向けの短い小売バーコード</td></tr>
+    <tr><td>EAN-13</td><td>世界中の多くの消費者製品に見られる標準的な小売バーコード</td></tr>
+    <tr><td>UPC-E</td><td>米国・カナダの小型小売包装に使用されるコンパクトなバーコード</td></tr>
+    <tr><td>Code 39</td><td>最も古いバーコードの 1 つ。産業環境でよく見られる</td></tr>
+    <tr><td>Code 93</td><td>Code 39 の高密度後継版</td></tr>
+    <tr><td>Code 128</td><td>物流や配送で広く使われる高密度バーコード</td></tr>
+    <tr><td>ITF-14</td><td>段ボール製の配送箱に印刷された 14 桁のバーコード</td></tr>
+    <tr><td>Codabar</td><td>図書館、血液バンク、一部の宅配会社で使用</td></tr>
+    <tr><td>GS1 DataBar</td><td>農産物や生鮮食品などの小型品向けのコンパクトな小売バーコード</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>重量や有効期限などの追加データを持つ拡張バリアント</td></tr>
+  </tbody>
+</table>
+<p><b>非対応：</b></p>
+<table>
+  <thead><tr><th>コード</th><th>備考</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (アドオン)</td><td>EAN-13 に付加される短い数字補足。雑誌の号数と書籍の価格表示に使用</td></tr>
+    <tr><td>rMQR</td><td>細長いラベル向けに設計された新しいコンパクトな QR バリアント、矩形マイクロ QR</td></tr>
+    <tr><td>MaxiCode</td><td>UPS が配送ラベルに使用する 2D ドットマトリックスコード</td></tr>
+    <tr><td>SP Code</td><td>音声データをエンコードする日本のアクセシビリティバーコード</td></tr>
+    <tr><td>郵便バーコード</td><td>各国の郵便サービスが使用する 4 ステート郵便バーコード（USPS Intelligent Mail、Royal Mail、Australia Post、Japan Post など）</td></tr>
+    <tr><td>独自アプリコード</td><td>発行元のアプリのみがスキャンできるカスタム視覚コード</td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="democodes">デモコード</h2>
+
+<p>カメラでこの画面から直接スキャンするか、スクリーンショットを撮ってギャラリータブをお使いください。</p>
+
+<table class="demo-codes-table">
+  <tbody>
+    <tr><td><img src="../codes/qr-url.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">トラッキングパラメータ付き URL</div><div class="dc-val">https://hoshinosoftware.com?utm_source=review&amp;utm_campaign=demo</div></td></tr>
+    <tr><td><img src="../codes/qr-wifi.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Wi-Fi ネットワーク</div><div class="dc-val">WIFI:S:example-wifi;T:WPA;P:example-password;;</div></td></tr>
+    <tr><td><img src="../codes/qr-email.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">メール</div><div class="dc-val">mailto:test@example.com</div></td></tr>
+    <tr><td><img src="../codes/qr-vcard.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">連絡先 (vCard)</div><pre class="dc-val">BEGIN:VCARD
+VERSION:3.0
+N:Last;First
+FN:First Last
+ORG:Company
+TITLE:Job Title
+ADR:;;Street;City;CA;90401;USA
+TEL;WORK;VOICE:
+TEL;CELL:+1234567890123
+TEL;FAX:
+EMAIL;WORK;INTERNET:example@example.com
+URL:https://example.com
+END:VCARD</pre></td></tr>
+    <tr><td><img src="../codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">小さなラベル向けコンパクト QR</div><div class="dc-val">HELLO</div></td></tr>
+    <tr><td><img src="../codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">交通機関 / 搭乗券</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">小さなラベル向けコンパクト版</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-square.png" alt="Data Matrix (Square)"></td><td><div class="dc-type">Data Matrix (Square)</div><div class="dc-sub">製造業 / 医療</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-rectangular.png" alt="Data Matrix (Rectangular)" class="dc-rect"></td><td><div class="dc-type">Data Matrix (Rectangular)</div><div class="dc-sub">細長いラベル向け矩形バリアント</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/pdf417.gif" alt="PDF417" class="dc-rect"></td><td><div class="dc-type">PDF417</div><div class="dc-sub">身分証明書 / 配送ラベル</div><div class="dc-val">PDF417 SAMPLE DATA</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/micropdf417.gif" alt="Micro PDF417"></td><td><div class="dc-type">Micro PDF417</div><div class="dc-sub">小型品向けコンパクト PDF417</div><div class="dc-val">MICROPDF417 SAMPLE DATA</div></td></tr>
+    <tr><td><img src="../codes/ean13.png" alt="EAN-13" class="dc-rect"></td><td><div class="dc-type">EAN-13</div><div class="dc-sub">小売バーコード</div><div class="dc-val">5901234123457</div></td></tr>
+    <tr><td><img src="../codes/upce.png" alt="UPC-E" class="dc-rect" style="max-width:150px;"></td><td><div class="dc-type">UPC-E</div><div class="dc-sub">コンパクト小売バーコード（米国/カナダ）</div><div class="dc-val">01234565</div></td></tr>
+    <tr><td><img src="../codes/code128.png" alt="Code 128" class="dc-rect"></td><td><div class="dc-type">Code 128</div><div class="dc-sub">物流 / 配送</div><div class="dc-val">CODE-128-DEMO</div></td></tr>
+    <tr><td><img src="../codes/itf14.png" alt="ITF-14" class="dc-rect"></td><td><div class="dc-type">ITF-14</div><div class="dc-sub">配送箱バーコード</div><div class="dc-val">12345678901231</div></td></tr>
+    <tr><td><img src="../codes/gs1databar.png" alt="GS1 DataBar" class="dc-rect"></td><td><div class="dc-type">GS1 DataBar</div><div class="dc-sub">小型品向けコンパクトバーコード</div><div class="dc-val">0112345678901231</div></td></tr>
+  </tbody>
+</table>
+
+<h2 class="section-h2 section-anchor" id="legal">法的情報</h2>
+
+<h3 id="privacy">プライバシーポリシー</h3>
+<p><b>最終更新：</b>2026年4月</p>
+<h4>はじめに</h4>
+<p>万能スキャナーはシンプルな原則に基づいて作られています：あなたのデータはあなたのものです。このプライバシーポリシーは、アプリがどの情報にアクセスし、どのように扱われるかを説明します。</p>
+<h4>カメラへのアクセス</h4>
+<p>アプリはバーコードやQRコードをリアルタイムでスキャンするために、デバイスのカメラを使用します。カメラの映像はデバイス上でのみ処理されます。画像や動画フレームが保存、アップロード、または共有されることは一切ありません。</p>
+<h4>スキャン履歴</h4>
+<p>スキャン結果はAppleのデバイス内ストレージ技術を使用してデバイス上にローカル保存されます。このデータはデバイスを離れることはなく、サーバーに送信されることもありません。スキャン履歴はいつでもアプリ内から削除できます。</p>
+<h4>インターネット接続不要</h4>
+<p>万能スキャナーは完全にオフラインで動作します。アプリはネットワークリクエストを行いません。データはデバイスを離れることはありません。</p>
+<h4>データ収集なし</h4>
+<p>個人情報の収集、保存、処理は一切行いません。アプリはアカウントや登録を必要としません。</p>
+<h4>サードパーティサービス</h4>
+<p>万能スキャナーはサードパーティの分析、広告、またはトラッキングサービスを使用しません。いかなるデータもサードパーティと共有されません。</p>
+<h4>子どものプライバシー</h4>
+<p>個人データを収集しないため、万能スキャナーはすべての年齢のユーザーに安全であり、COPPAおよび世界各国の同様の規制に準拠しています。</p>
+<h4>ポリシーの変更</h4>
+<p>このプライバシーポリシーは随時更新される場合があります。変更は掲載後すぐに有効になります。定期的にこのページをご確認ください。</p>
+<h4>お問い合わせ</h4>
+<p>このプライバシーポリシーに関するお問い合わせ：support [at] hoshinosoftware [dot] com</p>
+
+<h3 id="terms" style="margin-top:40px; padding-top:24px; border-top:1px solid #e5e5e5;">利用規約</h3>
+<p><b>最終更新：</b>2026年4月</p>
+<h4>規約への同意</h4>
+<p>万能スキャナーをダウンロードまたは使用することにより、この利用規約に同意したものとみなされます。同意しない場合は、アプリをご使用にならないでください。</p>
+<h4>ライセンス</h4>
+<p>Hoshino Softwareは、本規約およびAppleのApp Store利用規約に従い、Appleデバイスで万能スキャナーをご使用いただくための個人的・非譲渡・非独占的ライセンスを付与します。</p>
+<h4>許可された使用</h4>
+<p>万能スキャナーは合法的な目的のためにのみご使用いただけます。適用される法律または規制に違反する方法でアプリを使用しないことに同意します。</p>
+<h4>無保証</h4>
+<p>万能スキャナーは明示または黙示のいかなる保証もなく「現状のまま」提供されます。アプリがエラーなく動作すること、中断なく利用できること、または特定の目的に適していることを保証しません。</p>
+<h4>責任の制限</h4>
+<p>適用法が許容する最大限の範囲において、Hoshino Softwareは万能スキャナーの使用または使用不能から生じる直接的・間接的・付随的・特別・結果的損害について責任を負いません。</p>
+<h4>規約の変更</h4>
+<p>この利用規約は随時更新される場合があります。変更後もアプリを引き続き使用することは、改訂された規約に同意したものとみなされます。</p>
+<h4>準拠法</h4>
+<p>本規約は、Hoshino Softwareが事業を行う管轄地域の法律に準拠します。</p>
+<h4>お問い合わせ</h4>
+<p>この利用規約に関するお問い合わせ：support [at] hoshinosoftware [dot] com</p>
+
+</main>
+
+<footer>© 2026 Hoshino Software &amp; Security · support [at] hoshinosoftware [dot] com</footer>
+
+<script>
+
+function applyTopPad() {
+  var h = document.getElementById('lang-strip').offsetHeight;
+  document.querySelector('main').style.paddingTop = (h + 20) + 'px';
+}
+applyTopPad();
+window.addEventListener('resize', applyTopPad);
+
+</script>
+
+</body>
+</html>
