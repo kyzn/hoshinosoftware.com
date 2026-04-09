@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Barcode QR Reader – English</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+/* ── Reset & Base ───────────────────────────── */
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+  background: #fff;
+  color: #111;
+  line-height: 1.6;
+}
+
+/* ── Fixed language strip ───────────────────── */
+#lang-strip {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid #e5e5e5;
+}
+#lang-strip .strip-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+}
+#lang-strip .strip-brand {
+  position: absolute;
+  left: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  white-space: nowrap;
+}
+#lang-strip .strip-brand:hover { color: #555; }
+@media (max-width: 1000px) { #lang-strip .strip-brand { display: none; } }
+#lang-strip .strip-langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  font-size: 13px;
+  justify-content: center;
+  width: 100%;
+}
+#lang-strip .strip-langs a {
+  color: #666;
+  text-decoration: none;
+  padding: 2px 10px 2px 0;
+  white-space: nowrap;
+}
+#lang-strip .strip-langs a:hover { color: #000; }
+#lang-strip .strip-langs a.active { color: #000; font-weight: 700; }
+#lang-strip .strip-langs .dot {
+  color: #ccc;
+  padding-right: 10px;
+  user-select: none;
+}
+
+/* ── Main content ───────────────────────────── */
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
+}
+
+/* ── Table of Contents ──────────────────────── */
+#toc {
+  background: #f5f5f7;
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin: 28px 0 40px;
+}
+#toc h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  margin: 0 0 12px;
+  border: none;
+  padding: 0;
+}
+#toc ol {
+  margin: 0;
+  padding-left: 20px;
+  counter-reset: toc-counter;
+  list-style: none;
+}
+#toc ol li {
+  counter-increment: toc-counter;
+  margin: 6px 0;
+}
+#toc ol li::before {
+  content: counter(toc-counter) ". ";
+  font-weight: 600;
+  color: #bbb;
+}
+#toc a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
+}
+#toc a:hover { text-decoration: underline; }
+
+/* ── Section h2 (top-level sections) ───────── */
+h2.section-h2 {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 2px solid #e5e5e5;
+  border-bottom: none;
+  font-size: 1.5rem;
+  padding-bottom: 0;
+}
+h2.section-h2.first-section {
+  margin-top: 0;
+  border-top: none;
+  padding-top: 0;
+}
+
+/* ── Sub-section divider ────────────────────── */
+.sub-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 40px 0 24px;
+}
+.sub-divider::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.sub-divider-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bbb;
+  white-space: nowrap;
+}
+.sub-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+/* ── Typography ─────────────────────────────── */
+h1 { font-weight: 600; margin-bottom: 10px; margin-top: 0; }
+h2 { margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+h3 { margin-top: 20px; margin-bottom: 4px; }
+p  { margin: 10px 0; }
+ul, ol { padding-left: 20px; }
+li { margin: 4px 0; }
+
+/* ── Section scroll anchors ─────────────────── */
+.section-anchor {
+  scroll-margin-top: 60px;
+}
+
+/* ── Support contact box ────────────────────── */
+.contact-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #f0f8ff;
+  border: 1px solid #c5dff0;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.contact-box .contact-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+.contact-box .contact-body {
+  flex: 1;
+}
+.contact-box .contact-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6a9ab5;
+  margin-bottom: 2px;
+}
+.contact-box .contact-email {
+  font-size: 17px;
+  font-weight: 600;
+  color: #111;
+}
+.contact-box .contact-note {
+  font-size: 13px;
+  color: #666;
+  margin-top: 3px;
+}
+
+/* ── Screenshots ────────────────────────────── */
+.screenshots {
+  display: flex; gap: 16px; flex-wrap: wrap; margin: 20px 0;
+}
+.screenshots img {
+  width: 160px;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  display: block;
+}
+
+/* ── Tip ────────────────────────────────────── */
+.tip {
+  background: #f5f5f7;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 12px 0;
+  font-size: 15px;
+}
+
+/* ── Tables ─────────────────────────────────── */
+table {
+  width: 100%; border-collapse: collapse;
+  margin-top: 15px; font-size: 14px;
+  border: 1px solid #eee; border-radius: 8px; overflow: hidden;
+}
+thead th {
+  text-align: left; background: #f5f5f7;
+  font-weight: 600; padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+tbody td { padding: 10px; border-bottom: 1px solid #eee; }
+tbody tr:nth-child(even) { background: #fafafa; }
+
+/* ── Demo codes table ───────────────────────── */
+.demo-codes-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 24px 0;
+  font-size: 14px;
+}
+.demo-codes-table td {
+  padding: 40px 10px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+.demo-codes-table td:first-child {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  text-align: center;
+}
+.demo-codes-table img {
+  max-width: 300px;
+  max-height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.demo-codes-table img.dc-rect {
+  max-height: 400px;
+}
+.dc-type { font-weight: 600; color: #111; }
+.dc-sub  { font-size: 12px; color: #777; margin-top: 2px; }
+.dc-val  { font-size: 11px; color: #aaa; font-family: monospace; margin-top: 4px; word-break: break-all; }
+pre.dc-val { white-space: pre-wrap; margin: 4px 0 0; padding: 0; background: none; border: none; }
+
+/* ── Footer ─────────────────────────────────── */
+footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-top: 1px solid #e5e5e5;
+  font-size: 12px; color: #666; text-align: center;
+  padding: 8px 20px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- FIXED LANGUAGE STRIP                                      -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div id="lang-strip">
+  <div class="strip-inner">
+    <a href="../../" class="strip-brand">Hoshino Software &amp; Security</a>
+    <nav class="strip-langs">
+      <a href="/codereader/en" class="active">EN</a><span class="dot">·</span>
+      <a href="/codereader/fr">FR</a><span class="dot">·</span>
+      <a href="/codereader/it">IT</a><span class="dot">·</span>
+      <a href="/codereader/es">ES</a><span class="dot">·</span>
+      <a href="/codereader/pt">PT</a><span class="dot">·</span>
+      <a href="/codereader/de">DE</a><span class="dot">·</span>
+      <a href="/codereader/tr">TR</a><span class="dot">·</span>
+      <a href="/codereader/ko">한국어</a><span class="dot">·</span>
+      <a href="/codereader/ja">日本語</a><span class="dot">·</span>
+      <a href="/codereader/zh-hans">简体中文</a><span class="dot">·</span>
+      <a href="/codereader/zh-hant">繁體中文</a><span class="dot">·</span>
+      <a href="/codereader/ar">العربية</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+
+<h1 class="section-anchor" id="top">Barcode QR Reader</h1>
+<p>Barcode QR Reader scans barcodes and QR codes using your iPhone's camera or any image in your photo library.
+It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
+
+<!-- ── Table of Contents ──────────────────────────────────── -->
+<nav id="toc" aria-label="Page contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#download">Download</a></li>
+    <li><a href="#support">Support</a></li>
+    <li><a href="#manual">Manual</a></li>
+    <li><a href="#democodes">Demo Codes</a></li>
+    <li><a href="#legal">Legal</a></li>
+  </ol>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 1 · DOWNLOAD                                              -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<h2 class="section-h2 first-section section-anchor" id="download">Download</h2>
+
+<p class="tip">The app is not yet published. App Store links and the QR code will be available here once it is live.</p>
+
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0; opacity:0.45;">
+  <img src="../../appstorebadge/en.svg" alt="Download on the App Store" height="72">
+  <div style="width:180px; height:180px; background:#f5f5f7; border-radius:10px; border:1px dashed #ccc; display:flex; align-items:center; justify-content:center; font-size:12px; color:#999;">QR code coming soon</div>
+</div>
+<p>Barcode QR Reader is free to download from the App Store. No account required. Requires iOS 26 or later.</p>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 2 · SUPPORT                                               -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<h2 class="section-h2 section-anchor" id="support">Support</h2>
+
+<p>Have a question, found a bug, or need help with the app? Reach out. We read every message.</p>
+
+<div class="contact-box">
+  <div class="contact-icon">✉️</div>
+  <div class="contact-body">
+    <div class="contact-label">Email Support</div>
+    <div class="contact-email">support [at] hoshinosoftware [dot] com</div>
+    <div class="contact-note">We typically respond within 5 business days.</div>
+  </div>
+</div>
+
+<h3>Before you write</h3>
+<p>Many common issues are answered in the <a href="#manual">Manual</a> and FAQ below. A few quick checks:</p>
+<ul>
+  <li><b>Camera not working?</b> Go to iPhone Settings → Privacy &amp; Security → Camera → enable access for Barcode QR Reader.</li>
+  <li><b>Can't find history?</b> Tap the History tab. Entries are kept for 6 months and cap at 1,000.</li>
+  <li><b>Code not scanning?</b> Ensure good lighting and hold the code steady. Try Gallery mode if you have an image file.</li>
+  <li><b>App crashing?</b> Force-quit and reopen. If it persists, email us with your iPhone model and iOS version.</li>
+</ul>
+
+<h3>Frequently Asked Questions</h3>
+<ul>
+  <li><b>Does it need an internet connection?</b><br>No. Barcode QR Reader works completely offline.</li><br>
+  <li><b>Does it collect my data?</b><br>No. Nothing is uploaded anywhere. Scan history is stored only on your device.</li><br>
+  <li><b>Does it access my entire photo library?</b><br>No. In the Gallery tab, you pick a single photo using the system photo picker. Barcode QR Reader never receives access to your library.</li><br>
+  <li><b>Why does multi-code mode take a little longer?</b><br>The camera gathers codes across a short window of frames to make sure it catches all codes in view before showing the result.</li><br>
+  <li><b>How long is scan history kept?</b><br>Entries older than 6 months are removed automatically. The history also caps at 1,000 entries; the oldest are removed to make room for new ones.</li><br>
+  <li><b>Why doesn't it navigate to a link automatically?</b><br>This is intentional. Fake or malicious QR codes are common, found in parking lots, restaurant tables, and elsewhere. Showing you the URL before opening it lets you verify it's safe.</li>
+</ul>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 3 · MANUAL                                                -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<h2 class="section-h2 section-anchor" id="manual">Manual</h2>
+
+<div class="screenshots">
+  <img src="../screenshots/en/camera.png" alt="Camera screen">
+  <img src="../screenshots/en/result.png" alt="Scan result screen">
+  <img src="../screenshots/en/settings.png" alt="Settings screen">
+</div>
+
+<h3>Camera</h3>
+<p>The Camera tab opens and starts scanning right away. Point your phone at any barcode or QR code and the app detects it automatically. Camera permission is required. If you haven't granted it yet, a prompt will appear. Tap <b>Open Settings</b> and enable <b>Camera</b> access for Barcode QR Reader.</p>
+<ul>
+  <li><b>Flashlight:</b> tap the flashlight button to illuminate dark environments. Only available with the back camera.</li>
+  <li><b>Front camera:</b> tap the rotate button to switch between back and front cameras. Handy when the back camera is not available (e.g. damaged).</li>
+</ul>
+<div class="tip">💡 The app shows a red scanning line while it looks for codes. You don't need to press anything. Recognition is automatic.</div>
+
+<h3>Gallery</h3>
+<p>The Gallery tab lets you scan codes from an existing image. Tap <b>Choose Photo</b> to pick any image from your library. Only the specific photo you choose is shared with the app. Barcode QR Reader does not request access to your entire photo library.</p>
+<p>After picking a photo, the app scans it and shows the result immediately. If no code is found, an alert will tell you so.</p>
+
+<h3>History</h3>
+<p>Every scan is automatically saved to the History tab. Scans are kept for <b>6 months</b> and the history holds up to <b>1,000 entries</b>; the oldest are removed automatically when the limit is reached.</p>
+<ul>
+  <li><b>View a past scan:</b> tap any row to re-open the full result.</li>
+  <li><b>Delete one entry:</b> swipe left on a row and tap <b>Delete</b>.</li>
+  <li><b>Delete all:</b> tap the trash icon in the top-right corner.</li>
+  <li><b>Source label:</b> each entry shows whether it came from the Camera, Gallery, or a Share.</li>
+</ul>
+
+<h3>Settings</h3>
+<p><b>Multi-Code Mode</b><br>
+By default, Barcode QR Reader stops as soon as it finds <b>one code</b>. Turn on <b>Multi-Code Mode</b> to scan up to <b>5 codes at once</b>, useful for business cards, product sheets, or any image containing several codes side by side.</p>
+<p>When multi-code mode is active, the camera keeps scanning for a brief moment after the first detection to gather all visible codes before showing results. This is why it takes slightly longer than single-code mode.</p>
+
+<p><b>Show Advanced Details</b><br>
+Turn on <b>Show Advanced Details</b> to reveal technical metadata alongside each scan result: things like QR version, error correction level, mask pattern, or barcode structure (start/stop characters, check digit). This is shown on the Scan Result page and in the History tab rows.</p>
+<div class="tip">💡 This is a great way to learn more about how QR codes and barcodes actually work. If you're curious about the technology behind what you scan, give it a try!</div>
+
+<h3>Scan Results</h3>
+<p>When a code is detected, Barcode QR Reader shows you its content before doing anything with it. You always see the raw data first, along with <b>Copy</b> and <b>Share</b> buttons. If the code contains a URL (common in QR codes), an <b>Open</b> button appears. Tapping it opens the link in your default browser, not an in-app browser. No browsing data is collected.</p>
+<p>Barcode QR Reader automatically recognizes special code types and shows contextual actions:</p>
+<table>
+  <thead><tr><th>Code type</th><th>What you can do</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / Link</td><td>Open in your default browser · Copy · Share</td></tr>
+    <tr><td>📶 Wi-Fi network</td><td><b>Connect</b> directly · Copy password</td></tr>
+    <tr><td>👤 Contact (vCard / MECARD)</td><td><b>Save to Contacts</b> with preview</td></tr>
+    <tr><td>📅 Calendar event</td><td><b>Add to Calendar</b></td></tr>
+    <tr><td>✉️ Email</td><td><b>Compose</b> pre-filled email</td></tr>
+    <tr><td>💬 SMS / Message</td><td><b>Send Message</b></td></tr>
+    <tr><td>📞 Phone number</td><td><b>Call</b></td></tr>
+    <tr><td>📍 Location / Geo</td><td><b>Open in Maps</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> or FaceTime Audio</td></tr>
+    <tr><td>₿ Bitcoin</td><td><b>Copy address</b></td></tr>
+    <tr><td>✈️ Boarding pass</td><td>Flight details parsed from Aztec / PDF417</td></tr>
+  </tbody>
+</table>
+
+<p>With <b>Show Advanced Details</b> turned on (in Settings), two additional sections appear on the result page:</p>
+<ul>
+  <li><b>Decoded Data:</b> the raw string encoded inside the barcode, before any parsing.</li>
+  <li><b>Structure:</b> technical breakdown of the barcode: start/stop characters, check digit, guard patterns, and similar elements depending on the code type.</li>
+</ul>
+<p>For QR codes, metadata chips also appear showing version number, error correction level, and mask pattern.</p>
+
+<p><b>Tracking parameter detection</b><br>
+When a URL contains tracking parameters, Barcode QR Reader shows an <b>Open Without Tracking</b> button. This includes UTM tags, click IDs from Facebook, Google Ads, Microsoft, TikTok, and others. Tap it to open the link with those parameters removed. You reach the same page without being tracked.</p>
+
+<h3>Scanning from Another App</h3>
+<p>You can scan a code that appears in a photo inside any other app (a message, email, document viewer, or web browser) without leaving that app.</p>
+<p><b>Using Share:</b></p>
+<ol>
+  <li>Open the image in your gallery or any app, then tap the <b>Share</b> button.</li>
+  <li>In the list of apps that appears, find and tap <b>Barcode QR Reader</b>. If you don't see it, scroll to the end of the list and tap <b>More</b>.</li>
+  <li>The app opens and scans the image automatically.</li>
+</ol>
+<p><b>Using Actions:</b></p>
+<ol>
+  <li>Open the image in your gallery or any app, then tap the <b>Share</b> button.</li>
+  <li>Scroll the actions row below the app list and tap <b>Scan for Codes</b>.</li>
+  <li>The app opens and scans the image automatically.</li>
+</ol>
+<div class="tip">💡 Both options do the same thing. "Barcode QR Reader" in the app row and "Scan for Codes" in the actions row are two ways to reach the same feature.</div>
+
+<h3>Homescreen Widget</h3>
+<p>You can add a widget to your homescreen as a larger shortcut to the app. Tapping it opens the camera directly, ready to scan. Widgets come in three sizes (small, medium, large), so you can choose whichever fits your homescreen layout.</p>
+<ol>
+  <li>Long-press an empty area of your homescreen until the icons jiggle.</li>
+  <li>Tap the <b>+</b> button in the top-left corner.</li>
+  <li>Search for <b>Barcode QR Reader</b>.</li>
+  <li>Choose a size and tap <b>Add Widget</b>.</li>
+  <li>You can resize it later by long-pressing the widget and choosing <b>Edit Widget</b>.</li>
+</ol>
+
+<h3>Control Center</h3>
+<p>Control Center is the panel that slides down when you swipe down from the top-right corner of the screen. You can add a Barcode QR Reader button there to launch the camera with a single tap from anywhere, including the lock screen or while using another app.</p>
+<ol>
+  <li>Swipe down from the top-right corner to open Control Center.</li>
+  <li>Tap the <b>+</b> button to enter edit mode.</li>
+  <li>Find <b>Barcode QR Reader</b> in the list and tap it to add.</li>
+  <li>You can drag it to reposition it and resize it while in edit mode.</li>
+</ol>
+
+<h3 id="codetypes">Supported Code Types</h3>
+<table>
+  <thead><tr><th>Code</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>QR Code</td><td>Most common 2D code. Used for URLs, Wi-Fi, contacts, and more</td></tr>
+    <tr><td>Micro QR</td><td>Compact variant of QR Code for small labels with limited space</td></tr>
+    <tr><td>Aztec</td><td>Used on boarding passes and transit tickets</td></tr>
+    <tr><td>Data Matrix</td><td>Common in manufacturing, healthcare, and logistics</td></tr>
+    <tr><td>PDF417</td><td>Used on driver's licenses, boarding passes, and shipping labels</td></tr>
+    <tr><td>Micro PDF417</td><td>Compact PDF417 for small items like pharmaceutical packaging</td></tr>
+    <tr><td>EAN-8</td><td>Short retail barcode for small products</td></tr>
+    <tr><td>EAN-13</td><td>Standard retail barcode found on most consumer products worldwide</td></tr>
+    <tr><td>UPC-E</td><td>Compact barcode used on small US/Canada retail packaging</td></tr>
+    <tr><td>Code 39</td><td>One of the oldest barcodes, common in industrial settings</td></tr>
+    <tr><td>Code 93</td><td>Higher-density successor to Code 39</td></tr>
+    <tr><td>Code 128</td><td>High-density barcode widely used in logistics and shipping</td></tr>
+    <tr><td>ITF-14</td><td>14-digit barcode printed on corrugated cardboard shipping boxes</td></tr>
+    <tr><td>Codabar</td><td>Used in libraries, blood banks, and some shipping companies</td></tr>
+    <tr><td>GS1 DataBar</td><td>Compact retail barcode for small items like produce and fresh foods</td></tr>
+    <tr><td>GS1 DataBar Expanded</td><td>Extended variant that carries additional data like weight and expiry date</td></tr>
+  </tbody>
+</table>
+<p><b>Not supported:</b></p>
+<table>
+  <thead><tr><th>Code</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>EAN-2 / EAN-5 (add-ons)</td><td>Short digit supplements attached to EAN-13, used for magazine issue numbers and book pricing</td></tr>
+    <tr><td>rMQR</td><td>Rectangular Micro QR, a newer compact QR variant designed for narrow labels</td></tr>
+    <tr><td>MaxiCode</td><td>2D dot-matrix code used by UPS on shipping labels</td></tr>
+    <tr><td>SP Code</td><td>Japanese accessibility barcode that encodes spoken audio data</td></tr>
+    <tr><td>Postal Codes</td><td>4-state postal barcodes used by national mail services (USPS Intelligent Mail, Royal Mail, Australia Post, Japan Post, and others)</td></tr>
+    <tr><td>Proprietary app codes</td><td>Custom visual codes that only the issuing app can scan</td></tr>
+  </tbody>
+</table>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 4 · DEMO CODES                                            -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<h2 class="section-h2 section-anchor" id="democodes">Demo Codes</h2>
+
+<p>Scan these directly from this screen with the camera, or take a screenshot and use the Gallery tab.</p>
+
+<table class="demo-codes-table">
+  <tbody>
+    <tr><td><img src="../codes/qr-url.png" alt="QR Code – URL"></td>          <td><div class="dc-type">QR Code</div><div class="dc-sub">URL with tracking parameters</div><div class="dc-val">https://hoshinosoftware.com?utm_source=review&amp;utm_campaign=demo</div></td></tr>
+    <tr><td><img src="../codes/qr-wifi.png" alt="QR Code – Wi-Fi"></td>        <td><div class="dc-type">QR Code</div><div class="dc-sub">Wi-Fi network</div><div class="dc-val">WIFI:S:example-wifi;T:WPA;P:example-password;;</div></td></tr>
+    <tr><td><img src="../codes/qr-email.png" alt="QR Code – Email"></td>       <td><div class="dc-type">QR Code</div><div class="dc-sub">Email</div><div class="dc-val">mailto:test@example.com</div></td></tr>
+    <tr><td><img src="../codes/qr-vcard.png" alt="QR Code – vCard"></td>       <td><div class="dc-type">QR Code</div><div class="dc-sub">Contact (vCard)</div><pre class="dc-val">BEGIN:VCARD
+VERSION:3.0
+N:Last;First
+FN:First Last
+ORG:Company
+TITLE:Job Title
+ADR:;;Street;City;CA;90401;USA
+TEL;WORK;VOICE:
+TEL;CELL:+1234567890123
+TEL;FAX:
+EMAIL;WORK;INTERNET:example@example.com
+URL:https://example.com
+END:VCARD</pre></td></tr>
+    <tr><td><img src="../codes/microqr.png" alt="Micro QR"></td>               <td><div class="dc-type">Micro QR</div><div class="dc-sub">Compact QR for small labels</div><div class="dc-val">HELLO</div></td></tr>
+    <tr><td><img src="../codes/aztec-full.png" alt="Aztec (Full)"></td>        <td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">Transit / boarding passes</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/aztec-compact.png" alt="Aztec (Compact)"></td>  <td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">Compact variant for small labels</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-square.png" alt="Data Matrix (Square)"></td>          <td><div class="dc-type">Data Matrix (Square)</div><div class="dc-sub">Manufacturing / healthcare</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td><img src="../codes/datamatrix-rectangular.png" alt="Data Matrix (Rectangular)" class="dc-rect"></td> <td><div class="dc-type">Data Matrix (Rectangular)</div><div class="dc-sub">Rectangular variant for narrow labels</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/pdf417.gif" alt="PDF417" class="dc-rect"></td>                  <td><div class="dc-type">PDF417</div><div class="dc-sub">ID documents / shipping labels</div><div class="dc-val">PDF417 SAMPLE DATA</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/micropdf417.gif" alt="Micro PDF417"></td>       <td><div class="dc-type">Micro PDF417</div><div class="dc-sub">Compact PDF417 for small items</div><div class="dc-val">MICROPDF417 SAMPLE DATA</div></td></tr>
+    <tr><td><img src="../codes/ean13.png" alt="EAN-13" class="dc-rect"></td>                   <td><div class="dc-type">EAN-13</div><div class="dc-sub">Retail product barcode</div><div class="dc-val">5901234123457</div></td></tr>
+    <tr><td><img src="../codes/upce.png" alt="UPC-E" class="dc-rect" style="max-width:150px;"></td>                     <td><div class="dc-type">UPC-E</div><div class="dc-sub">Compact retail barcode (US/Canada)</div><div class="dc-val">01234565</div></td></tr>
+    <tr><td><img src="../codes/code128.png" alt="Code 128" class="dc-rect"></td>               <td><div class="dc-type">Code 128</div><div class="dc-sub">Logistics / shipping</div><div class="dc-val">CODE-128-DEMO</div></td></tr>
+    <tr><td><img src="../codes/itf14.png" alt="ITF-14" class="dc-rect"></td>                   <td><div class="dc-type">ITF-14</div><div class="dc-sub">Shipping box barcode</div><div class="dc-val">12345678901231</div></td></tr>
+
+    <tr><td><img src="../codes/gs1databar.png" alt="GS1 DataBar" class="dc-rect"></td>         <td><div class="dc-type">GS1 DataBar</div><div class="dc-sub">Compact retail barcode for small items</div><div class="dc-val">0112345678901231</div></td></tr>
+  </tbody>
+</table>
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- 5 · LEGAL                                                 -->
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<h2 class="section-h2 section-anchor" id="legal">Legal</h2>
+
+<h3 id="privacy">Privacy Policy</h3>
+<p><b>Last Updated:</b> April 2026</p>
+<h4>Introduction</h4>
+<p>Barcode QR Reader is built around a simple principle: your data belongs to you. This Privacy Policy explains what information the app accesses and how it is handled.</p>
+<h4>Camera Access</h4>
+<p>The app uses your device's camera to scan barcodes and QR codes in real time. The camera feed is processed entirely on your device. No images or video frames are ever stored, uploaded, or shared with anyone.</p>
+<h4>Scan History</h4>
+<p>Scan results are saved locally on your device using Apple's on-device storage. This data never leaves your device and is never transmitted to any server. You can delete your scan history at any time from within the app.</p>
+<h4>No Internet Connection</h4>
+<p>Barcode QR Reader works entirely offline. The app makes no network requests. Your data never leaves your device.</p>
+<h4>No Data Collection</h4>
+<p>We do not collect, store, or process any personal information. The app does not require an account or any form of registration.</p>
+<h4>Third-Party Services</h4>
+<p>Barcode QR Reader does not use any third-party analytics, advertising, or tracking services. No data is shared with any third party.</p>
+<h4>Children's Privacy</h4>
+<p>Because no personal data is collected, Barcode QR Reader is safe for users of all ages and complies with the Children's Online Privacy Protection Act (COPPA) and similar regulations worldwide.</p>
+<h4>Changes to This Policy</h4>
+<p>We may update this Privacy Policy from time to time. Changes are effective immediately upon posting. We encourage you to review this page periodically.</p>
+<h4>Contact Us</h4>
+<p>If you have any questions about this Privacy Policy, contact us at: support [at] hoshinosoftware [dot] com</p>
+
+<h3 id="terms" style="margin-top:40px; padding-top:24px; border-top:1px solid #e5e5e5;">Terms of Service</h3>
+<p><b>Last Updated:</b> April 2026</p>
+<h4>Acceptance of Terms</h4>
+<p>By downloading or using Barcode QR Reader, you agree to be bound by these Terms of Service. If you do not agree, please do not use the app.</p>
+<h4>License</h4>
+<p>Hoshino Software grants you a personal, non-transferable, non-exclusive license to use Barcode QR Reader on your Apple devices in accordance with these terms and Apple's App Store Terms of Service.</p>
+<h4>Permitted Use</h4>
+<p>You may use Barcode QR Reader only for lawful purposes. You agree not to use the app in any way that violates applicable laws or regulations.</p>
+<h4>No Warranty</h4>
+<p>Barcode QR Reader is provided "as is" without warranty of any kind, express or implied. We do not guarantee that the app will be error-free, uninterrupted, or suitable for any particular purpose.</p>
+<h4>Limitation of Liability</h4>
+<p>To the fullest extent permitted by applicable law, Hoshino Software shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use of or inability to use Barcode QR Reader.</p>
+<h4>Changes to These Terms</h4>
+<p>We may update these Terms of Service from time to time. Continued use of the app after changes are posted constitutes your acceptance of the revised terms.</p>
+<h4>Governing Law</h4>
+<p>These terms are governed by the laws of the jurisdiction in which Hoshino Software operates.</p>
+<h4>Contact Us</h4>
+<p>If you have any questions about these Terms of Service, contact us at: support [at] hoshinosoftware [dot] com</p>
+
+</main>
+
+<footer>© 2026 Hoshino Software &amp; Security · support [at] hoshinosoftware [dot] com</footer>
+
+<script>
+// ── Pad body top to clear fixed strip ──────────────────────
+function applyTopPad() {
+  var h = document.getElementById('lang-strip').offsetHeight;
+  document.querySelector('main').style.paddingTop = (h + 20) + 'px';
+}
+applyTopPad();
+window.addEventListener('resize', applyTopPad);
+
+</script>
+
+</body>
+</html>
