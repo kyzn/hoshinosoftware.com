@@ -343,11 +343,10 @@ footer {
 
 <h2 class="section-h2 first-section section-anchor" id="download">下载</h2>
 
-<p class="tip">应用尚未发布。发布后，App Store 链接和 QR 码将在此处显示。</p>
 
-<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0; opacity:0.45;">
-  <img src="../../appstorebadge/zh-hans.svg" alt="在 App Store 上下载" height="72">
-  <div style="width:180px; height:180px; background:#f5f5f7; border-radius:10px; border:1px dashed #ccc; display:flex; align-items:center; justify-content:center; font-size:12px; color:#999;">QR 码即将推出</div>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <a href="https://apps.apple.com/us/app/barcode-qr-reader/id6761772999" target="_blank" rel="noopener"><img src="../../appstorebadge/zh-hans.svg" alt="在 App Store 上下载" height="72"></a>
+  <a href="https://apps.apple.com/us/app/barcode-qr-reader/id6761772999" target="_blank" rel="noopener"><img src="../images/download.png" alt="Scan to download" style="width:180px; height:180px; border-radius:10px;"></a>
 </div>
 <p>全能扫码器可在 App Store 免费下载。无需账户。需要 iOS 26 或更高版本。</p>
 
@@ -386,9 +385,9 @@ footer {
 <h2 class="section-h2 section-anchor" id="manual">使用手册</h2>
 
 <div class="screenshots">
-  <img src="../screenshots/zh-hans/camera.png" alt="相机界面">
-  <img src="../screenshots/zh-hans/result.png" alt="扫描结果界面">
-  <img src="../screenshots/zh-hans/settings.png" alt="设置界面">
+  <img src="../images/screenshots/zh-hans/camera.png" alt="相机界面">
+  <img src="../images/screenshots/zh-hans/result.png" alt="扫描结果界面">
+  <img src="../images/screenshots/zh-hans/settings.png" alt="设置界面">
 </div>
 
 <h3>相机</h3>
@@ -527,10 +526,10 @@ footer {
 
 <table class="demo-codes-table">
   <tbody>
-    <tr><td><img src="../codes/qr-url.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">含追踪参数的 URL</div><div class="dc-val">https://hoshinosoftware.com?utm_source=review&amp;utm_campaign=demo</div></td></tr>
-    <tr><td><img src="../codes/qr-wifi.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Wi-Fi 网络</div><div class="dc-val">WIFI:S:example-wifi;T:WPA;P:example-password;;</div></td></tr>
-    <tr><td><img src="../codes/qr-email.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">电子邮件</div><div class="dc-val">mailto:test@example.com</div></td></tr>
-    <tr><td><img src="../codes/qr-vcard.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">联系人 (vCard)</div><pre class="dc-val">BEGIN:VCARD
+    <tr><td><img src="../images/codes/qr-url.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">含追踪参数的 URL</div><div class="dc-val">https://hoshinosoftware.com?utm_source=review&amp;utm_campaign=demo</div></td></tr>
+    <tr><td><img src="../images/codes/qr-wifi.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Wi-Fi 网络</div><div class="dc-val">WIFI:S:example-wifi;T:WPA;P:example-password;;</div></td></tr>
+    <tr><td><img src="../images/codes/qr-email.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">电子邮件</div><div class="dc-val">mailto:test@example.com</div></td></tr>
+    <tr><td><img src="../images/codes/qr-vcard.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">联系人 (vCard)</div><pre class="dc-val">BEGIN:VCARD
 VERSION:3.0
 N:Last;First
 FN:First Last
@@ -543,18 +542,18 @@ TEL;FAX:
 EMAIL;WORK;INTERNET:example@example.com
 URL:https://example.com
 END:VCARD</pre></td></tr>
-    <tr><td><img src="../codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">适用于小标签的紧凑 QR</div><div class="dc-val">HELLO</div></td></tr>
-    <tr><td><img src="../codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">交通 / 登机牌</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
-    <tr><td><img src="../codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">适用于小标签的紧凑变体</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
-    <tr><td><img src="../codes/datamatrix-square.png" alt="Data Matrix (Square)"></td><td><div class="dc-type">Data Matrix (Square)</div><div class="dc-sub">制造业 / 医疗</div><div class="dc-val">DATAMATRIX</div></td></tr>
-    <tr><td><img src="../codes/datamatrix-rectangular.png" alt="Data Matrix (Rectangular)" class="dc-rect"></td><td><div class="dc-type">Data Matrix (Rectangular)</div><div class="dc-sub">适用于窄标签的矩形变体</div><div class="dc-val">DATAMATRIX</div></td></tr>
-    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/pdf417.gif" alt="PDF417" class="dc-rect"></td><td><div class="dc-type">PDF417</div><div class="dc-sub">身份证件 / 快递标签</div><div class="dc-val">PDF417 SAMPLE DATA</div></td></tr>
-    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/micropdf417.gif" alt="Micro PDF417"></td><td><div class="dc-type">Micro PDF417</div><div class="dc-sub">适用于小型物品的紧凑 PDF417</div><div class="dc-val">MICROPDF417 SAMPLE DATA</div></td></tr>
-    <tr><td><img src="../codes/ean13.png" alt="EAN-13" class="dc-rect"></td><td><div class="dc-type">EAN-13</div><div class="dc-sub">零售条形码</div><div class="dc-val">5901234123457</div></td></tr>
-    <tr><td><img src="../codes/upce.png" alt="UPC-E" class="dc-rect" style="max-width:150px;"></td><td><div class="dc-type">UPC-E</div><div class="dc-sub">紧凑零售条形码（美国/加拿大）</div><div class="dc-val">01234565</div></td></tr>
-    <tr><td><img src="../codes/code128.png" alt="Code 128" class="dc-rect"></td><td><div class="dc-type">Code 128</div><div class="dc-sub">物流 / 快递</div><div class="dc-val">CODE-128-DEMO</div></td></tr>
-    <tr><td><img src="../codes/itf14.png" alt="ITF-14" class="dc-rect"></td><td><div class="dc-type">ITF-14</div><div class="dc-sub">运输箱条形码</div><div class="dc-val">12345678901231</div></td></tr>
-    <tr><td><img src="../codes/gs1databar.png" alt="GS1 DataBar" class="dc-rect"></td><td><div class="dc-type">GS1 DataBar</div><div class="dc-sub">适用于小型商品的紧凑条形码</div><div class="dc-val">0112345678901231</div></td></tr>
+    <tr><td><img src="../images/codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">适用于小标签的紧凑 QR</div><div class="dc-val">HELLO</div></td></tr>
+    <tr><td><img src="../images/codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">交通 / 登机牌</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../images/codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">适用于小标签的紧凑变体</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../images/codes/datamatrix-square.png" alt="Data Matrix (Square)"></td><td><div class="dc-type">Data Matrix (Square)</div><div class="dc-sub">制造业 / 医疗</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td><img src="../images/codes/datamatrix-rectangular.png" alt="Data Matrix (Rectangular)" class="dc-rect"></td><td><div class="dc-type">Data Matrix (Rectangular)</div><div class="dc-sub">适用于窄标签的矩形变体</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../images/codes/pdf417.gif" alt="PDF417" class="dc-rect"></td><td><div class="dc-type">PDF417</div><div class="dc-sub">身份证件 / 快递标签</div><div class="dc-val">PDF417 SAMPLE DATA</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../images/codes/micropdf417.gif" alt="Micro PDF417"></td><td><div class="dc-type">Micro PDF417</div><div class="dc-sub">适用于小型物品的紧凑 PDF417</div><div class="dc-val">MICROPDF417 SAMPLE DATA</div></td></tr>
+    <tr><td><img src="../images/codes/ean13.png" alt="EAN-13" class="dc-rect"></td><td><div class="dc-type">EAN-13</div><div class="dc-sub">零售条形码</div><div class="dc-val">5901234123457</div></td></tr>
+    <tr><td><img src="../images/codes/upce.png" alt="UPC-E" class="dc-rect" style="max-width:150px;"></td><td><div class="dc-type">UPC-E</div><div class="dc-sub">紧凑零售条形码（美国/加拿大）</div><div class="dc-val">01234565</div></td></tr>
+    <tr><td><img src="../images/codes/code128.png" alt="Code 128" class="dc-rect"></td><td><div class="dc-type">Code 128</div><div class="dc-sub">物流 / 快递</div><div class="dc-val">CODE-128-DEMO</div></td></tr>
+    <tr><td><img src="../images/codes/itf14.png" alt="ITF-14" class="dc-rect"></td><td><div class="dc-type">ITF-14</div><div class="dc-sub">运输箱条形码</div><div class="dc-val">12345678901231</div></td></tr>
+    <tr><td><img src="../images/codes/gs1databar.png" alt="GS1 DataBar" class="dc-rect"></td><td><div class="dc-type">GS1 DataBar</div><div class="dc-sub">适用于小型商品的紧凑条形码</div><div class="dc-val">0112345678901231</div></td></tr>
   </tbody>
 </table>
 
@@ -602,7 +601,7 @@ END:VCARD</pre></td></tr>
 
 </main>
 
-<footer>© 2026 Hoshino Software &amp; Security · support [at] hoshinosoftware [dot] com</footer>
+<footer>© 2026 Hoshino Software &amp; Security</footer>
 
 <script>
 

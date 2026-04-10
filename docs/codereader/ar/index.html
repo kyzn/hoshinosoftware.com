@@ -345,11 +345,10 @@ footer {
 
 <h2 class="section-h2 first-section section-anchor" id="download">تنزيل</h2>
 
-<p class="tip">لم يُنشر التطبيق بعد. ستتوفر روابط App Store ورمز QR هنا فور إطلاقه.</p>
 
-<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0; opacity:0.45;">
-  <img src="../../appstorebadge/ar.svg" alt="التنزيل من App Store" height="72">
-  <div style="width:180px; height:180px; background:#f5f5f7; border-radius:10px; border:1px dashed #ccc; display:flex; align-items:center; justify-content:center; font-size:12px; color:#999;">رمز QR قريبًا</div>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <a href="https://apps.apple.com/us/app/barcode-qr-reader/id6761772999" target="_blank" rel="noopener"><img src="../../appstorebadge/ar.svg" alt="التنزيل من App Store" height="72"></a>
+  <a href="https://apps.apple.com/us/app/barcode-qr-reader/id6761772999" target="_blank" rel="noopener"><img src="../images/download.png" alt="Scan to download" style="width:180px; height:180px; border-radius:10px;"></a>
 </div>
 <p>قارئ الرموز متاح للتنزيل مجانًا من App Store. لا يلزم حساب. يتطلب iOS 26 أو إصدار أحدث.</p>
 
@@ -388,9 +387,9 @@ footer {
 <h2 class="section-h2 section-anchor" id="manual">الدليل</h2>
 
 <div class="screenshots">
-  <img src="../screenshots/ar/camera.png" alt="شاشة الكاميرا">
-  <img src="../screenshots/ar/result.png" alt="شاشة نتيجة المسح">
-  <img src="../screenshots/ar/settings.png" alt="شاشة الإعدادات">
+  <img src="../images/screenshots/ar/camera.png" alt="شاشة الكاميرا">
+  <img src="../images/screenshots/ar/result.png" alt="شاشة نتيجة المسح">
+  <img src="../images/screenshots/ar/settings.png" alt="شاشة الإعدادات">
 </div>
 
 <h3>الكاميرا</h3>
@@ -529,10 +528,10 @@ footer {
 
 <table class="demo-codes-table">
   <tbody>
-    <tr><td><img src="../codes/qr-url.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">رابط URL مع معاملات تتبع</div><div class="dc-val">https://hoshinosoftware.com?utm_source=review&amp;utm_campaign=demo</div></td></tr>
-    <tr><td><img src="../codes/qr-wifi.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">شبكة Wi-Fi</div><div class="dc-val">WIFI:S:example-wifi;T:WPA;P:example-password;;</div></td></tr>
-    <tr><td><img src="../codes/qr-email.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">بريد إلكتروني</div><div class="dc-val">mailto:test@example.com</div></td></tr>
-    <tr><td><img src="../codes/qr-vcard.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">جهة اتصال (vCard)</div><pre class="dc-val">BEGIN:VCARD
+    <tr><td><img src="../images/codes/qr-url.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">رابط URL مع معاملات تتبع</div><div class="dc-val">https://hoshinosoftware.com?utm_source=review&amp;utm_campaign=demo</div></td></tr>
+    <tr><td><img src="../images/codes/qr-wifi.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">شبكة Wi-Fi</div><div class="dc-val">WIFI:S:example-wifi;T:WPA;P:example-password;;</div></td></tr>
+    <tr><td><img src="../images/codes/qr-email.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">بريد إلكتروني</div><div class="dc-val">mailto:test@example.com</div></td></tr>
+    <tr><td><img src="../images/codes/qr-vcard.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">جهة اتصال (vCard)</div><pre class="dc-val">BEGIN:VCARD
 VERSION:3.0
 N:Last;First
 FN:First Last
@@ -545,18 +544,18 @@ TEL;FAX:
 EMAIL;WORK;INTERNET:example@example.com
 URL:https://example.com
 END:VCARD</pre></td></tr>
-    <tr><td><img src="../codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">QR مضغوط للملصقات الصغيرة</div><div class="dc-val">HELLO</div></td></tr>
-    <tr><td><img src="../codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">وسائل النقل / بطاقات الصعود</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
-    <tr><td><img src="../codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">نوع مضغوط للملصقات الصغيرة</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
-    <tr><td><img src="../codes/datamatrix-square.png" alt="Data Matrix (Square)"></td><td><div class="dc-type">Data Matrix (Square)</div><div class="dc-sub">التصنيع / الرعاية الصحية</div><div class="dc-val">DATAMATRIX</div></td></tr>
-    <tr><td><img src="../codes/datamatrix-rectangular.png" alt="Data Matrix (Rectangular)" class="dc-rect"></td><td><div class="dc-type">Data Matrix (Rectangular)</div><div class="dc-sub">نوع مستطيل للملصقات الضيقة</div><div class="dc-val">DATAMATRIX</div></td></tr>
-    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/pdf417.gif" alt="PDF417" class="dc-rect"></td><td><div class="dc-type">PDF417</div><div class="dc-sub">وثائق الهوية / ملصقات الشحن</div><div class="dc-val">PDF417 SAMPLE DATA</div></td></tr>
-    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/micropdf417.gif" alt="Micro PDF417"></td><td><div class="dc-type">Micro PDF417</div><div class="dc-sub">PDF417 مضغوط للعناصر الصغيرة</div><div class="dc-val">MICROPDF417 SAMPLE DATA</div></td></tr>
-    <tr><td><img src="../codes/ean13.png" alt="EAN-13" class="dc-rect"></td><td><div class="dc-type">EAN-13</div><div class="dc-sub">باركود التجزئة</div><div class="dc-val">5901234123457</div></td></tr>
-    <tr><td><img src="../codes/upce.png" alt="UPC-E" class="dc-rect" style="max-width:150px;"></td><td><div class="dc-type">UPC-E</div><div class="dc-sub">باركود مضغوط (الولايات المتحدة/كندا)</div><div class="dc-val">01234565</div></td></tr>
-    <tr><td><img src="../codes/code128.png" alt="Code 128" class="dc-rect"></td><td><div class="dc-type">Code 128</div><div class="dc-sub">اللوجستيات / الشحن</div><div class="dc-val">CODE-128-DEMO</div></td></tr>
-    <tr><td><img src="../codes/itf14.png" alt="ITF-14" class="dc-rect"></td><td><div class="dc-type">ITF-14</div><div class="dc-sub">باركود صندوق الشحن</div><div class="dc-val">12345678901231</div></td></tr>
-    <tr><td><img src="../codes/gs1databar.png" alt="GS1 DataBar" class="dc-rect"></td><td><div class="dc-type">GS1 DataBar</div><div class="dc-sub">باركود مضغوط للعناصر الصغيرة</div><div class="dc-val">0112345678901231</div></td></tr>
+    <tr><td><img src="../images/codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">QR مضغوط للملصقات الصغيرة</div><div class="dc-val">HELLO</div></td></tr>
+    <tr><td><img src="../images/codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">وسائل النقل / بطاقات الصعود</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../images/codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">نوع مضغوط للملصقات الصغيرة</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../images/codes/datamatrix-square.png" alt="Data Matrix (Square)"></td><td><div class="dc-type">Data Matrix (Square)</div><div class="dc-sub">التصنيع / الرعاية الصحية</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td><img src="../images/codes/datamatrix-rectangular.png" alt="Data Matrix (Rectangular)" class="dc-rect"></td><td><div class="dc-type">Data Matrix (Rectangular)</div><div class="dc-sub">نوع مستطيل للملصقات الضيقة</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../images/codes/pdf417.gif" alt="PDF417" class="dc-rect"></td><td><div class="dc-type">PDF417</div><div class="dc-sub">وثائق الهوية / ملصقات الشحن</div><div class="dc-val">PDF417 SAMPLE DATA</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../images/codes/micropdf417.gif" alt="Micro PDF417"></td><td><div class="dc-type">Micro PDF417</div><div class="dc-sub">PDF417 مضغوط للعناصر الصغيرة</div><div class="dc-val">MICROPDF417 SAMPLE DATA</div></td></tr>
+    <tr><td><img src="../images/codes/ean13.png" alt="EAN-13" class="dc-rect"></td><td><div class="dc-type">EAN-13</div><div class="dc-sub">باركود التجزئة</div><div class="dc-val">5901234123457</div></td></tr>
+    <tr><td><img src="../images/codes/upce.png" alt="UPC-E" class="dc-rect" style="max-width:150px;"></td><td><div class="dc-type">UPC-E</div><div class="dc-sub">باركود مضغوط (الولايات المتحدة/كندا)</div><div class="dc-val">01234565</div></td></tr>
+    <tr><td><img src="../images/codes/code128.png" alt="Code 128" class="dc-rect"></td><td><div class="dc-type">Code 128</div><div class="dc-sub">اللوجستيات / الشحن</div><div class="dc-val">CODE-128-DEMO</div></td></tr>
+    <tr><td><img src="../images/codes/itf14.png" alt="ITF-14" class="dc-rect"></td><td><div class="dc-type">ITF-14</div><div class="dc-sub">باركود صندوق الشحن</div><div class="dc-val">12345678901231</div></td></tr>
+    <tr><td><img src="../images/codes/gs1databar.png" alt="GS1 DataBar" class="dc-rect"></td><td><div class="dc-type">GS1 DataBar</div><div class="dc-sub">باركود مضغوط للعناصر الصغيرة</div><div class="dc-val">0112345678901231</div></td></tr>
   </tbody>
 </table>
 
@@ -606,7 +605,7 @@ END:VCARD</pre></td></tr>
 
 </main>
 
-<footer>© 2026 Hoshino Software &amp; Security · support [at] hoshinosoftware [dot] com</footer>
+<footer>© 2026 Hoshino Software &amp; Security</footer>
 
 <script>
 

@@ -20,35 +20,61 @@ body {
 main {
   max-width: 700px;
   margin: 0 auto;
-  padding: 52px 20px 80px;
+  padding: 20px 20px 80px;
 }
 
-/* ── Sub-section divider (Manual / Legal) ───── */
-.sub-divider {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 40px 0 24px;
+/* ── Table of Contents ──────────────────────── */
+#toc {
+  background: #f5f5f7;
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin: 28px 0 40px;
 }
-.sub-divider::before {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: #eee;
-}
-.sub-divider-label {
-  font-size: 10px;
+#toc h2 {
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #bbb;
-  white-space: nowrap;
+  color: #888;
+  margin: 0 0 12px;
+  border: none;
+  padding: 0;
 }
-.sub-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: #eee;
+#toc ol {
+  margin: 0;
+  padding-left: 20px;
+  counter-reset: toc-counter;
+  list-style: none;
+}
+#toc ol li {
+  counter-increment: toc-counter;
+  margin: 6px 0;
+}
+#toc ol li::before {
+  content: counter(toc-counter) ". ";
+  font-weight: 600;
+  color: #bbb;
+}
+#toc a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 500;
+}
+#toc a:hover { text-decoration: underline; }
+
+/* ── Section h2 (top-level sections) ───────── */
+h2.section-h2 {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 2px solid #e5e5e5;
+  border-bottom: none;
+  font-size: 1.5rem;
+  padding-bottom: 0;
+}
+h2.section-h2.first-section {
+  margin-top: 0;
+  border-top: none;
+  padding-top: 0;
 }
 
 /* ── Typography ─────────────────────────────── */
@@ -58,6 +84,48 @@ h3 { margin-top: 20px; margin-bottom: 4px; }
 p  { margin: 10px 0; }
 ul, ol { padding-left: 20px; }
 li { margin: 4px 0; }
+
+/* ── Section scroll anchors ─────────────────── */
+.section-anchor {
+  scroll-margin-top: 60px;
+}
+
+/* ── Support contact box ────────────────────── */
+.contact-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #f0f8ff;
+  border: 1px solid #c5dff0;
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.contact-box .contact-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+.contact-box .contact-body {
+  flex: 1;
+}
+.contact-box .contact-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6a9ab5;
+  margin-bottom: 2px;
+}
+.contact-box .contact-email {
+  font-size: 17px;
+  font-weight: 600;
+  color: #111;
+}
+.contact-box .contact-note {
+  font-size: 13px;
+  color: #666;
+  margin-top: 3px;
+}
 
 /* ── Screenshots ────────────────────────────── */
 .screenshots {
@@ -152,38 +220,64 @@ Set BPM from 40 to 240, choose from preset tempos (Largo, Andante, Allegro and m
 sound and haptic feedback, Digital Crown volume control.
 Works with wrist down, no phone needed.</p>
 
-<h2 id="download">Download</h2>
+<nav id="toc" aria-label="Page contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#download">Download</a></li>
+    <li><a href="#support">Support</a></li>
+    <li><a href="#manual">Manual</a></li>
+    <li><a href="#legal">Legal</a></li>
+  </ol>
+</nav>
+
+<h2 id="download" class="section-h2 section-anchor first-section">Download</h2>
 <div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
   <a href="https://apps.apple.com/us/app/metronome-watch-special/id6760964847" target="_blank">
     <img src="../appstorebadge/en.svg" alt="Download on the App Store" height="72">
   </a>
   <a href="https://apps.apple.com/us/app/metronome-watch-special/id6760964847" target="_blank">
-    <img src="./qr.png" alt="QR code" style="width:180px; height:180px; border-radius:10px; border:1px solid #eee;">
+    <img src="./images/download.png" alt="QR code" style="width:180px; height:180px; border-radius:10px; border:1px solid #eee;">
   </a>
 </div>
 
-<h2 id="support">Support</h2>
-<div class="screenshots">
-  <img src="./metronome1.png" alt="Metronome screen">
-  <img src="./metronome2.png" alt="Tempo list">
+<h2 id="support" class="section-h2 section-anchor">Support</h2>
+<h3>Before you write</h3>
+<p>A few quick things to try first:</p>
+<ul>
+  <li><b>App not responding?</b> Double-press the Digital Crown to see open apps, then swipe the Metronome card up to close it. Reopen from your app list.</li>
+  <li><b>Sound not playing?</b> Check that the Digital Crown volume is turned up. Also check that your watch is not in silent mode.</li>
+  <li><b>Haptics not working?</b> Make sure the ⏚ button is shown (haptics are on). If you see ⚡︎, tap it to enable haptics. Also check Watch Settings → Sounds &amp; Haptics.</li>
+  <li><b>Metronome drifting or stopping?</b> Background audio requires the app to stay active. Try reopening and starting the metronome again.</li>
+</ul>
+
+<div class="contact-box">
+  <div class="contact-icon">✉️</div>
+  <div class="contact-body">
+    <div class="contact-label">Email Support</div>
+    <div class="contact-email">support [at] hoshinosoftware [dot] com</div>
+    <div class="contact-note">We typically respond within 5 business days.</div>
+  </div>
 </div>
 
+<h2 id="manual" class="section-h2 section-anchor">Manual</h2>
 
-<!-- ─────────────────────────────────────────── -->
-<div class="sub-divider"><span class="sub-divider-label">Manual</span></div>
+<div class="screenshots">
+  <img src="./images/metronome1.png" alt="Metronome screen">
+  <img src="./images/metronome2.png" alt="Tempo list">
+</div>
 
-<h2>How to use</h2>
+<h3>How to use</h3>
 <ul>
   <li>Adjust BPM with the &lt; &gt; and ≪ ≫ buttons</li>
   <li>Tap the tempo name (e.g. "Allegro") to pick from a preset list</li>
   <li>Adjust beats per measure with the &lt; &gt; buttons on the second row</li>
-  <li>Toggle haptic vibration with the ⏚ / ⚡︎ button</li>
+  <li>Toggle haptic vibration with the ⏚ button (tap to turn off) or ⚡︎ button (tap to turn on)</li>
   <li>Use the Digital Crown to adjust volume</li>
   <li>Press the green play button to start, red stop button to reset</li>
 </ul>
 <div class="tip">💡 The metronome keeps playing even when your wrist is down — audio and haptics continue in the background.</div>
 
-<h2>Tempo Reference</h2>
+<h3>Tempo Reference</h3>
 <table>
   <thead>
     <tr><th>Tempo</th><th>BPM Range</th><th>Feel</th></tr>
@@ -201,54 +295,61 @@ Works with wrist down, no phone needed.</p>
   </tbody>
 </table>
 
-<h2>FAQ</h2>
+<h3>FAQ</h3>
 <ul>
   <li><b>Does it work without my iPhone?</b><br>Yes, fully standalone.</li>
   <li><b>Does it work when my wrist is down?</b><br>Yes, audio and haptics continue.</li>
   <li><b>Does it collect any data?</b><br>No data is collected or shared.</li>
-  <li><b>What does the ⏚ button do?</b><br>Toggles haptic vibration off.</li>
-  <li><b>What does the ⚡︎ button do?</b><br>Toggles haptic vibration on.</li>
+  <li><b>What does the ⏚ button do?</b><br>Haptics are currently on. Tap to turn them off.</li>
+  <li><b>What does the ⚡︎ button do?</b><br>Haptics are currently off. Tap to turn them on.</li>
   <li><b>Can I use just sound or just haptics?</b><br>Yes. Turn volume down for haptics only, or disable haptics for sound only.</li>
   <li><b>It sounds like there are two sounds at once. Is this expected?</b><br>
   If your Apple Watch is not in silent mode, the haptic engine may produce an audible click alongside the app's beat sound. Enable silent mode on your watch to hear only the app's audio.</li>
 </ul>
 
+<h2 id="legal" class="section-h2 section-anchor">Legal</h2>
 
-<!-- ─────────────────────────────────────────── -->
-<div class="sub-divider"><span class="sub-divider-label">Legal</span></div>
-
-<h2 id="privacy">Privacy Policy</h2>
+<h3>Privacy Policy</h3>
 <p><b>Last Updated:</b> March 2026</p>
 
-<h3>Introduction</h3>
+<h4>Introduction</h4>
 <p>Welcome to Metronome Watch Special. We are committed to respecting and protecting your privacy.
 This Privacy Policy outlines the type of information we collect, or in this case, do not collect,
 and the methods we use to ensure your privacy.</p>
 
-<h3>Information We Do Not Collect</h3>
+<h4>Information We Do Not Collect</h4>
 <p>Metronome Watch Special is designed on a principle of zero data collection. We do not collect,
 store, use, share, or transfer any personal data from our users. The app operates entirely on your
 Apple Watch with no data processed or stored on any server.</p>
 
-<h3>Third-Party Services</h3>
+<h4>Third-Party Services</h4>
 <p>Metronome Watch Special does not integrate with any third-party services, such as analytics
 tools, advertising networks, or social media platforms. No data is shared with any third party.</p>
 
-<h3>Children's Privacy</h3>
+<h4>Children's Privacy</h4>
 <p>Since we do not collect any data, we comply with all relevant regulations related to children's
 privacy, such as the Children's Online Privacy Protection Act (COPPA).</p>
 
-<h3>Changes to This Privacy Policy</h3>
+<h4>Changes to This Privacy Policy</h4>
 <p>We may update our Privacy Policy from time to time. We advise you to review this page
 periodically for any changes. Changes are effective immediately after they are posted on this page.</p>
 
-<h3>Contact Us</h3>
+<h4>Contact Us</h4>
 <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us
 at: support [at] hoshinosoftware [dot] com</p>
 
 </main>
 
 <footer>© 2026 Hoshino Software &amp; Security</footer>
+
+<script>
+function applyTopPad() {
+  var bar = document.getElementById('top-bar');
+  if (bar) document.querySelector('main').style.paddingTop = (bar.offsetHeight + 20) + 'px';
+}
+applyTopPad();
+window.addEventListener('resize', applyTopPad);
+</script>
 
 </body>
 </html>

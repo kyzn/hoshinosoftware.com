@@ -101,10 +101,9 @@ Funciona totalmente offline, não armazena nada na nuvem e nunca exibe anúncios
 </nav>
 
 <h2 class="section-h2 first-section section-anchor" id="download">Download</h2>
-<p class="tip">O app ainda não foi publicado. Os links da App Store e o QR code estarão disponíveis aqui assim que estiver disponível.</p>
-<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0; opacity:0.45;">
-  <img src="../../appstorebadge/pt.svg" alt="Baixar na App Store" height="72">
-  <div style="width:180px; height:180px; background:#f5f5f7; border-radius:10px; border:1px dashed #ccc; display:flex; align-items:center; justify-content:center; font-size:12px; color:#999;">QR code em breve</div>
+<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
+  <a href="https://apps.apple.com/us/app/barcode-qr-reader/id6761772999" target="_blank" rel="noopener"><img src="../../appstorebadge/pt.svg" alt="Baixar na App Store" height="72"></a>
+  <a href="https://apps.apple.com/us/app/barcode-qr-reader/id6761772999" target="_blank" rel="noopener"><img src="../images/download.png" alt="Scan to download" style="width:180px; height:180px; border-radius:10px;"></a>
 </div>
 <p>Leitor de Códigos é gratuito na App Store. Não é necessária conta. Requer iOS 26 ou posterior.</p>
 
@@ -138,9 +137,9 @@ Funciona totalmente offline, não armazena nada na nuvem e nunca exibe anúncios
 
 <h2 class="section-h2 section-anchor" id="manual">Manual</h2>
 <div class="screenshots">
-  <img src="../screenshots/pt/camera.png" alt="Tela câmera">
-  <img src="../screenshots/pt/result.png" alt="Tela resultado">
-  <img src="../screenshots/pt/settings.png" alt="Tela ajustes">
+  <img src="../images/screenshots/pt/camera.png" alt="Tela câmera">
+  <img src="../images/screenshots/pt/result.png" alt="Tela resultado">
+  <img src="../images/screenshots/pt/settings.png" alt="Tela ajustes">
 </div>
 <h3>Câmera</h3>
 <p>A aba Câmera abre e começa a escanear imediatamente. Aponte seu telefone para qualquer código de barras ou QR code e o app o detecta automaticamente. É necessária permissão para a câmera. Se você ainda não a concedeu, uma solicitação aparecerá. Toque em <b>Abrir Ajustes</b> e ative o acesso à <b>Câmera</b> para Leitor de Códigos.</p>
@@ -264,10 +263,10 @@ Quando uma URL contém parâmetros de rastreamento, Leitor de Códigos exibe um 
 <h2 class="section-h2 section-anchor" id="democodes">Códigos Demo</h2>
 <p>Escaneie-os diretamente desta tela com a câmera, ou tire uma captura de tela e use a aba Galeria.</p><table class="demo-codes-table">
   <tbody>
-    <tr><td><img src="../codes/qr-url.png" alt="QR Code - URL"></td>          <td><div class="dc-type">QR Code</div><div class="dc-sub">URL com parâmetros de rastreamento</div><div class="dc-val">https://hoshinosoftware.com?utm_source=review&amp;utm_campaign=demo</div></td></tr>
-    <tr><td><img src="../codes/qr-wifi.png" alt="QR Code - Wi-Fi"></td>        <td><div class="dc-type">QR Code</div><div class="dc-sub">Rede Wi-Fi</div><div class="dc-val">WIFI:S:example-wifi;T:WPA;P:example-password;;</div></td></tr>
-    <tr><td><img src="../codes/qr-email.png" alt="QR Code - Email"></td>       <td><div class="dc-type">QR Code</div><div class="dc-sub">E-mail</div><div class="dc-val">mailto:test@example.com</div></td></tr>
-    <tr><td><img src="../codes/qr-vcard.png" alt="QR Code - vCard"></td>       <td><div class="dc-type">QR Code</div><div class="dc-sub">Contato (vCard)</div><pre class="dc-val">BEGIN:VCARD
+    <tr><td><img src="../images/codes/qr-url.png" alt="QR Code - URL"></td>          <td><div class="dc-type">QR Code</div><div class="dc-sub">URL com parâmetros de rastreamento</div><div class="dc-val">https://hoshinosoftware.com?utm_source=review&amp;utm_campaign=demo</div></td></tr>
+    <tr><td><img src="../images/codes/qr-wifi.png" alt="QR Code - Wi-Fi"></td>        <td><div class="dc-type">QR Code</div><div class="dc-sub">Rede Wi-Fi</div><div class="dc-val">WIFI:S:example-wifi;T:WPA;P:example-password;;</div></td></tr>
+    <tr><td><img src="../images/codes/qr-email.png" alt="QR Code - Email"></td>       <td><div class="dc-type">QR Code</div><div class="dc-sub">E-mail</div><div class="dc-val">mailto:test@example.com</div></td></tr>
+    <tr><td><img src="../images/codes/qr-vcard.png" alt="QR Code - vCard"></td>       <td><div class="dc-type">QR Code</div><div class="dc-sub">Contato (vCard)</div><pre class="dc-val">BEGIN:VCARD
 VERSION:3.0
 N:Last;First
 FN:First Last
@@ -280,18 +279,18 @@ TEL;FAX:
 EMAIL;WORK;INTERNET:example@example.com
 URL:https://example.com
 END:VCARD</pre></td></tr>
-    <tr><td><img src="../codes/microqr.png" alt="Micro QR"></td>               <td><div class="dc-type">Micro QR</div><div class="dc-sub">QR compacto para etiquetas pequenas</div><div class="dc-val">HELLO</div></td></tr>
-    <tr><td><img src="../codes/aztec-full.png" alt="Aztec (Full)"></td>        <td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">Transporte / cartões de embarque</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
-    <tr><td><img src="../codes/aztec-compact.png" alt="Aztec (Compact)"></td>  <td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">Variante compacta para etiquetas pequenas</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
-    <tr><td><img src="../codes/datamatrix-square.png" alt="Data Matrix (Square)"></td>          <td><div class="dc-type">Data Matrix (Square)</div><div class="dc-sub">Fabricação / saúde</div><div class="dc-val">DATAMATRIX</div></td></tr>
-    <tr><td><img src="../codes/datamatrix-rectangular.png" alt="Data Matrix (Rectangular)" class="dc-rect"></td> <td><div class="dc-type">Data Matrix (Rectangular)</div><div class="dc-sub">Variante retangular para etiquetas estreitas</div><div class="dc-val">DATAMATRIX</div></td></tr>
-    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/pdf417.gif" alt="PDF417" class="dc-rect"></td>                  <td><div class="dc-type">PDF417</div><div class="dc-sub">Documentos de identidade / etiquetas de envio</div><div class="dc-val">PDF417 SAMPLE DATA</div></td></tr>
-    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../codes/micropdf417.gif" alt="Micro PDF417"></td>       <td><div class="dc-type">Micro PDF417</div><div class="dc-sub">PDF417 compacto para itens pequenos</div><div class="dc-val">MICROPDF417 SAMPLE DATA</div></td></tr>
-    <tr><td><img src="../codes/ean13.png" alt="EAN-13" class="dc-rect"></td>                   <td><div class="dc-type">EAN-13</div><div class="dc-sub">Código de barras de produto de varejo</div><div class="dc-val">5901234123457</div></td></tr>
-    <tr><td><img src="../codes/upce.png" alt="UPC-E" class="dc-rect" style="max-width:150px;"></td>                     <td><div class="dc-type">UPC-E</div><div class="dc-sub">Código compacto de varejo (EUA/Canadá)</div><div class="dc-val">01234565</div></td></tr>
-    <tr><td><img src="../codes/code128.png" alt="Code 128" class="dc-rect"></td>               <td><div class="dc-type">Code 128</div><div class="dc-sub">Logística / envio</div><div class="dc-val">CODE-128-DEMO</div></td></tr>
-    <tr><td><img src="../codes/itf14.png" alt="ITF-14" class="dc-rect"></td>                   <td><div class="dc-type">ITF-14</div><div class="dc-sub">Código de barras de caixa de envio</div><div class="dc-val">12345678901231</div></td></tr>
-    <tr><td><img src="../codes/gs1databar.png" alt="GS1 DataBar" class="dc-rect"></td>         <td><div class="dc-type">GS1 DataBar</div><div class="dc-sub">Código compacto para itens pequenos</div><div class="dc-val">0112345678901231</div></td></tr>
+    <tr><td><img src="../images/codes/microqr.png" alt="Micro QR"></td>               <td><div class="dc-type">Micro QR</div><div class="dc-sub">QR compacto para etiquetas pequenas</div><div class="dc-val">HELLO</div></td></tr>
+    <tr><td><img src="../images/codes/aztec-full.png" alt="Aztec (Full)"></td>        <td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">Transporte / cartões de embarque</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../images/codes/aztec-compact.png" alt="Aztec (Compact)"></td>  <td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">Variante compacta para etiquetas pequenas</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
+    <tr><td><img src="../images/codes/datamatrix-square.png" alt="Data Matrix (Square)"></td>          <td><div class="dc-type">Data Matrix (Square)</div><div class="dc-sub">Fabricação / saúde</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td><img src="../images/codes/datamatrix-rectangular.png" alt="Data Matrix (Rectangular)" class="dc-rect"></td> <td><div class="dc-type">Data Matrix (Rectangular)</div><div class="dc-sub">Variante retangular para etiquetas estreitas</div><div class="dc-val">DATAMATRIX</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../images/codes/pdf417.gif" alt="PDF417" class="dc-rect"></td>                  <td><div class="dc-type">PDF417</div><div class="dc-sub">Documentos de identidade / etiquetas de envio</div><div class="dc-val">PDF417 SAMPLE DATA</div></td></tr>
+    <tr><td style="padding-top:80px;padding-bottom:80px;"><img src="../images/codes/micropdf417.gif" alt="Micro PDF417"></td>       <td><div class="dc-type">Micro PDF417</div><div class="dc-sub">PDF417 compacto para itens pequenos</div><div class="dc-val">MICROPDF417 SAMPLE DATA</div></td></tr>
+    <tr><td><img src="../images/codes/ean13.png" alt="EAN-13" class="dc-rect"></td>                   <td><div class="dc-type">EAN-13</div><div class="dc-sub">Código de barras de produto de varejo</div><div class="dc-val">5901234123457</div></td></tr>
+    <tr><td><img src="../images/codes/upce.png" alt="UPC-E" class="dc-rect" style="max-width:150px;"></td>                     <td><div class="dc-type">UPC-E</div><div class="dc-sub">Código compacto de varejo (EUA/Canadá)</div><div class="dc-val">01234565</div></td></tr>
+    <tr><td><img src="../images/codes/code128.png" alt="Code 128" class="dc-rect"></td>               <td><div class="dc-type">Code 128</div><div class="dc-sub">Logística / envio</div><div class="dc-val">CODE-128-DEMO</div></td></tr>
+    <tr><td><img src="../images/codes/itf14.png" alt="ITF-14" class="dc-rect"></td>                   <td><div class="dc-type">ITF-14</div><div class="dc-sub">Código de barras de caixa de envio</div><div class="dc-val">12345678901231</div></td></tr>
+    <tr><td><img src="../images/codes/gs1databar.png" alt="GS1 DataBar" class="dc-rect"></td>         <td><div class="dc-type">GS1 DataBar</div><div class="dc-sub">Código compacto para itens pequenos</div><div class="dc-val">0112345678901231</div></td></tr>
   </tbody>
 </table>
 
@@ -335,7 +334,7 @@ END:VCARD</pre></td></tr>
 <h4>Fale Conosco</h4>
 <p>Se tiver dúvidas sobre estes Termos de Uso, entre em contato: support [at] hoshinosoftware [dot] com</p>
 </main>
-<footer>© 2026 Hoshino Software &amp; Security · support [at] hoshinosoftware [dot] com</footer>
+<footer>© 2026 Hoshino Software &amp; Security</footer>
 <script>
 function applyTopPad() {
   var h = document.getElementById('lang-strip').offsetHeight;
