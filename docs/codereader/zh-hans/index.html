@@ -4,293 +4,7 @@
 <meta charset="UTF-8">
 <title>全能扫码器 – 简体中文</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-
-/* ── Reset & Base ───────────────────────────── */
-* { box-sizing: border-box; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  margin: 0;
-  background: #fff;
-  color: #111;
-  line-height: 1.6;
-}
-
-/* ── Fixed language strip ───────────────────── */
-#lang-strip {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: saturate(180%) blur(16px);
-  -webkit-backdrop-filter: saturate(180%) blur(16px);
-  border-bottom: 1px solid #e5e5e5;
-}
-#lang-strip .strip-inner {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 8px 20px;
-}
-#lang-strip .strip-brand {
-  position: absolute;
-  left: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #111;
-  text-decoration: none;
-  white-space: nowrap;
-}
-#lang-strip .strip-brand:hover { color: #555; }
-@media (max-width: 1000px) { #lang-strip .strip-brand { display: none; } }
-#lang-strip .strip-langs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0;
-  font-size: 13px;
-  justify-content: center;
-  width: 100%;
-}
-#lang-strip .strip-langs a {
-  color: #666;
-  text-decoration: none;
-  padding: 2px 10px 2px 0;
-  white-space: nowrap;
-}
-#lang-strip .strip-langs a:hover { color: #000; }
-#lang-strip .strip-langs a.active { color: #000; font-weight: 700; }
-#lang-strip .strip-langs .dot {
-  color: #ccc;
-  padding-right: 10px;
-  user-select: none;
-}
-
-/* ── Main content ───────────────────────────── */
-main {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 20px 20px 80px;
-}
-
-/* ── Table of Contents ──────────────────────── */
-#toc {
-  background: #f5f5f7;
-  border-radius: 12px;
-  padding: 18px 24px;
-  margin: 28px 0 40px;
-}
-#toc h2 {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #888;
-  margin: 0 0 12px;
-  border: none;
-  padding: 0;
-}
-#toc ol {
-  margin: 0;
-  padding-left: 20px;
-  counter-reset: toc-counter;
-  list-style: none;
-}
-#toc ol li {
-  counter-increment: toc-counter;
-  margin: 6px 0;
-}
-#toc ol li::before {
-  content: counter(toc-counter) ". ";
-  font-weight: 600;
-  color: #bbb;
-}
-#toc a {
-  color: #111;
-  text-decoration: none;
-  font-weight: 500;
-}
-#toc a:hover { text-decoration: underline; }
-
-/* ── Section h2 (top-level sections) ───────── */
-h2.section-h2 {
-  margin-top: 56px;
-  padding-top: 28px;
-  border-top: 2px solid #e5e5e5;
-  border-bottom: none;
-  font-size: 1.5rem;
-  padding-bottom: 0;
-}
-h2.section-h2.first-section {
-  margin-top: 0;
-  border-top: none;
-  padding-top: 0;
-}
-
-/* ── Sub-section divider ────────────────────── */
-.sub-divider {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 40px 0 24px;
-}
-.sub-divider::before {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: #eee;
-}
-.sub-divider-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #bbb;
-  white-space: nowrap;
-}
-.sub-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: #eee;
-}
-
-/* ── Typography ─────────────────────────────── */
-h1 { font-weight: 600; margin-bottom: 10px; margin-top: 0; }
-h2 { margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-h3 { margin-top: 20px; margin-bottom: 4px; }
-p  { margin: 10px 0; }
-ul, ol { padding-left: 20px; }
-li { margin: 4px 0; }
-
-/* ── Section scroll anchors ─────────────────── */
-.section-anchor {
-  scroll-margin-top: 60px;
-}
-
-/* ── Support contact box ────────────────────── */
-.contact-box {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  background: #f0f8ff;
-  border: 1px solid #c5dff0;
-  border-radius: 12px;
-  padding: 18px 22px;
-  margin: 24px 0;
-}
-.contact-box .contact-icon {
-  font-size: 32px;
-  flex-shrink: 0;
-}
-.contact-box .contact-body {
-  flex: 1;
-}
-.contact-box .contact-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #6a9ab5;
-  margin-bottom: 2px;
-}
-.contact-box .contact-email {
-  font-size: 17px;
-  font-weight: 600;
-  color: #111;
-}
-.contact-box .contact-note {
-  font-size: 13px;
-  color: #666;
-  margin-top: 3px;
-}
-
-/* ── Screenshots ────────────────────────────── */
-.screenshots {
-  display: flex; gap: 16px; flex-wrap: wrap; margin: 20px 0;
-}
-.screenshots img {
-  width: 160px;
-  border-radius: 20px;
-  border: 1px solid #e0e0e0;
-  display: block;
-}
-
-/* ── Tip ────────────────────────────────────── */
-.tip {
-  background: #f5f5f7;
-  border-radius: 8px;
-  padding: 10px 14px;
-  margin: 12px 0;
-  font-size: 15px;
-}
-
-/* ── Tables ─────────────────────────────────── */
-table {
-  width: 100%; border-collapse: collapse;
-  margin-top: 15px; font-size: 14px;
-  border: 1px solid #eee; border-radius: 8px; overflow: hidden;
-}
-thead th {
-  text-align: left; background: #f5f5f7;
-  font-weight: 600; padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-tbody td { padding: 10px; border-bottom: 1px solid #eee; }
-tbody tr:nth-child(even) { background: #fafafa; }
-
-/* ── Demo codes table ───────────────────────── */
-.demo-codes-table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
-  margin: 24px 0;
-  font-size: 14px;
-}
-.demo-codes-table td {
-  padding: 40px 10px;
-  border-bottom: 1px solid #eee;
-  vertical-align: middle;
-}
-.demo-codes-table td:first-child {
-  width: 320px;
-  min-width: 320px;
-  max-width: 320px;
-  text-align: center;
-}
-.demo-codes-table img {
-  max-width: 300px;
-  max-height: 200px;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
-}
-.demo-codes-table img.dc-rect {
-  max-height: 400px;
-}
-.dc-type { font-weight: 600; color: #111; }
-.dc-sub  { font-size: 12px; color: #777; margin-top: 2px; }
-.dc-val  { font-size: 11px; color: #aaa; font-family: monospace; margin-top: 4px; word-break: break-all; }
-pre.dc-val { white-space: pre-wrap; margin: 4px 0 0; padding: 0; background: none; border: none; }
-
-/* ── RTL support ────────────────────────────── */
-.rtl { direction: rtl; text-align: right; }
-.rtl ul, .rtl ol { padding-left: 0; padding-right: 20px; }
-.rtl thead th { text-align: right; }
-
-/* ── Footer ─────────────────────────────────── */
-footer {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  z-index: 100;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: saturate(180%) blur(16px);
-  -webkit-backdrop-filter: saturate(180%) blur(16px);
-  border-top: 1px solid #e5e5e5;
-  font-size: 12px; color: #666; text-align: center;
-  padding: 8px 20px;
-}
-
-</style>
+<link rel="stylesheet" href="../../style.css">
 </head>
 <body>
 
@@ -346,7 +60,7 @@ footer {
 
 <div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
   <a href="https://apps.apple.com/us/app/barcode-qr-reader/id6761772999" target="_blank" rel="noopener"><img src="../../appstorebadge/zh-hans.svg" alt="在 App Store 上下载" height="72"></a>
-  <a href="https://apps.apple.com/us/app/barcode-qr-reader/id6761772999" target="_blank" rel="noopener"><img src="../images/download.png" alt="Scan to download" style="width:180px; height:180px; border-radius:10px;"></a>
+  <a href="https://apps.apple.com/us/app/barcode-qr-reader/id6761772999" target="_blank" rel="noopener"><img src="../images/download.png" alt="Scan to download" style="width:180px; height:180px; border-radius:10px; background:#fff; padding:8px;"></a>
 </div>
 <p>全能扫码器可在 App Store 免费下载。无需账户。需要 iOS 26 或更高版本。</p>
 
@@ -580,7 +294,7 @@ END:VCARD</pre></td></tr>
 <h4>联系我们</h4>
 <p>如有关于本隐私政策的问题：support [at] hoshinosoftware [dot] com</p>
 
-<h3 id="terms" style="margin-top:40px; padding-top:24px; border-top:1px solid #e5e5e5;">服务条款</h3>
+<h3 id="terms" class="terms-divider">服务条款</h3>
 <p><b>最后更新：</b>2026年4月</p>
 <h4>接受条款</h4>
 <p>下载或使用全能扫码器即表示您同意受本服务条款的约束。如不同意，请勿使用本应用。</p>
@@ -599,9 +313,15 @@ END:VCARD</pre></td></tr>
 <h4>联系我们</h4>
 <p>如有关于本服务条款的问题：support [at] hoshinosoftware [dot] com</p>
 
+<div class="doc-end-logo">
+  <a href="../../" aria-label="Hoshino Software &amp; Security home">
+    <img src="../../hoshino.png" alt="Hoshino Software & Security logo">
+  </a>
+</div>
+
 </main>
 
-<footer>© 2026 Hoshino Software &amp; Security</footer>
+<footer><a href="../../">© 2026 Hoshino Software &amp; Security. 保留所有权利。</a></footer>
 
 <script>
 

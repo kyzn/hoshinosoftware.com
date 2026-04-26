@@ -4,206 +4,7 @@
 <meta charset="UTF-8">
 <title>Metronome Watch Special – Support</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-
-/* ── Reset & Base ───────────────────────────── */
-* { box-sizing: border-box; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  margin: 0;
-  background: #fff;
-  color: #111;
-  line-height: 1.6;
-}
-
-/* ── Main content ───────────────────────────── */
-main {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 20px 20px 80px;
-}
-
-/* ── Table of Contents ──────────────────────── */
-#toc {
-  background: #f5f5f7;
-  border-radius: 12px;
-  padding: 18px 24px;
-  margin: 28px 0 40px;
-}
-#toc h2 {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #888;
-  margin: 0 0 12px;
-  border: none;
-  padding: 0;
-}
-#toc ol {
-  margin: 0;
-  padding-left: 20px;
-  counter-reset: toc-counter;
-  list-style: none;
-}
-#toc ol li {
-  counter-increment: toc-counter;
-  margin: 6px 0;
-}
-#toc ol li::before {
-  content: counter(toc-counter) ". ";
-  font-weight: 600;
-  color: #bbb;
-}
-#toc a {
-  color: #111;
-  text-decoration: none;
-  font-weight: 500;
-}
-#toc a:hover { text-decoration: underline; }
-
-/* ── Section h2 (top-level sections) ───────── */
-h2.section-h2 {
-  margin-top: 56px;
-  padding-top: 28px;
-  border-top: 2px solid #e5e5e5;
-  border-bottom: none;
-  font-size: 1.5rem;
-  padding-bottom: 0;
-}
-h2.section-h2.first-section {
-  margin-top: 0;
-  border-top: none;
-  padding-top: 0;
-}
-
-/* ── Typography ─────────────────────────────── */
-h1 { font-weight: 600; margin-bottom: 10px; margin-top: 0; }
-h2 { margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-h3 { margin-top: 20px; margin-bottom: 4px; }
-p  { margin: 10px 0; }
-ul, ol { padding-left: 20px; }
-li { margin: 4px 0; }
-
-/* ── Section scroll anchors ─────────────────── */
-.section-anchor {
-  scroll-margin-top: 60px;
-}
-
-/* ── Support contact box ────────────────────── */
-.contact-box {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  background: #f0f8ff;
-  border: 1px solid #c5dff0;
-  border-radius: 12px;
-  padding: 18px 22px;
-  margin: 24px 0;
-}
-.contact-box .contact-icon {
-  font-size: 32px;
-  flex-shrink: 0;
-}
-.contact-box .contact-body {
-  flex: 1;
-}
-.contact-box .contact-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #6a9ab5;
-  margin-bottom: 2px;
-}
-.contact-box .contact-email {
-  font-size: 17px;
-  font-weight: 600;
-  color: #111;
-}
-.contact-box .contact-note {
-  font-size: 13px;
-  color: #666;
-  margin-top: 3px;
-}
-
-/* ── Screenshots ────────────────────────────── */
-.screenshots {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 15px;
-}
-.screenshots img {
-  width: 180px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-}
-
-/* ── Tip box ────────────────────────────────── */
-.tip {
-  background: #f5f5f7;
-  border-radius: 8px;
-  padding: 10px 14px;
-  margin: 12px 0;
-  font-size: 15px;
-}
-
-/* ── Table ──────────────────────────────────── */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-  font-size: 14px;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  overflow: hidden;
-}
-thead th {
-  text-align: left;
-  background: #f5f5f7;
-  font-weight: 600;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-tbody td { padding: 10px; border-bottom: 1px solid #eee; }
-tbody tr:nth-child(even) { background: #fafafa; }
-
-/* ── Top bar ─────────────────────────────────── */
-#top-bar {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: saturate(180%) blur(16px);
-  -webkit-backdrop-filter: saturate(180%) blur(16px);
-  border-bottom: 1px solid #e5e5e5;
-  padding: 8px 20px;
-}
-#top-bar a {
-  font-size: 13px;
-  font-weight: 600;
-  color: #111;
-  text-decoration: none;
-}
-#top-bar a:hover { color: #555; }
-
-/* ── Footer ─────────────────────────────────── */
-footer {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  z-index: 100;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: saturate(180%) blur(16px);
-  -webkit-backdrop-filter: saturate(180%) blur(16px);
-  border-top: 1px solid #e5e5e5;
-  font-size: 12px;
-  color: #666;
-  text-align: center;
-  padding: 8px 20px;
-}
-
-</style>
+<link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
@@ -236,7 +37,7 @@ Works with wrist down, no phone needed.</p>
     <img src="../appstorebadge/en.svg" alt="Download on the App Store" height="72">
   </a>
   <a href="https://apps.apple.com/us/app/metronome-watch-special/id6760964847" target="_blank">
-    <img src="./images/download.png" alt="QR code" style="width:180px; height:180px; border-radius:10px; border:1px solid #eee;">
+    <img src="./images/download.png" alt="QR code" style="width:180px; height:180px; border-radius:10px; border:1px solid rgba(180,139,255,0.18); background:#fff; padding:8px;">
   </a>
 </div>
 
@@ -338,9 +139,15 @@ periodically for any changes. Changes are effective immediately after they are p
 <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us
 at: support [at] hoshinosoftware [dot] com</p>
 
+<div class="doc-end-logo">
+  <a href="../" aria-label="Hoshino Software &amp; Security home">
+    <img src="../hoshino.png" alt="Hoshino Software & Security logo">
+  </a>
+</div>
+
 </main>
 
-<footer>© 2026 Hoshino Software &amp; Security</footer>
+<footer><a href="../">© 2026 Hoshino Software &amp; Security. All rights reserved.</a></footer>
 
 <script>
 function applyTopPad() {
