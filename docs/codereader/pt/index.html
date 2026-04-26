@@ -46,7 +46,7 @@ Funciona totalmente offline, não armazena nada na nuvem e nunca exibe anúncios
   <a href="https://apps.apple.com/us/app/barcode-qr-reader/id6761772999" target="_blank" rel="noopener"><img src="../../appstorebadge/pt.svg" alt="Baixar na App Store" height="72"></a>
   <a href="https://apps.apple.com/us/app/barcode-qr-reader/id6761772999" target="_blank" rel="noopener"><img src="../images/download.png" alt="Scan to download" style="width:180px; height:180px; border-radius:10px; background:#fff; padding:8px;"></a>
 </div>
-<p>Leitor de Códigos é gratuito na App Store. Não é necessária conta. Requer iOS 26 ou posterior.</p>
+<p>Leitor de Códigos é gratuito na App Store. Não é necessária conta. Requer iOS 26 ou posterior. Uma atualização Premium opcional única desbloqueia histórico longo, busca no histórico, leitura multi-código e detalhes avançados.</p>
 
 <h2 class="section-h2 section-anchor" id="support">Suporte</h2>
 <p>Tem uma dúvida, encontrou um bug ou precisa de ajuda com o app? Entre em contato. Lemos cada mensagem.</p>
@@ -62,7 +62,7 @@ Funciona totalmente offline, não armazena nada na nuvem e nunca exibe anúncios
 <p>Muitos problemas comuns estão respondidos no <a href="#manual">Manual</a> e nas perguntas frequentes abaixo. Algumas verificações rápidas:</p>
 <ul>
   <li><b>Câmera não funciona?</b> Vá em Ajustes do iPhone → Privacidade e Segurança → Câmera → ative o acesso para Leitor de Códigos.</li>
-  <li><b>Não encontra o histórico?</b> Toque na aba Histórico. As entradas são mantidas por 6 meses com limite de 1.000.</li>
+  <li><b>Não encontra o histórico?</b> Toque na aba Histórico. O plano gratuito guarda suas últimas 20 leituras por 7 dias; a atualização Premium guarda até 10.000 sem limite de tempo.</li>
   <li><b>O código não escaneia?</b> Garanta boa iluminação e mantenha o código estável. Tente o modo Galeria se tiver um arquivo de imagem.</li>
   <li><b>O app trava?</b> Force o encerramento e reabra. Se o problema persistir, envie um e-mail com o modelo do seu iPhone e a versão do iOS.</li>
 </ul>
@@ -71,8 +71,8 @@ Funciona totalmente offline, não armazena nada na nuvem e nunca exibe anúncios
   <li><b>Precisa de conexão com a internet?</b><br>Não. Leitor de Códigos funciona completamente offline.</li><br>
   <li><b>Coleta meus dados?</b><br>Não. Nada é enviado a lugar algum. O histórico de escaneamentos é armazenado apenas no seu dispositivo.</li><br>
   <li><b>Acessa toda a minha biblioteca de fotos?</b><br>Não. Na aba Galeria, você escolhe uma única foto usando o seletor de fotos do sistema. Leitor de Códigos nunca recebe acesso à sua biblioteca.</li><br>
-  <li><b>Por que o modo multi-código demora um pouco mais?</b><br>A câmera coleta códigos em uma janela curta de frames para garantir que captura todos os códigos visíveis antes de exibir o resultado.</li><br>
-  <li><b>Por quanto tempo o histórico é mantido?</b><br>Entradas com mais de 6 meses são removidas automaticamente. O histórico também tem limite de 1.000 entradas; as mais antigas são removidas para dar espaço às novas.</li><br>
+  <li><b>Por que o modo multi-código demora um pouco mais?</b><br>O modo multi-código (um recurso Premium) detecta até 5 códigos por vez. A câmera coleta códigos em uma janela curta de frames para garantir que captura todos os códigos visíveis antes de exibir o resultado.</li><br>
+  <li><b>Por quanto tempo o histórico é mantido?</b><br>O plano gratuito guarda suas últimas 20 leituras por até 7 dias. A atualização Premium guarda até 10.000 leituras sem limite de tempo e adiciona busca em texto completo.</li><br>
   <li><b>Por que não navega para um link automaticamente?</b><br>Isso é intencional. QR codes falsos ou maliciosos são comuns, encontrados em estacionamentos, mesas de restaurantes e outros lugares. Mostrar a URL antes de abri-la permite verificar se é segura.</li>
 </ul>
 
@@ -93,20 +93,38 @@ Funciona totalmente offline, não armazena nada na nuvem e nunca exibe anúncios
 <p>A aba Galeria permite escanear códigos a partir de uma imagem existente. Toque em <b>Escolher Foto</b> para selecionar qualquer imagem da sua biblioteca. Apenas a foto específica que você escolher é compartilhada com o app. Leitor de Códigos não solicita acesso à sua biblioteca de fotos completa.</p>
 <p>Após escolher uma foto, o app a escaneia e exibe o resultado imediatamente. Se nenhum código for encontrado, um alerta informará você.</p>
 <h3>Histórico</h3>
-<p>Cada escaneamento é salvo automaticamente na aba Histórico. Os escaneamentos são mantidos por <b>6 meses</b> e o histórico comporta até <b>1.000 entradas</b>; as mais antigas são removidas automaticamente quando o limite é atingido.</p>
+<p>Cada escaneamento é salvo automaticamente na aba Histórico. O plano gratuito guarda suas últimas <b>20 leituras</b> por até <b>7 dias</b>; as mais antigas são removidas automaticamente quando o limite é atingido. A atualização Premium guarda até <b>10.000 leituras</b> sem limite de tempo e adiciona busca em texto completo.</p>
 <ul>
   <li><b>Ver um escaneamento anterior:</b> toque em qualquer linha para reabrir o resultado completo.</li>
   <li><b>Excluir uma entrada:</b> deslize para a esquerda em uma linha e toque em <b>Excluir</b>.</li>
   <li><b>Excluir tudo:</b> toque no ícone de lixeira no canto superior direito.</li>
   <li><b>Rótulo de origem:</b> cada entrada mostra se veio da Câmera, Galeria ou Compartilhamento.</li>
+  <li><b>Buscar (Premium):</b> aparece uma barra de busca no topo da lista. Digite qualquer texto e as entradas são filtradas conforme você digita; a busca percorre o valor decodificado de cada código.</li>
 </ul>
 <h3>Ajustes</h3>
-<p><b>Modo Multi-Código</b><br>
-Por padrão, Leitor de Códigos para assim que encontra <b>um código</b>. Ative o <b>Modo Multi-Código</b> para escanear até <b>5 códigos de uma vez</b>, útil para cartões de visita, fichas de produto ou qualquer imagem com vários códigos lado a lado.</p>
-<p>Quando o modo multi-código está ativo, a câmera continua escaneando por um breve momento após a primeira detecção para capturar todos os códigos visíveis antes de exibir os resultados. É por isso que demora um pouco mais do que o modo de código único.</p>
-<p><b>Mostrar Detalhes Avançados</b><br>
-Ative <b>Mostrar Detalhes Avançados</b> para revelar metadados técnicos junto a cada resultado: coisas como versão do QR, nível de correção de erros, padrão de máscara ou estrutura do código de barras (caracteres de início/parada, dígito de verificação). Isso é exibido na página de Resultado e nas linhas da aba Histórico.</p>
+<p>A aba Ajustes abre com uma linha de status Premium no topo, seguida pelos interruptores de recursos e informações do app.</p>
+
+<p><b>Linha Premium</b><br>
+Se você ainda não comprou a atualização, verá uma linha <b>Atualizar para Premium</b> que abre a tela de compra, além de uma linha <b>Restaurar Compras</b> para recuperar o acesso se você já comprou com este Apple ID (por exemplo, após reinstalar ou em um novo dispositivo). Após a atualização, a linha se transforma em uma mensagem verde de agradecimento.</p>
+
+<p><b>Modo Multi-Código</b> <span style="font-size:0.85em;color:#888">(Premium)</span><br>
+Por padrão, Leitor de Códigos para assim que encontra <b>um código</b>. Com o Premium, você pode ativar o <b>Modo Multi-Código</b> para detectar até <b>5 códigos de uma vez</b>, útil para cartões de visita, fichas de produto ou qualquer imagem com vários códigos lado a lado. A câmera continua escaneando por um breve momento após a primeira detecção para capturar todos os códigos visíveis antes de exibir os resultados.</p>
+
+<p><b>Mostrar Detalhes Avançados</b> <span style="font-size:0.85em;color:#888">(Premium)</span><br>
+Com o Premium, você pode ativar <b>Mostrar Detalhes Avançados</b> para revelar metadados técnicos junto a cada resultado: coisas como versão do QR, nível de correção de erros, padrão de máscara ou estrutura do código de barras (caracteres de início/parada, dígito de verificação). Isso é exibido na página de Resultado e nas linhas da aba Histórico.</p>
 <div class="tip">💡 É uma ótima forma de aprender mais sobre como QR codes e códigos de barras realmente funcionam. Se você tem curiosidade sobre a tecnologia por trás do que escaneia, experimente!</div>
+
+<h3 id="premium">Premium</h3>
+<p>Leitor de Códigos é gratuito para baixar e a experiência principal de escaneamento também é gratuita. A atualização Premium é uma compra única no app que desbloqueia quatro recursos poderosos:</p>
+<ul>
+  <li><b>Histórico longo:</b> guarde até 10.000 leituras sem limite de tempo. O plano gratuito tem limite de 20 entradas / 7 dias.</li>
+  <li><b>Busca no histórico:</b> aparece uma barra de busca na aba Histórico. Encontre qualquer leitura passada na hora, por conteúdo.</li>
+  <li><b>Leitura multi-código:</b> detecte até 5 códigos por leitura.</li>
+  <li><b>Detalhes avançados:</b> veja metadados de simbologia, estrutura do código de barras e os dados decodificados completos para cada código.</li>
+</ul>
+<p>A compra é um pagamento único, não uma assinatura. Sem cobranças recorrentes e sem servidores envolvidos; tudo permanece no seu dispositivo. A compra é compatível com Compartilhamento Familiar, então qualquer membro do seu grupo Família Apple recebe a atualização automaticamente.</p>
+<p>Para comprar ou restaurar, vá até a aba Ajustes. A linha <b>Atualizar para Premium</b> abre a tela de compra; a linha <b>Restaurar Compras</b> recupera uma compra existente com este Apple ID. A própria tela de compra também tem um botão <b>Restaurar Compras</b>, caso você chegue lá primeiro.</p>
+<div class="tip">💡 Privacidade: a atualização é processada pelo StoreKit da Apple. Nunca vemos seu Apple ID, método de pagamento ou qualquer outra informação pessoal.</div>
 <h3>Resultados do Escaneamento</h3>
 <p>Quando um código é detectado, Leitor de Códigos mostra seu conteúdo antes de fazer qualquer coisa. Você sempre vê os dados brutos primeiro, junto com os botões <b>Copiar</b> e <b>Compartilhar</b>. Se o código contém uma URL (comum em QR codes), um botão <b>Abrir</b> aparece. Ao tocá-lo, o link abre no seu navegador padrão, não em um navegador integrado. Nenhum dado de navegação é coletado.</p>
 <p>Leitor de Códigos reconhece automaticamente tipos de código especiais e exibe ações contextuais:</p>
@@ -126,14 +144,14 @@ Ative <b>Mostrar Detalhes Avançados</b> para revelar metadados técnicos junto 
     <tr><td>✈️ Cartão de embarque</td><td>Detalhes do voo extraídos de Aztec / PDF417</td></tr>
   </tbody>
 </table>
-<p>Com <b>Mostrar Detalhes Avançados</b> ativado (em Ajustes), duas seções adicionais aparecem na página de resultado:</p>
+<p>Com <b>Mostrar Detalhes Avançados</b> ativado (um recurso Premium, em Ajustes), duas seções adicionais aparecem na página de resultado:</p>
 <ul>
   <li><b>Dados Decodificados:</b> a string bruta codificada dentro do código de barras, antes de qualquer análise.</li>
   <li><b>Estrutura:</b> análise técnica do código de barras: caracteres de início/parada, dígito de verificação, padrões de guarda e elementos similares dependendo do tipo de código.</li>
 </ul>
 <p>Para QR codes, chips de metadados também aparecem mostrando número de versão, nível de correção de erros e padrão de máscara.</p>
 <p><b>Detecção de parâmetros de rastreamento</b><br>
-Quando uma URL contém parâmetros de rastreamento, Leitor de Códigos exibe um botão <b>Abrir sem Rastreamento</b>. Isso inclui tags UTM e IDs de clique do Facebook, Google Ads, Microsoft, TikTok e outros. Toque nele para abrir o link sem esses parâmetros. Você acessa a mesma página sem ser rastreado.</p>
+Quando uma URL contém parâmetros de rastreamento, Leitor de Códigos exibe um cartão verde <b>Sem rastreamento</b> abaixo dos dados brutos. O cartão mostra a URL limpa, uma linha <b>Removidos:</b> listando os parâmetros retirados (tags UTM e IDs de clique do Facebook, Google Ads, Microsoft, TikTok e muitos outros) e os botões Copiar / Compartilhar / Abrir, todos operando na URL limpa. Você acessa a mesma página sem ser rastreado.</p>
 <h3>Escanear de Outro App</h3>
 <p>Você pode escanear um código que aparece em uma foto dentro de qualquer outro app (uma mensagem, e-mail, visualizador de documentos ou navegador) sem sair desse app.</p>
 <p><b>Usando Compartilhar:</b></p>
@@ -248,6 +266,8 @@ END:VCARD</pre></td></tr>
 <p>Leitor de Códigos funciona totalmente offline. O app não faz nenhuma solicitação de rede. Seus dados nunca saem do seu dispositivo.</p>
 <h4>Sem Coleta de Dados</h4>
 <p>Não coletamos, armazenamos nem processamos nenhuma informação pessoal. O app não requer conta nem qualquer forma de registro.</p>
+<h4>Compras no App</h4>
+<p>Leitor de Códigos oferece uma atualização Premium opcional única. As compras são processadas inteiramente pelo StoreKit da Apple; não recebemos nenhuma informação pessoal sobre sua compra. O app armazena apenas um indicador de que você possui a atualização. Além do que a Apple processa como parte da App Store, nenhum dado de compra sai do seu dispositivo.</p>
 <h4>Serviços de Terceiros</h4>
 <p>Leitor de Códigos não utiliza nenhum serviço de análise, publicidade ou rastreamento de terceiros. Nenhum dado é compartilhado com terceiros.</p>
 <h4>Privacidade de Crianças</h4>

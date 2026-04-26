@@ -61,7 +61,7 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
   <a href="https://apps.apple.com/us/app/barcode-qr-reader/id6761772999" target="_blank" rel="noopener"><img src="../../appstorebadge/en.svg" alt="Download on the App Store" height="72"></a>
   <a href="https://apps.apple.com/us/app/barcode-qr-reader/id6761772999" target="_blank" rel="noopener"><img src="../images/download.png" alt="Scan to download" style="width:180px; height:180px; border-radius:10px; background:#fff; padding:8px;"></a>
 </div>
-<p>Barcode QR Reader is free to download from the App Store. No account required. Requires iOS 26 or later.</p>
+<p>Barcode QR Reader is free to download from the App Store. No account required. Requires iOS 26 or later. An optional one-time Premium upgrade unlocks long history, history search, multi-code scanning, and advanced details.</p>
 
 
 <!-- ══════════════════════════════════════════════════════════ -->
@@ -85,7 +85,7 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
 <p>Many common issues are answered in the <a href="#manual">Manual</a> and FAQ below. A few quick checks:</p>
 <ul>
   <li><b>Camera not working?</b> Go to iPhone Settings → Privacy &amp; Security → Camera → enable access for Barcode QR Reader.</li>
-  <li><b>Can't find history?</b> Tap the History tab. Entries are kept for 6 months and cap at 1,000.</li>
+  <li><b>Can't find history?</b> Tap the History tab. The free plan keeps your last 20 scans for 7 days; the Premium upgrade keeps up to 10,000 with no time limit.</li>
   <li><b>Code not scanning?</b> Ensure good lighting and hold the code steady. Try Gallery mode if you have an image file.</li>
   <li><b>App crashing?</b> Force-quit and reopen. If it persists, email us with your iPhone model and iOS version.</li>
 </ul>
@@ -95,8 +95,8 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
   <li><b>Does it need an internet connection?</b><br>No. Barcode QR Reader works completely offline.</li><br>
   <li><b>Does it collect my data?</b><br>No. Nothing is uploaded anywhere. Scan history is stored only on your device.</li><br>
   <li><b>Does it access my entire photo library?</b><br>No. In the Gallery tab, you pick a single photo using the system photo picker. Barcode QR Reader never receives access to your library.</li><br>
-  <li><b>Why does multi-code mode take a little longer?</b><br>The camera gathers codes across a short window of frames to make sure it catches all codes in view before showing the result.</li><br>
-  <li><b>How long is scan history kept?</b><br>Entries older than 6 months are removed automatically. The history also caps at 1,000 entries; the oldest are removed to make room for new ones.</li><br>
+  <li><b>Why does multi-code mode take a little longer?</b><br>Multi-Code Mode (a Premium feature) detects up to 5 codes at once. The camera gathers codes across a short window of frames to make sure it catches all of them before showing the result.</li><br>
+  <li><b>How long is scan history kept?</b><br>The free plan keeps your last 20 scans for up to 7 days. The Premium upgrade keeps up to 10,000 scans with no time limit and adds full-text search.</li><br>
   <li><b>Why doesn't it navigate to a link automatically?</b><br>This is intentional. Fake or malicious QR codes are common, found in parking lots, restaurant tables, and elsewhere. Showing you the URL before opening it lets you verify it's safe.</li>
 </ul>
 
@@ -126,22 +126,39 @@ It works entirely offline, stores nothing in the cloud, and never shows ads.</p>
 <p>After picking a photo, the app scans it and shows the result immediately. If no code is found, an alert will tell you so.</p>
 
 <h3>History</h3>
-<p>Every scan is automatically saved to the History tab. Scans are kept for <b>6 months</b> and the history holds up to <b>1,000 entries</b>; the oldest are removed automatically when the limit is reached.</p>
+<p>Every scan is automatically saved to the History tab. The free plan keeps your last <b>20 scans</b> for up to <b>7 days</b>; the oldest are removed automatically when the limit is reached. The Premium upgrade keeps up to <b>10,000 scans</b> with no time limit and adds full-text search.</p>
 <ul>
   <li><b>View a past scan:</b> tap any row to re-open the full result.</li>
   <li><b>Delete one entry:</b> swipe left on a row and tap <b>Delete</b>.</li>
   <li><b>Delete all:</b> tap the trash icon in the top-right corner.</li>
   <li><b>Source label:</b> each entry shows whether it came from the Camera, Gallery, or a Share.</li>
+  <li><b>Search (Premium):</b> a search bar appears at the top of the list. Type any text and entries are filtered as you type, matching across every code's decoded value.</li>
 </ul>
 
 <h3>Settings</h3>
-<p><b>Multi-Code Mode</b><br>
-By default, Barcode QR Reader stops as soon as it finds <b>one code</b>. Turn on <b>Multi-Code Mode</b> to scan up to <b>5 codes at once</b>, useful for business cards, product sheets, or any image containing several codes side by side.</p>
-<p>When multi-code mode is active, the camera keeps scanning for a brief moment after the first detection to gather all visible codes before showing results. This is why it takes slightly longer than single-code mode.</p>
+<p>The Settings tab opens with a Premium status row at the top, then feature toggles, then app information.</p>
 
-<p><b>Show Advanced Details</b><br>
-Turn on <b>Show Advanced Details</b> to reveal technical metadata alongside each scan result: things like QR version, error correction level, mask pattern, or barcode structure (start/stop characters, check digit). This is shown on the Scan Result page and in the History tab rows.</p>
+<p><b>Premium row</b><br>
+If you haven't upgraded, you'll see an <b>Upgrade to Premium</b> row that opens the paywall, plus a <b>Restore Purchases</b> row to recover access if you've already bought it on this Apple ID (for example, after reinstalling or on a new device). Once upgraded, the row turns into a green thank-you message.</p>
+
+<p><b>Scan Multiple Codes</b> <span style="font-size:0.85em;color:#888">(Premium)</span><br>
+By default, Barcode QR Reader stops as soon as it finds <b>one code</b>. With Premium, you can turn on <b>Scan Multiple Codes</b> to detect up to <b>5 codes at once</b>, useful for business cards, product sheets, or any image containing several codes side by side. The camera keeps scanning for a brief moment after the first detection to gather all visible codes before showing results.</p>
+
+<p><b>Show Advanced Details</b> <span style="font-size:0.85em;color:#888">(Premium)</span><br>
+With Premium, you can turn on <b>Show Advanced Details</b> to reveal technical metadata alongside each scan result: things like QR version, error correction level, mask pattern, or barcode structure (start/stop characters, check digit). This is shown on the Scan Result page and in the History tab rows.</p>
 <div class="tip">💡 This is a great way to learn more about how QR codes and barcodes actually work. If you're curious about the technology behind what you scan, give it a try!</div>
+
+<h3 id="premium">Premium</h3>
+<p>Barcode QR Reader is free to download and to use for the core scanning experience. The Premium upgrade is a single one-time in-app purchase that unlocks four power features:</p>
+<ul>
+  <li><b>Long history:</b> keep up to 10,000 scans with no time limit. The free plan caps at 20 entries / 7 days.</li>
+  <li><b>Search history:</b> a search bar appears in the History tab. Find any past scan instantly by content.</li>
+  <li><b>Multi-code scanning:</b> detect up to 5 codes per pass.</li>
+  <li><b>Advanced details:</b> see symbology metadata, barcode structure, and the full decoded data for every code.</li>
+</ul>
+<p>The purchase is a one-time payment, not a subscription. There are no recurring fees and no servers involved; everything stays on your device. The purchase is eligible for Family Sharing, so anyone in your Apple Family group gets the upgrade automatically.</p>
+<p>To buy or restore, go to the Settings tab. The <b>Upgrade to Premium</b> row opens the paywall; the <b>Restore Purchases</b> row recovers an existing purchase on this Apple ID. The paywall itself also has a <b>Restore Purchases</b> button if you happen to be there first.</p>
+<div class="tip">💡 Privacy: the upgrade is processed by Apple's StoreKit. We never see your Apple ID, payment method, or any other personal information.</div>
 
 <h3>Scan Results</h3>
 <p>When a code is detected, Barcode QR Reader shows you its content before doing anything with it. You always see the raw data first, along with <b>Copy</b> and <b>Share</b> buttons. If the code contains a URL (common in QR codes), an <b>Open</b> button appears. Tapping it opens the link in your default browser, not an in-app browser. No browsing data is collected.</p>
@@ -163,7 +180,7 @@ Turn on <b>Show Advanced Details</b> to reveal technical metadata alongside each
   </tbody>
 </table>
 
-<p>With <b>Show Advanced Details</b> turned on (in Settings), two additional sections appear on the result page:</p>
+<p>With <b>Show Advanced Details</b> turned on (a Premium feature, in Settings), two additional sections appear on the result page:</p>
 <ul>
   <li><b>Decoded Data:</b> the raw string encoded inside the barcode, before any parsing.</li>
   <li><b>Structure:</b> technical breakdown of the barcode: start/stop characters, check digit, guard patterns, and similar elements depending on the code type.</li>
@@ -171,7 +188,7 @@ Turn on <b>Show Advanced Details</b> to reveal technical metadata alongside each
 <p>For QR codes, metadata chips also appear showing version number, error correction level, and mask pattern.</p>
 
 <p><b>Tracking parameter detection</b><br>
-When a URL contains tracking parameters, Barcode QR Reader shows an <b>Open Without Tracking</b> button. This includes UTM tags, click IDs from Facebook, Google Ads, Microsoft, TikTok, and others. Tap it to open the link with those parameters removed. You reach the same page without being tracked.</p>
+When a URL contains tracking parameters, Barcode QR Reader shows a green <b>Without tracking</b> card below the raw data. The card displays the cleaned URL, a <b>Removed:</b> line listing the stripped parameters (UTM tags, plus click IDs from Facebook, Google Ads, Microsoft, TikTok, and many more), and Copy / Share / Open buttons that all operate on the clean URL. You reach the same page without being tracked.</p>
 
 <h3>Scanning from Another App</h3>
 <p>You can scan a code that appears in a photo inside any other app (a message, email, document viewer, or web browser) without leaving that app.</p>
@@ -305,6 +322,8 @@ END:VCARD</pre></td></tr>
 <p>Barcode QR Reader works entirely offline. The app makes no network requests. Your data never leaves your device.</p>
 <h4>No Data Collection</h4>
 <p>We do not collect, store, or process any personal information. The app does not require an account or any form of registration.</p>
+<h4>In-App Purchases</h4>
+<p>Barcode QR Reader offers an optional one-time Premium upgrade. Purchases are processed entirely by Apple's StoreKit; we receive no personal information about your purchase. The app stores only a flag indicating that you own the upgrade. No purchase data leaves your device beyond what Apple itself handles as part of the App Store.</p>
 <h4>Third-Party Services</h4>
 <p>Barcode QR Reader does not use any third-party analytics, advertising, or tracking services. No data is shared with any third party.</p>
 <h4>Children's Privacy</h4>

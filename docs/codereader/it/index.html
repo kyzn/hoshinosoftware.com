@@ -52,7 +52,7 @@ Funziona completamente offline, non archivia nulla nel cloud e non mostra mai pu
   <a href="https://apps.apple.com/us/app/barcode-qr-reader/id6761772999" target="_blank" rel="noopener"><img src="../../appstorebadge/it.svg" alt="Scarica su App Store" height="72"></a>
   <a href="https://apps.apple.com/us/app/barcode-qr-reader/id6761772999" target="_blank" rel="noopener"><img src="../images/download.png" alt="Scan to download" style="width:180px; height:180px; border-radius:10px; background:#fff; padding:8px;"></a>
 </div>
-<p>Lettore Codici è gratuito da scaricare su App Store. Nessun account richiesto. Richiede iOS 26 o versioni successive.</p>
+<p>Lettore Codici è gratuito da scaricare su App Store. Nessun account richiesto. Richiede iOS 26 o versioni successive. Un aggiornamento Premium opzionale una tantum sblocca cronologia lunga, ricerca nella cronologia, scansione multi-codice e dettagli avanzati.</p>
 
 <h2 class="section-h2 section-anchor" id="support">Supporto</h2>
 
@@ -71,7 +71,7 @@ Funziona completamente offline, non archivia nulla nel cloud e non mostra mai pu
 <p>Molti problemi comuni sono trattati nel <a href="#manual">Manuale</a> e nelle FAQ qui sotto. Qualche verifica rapida:</p>
 <ul>
   <li><b>Fotocamera non funzionante?</b> Vai in Impostazioni iPhone → Privacy e sicurezza → Fotocamera → abilita l'accesso per Lettore Codici.</li>
-  <li><b>Non trovi la cronologia?</b> Tocca la scheda Cronologia. Le voci vengono conservate per 6 mesi fino a un massimo di 1.000.</li>
+  <li><b>Non trovi la cronologia?</b> Tocca la scheda Cronologia. Il piano gratuito conserva le tue ultime 20 scansioni per 7 giorni; l'aggiornamento Premium ne conserva fino a 10.000 senza limiti di tempo.</li>
   <li><b>Il codice non viene scansionato?</b> Assicurati di avere una buona illuminazione e tieni il codice fermo. Prova la modalità Galleria se hai un file immagine.</li>
   <li><b>L'app si blocca?</b> Forza la chiusura e riaprila. Se il problema persiste, scrivici indicando il modello di iPhone e la versione iOS.</li>
 </ul>
@@ -81,8 +81,8 @@ Funziona completamente offline, non archivia nulla nel cloud e non mostra mai pu
   <li><b>Richiede una connessione internet?</b><br>No. Lettore Codici funziona completamente offline.</li><br>
   <li><b>Raccoglie i miei dati?</b><br>No. Nulla viene caricato da nessuna parte. La cronologia delle scansioni è archiviata solo sul tuo dispositivo.</li><br>
   <li><b>Accede all'intera libreria foto?</b><br>No. Nella scheda Galleria, selezioni una singola foto tramite il selettore foto di sistema. Lettore Codici non accede mai alla tua libreria.</li><br>
-  <li><b>Perché la modalità multi-codice richiede un po' più di tempo?</b><br>La fotocamera raccoglie i codici in una breve finestra di frame per assicurarsi di catturare tutti i codici visibili prima di mostrare il risultato.</li><br>
-  <li><b>Per quanto tempo viene conservata la cronologia delle scansioni?</b><br>Le voci più vecchie di 6 mesi vengono rimosse automaticamente. La cronologia è limitata anche a 1.000 voci; le più vecchie vengono rimosse per fare spazio a quelle nuove.</li><br>
+  <li><b>Perché la modalità multi-codice richiede un po' più di tempo?</b><br>La modalità multi-codice (una funzione Premium) rileva fino a 5 codici contemporaneamente. La fotocamera raccoglie i codici in una breve finestra di frame per assicurarsi di catturare tutti i codici visibili prima di mostrare il risultato.</li><br>
+  <li><b>Per quanto tempo viene conservata la cronologia delle scansioni?</b><br>Il piano gratuito conserva le tue ultime 20 scansioni fino a 7 giorni. L'aggiornamento Premium ne conserva fino a 10.000 senza limiti di tempo e aggiunge la ricerca a testo completo.</li><br>
   <li><b>Perché non naviga automaticamente verso un link?</b><br>È intenzionale. I QR code falsi o dannosi sono comuni: nei parcheggi, sui tavoli dei ristoranti e altrove. Mostrarti l'URL prima di aprirlo ti consente di verificare che sia sicuro.</li>
 </ul>
 
@@ -107,22 +107,39 @@ Funziona completamente offline, non archivia nulla nel cloud e non mostra mai pu
 <p>Dopo aver selezionato una foto, l'app la scansiona e mostra il risultato immediatamente. Se non viene trovato alcun codice, un avviso te lo comunicherà.</p>
 
 <h3>Cronologia</h3>
-<p>Ogni scansione viene salvata automaticamente nella scheda Cronologia. Le scansioni vengono conservate per <b>6 mesi</b> e la cronologia può contenere fino a <b>1.000 voci</b>; le più vecchie vengono rimosse automaticamente quando viene raggiunto il limite.</p>
+<p>Ogni scansione viene salvata automaticamente nella scheda Cronologia. Il piano gratuito conserva le tue ultime <b>20 scansioni</b> fino a <b>7 giorni</b>; le più vecchie vengono rimosse automaticamente quando viene raggiunto il limite. L'aggiornamento Premium conserva fino a <b>10.000 scansioni</b> senza limiti di tempo e aggiunge la ricerca a testo completo.</p>
 <ul>
   <li><b>Visualizza una scansione precedente:</b> tocca qualsiasi riga per riaprire il risultato completo.</li>
   <li><b>Elimina una voce:</b> scorri verso sinistra su una riga e tocca <b>Elimina</b>.</li>
   <li><b>Elimina tutto:</b> tocca l'icona del cestino nell'angolo in alto a destra.</li>
   <li><b>Etichetta sorgente:</b> ogni voce indica se proviene dalla Fotocamera, dalla Galleria o da una Condivisione.</li>
+  <li><b>Ricerca (Premium):</b> in cima alla lista appare una barra di ricerca. Digita un testo qualsiasi e le voci vengono filtrate mentre scrivi; la ricerca confronta il valore decodificato di ogni codice.</li>
 </ul>
 
 <h3>Impostazioni</h3>
-<p><b>Modalità multi-codice</b><br>
-Per impostazione predefinita, Lettore Codici si ferma non appena trova <b>un codice</b>. Attiva la <b>Modalità multi-codice</b> per scansionare fino a <b>5 codici contemporaneamente</b>, utile per biglietti da visita, schede prodotto o qualsiasi immagine contenente più codici affiancati.</p>
-<p>Quando la modalità multi-codice è attiva, la fotocamera continua a scansionare per un breve momento dopo la prima rilevazione per raccogliere tutti i codici visibili prima di mostrare i risultati. Ecco perché richiede leggermente più tempo rispetto alla modalità a codice singolo.</p>
+<p>La scheda Impostazioni si apre con una riga di stato Premium in alto, seguita dagli interruttori delle funzioni e dalle informazioni sull'app.</p>
 
-<p><b>Mostra dettagli avanzati</b><br>
-Attiva <b>Mostra dettagli avanzati</b> per visualizzare i metadati tecnici accanto a ogni risultato di scansione: versione QR, livello di correzione degli errori, schema di mascheramento o struttura del codice a barre (caratteri di inizio/fine, cifra di controllo). Queste informazioni vengono mostrate nella pagina del risultato e nelle righe della scheda Cronologia.</p>
+<p><b>Riga Premium</b><br>
+Se non hai ancora effettuato l'aggiornamento, vedrai una riga <b>Passa a Premium</b> che apre la schermata di acquisto, oltre a una riga <b>Ripristina acquisti</b> per recuperare l'accesso se l'hai già acquistato con questo ID Apple (ad esempio, dopo una reinstallazione o su un nuovo dispositivo). Una volta aggiornato, la riga si trasforma in un messaggio verde di ringraziamento.</p>
+
+<p><b>Modalità multi-codice</b> <span style="font-size:0.85em;color:#888">(Premium)</span><br>
+Per impostazione predefinita, Lettore Codici si ferma non appena trova <b>un codice</b>. Con Premium puoi attivare la <b>Modalità multi-codice</b> per rilevare fino a <b>5 codici contemporaneamente</b>, utile per biglietti da visita, schede prodotto o qualsiasi immagine contenente più codici affiancati. La fotocamera continua a scansionare per un breve momento dopo la prima rilevazione per raccogliere tutti i codici visibili prima di mostrare i risultati.</p>
+
+<p><b>Mostra dettagli avanzati</b> <span style="font-size:0.85em;color:#888">(Premium)</span><br>
+Con Premium puoi attivare <b>Mostra dettagli avanzati</b> per visualizzare i metadati tecnici accanto a ogni risultato di scansione: versione QR, livello di correzione degli errori, schema di mascheramento o struttura del codice a barre (caratteri di inizio/fine, cifra di controllo). Queste informazioni vengono mostrate nella pagina del risultato e nelle righe della scheda Cronologia.</p>
 <div class="tip">💡 È un ottimo modo per saperne di più su come funzionano effettivamente i QR code e i codici a barre. Se sei curioso riguardo alla tecnologia dietro ciò che scansioni, provalo!</div>
+
+<h3 id="premium">Premium</h3>
+<p>Lettore Codici è gratuito da scaricare e l'esperienza di scansione principale è anch'essa gratuita. L'aggiornamento Premium è un acquisto in-app una tantum che sblocca quattro potenti funzioni:</p>
+<ul>
+  <li><b>Cronologia lunga:</b> conserva fino a 10.000 scansioni senza limiti di tempo. Il piano gratuito è limitato a 20 voci / 7 giorni.</li>
+  <li><b>Ricerca nella cronologia:</b> nella scheda Cronologia appare una barra di ricerca. Trova qualsiasi scansione passata in pochi secondi per contenuto.</li>
+  <li><b>Scansione multi-codice:</b> rileva fino a 5 codici per passaggio.</li>
+  <li><b>Dettagli avanzati:</b> visualizza i metadati di simbologia, la struttura del codice a barre e i dati decodificati completi per ogni codice.</li>
+</ul>
+<p>L'acquisto è un pagamento una tantum, non un abbonamento. Nessun costo ricorrente e nessun server coinvolto; tutto rimane sul tuo dispositivo. L'acquisto è compatibile con In Famiglia, quindi tutti i membri del tuo gruppo Famiglia Apple ricevono automaticamente l'aggiornamento.</p>
+<p>Per acquistare o ripristinare, vai alla scheda Impostazioni. La riga <b>Passa a Premium</b> apre la schermata di acquisto; la riga <b>Ripristina acquisti</b> recupera un acquisto esistente con questo ID Apple. Anche la schermata di acquisto ha un pulsante <b>Ripristina acquisti</b>, nel caso in cui ci arrivi prima.</p>
+<div class="tip">💡 Privacy: l'aggiornamento è gestito da StoreKit di Apple. Non vediamo mai il tuo ID Apple, il metodo di pagamento o qualsiasi altra informazione personale.</div>
 
 <h3>Risultati di scansione</h3>
 <p>Quando viene rilevato un codice, Lettore Codici mostra il contenuto prima di fare qualsiasi cosa. Vedi sempre prima i dati grezzi, insieme ai pulsanti <b>Copia</b> e <b>Condividi</b>. Se il codice contiene un URL (comune nei QR code), appare un pulsante <b>Apri</b>. Toccandolo si apre il link nel browser predefinito, non in un browser integrato nell'app. Nessun dato di navigazione viene raccolto.</p>
@@ -144,7 +161,7 @@ Attiva <b>Mostra dettagli avanzati</b> per visualizzare i metadati tecnici accan
   </tbody>
 </table>
 
-<p>Con <b>Mostra dettagli avanzati</b> attivo (nelle Impostazioni), nella pagina dei risultati appaiono due sezioni aggiuntive:</p>
+<p>Con <b>Mostra dettagli avanzati</b> attivo (una funzione Premium, nelle Impostazioni), nella pagina dei risultati appaiono due sezioni aggiuntive:</p>
 <ul>
   <li><b>Dati decodificati:</b> la stringa grezza codificata nel codice a barre, prima di qualsiasi elaborazione.</li>
   <li><b>Struttura:</b> analisi tecnica del codice a barre: caratteri di inizio/fine, cifra di controllo, pattern di guardia ed elementi simili a seconda del tipo di codice.</li>
@@ -152,7 +169,7 @@ Attiva <b>Mostra dettagli avanzati</b> per visualizzare i metadati tecnici accan
 <p>Per i QR code, appaiono anche chip di metadati che mostrano il numero di versione, il livello di correzione degli errori e lo schema di mascheramento.</p>
 
 <p><b>Rilevamento dei parametri di tracciamento</b><br>
-Quando un URL contiene parametri di tracciamento, Lettore Codici mostra un pulsante <b>Apri senza tracciamento</b>. Questo include i tag UTM e gli ID clic di Facebook, Google Ads, Microsoft, TikTok e altri. Toccalo per aprire il link senza quei parametri. Raggiungi la stessa pagina senza essere tracciato.</p>
+Quando un URL contiene parametri di tracciamento, Lettore Codici mostra una scheda verde <b>Senza tracciamento</b> sotto i dati grezzi. La scheda mostra l'URL ripulito, una riga <b>Rimossi:</b> con i parametri eliminati (tag UTM e ID clic di Facebook, Google Ads, Microsoft, TikTok e molti altri) e i pulsanti Copia / Condividi / Apri, che agiscono tutti sull'URL ripulito. Raggiungi la stessa pagina senza essere tracciato.</p>
 
 <h3>Scansione da un'altra app</h3>
 <p>Puoi scansionare un codice che appare in una foto all'interno di qualsiasi altra app (un messaggio, un'email, un visualizzatore di documenti o un browser web) senza lasciare quell'app.</p>
@@ -277,6 +294,8 @@ END:VCARD</pre></td></tr>
 <p>Lettore Codici funziona completamente offline. L'app non effettua richieste di rete. I tuoi dati non lasciano mai il tuo dispositivo.</p>
 <h4>Nessuna raccolta di dati</h4>
 <p>Non raccogliamo, archiviamo né elaboriamo alcuna informazione personale. L'app non richiede account né alcuna forma di registrazione.</p>
+<h4>Acquisti in-app</h4>
+<p>Lettore Codici offre un aggiornamento Premium opzionale una tantum. Gli acquisti vengono gestiti interamente da StoreKit di Apple; non riceviamo alcuna informazione personale relativa al tuo acquisto. L'app memorizza solo un'indicazione che possiedi l'aggiornamento. Oltre a quanto Apple stessa gestisce come parte dell'App Store, nessun dato di acquisto lascia il tuo dispositivo.</p>
 <h4>Servizi di terze parti</h4>
 <p>Lettore Codici non utilizza servizi di analisi, pubblicità o tracciamento di terze parti. Nessun dato viene condiviso con terze parti.</p>
 <h4>Privacy dei minori</h4>
