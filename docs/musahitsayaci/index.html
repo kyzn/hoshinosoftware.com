@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Müşahit Sayacı</title>
+<script>
+var match = window.location.hash.match(/^#(support|legal)-([a-zA-Z-]+)$/);
+var dest = match
+  ? '/musahitsayaci/' + match[2] + '/#' + match[1]
+  : '/musahitsayaci/tr';
+window.location.replace(dest);
+</script>
+</head>
+<body>
+<p>Yönlendiriliyor: <a href="/musahitsayaci/tr">/musahitsayaci/tr</a>...</p>
+</body>
+</html>
