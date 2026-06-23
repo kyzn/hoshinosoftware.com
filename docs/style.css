@@ -474,3 +474,78 @@ body.home main { padding-bottom: 60px; }
 .rtl { direction: rtl; text-align: right; }
 .rtl ul, .rtl ol { padding-left: 0; padding-right: 20px; }
 .rtl thead th { text-align: right; }
+
+
+/* ══════════════════════════════════════════════════════════════
+   Photo Triager page additions
+   ══════════════════════════════════════════════════════════════ */
+.product-heading {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 16px 0 18px;
+}
+.product-heading img {
+  width: 92px;
+  height: 92px;
+  border-radius: 22px;
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 16px 40px rgba(94, 100, 255, 0.28),
+    0 6px 18px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+}
+.product-heading h1 { margin: 0 0 4px; }
+.product-heading p { margin: 0; color: var(--muted); }
+.app-screenshots {
+  display: grid;
+  gap: 18px;
+  margin: 24px 0 34px;
+}
+.app-screenshots figure {
+  margin: 0;
+  padding: 0;
+}
+.app-screenshots img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border-strong);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 18px 44px rgba(0, 0, 0, 0.42),
+    0 0 30px rgba(94, 200, 255, 0.08);
+}
+.app-screenshots figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.coming-soon-box,
+.safety-box {
+  background: var(--panel-2);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin: 24px 0;
+  box-shadow: 0 8px 24px rgba(94, 100, 255, 0.12);
+}
+.safety-box { border-color: rgba(255, 190, 92, 0.38); }
+.coming-soon-label,
+.safety-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.safety-label { color: #ffbe5c; }
+.feature-list { margin-top: 18px; }
+.feature-list li { margin: 8px 0; }
+@media (max-width: 560px) {
+  .product-heading { align-items: flex-start; }
+  .product-heading img { width: 72px; height: 72px; border-radius: 17px; }
+}

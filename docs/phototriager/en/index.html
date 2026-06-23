@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Photo Triager – English</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+
+<div id="lang-strip">
+  <div class="strip-inner">
+    <a href="../../" class="strip-brand">Hoshino Software &amp; Security</a>
+    <nav class="strip-langs">
+      <a href="/phototriager/en" class="active">EN</a><span class="dot">·</span>
+      <a href="/phototriager/ja">日本語</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+
+<div class="product-heading">
+  <img src="../images/icon.png" alt="Photo Triager app icon" width="92" height="92">
+  <div>
+    <h1 class="section-anchor" id="top">Photo Triager</h1>
+    <p>Clean up photo folders before editing, delivery, or archiving.</p>
+  </div>
+</div>
+
+<p>Photo Triager is a Mac app for reviewing messy photo folders before you start changing them. It scans nested directories, counts image types, separates reject folders, finds exact duplicates, moves stray hidden files to a holding folder, and resizes oversized JPG/JPEG files with visible progress and summaries.</p>
+
+<p>It is not a photo editor, a catalog, or a Lightroom replacement. It is a practical preflight tool for the part of photo work where you need to understand what is in a folder before cleanup becomes risky.</p>
+
+<nav id="toc" aria-label="Page contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#download">Download</a></li>
+    <li><a href="#support">Support</a></li>
+    <li><a href="#manual">Manual</a></li>
+    <li><a href="#safety">File Safety Notice</a></li>
+    <li><a href="#legal">Legal</a></li>
+  </ol>
+</nav>
+
+<h2 id="download" class="section-h2 section-anchor first-section">Download</h2>
+
+<div class="coming-soon-box">
+  <div class="coming-soon-label">Coming Soon</div>
+  <p>Photo Triager is being prepared for the Mac App Store.</p>
+  <p>Requires macOS 14 Sonoma or later.</p>
+</div>
+
+<h2 id="support" class="section-h2 section-anchor">Support</h2>
+
+<p>Have a question, found a bug, or need help understanding a workflow? Reach out. We read every message.</p>
+
+<div class="contact-box">
+  <div class="contact-icon">✉️</div>
+  <div class="contact-body">
+    <div class="contact-label">Email Support</div>
+    <div class="contact-email">support [at] hoshinosoftware [dot] com</div>
+    <div class="contact-note">We typically respond within 5 business days.</div>
+  </div>
+</div>
+
+<h3>Before you write</h3>
+<ul>
+  <li><b>Counts look different from Finder?</b> Check Settings. Photo Triager only counts the image extensions selected there.</li>
+  <li><b>Reject folders are missing?</b> Add the folder word to Reject Folder Keywords, then rescan.</li>
+  <li><b>Files cannot be moved?</b> macOS may require folder permission. Use the permission button for the holding folder when prompted.</li>
+  <li><b>Before resizing JPEGs:</b> Make a backup and review excluded directories. JPEG resize overwrites originals.</li>
+</ul>
+
+<h2 id="manual" class="section-h2 section-anchor">Manual</h2>
+
+<div class="app-screenshots">
+  <figure>
+    <img src="../images/screenshots/en-home.png" alt="Photo Triager Home tab showing a scanned folder summary">
+    <figcaption>Start from one copied working folder, then change folders or rescan when files change.</figcaption>
+  </figure>
+  <figure>
+    <img src="../images/screenshots/en-summary.png" alt="Photo Triager Summary tab showing category, file type, and directory totals">
+    <figcaption>Review category totals, file types, reject totals, subdirectories, and oversized JPEG candidates before changing files.</figcaption>
+  </figure>
+  <figure>
+    <img src="../images/screenshots/en-resize.png" alt="Photo Triager Resize tab showing JPEG size boundary and directories not resized">
+    <figcaption>Set the JPEG resize boundary, review directories that should not be resized, and confirm the overwrite warning before running.</figcaption>
+  </figure>
+</div>
+
+<h3>Home</h3>
+<p>Choose a photo folder, change to another folder, or rescan after files have changed outside the app. Photo Triager scans recursively, including nested subfolders.</p>
+
+<h3>Summary</h3>
+<p>Review the folder before changing anything. The Summary tab shows image counts, file types, directory counts, reject totals, non-reject totals, grand totals, and oversized JPEG candidates.</p>
+
+<h3>Stray Files</h3>
+<p>Find hidden dot-prefixed files and move selected items to the holding folder. Photo Triager moves these files instead of deleting them, so you can inspect them later.</p>
+
+<h3>Duplicates</h3>
+<p>Find exact byte-for-byte duplicates. Choose one keeper in each duplicate group, preview the image where possible, then dedupe the extra copies to the holding folder.</p>
+
+<h3>Resize</h3>
+<p>Resize JPG/JPEG files over the configured size boundary. Files are processed in path order. You can exclude directories that must remain untouched. If a resized file is still too large, Photo Triager tries again at a smaller percentage.</p>
+
+<div class="tip">💡 RAW files such as ARW can be included in counts, but Photo Triager does not resize RAW files.</div>
+
+<h3>Settings</h3>
+<ul class="feature-list">
+  <li><b>Language:</b> switch the app between English and Japanese.</li>
+  <li><b>Included file types:</b> choose which image extensions appear in scans, counts, duplicate detection, and summaries.</li>
+  <li><b>Reject folder keywords:</b> count folders such as reject, rejected, ぼつ, ボツ, and 没 separately from normal folders.</li>
+  <li><b>Holding folder:</b> choose where stray files and deduped files are moved.</li>
+  <li><b>JPEG resize boundary:</b> set the size above which JPG/JPEG files become resize candidates.</li>
+</ul>
+
+<h2 id="safety" class="section-h2 section-anchor">File Safety Notice</h2>
+
+<div class="safety-box">
+  <div class="safety-label">Important</div>
+  <p>Photo Triager performs file operations on folders you choose, including moving files and overwriting original JPEG files during resize. Hoshino Software does not warrant that files, metadata, directory structure, resized output, or intermediate work will be preserved, recoverable, uninterrupted, error-free, or free from loss or corruption. Keep an independent backup and use the app only on copies or files you are prepared to modify.</p>
+</div>
+
+<h2 id="legal" class="section-h2 section-anchor">Legal</h2>
+
+<h3 id="privacy">Privacy Policy</h3>
+<p><b>Last Updated:</b> June 2026</p>
+
+<h4>Information We Do Not Collect</h4>
+<p>Photo Triager does not collect, store, use, share, sell, or transfer personal data. The app is designed to work locally on your Mac. It does not use analytics, advertising networks, tracking SDKs, or Hoshino Software servers.</p>
+
+<h4>Files and Folders</h4>
+<p>Photo Triager can access folders only when you choose them or grant permission through macOS. File paths, image contents, metadata, duplicate information, resize results, and settings remain on your device unless you choose to send information to support by email.</p>
+
+<h4>Support Email</h4>
+<p>If you contact support, your email app may include app version and settings details in the message body to help diagnose the issue. Sending that email is your choice.</p>
+
+<h4>Third-Party Services</h4>
+<p>Photo Triager does not integrate with third-party analytics, advertising, or tracking services.</p>
+
+<h4>Changes to This Policy</h4>
+<p>We may update this Privacy Policy from time to time. Changes are effective when posted on this page.</p>
+
+<h4>Contact Us</h4>
+<p>If you have questions about this Privacy Policy, contact support [at] hoshinosoftware [dot] com.</p>
+
+<div class="doc-end-logo">
+  <a href="../../" aria-label="Hoshino Software &amp; Security home">
+    <img src="../../hoshino.png" alt="Hoshino Software & Security logo">
+  </a>
+</div>
+
+</main>
+
+<footer><a href="../../">© 2026 Hoshino Software &amp; Security. All rights reserved.</a></footer>
+
+<script>
+function applyTopPad() {
+  var h = document.getElementById('lang-strip').offsetHeight;
+  document.querySelector('main').style.paddingTop = (h + 20) + 'px';
+}
+applyTopPad();
+window.addEventListener('resize', applyTopPad);
+</script>
+
+</body>
+</html>

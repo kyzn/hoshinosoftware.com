@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>フォト整理 – 日本語</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+
+<div id="lang-strip">
+  <div class="strip-inner">
+    <a href="../../" class="strip-brand">Hoshino Software &amp; Security</a>
+    <nav class="strip-langs">
+      <a href="/phototriager/en">EN</a><span class="dot">·</span>
+      <a href="/phototriager/ja" class="active">日本語</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+
+<div class="product-heading">
+  <img src="../images/icon.png" alt="フォト整理のアプリアイコン" width="92" height="92">
+  <div>
+    <h1 class="section-anchor" id="top">フォト整理</h1>
+    <p>編集、納品、アーカイブ前に写真フォルダを確認して整理します。</p>
+  </div>
+</div>
+
+<p>フォト整理は、整理前の写真フォルダを確認するためのMacアプリです。下位フォルダを含めてスキャンし、画像種類の集計、除外候補フォルダの分離、完全一致の重複検出、隠しファイルの退避、大きなJPG/JPEGのリサイズを、進捗と結果を見ながら実行できます。</p>
+
+<p>写真編集アプリ、長期カタログ、Lightroomの代替ではありません。フォルダの中身を理解してから安全に整理するための、実用的な事前確認ツールです。</p>
+
+<nav id="toc" aria-label="ページの目次">
+  <h2>目次</h2>
+  <ol>
+    <li><a href="#download">ダウンロード</a></li>
+    <li><a href="#support">サポート</a></li>
+    <li><a href="#manual">マニュアル</a></li>
+    <li><a href="#safety">ファイル安全性の注意</a></li>
+    <li><a href="#legal">法的情報</a></li>
+  </ol>
+</nav>
+
+<h2 id="download" class="section-h2 section-anchor first-section">ダウンロード</h2>
+
+<div class="coming-soon-box">
+  <div class="coming-soon-label">準備中</div>
+  <p>フォト整理はMac App Storeでの公開に向けて準備中です。</p>
+  <p>macOS 14 Sonoma以降が必要です。</p>
+</div>
+
+<h2 id="support" class="section-h2 section-anchor">サポート</h2>
+
+<p>ご質問、バグ報告、使い方の相談がある場合はご連絡ください。すべてのメッセージを読んでいます。</p>
+
+<div class="contact-box">
+  <div class="contact-icon">✉️</div>
+  <div class="contact-body">
+    <div class="contact-label">メールサポート</div>
+    <div class="contact-email">support [at] hoshinosoftware [dot] com</div>
+    <div class="contact-note">通常、5営業日以内にご返答します。</div>
+  </div>
+</div>
+
+<h3>お問い合わせ前に</h3>
+<ul>
+  <li><b>Finderと件数が違う場合:</b> 設定を確認してください。フォト整理は、設定で選ばれた画像拡張子だけを集計します。</li>
+  <li><b>除外候補フォルダが拾われない場合:</b> 「除外候補フォルダのキーワード」に該当する語を追加し、再スキャンしてください。</li>
+  <li><b>ファイルを移動できない場合:</b> macOSの権限が必要な可能性があります。案内に従って退避フォルダの許可を行ってください。</li>
+  <li><b>JPEGをリサイズする前に:</b> 必ずバックアップを作成し、除外ディレクトリを確認してください。JPEGリサイズは元ファイルを上書きします。</li>
+</ul>
+
+<h2 id="manual" class="section-h2 section-anchor">マニュアル</h2>
+
+<div class="app-screenshots">
+  <figure>
+    <img src="../images/screenshots/ja-home.png" alt="フォト整理のホームタブ。スキャン済みフォルダの概要を表示しています">
+    <figcaption>コピーした作業用フォルダを起点にして、フォルダ変更や再スキャンを行います。</figcaption>
+  </figure>
+  <figure>
+    <img src="../images/screenshots/ja-summary.png" alt="フォト整理の概要タブ。カテゴリ、ファイル種類、ディレクトリの集計を表示しています">
+    <figcaption>変更前に、カテゴリ合計、ファイル種類、除外候補合計、下位フォルダ、大きいJPEG候補を確認します。</figcaption>
+  </figure>
+  <figure>
+    <img src="../images/screenshots/ja-resize.png" alt="フォト整理のリサイズタブ。JPEGリサイズ境界とリサイズしないディレクトリを表示しています">
+    <figcaption>JPEGリサイズ境界と対象外ディレクトリを確認し、上書きの注意を読んでから実行します。</figcaption>
+  </figure>
+</div>
+
+<h3>ホーム</h3>
+<p>写真フォルダを選択し、別のフォルダへ変更し、外部でファイルが変わった後に再スキャンできます。下位フォルダも含めて再帰的にスキャンします。</p>
+
+<h3>概要</h3>
+<p>変更作業の前にフォルダ全体を確認します。画像数、ファイル種類、ディレクトリ数、除外候補合計、通常合計、総合計、大きいJPEG候補を確認できます。</p>
+
+<h3>野良ファイル</h3>
+<p>ドットで始まる隠しファイルを探し、選択した項目を退避フォルダへ移動します。直接削除せず、後で確認できる場所へ移動します。</p>
+
+<h3>重複</h3>
+<p>完全一致の重複ファイルを探します。各グループで残すファイルを選び、必要に応じてプレビューし、残りを退避フォルダへ移動します。</p>
+
+<h3>リサイズ</h3>
+<p>設定したサイズを超えるJPG/JPEGをリサイズします。パス順で処理し、変更したくないディレクトリは除外できます。リサイズ後も大きすぎる場合は、より小さい割合で再試行します。</p>
+
+<div class="tip">💡 ARWなどのRAWファイルは集計に含められますが、フォト整理はRAWファイルをリサイズしません。</div>
+
+<h3>設定</h3>
+<ul class="feature-list">
+  <li><b>言語:</b> アプリ表示を英語と日本語で切り替えます。</li>
+  <li><b>カウント対象:</b> スキャン、集計、重複検索、概要に含める画像拡張子を選びます。</li>
+  <li><b>除外候補フォルダのキーワード:</b> reject、rejected、ぼつ、ボツ、没などのフォルダを通常フォルダと分けて集計します。</li>
+  <li><b>退避フォルダ:</b> 野良ファイルや重複整理されたファイルの移動先を選びます。</li>
+  <li><b>JPEGリサイズ境界:</b> どのサイズを超えたJPG/JPEGをリサイズ候補にするか設定します。</li>
+</ul>
+
+<h2 id="safety" class="section-h2 section-anchor">ファイル安全性の注意</h2>
+
+<div class="safety-box">
+  <div class="safety-label">重要</div>
+  <p>フォト整理は、選択したフォルダ内でファイルの移動や、リサイズ時の元JPEGファイルの上書きなどのファイル操作を行います。Hoshino Software は、ファイル、メタデータ、ディレクトリ構成、リサイズ結果、処理途中の状態が保持されること、復元可能であること、中断・エラー・損失・破損がないことを保証しません。必ず別のバックアップを用意し、変更してもよいコピーまたはファイルにのみ使用してください。</p>
+</div>
+
+<h2 id="legal" class="section-h2 section-anchor">法的情報</h2>
+
+<h3 id="privacy">プライバシーポリシー</h3>
+<p><b>最終更新:</b> 2026年6月</p>
+
+<h4>収集しない情報</h4>
+<p>フォト整理は、個人データを収集、保存、使用、共有、販売、転送しません。アプリはMac上でローカルに動作するよう設計されています。解析、広告ネットワーク、トラッキングSDK、Hoshino Softwareのサーバーは使用しません。</p>
+
+<h4>ファイルとフォルダ</h4>
+<p>フォト整理は、ユーザーが選択したフォルダ、またはmacOSの許可を与えたフォルダにのみアクセスします。ファイルパス、画像内容、メタデータ、重複情報、リサイズ結果、設定は、ユーザーがサポートへメールで送信しない限りデバイス上に残ります。</p>
+
+<h4>サポートメール</h4>
+<p>サポートへ連絡する場合、問題の診断のため、メール本文にアプリバージョンや設定情報が含まれることがあります。そのメールを送信するかどうかはユーザーが選択します。</p>
+
+<h4>第三者サービス</h4>
+<p>フォト整理は、第三者の解析、広告、トラッキングサービスと連携しません。</p>
+
+<h4>ポリシーの変更</h4>
+<p>このプライバシーポリシーは更新されることがあります。変更はこのページに掲載された時点で有効になります。</p>
+
+<h4>お問い合わせ</h4>
+<p>このプライバシーポリシーに関するご質問は、support [at] hoshinosoftware [dot] com までご連絡ください。</p>
+
+<div class="doc-end-logo">
+  <a href="../../" aria-label="Hoshino Software &amp; Security ホーム">
+    <img src="../../hoshino.png" alt="Hoshino Software & Security logo">
+  </a>
+</div>
+
+</main>
+
+<footer><a href="../../">© 2026 Hoshino Software &amp; Security. All rights reserved.</a></footer>
+
+<script>
+function applyTopPad() {
+  var h = document.getElementById('lang-strip').offsetHeight;
+  document.querySelector('main').style.paddingTop = (h + 20) + 'px';
+}
+applyTopPad();
+window.addEventListener('resize', applyTopPad);
+</script>
+
+</body>
+</html>
