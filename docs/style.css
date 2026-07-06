@@ -214,6 +214,44 @@ body.home { display: flex; flex-direction: column; }
 }
 .app-name { font-size: 16px; font-weight: 600; color: var(--fg); }
 .app-desc { font-size: 13px; color: var(--muted); line-height: 1.45; }
+.app-badges,
+.product-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.pricing-pill {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 24px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--fg);
+  background: rgba(255, 255, 255, 0.05);
+}
+.pricing-pill.free {
+  border-color: rgba(94, 255, 185, 0.4);
+  color: #c5ffe7;
+  background: rgba(94, 255, 185, 0.09);
+}
+.pricing-pill.paid {
+  border-color: rgba(94, 200, 255, 0.42);
+  color: #d6f3ff;
+  background: rgba(94, 200, 255, 0.09);
+}
+.trust-note {
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--muted);
+}
 
 /* Collapse the 3 category columns into one on narrow screens */
 @media (max-width: 860px) {
@@ -523,6 +561,7 @@ body.home main { padding-bottom: 60px; }
 }
 .product-heading h1 { margin: 0 0 4px; }
 .product-heading p { margin: 0; color: var(--muted); }
+.product-heading .product-badges { margin-top: 10px; }
 .app-screenshots {
   display: grid;
   gap: 18px;
