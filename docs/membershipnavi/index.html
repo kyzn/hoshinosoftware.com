@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Membership Navi</title>
+<script>
+var match = window.location.hash.match(/^#(support|legal)-([a-zA-Z-]+)$/);
+var dest = match
+  ? '/membershipnavi/' + match[2] + '/#' + match[1]
+  : '/membershipnavi/en';
+window.location.replace(dest);
+</script>
+</head>
+<body>
+<p>Redirecting to <a href="/membershipnavi/en">/membershipnavi/en</a>...</p>
+</body>
+</html>
