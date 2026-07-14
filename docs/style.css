@@ -109,6 +109,8 @@ h2.section-h2.first-section {
 body.home { display: flex; flex-direction: column; }
 .home main {
   flex: 1;
+  max-width: 1200px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -152,10 +154,9 @@ body.home { display: flex; flex-direction: column; }
   margin: 0 0 clamp(14px, 2.5vh, 22px);
 }
 .app-categories {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: start;
-  gap: clamp(16px, 2.5vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 4vh, 40px);
 }
 .app-category { min-width: 0; }
 .app-category-title {
@@ -173,11 +174,15 @@ body.home { display: flex; flex-direction: column; }
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 14px;
 }
 .apps-grid > li {
   display: flex;
+  flex: 0 1 320px;
+  max-width: 360px;
 }
 .app-card {
   display: flex;
@@ -256,9 +261,12 @@ body.home { display: flex; flex-direction: column; }
 /* Collapse the 3 category columns into one on narrow screens */
 @media (max-width: 860px) {
   .app-categories {
-    grid-template-columns: 1fr;
     max-width: 400px;
     margin: 0 auto;
+  }
+  .apps-grid > li {
+    flex: 1 1 100%;
+    max-width: none;
   }
   /* Full-width cards no longer wrap titles, so they can be shorter */
   .app-card { min-height: 88px; }
