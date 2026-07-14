@@ -154,22 +154,25 @@ body.home { display: flex; flex-direction: column; }
   margin: 0 0 clamp(14px, 2.5vh, 22px);
 }
 .app-categories {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  align-items: start;
-  row-gap: clamp(24px, 4vh, 40px);
-  column-gap: clamp(20px, 3vw, 44px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 4vh, 40px);
 }
 .app-category { min-width: 0; }
-/* First category (Smartphone) spans the full first row; the two
-   single-app categories share the second. Stretch it: centered
-   justify-items would shrink the wrapping flex grid to min-content. */
-.app-category:first-child {
-  grid-column: 1 / -1;
-  justify-self: stretch;
-  width: 100%;
+/* Single-app categories (Smartwatch + Computer) sit side by side,
+   close together at the center. */
+.app-category-pair {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: start;
+  column-gap: clamp(24px, 3vw, 48px);
+  row-gap: clamp(24px, 4vh, 40px);
 }
+/* Pin the pair's category blocks to the card width: left to intrinsic
+   sizing they shrink to the card text's width and the fixed-width
+   cards overflow and collide. */
+.app-category-pair > .app-category { flex: 0 0 340px; }
 .app-category-title {
   font-size: 11px;
   font-weight: 700;
@@ -192,8 +195,7 @@ body.home { display: flex; flex-direction: column; }
 }
 .apps-grid > li {
   display: flex;
-  flex: 0 1 320px;
-  max-width: 360px;
+  flex: 0 0 340px;
 }
 .app-card {
   display: flex;
@@ -272,14 +274,11 @@ body.home { display: flex; flex-direction: column; }
 /* Collapse the 3 category columns into one on narrow screens */
 @media (max-width: 860px) {
   .app-categories {
-    grid-template-columns: 1fr;
     max-width: 400px;
     margin: 0 auto;
   }
-  .app-category:first-child { grid-column: auto; }
   .apps-grid > li {
     flex: 1 1 100%;
-    max-width: none;
   }
   /* Full-width cards no longer wrap titles, so they can be shorter */
   .app-card { min-height: 88px; }
