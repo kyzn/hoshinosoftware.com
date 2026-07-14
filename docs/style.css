@@ -154,11 +154,22 @@ body.home { display: flex; flex-direction: column; }
   margin: 0 0 clamp(14px, 2.5vh, 22px);
 }
 .app-categories {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(24px, 4vh, 40px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: start;
+  row-gap: clamp(24px, 4vh, 40px);
+  column-gap: clamp(20px, 3vw, 44px);
 }
 .app-category { min-width: 0; }
+/* First category (Smartphone) spans the full first row; the two
+   single-app categories share the second. Stretch it: centered
+   justify-items would shrink the wrapping flex grid to min-content. */
+.app-category:first-child {
+  grid-column: 1 / -1;
+  justify-self: stretch;
+  width: 100%;
+}
 .app-category-title {
   font-size: 11px;
   font-weight: 700;
@@ -261,9 +272,11 @@ body.home { display: flex; flex-direction: column; }
 /* Collapse the 3 category columns into one on narrow screens */
 @media (max-width: 860px) {
   .app-categories {
+    grid-template-columns: 1fr;
     max-width: 400px;
     margin: 0 auto;
   }
+  .app-category:first-child { grid-column: auto; }
   .apps-grid > li {
     flex: 1 1 100%;
     max-width: none;
