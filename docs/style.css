@@ -562,6 +562,12 @@ body.home main { padding-bottom: 60px; }
 .product-heading h1 { margin: 0 0 4px; }
 .product-heading p { margin: 0; color: var(--muted); }
 .product-heading .product-badges { margin-top: 10px; }
+.product-heading .compatibility-note {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--dim);
+}
 .app-screenshots {
   display: grid;
   gap: 18px;
