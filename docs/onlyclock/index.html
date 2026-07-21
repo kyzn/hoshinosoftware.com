@@ -4,14 +4,10 @@
 <meta charset="UTF-8">
 <title>HH:MM:SS</title>
 <script>
-var match = window.location.hash.match(/^#(support|legal)-([a-zA-Z-]+)$/);
-var dest = match
-  ? '/onlyclock/' + match[2] + '/#' + match[1]
-  : '/onlyclock/en';
-window.location.replace(dest);
+window.location.replace('/hhmmss/' + window.location.hash);
 </script>
 </head>
 <body>
-<p>Redirecting to <a href="/onlyclock/en">/onlyclock/en</a>...</p>
+<p>Redirecting to <a href="/hhmmss/">/hhmmss/</a>...</p>
 </body>
 </html>
