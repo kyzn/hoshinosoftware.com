@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>会員証ナビ</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../style.css?v=20260714">
+<link rel="stylesheet" href="../../style.css?v=20260726">
 </head>
 <body>
 
@@ -99,30 +99,62 @@
 <!-- 3 · MANUAL                                                -->
 <!-- ══════════════════════════════════════════════════════════ -->
 
-<!-- TODO: images/screenshots/ja/ のプレースホルダー画像を差し替える -->
 <h2 class="section-h2 section-anchor" id="manual">使い方</h2>
 
 <div class="screenshots">
   <img src="../images/screenshots/ja/cards.png" alt="カード一覧画面">
-  <img src="../images/screenshots/ja/card.png" alt="バーコードを表示しているカード詳細画面">
-  <img src="../images/screenshots/ja/scan.png" alt="カードをスキャンして追加する画面">
-  <img src="../images/screenshots/ja/watch.png" alt="Apple Watch に表示されたカード">
+  <img src="../images/screenshots/ja/card.png" alt="iPhoneで全画面表示したカード">
+</div>
+
+<div class="screenshots watch">
+  <img src="../images/screenshots/ja/watch-cards.png" alt="Apple Watchのカード一覧">
+  <img src="../images/screenshots/ja/watch.png" alt="同じカードをApple Watchで表示">
 </div>
 
 <h3>カード一覧</h3>
-<p>TODO: カードの追加、並べ替え、開き方について記載。</p>
+<p>「会員証」タブには保存したカードが名前順に並びます。タップするとコードが表示されます。一覧の上の検索欄はカード名と番号の両方に一致するので、数が増えてきたときはここが一番速いです。</p>
+<p>一覧にはカード番号をあえて表示していません。表示していると、画面をのぞかれただけで会員番号がすべて見えてしまいます。</p>
 
 <h3>カードを表示する</h3>
-<p>TODO: カード詳細画面と、レジで自動的に最大輝度になる動作について記載。</p>
+<p>カードをタップすると画面全体にコードが表示され、下に番号も出ます。読み取れないときは番号を伝えられます。コード表示中は画面が自動的に最大の明るさになり、画面を閉じると元の明るさに戻ります。お店のスキャナーは明るい画面のほうが圧倒的に読み取りやすいためです。</p>
+<p>コードは、すべてのバーが画面のピクセルにぴったり合うように描画しています。細かい話ですが、レジのレーザースキャナーが画面から読み取れるかどうかはここで決まります。スキャナーはバーの幅の比率で判読するため、わずかに引き伸ばされた表示ではバーの幅が不均一になってしまいます。</p>
 
 <h3>カードを追加する</h3>
-<p>TODO: スキャンでの追加、写真からの追加、会員番号の手入力について記載。</p>
+<div class="screenshots">
+  <img src="../images/screenshots/ja/scan.jpg" alt="カメラでカードを追加する画面" loading="lazy">
+  <img src="../images/screenshots/ja/photo.png" alt="写真からカードを追加する画面" loading="lazy">
+  <img src="../images/screenshots/ja/typed.png" alt="会員番号を手入力する画面" loading="lazy">
+</div>
+<p>「追加」タブには3つの方法があります。上の切り替えをタップするか、左右にスワイプして移動できます。</p>
+<ul>
+  <li><b>カメラ</b> — 物理カードのバーコードやQRコードにカメラを向けます。</li>
+  <li><b>写真</b> — コードが写っている写真やスクリーンショットを選びます。</li>
+  <li><b>手入力</b> — 番号だけのカードは、会員番号を直接入力します。</li>
+</ul>
+<p>スキャン中の画面にはカメラだけが表示され、入力欄は出てきません。コードが見つかると確認画面になり、読み取った番号が表示されます。手元のカードと見比べてから保存できます。そのあとで名前と色を付けます。おかしいと思ったら「破棄」でカメラに戻れます。</p>
+<div class="screenshots">
+  <img src="../images/screenshots/ja/review.png" alt="読み取ったコードを確認して名前を付ける画面" loading="lazy">
+</div>
+<p>ほかのアプリの中にあるコードも取り込めます。スクリーンショットを撮り、共有から会員証ナビを選んでください。画像をスキャンして、同じ確認画面が開きます。</p>
+
+<h3>編集と削除</h3>
+<div class="screenshots">
+  <img src="../images/screenshots/ja/swipe-delete.png" alt="カードを左にスワイプすると削除が表示される" loading="lazy">
+  <img src="../images/screenshots/ja/swipe-edit.png" alt="カードを右にスワイプすると編集が表示される" loading="lazy">
+</div>
+<p>カードを左にスワイプすると削除、右にスワイプすると編集です。編集では名前と色を変更できます。</p>
+<p>スキャンしたカードは、番号と形式は表示されますが変更できません。これは意図的な仕様です。このアプリはカードにあったコードをそのまま忠実に再現するので、値を編集できてしまうとその前提が崩れてしまいます。スキャンしたコードを変えたいときは、もう一度スキャンして追加してください。手入力したカードは自由に編集できます。</p>
 
 <h3>Apple Watch</h3>
-<p>TODO: Watch アプリと、単体でカードを保持する仕組みについて記載。</p>
+<p>Watchアプリでも同じカードが一覧表示され、白背景の全画面でコードを表示します。watchOSで出せる一番明るい状態です。カードのコピーはWatch自体が持っているので、iPhoneをかばんの中や家に置いたままでも使えます。</p>
+<p>追加したカードは、iCloudの同期が済むとWatchにも表示されます。通常は少し待つだけです。「コードを生成できませんでした」と表示される場合は、そのカードを一度iPhoneで開いて、同期を少し待ってからお試しください。</p>
 
 <h3>設定</h3>
-<p>TODO: iCloud 同期と最大輝度の切り替えについて記載。</p>
+<div class="screenshots">
+  <img src="../images/screenshots/ja/settings.png" alt="設定タブ" loading="lazy">
+</div>
+<p><b>明るさを自動で最大に</b> は、上で説明した最大輝度の動作を切り替えます。画面の明るさを勝手に変えられたくない場合はオフにしてください。</p>
+<p><b>iCloud同期</b> はスイッチではなく状態表示です。同期されているかどうかがわかるので、失敗しても気づかないままにはなりません。「サインインしていません」と表示されている場合は、「設定」アプリでiCloudにサインインすると同期が始まり、再インストールしても復元されるようになります。</p>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- 4 · LEGAL                                                 -->

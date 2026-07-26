@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Membership Navi</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../style.css?v=20260714">
+<link rel="stylesheet" href="../../style.css?v=20260726">
 </head>
 <body>
 
@@ -99,30 +99,62 @@
 <!-- 3 · MANUAL                                                -->
 <!-- ══════════════════════════════════════════════════════════ -->
 
-<!-- TODO: replace the placeholder screenshots in images/screenshots/en/ -->
 <h2 class="section-h2 section-anchor" id="manual">Manual</h2>
 
 <div class="screenshots">
   <img src="../images/screenshots/en/cards.png" alt="Card list screen">
-  <img src="../images/screenshots/en/card.png" alt="Card detail screen showing a barcode">
-  <img src="../images/screenshots/en/scan.png" alt="Adding a card by scanning it">
-  <img src="../images/screenshots/en/watch.png" alt="A card shown on Apple Watch">
+  <img src="../images/screenshots/en/card.png" alt="A card shown full-screen on iPhone">
+</div>
+
+<div class="screenshots watch">
+  <img src="../images/screenshots/en/watch-cards.png" alt="Card list on Apple Watch">
+  <img src="../images/screenshots/en/watch.png" alt="The same card shown on Apple Watch">
 </div>
 
 <h3>Your cards</h3>
-<p>TODO: describe the card list — adding, reordering, and opening a card.</p>
+<p>The Cards tab lists everything you have saved, sorted by name. Tap a card to show its code. The search field above the list matches both card names and card numbers, which is the quickest way through a long list.</p>
+<p>Card numbers are deliberately not printed in the list. Anyone glancing at your screen would otherwise see every membership number you own at once.</p>
 
 <h3>Showing a card</h3>
-<p>TODO: describe the card detail screen and the automatic full-brightness behaviour at the register.</p>
+<p>Tap a card and it fills the screen, with the number underneath so you can read it out if a scanner refuses. The screen also goes to full brightness while a code is showing and returns to your usual level when you leave, because shop scanners have a much easier time with a bright screen.</p>
+<p>The code is drawn so that every bar lands on whole screen pixels. That sounds pedantic, but it is what lets the laser scanners at a register read the screen: they decode from the ratios between bar widths, and a barcode that has been stretched by a fraction of a pixel has uneven bars.</p>
 
 <h3>Adding a card</h3>
-<p>TODO: describe scanning a card, adding one from a photo, and typing a member number by hand.</p>
+<div class="screenshots">
+  <img src="../images/screenshots/en/scan.jpg" alt="Adding a card with the camera" loading="lazy">
+  <img src="../images/screenshots/en/photo.png" alt="Adding a card from a photo" loading="lazy">
+  <img src="../images/screenshots/en/typed.png" alt="Typing a member number by hand" loading="lazy">
+</div>
+<p>The Add tab offers three ways in. Tap the switcher at the top, or swipe between them:</p>
+<ul>
+  <li><b>Camera</b> — point it at the barcode or QR code on a physical card.</li>
+  <li><b>Photo</b> — pick a photo or screenshot that already has the code in it.</li>
+  <li><b>Manual</b> — type a member number in, for cards that are just a number.</li>
+</ul>
+<p>While you are scanning, the screen shows nothing but the camera: no forms to fill in. Once a code is found the app confirms it and shows you the decoded number, so you can check it against the card in your hand before saving. Then you give it a name and a colour. If something looks wrong, Discard puts you straight back to the camera.</p>
+<div class="screenshots">
+  <img src="../images/screenshots/en/review.png" alt="Confirming a scanned code, then naming it" loading="lazy">
+</div>
+<p>You can also send a code in from another app: screenshot it, tap Share, and choose Membership Navi. It scans the image and opens the same confirmation screen.</p>
+
+<h3>Editing and deleting</h3>
+<div class="screenshots">
+  <img src="../images/screenshots/en/swipe-delete.png" alt="Swiping a card left reveals Delete" loading="lazy">
+  <img src="../images/screenshots/en/swipe-edit.png" alt="Swiping a card right reveals Edit" loading="lazy">
+</div>
+<p>Swipe a card left to delete it, or right to edit it. Editing lets you change the name and the colour stripe.</p>
+<p>On a scanned card the number and its format are shown but cannot be changed. That is on purpose: the app reproduces the code exactly as it was on your card, and editing the value would quietly break that promise. To change a scanned card's code, add the card again by scanning it. Cards you typed in by hand stay fully editable.</p>
 
 <h3>Apple Watch</h3>
-<p>TODO: describe the watch app and how it keeps its own copy of your cards.</p>
+<p>The watch app lists the same cards and shows any of them full-screen on white, which is as bright as watchOS allows. It keeps its own copy, so it works with your iPhone in a bag or at home.</p>
+<p>New cards appear on the watch once iCloud has synced them, which usually takes a moment. If a card says it cannot generate a code, open it once on your iPhone and give sync a little time.</p>
 
 <h3>Settings</h3>
-<p>TODO: describe iCloud sync and the full-brightness toggle.</p>
+<div class="screenshots">
+  <img src="../images/screenshots/en/settings.png" alt="The Settings tab" loading="lazy">
+</div>
+<p><b>Auto Max Brightness</b> controls the full-brightness behaviour described above. Turn it off if you would rather the app left your screen alone.</p>
+<p><b>iCloud Sync</b> is a status line, not a switch. It reports whether your cards are syncing, so a silent failure is visible: if it says you are not signed in, sign in to iCloud in the Settings app and your cards will sync and be restored if you ever reinstall.</p>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- 4 · LEGAL                                                 -->
