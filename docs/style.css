@@ -197,6 +197,10 @@ body.home { display: flex; flex-direction: column; }
   display: flex;
   flex: 0 0 340px;
 }
+/* Four cards would wrap as three plus a stranded one, because the 1200px
+   page fits three 340px cards but not four. Hold this grid to two
+   columns so it reads as an even 2x2 block. */
+.apps-grid.two-col { max-width: 694px; margin-inline: auto; }
 .app-card {
   display: flex;
   align-items: center;
