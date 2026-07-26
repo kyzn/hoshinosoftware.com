@@ -439,10 +439,9 @@ main {
     0 0 24px rgba(180, 139, 255, 0.15);
 }
 
-/* Watch screenshots are much squarer than phone ones, so at a shared
-   width they read as an enormous watch. Scale them to roughly the
-   device's real width relative to an iPhone. */
-.screenshots.watch img { width: 110px; border-radius: 16px; }
+/* Watch screenshots share the phone width so both rows line up; only
+   the corner radius differs, matching the rounder watch bezel. */
+.screenshots.watch img { border-radius: 16px; }
 
 /* ── Tip box ───────────────────────────────────────────────── */
 .tip {
