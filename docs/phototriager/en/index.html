@@ -33,7 +33,7 @@
   </div>
 </div>
 
-<p>Photo Triager is a Mac app for reviewing messy photo folders before you start changing them. It scans nested directories, counts image types, separates reject folders, finds exact duplicates, moves stray hidden files to a holding folder, and resizes oversized JPG/JPEG files with visible progress and summaries.</p>
+<p>Photo Triager is a Mac app for reviewing messy photo folders before you start changing them. It scans nested directories, counts image types, separates reject folders, finds exact duplicates, moves stray hidden files to a holding folder, and resizes oversized JPG/JPEG files by file size or by resolution, with visible progress and summaries.</p>
 
 <p>It is not a photo editor, a catalog, or a Lightroom replacement. It is a practical preflight tool for the part of photo work where you need to understand what is in a folder before cleanup becomes risky.</p>
 
@@ -73,7 +73,7 @@
   <li><b>Counts look different from Finder?</b> Check Settings. Photo Triager only counts the image extensions selected there.</li>
   <li><b>Reject folders are missing?</b> Add the folder word to Reject Folder Keywords, then rescan.</li>
   <li><b>Files cannot be moved?</b> macOS may require folder permission. Use the permission button for the holding folder when prompted.</li>
-  <li><b>Before resizing JPEGs:</b> Make a backup and review excluded directories. JPEG resize overwrites originals.</li>
+  <li><b>Before resizing JPEGs:</b> Make a backup and review which directories you have ticked. JPEG resize overwrites originals.</li>
 </ul>
 
 <h2 id="manual" class="section-h2 section-anchor">Manual</h2>
@@ -81,15 +81,23 @@
 <div class="app-screenshots">
   <figure>
     <img src="../images/screenshots/en-home.png" alt="Photo Triager Home tab showing a scanned folder summary">
-    <figcaption>Start from one copied working folder, then change folders or rescan when files change.</figcaption>
+    <figcaption>Point Photo Triager at a copied working folder. It scans every nested subdirectory and reports what it found.</figcaption>
   </figure>
   <figure>
-    <img src="../images/screenshots/en-summary.png" alt="Photo Triager Summary tab showing category, file type, and directory totals">
+    <img src="../images/screenshots/en-summary.png" alt="Photo Triager Summary tab showing category, file type, and directory totals with a megapixel column">
     <figcaption>Review category totals, file types, reject totals, subdirectories, and oversized JPEG candidates before changing files.</figcaption>
   </figure>
   <figure>
-    <img src="../images/screenshots/en-resize.png" alt="Photo Triager Resize tab showing JPEG size boundary and directories not resized">
-    <figcaption>Set the JPEG resize boundary, review directories that should not be resized, and confirm the overwrite warning before running.</figcaption>
+    <img src="../images/screenshots/en-stray.png" alt="Photo Triager Stray Files tab listing hidden dot-prefixed files found across the folder">
+    <figcaption>Hidden dot-prefixed files are listed wherever they hide, and move to a holding folder rather than being deleted.</figcaption>
+  </figure>
+  <figure>
+    <img src="../images/screenshots/en-resize.png" alt="Photo Triager Resize tab with the boundary set to a file size in megabytes">
+    <figcaption>Set a file size boundary in MB, tick the directories to resize, and confirm the overwrite warning before running.</figcaption>
+  </figure>
+  <figure>
+    <img src="../images/screenshots/en-resize-resolution.png" alt="Photo Triager Resize tab with the boundary set to a resolution in megapixels">
+    <figcaption>Or set the boundary in megapixels. Ticking a directory covers everything nested inside it, and the count shows exactly how many files will change.</figcaption>
   </figure>
 </div>
 
@@ -106,7 +114,9 @@
 <p>Find exact byte-for-byte duplicates. Choose one keeper in each duplicate group, preview the image where possible, then dedupe the extra copies to the holding folder.</p>
 
 <h3>Resize</h3>
-<p>Resize JPG/JPEG files over the configured size boundary. Files are processed in path order. You can exclude directories that must remain untouched. If a resized file is still too large, Photo Triager tries again at a smaller percentage.</p>
+<p>Resize JPG/JPEG files that exceed a boundary you set. The boundary can be a <b>file size</b> in MB, or a <b>resolution</b> in megapixels &mdash; for example 12 MP, which brings a 24 MP camera file down to roughly half its pixel count. Resolution resizing keeps the aspect ratio and lands as close under the target as the shape of the image allows, so a 3:2 photo stays 3:2 and a panorama stays a panorama.</p>
+<p>Nothing is resized until you choose it. The directory list starts with nothing ticked and the run button disabled; tick a folder and everything nested inside it is included, so the whole tree is one click and a single shoot is another. Files are processed in path order, and the run ends with a summary of every file that changed.</p>
+<p>Rewritten files are encoded at high quality rather than maximum. A camera JPEG has already been compressed, so re-saving it at maximum quality inflates the file without recovering any detail that was lost when the camera wrote it.</p>
 
 <div class="tip">💡 RAW files such as ARW can be included in counts, but Photo Triager does not resize RAW files.</div>
 
@@ -116,7 +126,7 @@
   <li><b>Included file types:</b> choose which image extensions appear in scans, counts, duplicate detection, and summaries.</li>
   <li><b>Reject folder keywords:</b> count folders such as reject, rejected, ぼつ, ボツ, and 没 separately from normal folders.</li>
   <li><b>Holding folder:</b> choose where stray files and deduped files are moved.</li>
-  <li><b>JPEG resize boundary:</b> set the size above which JPG/JPEG files become resize candidates.</li>
+  <li><b>JPEG resize boundary:</b> set a file size in MB or a resolution in megapixels, above which JPG/JPEG files become resize candidates.</li>
 </ul>
 
 <h2 id="safety" class="section-h2 section-anchor">File Safety Notice</h2>
