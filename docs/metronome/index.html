@@ -4,172 +4,21 @@
 <meta charset="UTF-8">
 <title>Metronome Watch Special</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="./en/">
 <link rel="stylesheet" href="../style.css?v=20260727">
+<script>
+// This page used to hold the whole manual, so links to #download, #support, #manual,
+// #manual and #legal are already out in the world. Carry the fragment across to the
+// English page instead of dropping people at the top of it.
+var allowed = ['top', 'download', 'support', 'manual', 'legal', 'privacy'];
+var hash = window.location.hash.replace(/^#/, '');
+var dest = allowed.indexOf(hash) !== -1 ? './en/#' + hash : './en/';
+window.location.replace(dest);
+</script>
 </head>
 <body>
-
-<header id="top-bar">
-  <a href="../">Hoshino Software &amp; Security</a>
-</header>
-
 <main>
-
-<div class="product-heading">
-  <img src="../icons/metronome.jpg" alt="Metronome Watch Special app icon" width="92" height="92">
-  <div>
-    <h1 id="top">Metronome Watch Special</h1>
-    <p>A simple, precise metronome for Apple Watch.
-Set any tempo from 15 to 240 BPM, or choose a preset from Larghissimo through Prestissimo.
-Pick 1–9 beats per measure with an automatic first-beat accent.
-Use sound, haptics, or both, and adjust volume with the Digital Crown.
-Ideal for music practice, rowing stroke rate, running cadence, walking pace, and other rhythm-based exercise.
-Works with wrist down, remembers your last settings, and needs no iPhone.</p>
-    <div class="product-badges" aria-label="Pricing and privacy">
-      <span class="pricing-pill paid">One-time payment</span>
-      <span class="trust-note">No ads · No tracking · No subscription</span>
-    </div>
-    <p class="compatibility-note">Requires watchOS 8 or later.</p>
-  </div>
-</div>
-
-<nav id="toc" aria-label="Page contents">
-  <h2>Contents</h2>
-  <ol>
-    <li><a href="#download">Download</a></li>
-    <li><a href="#support">Support</a></li>
-    <li><a href="#manual">Manual</a></li>
-    <li><a href="#legal">Legal</a></li>
-  </ol>
-</nav>
-
-<h2 id="download" class="section-h2 section-anchor first-section">Download</h2>
-<div style="display:inline-flex; flex-direction:column; align-items:center; gap:12px; margin: 20px 0;">
-  <a href="https://apps.apple.com/app/id6760964847" target="_blank" rel="noopener"><img src="../appstorebadge/en.svg" alt="Download on the App Store" height="72"></a>
-  <a href="https://apps.apple.com/app/id6760964847" target="_blank" rel="noopener"><img src="./images/download.png" alt="Scan to download" style="width:180px; height:180px; border-radius:10px; background:#fff; padding:8px;"></a>
-</div>
-
-<h2 id="support" class="section-h2 section-anchor">Support</h2>
-<h3>Before you write</h3>
-<p>A few quick things to try first:</p>
-<ul>
-  <li><b>App not responding?</b> Double-press the Digital Crown to see open apps, then swipe the Metronome card up to close it. Reopen from your app list.</li>
-  <li><b>Sound not playing?</b> Check that the Digital Crown volume is turned up. Also check that your watch is not in silent mode.</li>
-  <li><b>Haptics not working?</b> Make sure the ⏚ button is shown (haptics are on). If you see ⚡︎, tap it to enable haptics. Also check Watch Settings → Sounds &amp; Haptics.</li>
-  <li><b>Metronome drifting or stopping?</b> Background audio requires the app to stay active. Try reopening and starting the metronome again.</li>
-</ul>
-
-<div class="contact-box">
-  <div class="contact-icon">✉️</div>
-  <div class="contact-body">
-    <div class="contact-label">Email Support</div>
-    <div class="contact-email">support [at] hoshinosoftware [dot] com</div>
-    <div class="contact-note">We typically respond within 5 business days.</div>
-  </div>
-</div>
-
-<h2 id="manual" class="section-h2 section-anchor">Manual</h2>
-
-<div class="screenshots">
-  <img src="./images/metronome1.png" alt="Metronome set to 120 BPM and 4 beats per measure">
-  <img src="./images/metronome2.png" alt="Tempo preset list beginning with Larghissimo at 15 BPM">
-</div>
-
-<h3>How to use</h3>
-<ul>
-  <li>Adjust BPM with the &lt; &gt; and ≪ ≫ buttons</li>
-  <li>Tap the tempo name (e.g. "Allegro") to pick from a preset list</li>
-  <li>Adjust beats per measure with the &lt; &gt; buttons on the second row</li>
-  <li>Toggle haptic vibration with the ⏚ button (tap to turn off) or ⚡︎ button (tap to turn on)</li>
-  <li>Use the Digital Crown to adjust volume</li>
-  <li>Press the green play button to start, red stop button to reset</li>
-</ul>
-<div class="tip">💡 The metronome keeps playing even when your wrist is down — audio and haptics continue in the background.</div>
-<div class="tip">💡 Your tempo, beats per measure, and haptic setting are remembered when you close and reopen the app.</div>
-
-<h3>Tempo Reference</h3>
-<table>
-  <thead>
-    <tr><th>Tempo</th><th>BPM Range</th><th>Feel</th></tr>
-  </thead>
-  <tbody>
-    <tr><td><i>Larghissimo</i></td><td>15 – 39</td><td>Extremely slow</td></tr>
-    <tr><td><i>Largo</i></td><td>40 – 59</td><td>Very slow, broad</td></tr>
-    <tr><td><i>Larghetto</i></td><td>60 – 65</td><td>Rather slow</td></tr>
-    <tr><td><i>Adagio</i></td><td>66 – 75</td><td>Slow and stately</td></tr>
-    <tr><td><i>Andante</i></td><td>76 – 99</td><td>Walking pace</td></tr>
-    <tr><td><i>Andantino</i></td><td>100 – 109</td><td>Slightly faster than Andante</td></tr>
-    <tr><td><i>Moderato</i></td><td>110 – 119</td><td>Moderate</td></tr>
-    <tr><td><i>Allegro</i></td><td>120 – 167</td><td>Fast and bright</td></tr>
-    <tr><td><i>Presto</i></td><td>168 – 199</td><td>Very fast</td></tr>
-    <tr><td><i>Prestissimo</i></td><td>200 – 240</td><td>Extremely fast</td></tr>
-  </tbody>
-</table>
-
-<h3>FAQ</h3>
-<ul>
-  <li><b>Does it work without my iPhone?</b><br>Yes, fully standalone.</li>
-  <li><b>Does it work when my wrist is down?</b><br>Yes, audio and haptics continue.</li>
-  <li><b>Does it remember my settings?</b><br>Yes. Your last tempo, beats per measure, and haptic setting are restored when you reopen the app.</li>
-  <li><b>Can I use it for exercise?</b><br>Yes. Tempos from 15 BPM work well for rowing stroke rate, while higher tempos can support running or walking cadence.</li>
-  <li><b>Does it collect any data?</b><br>No data is collected or shared.</li>
-  <li><b>What does the ⏚ button do?</b><br>Haptics are currently on. Tap to turn them off.</li>
-  <li><b>What does the ⚡︎ button do?</b><br>Haptics are currently off. Tap to turn them on.</li>
-  <li><b>Can I use just sound or just haptics?</b><br>Yes. Turn volume down for haptics only, or disable haptics for sound only.</li>
-  <li><b>It sounds like there are two sounds at once. Is this expected?</b><br>
-  If your Apple Watch is not in silent mode, the haptic engine may produce an audible click alongside the app's beat sound. Enable silent mode on your watch to hear only the app's audio.</li>
-</ul>
-
-<h2 id="legal" class="section-h2 section-anchor">Legal</h2>
-
-<h3>Privacy Policy</h3>
-<p><b>Last Updated:</b> July 2026</p>
-
-<h4>Introduction</h4>
-<p>Welcome to Metronome Watch Special. We are committed to respecting and protecting your privacy.
-This Privacy Policy outlines the type of information we collect, or in this case, do not collect,
-and the methods we use to ensure your privacy.</p>
-
-<h4>Information We Do Not Collect</h4>
-<p>Metronome Watch Special is designed on a principle of zero data collection. We do not collect,
-store, use, share, or transfer any personal data from our users. The app operates entirely on your
-Apple Watch with no data processed or stored on any server.</p>
-
-<p>Your metronome preferences are stored only on your Apple Watch so the app can restore them when reopened.</p>
-
-<h4>Third-Party Services</h4>
-<p>Metronome Watch Special does not integrate with any third-party services, such as analytics
-tools, advertising networks, or social media platforms. No data is shared with any third party.</p>
-
-<h4>Children's Privacy</h4>
-<p>Since we do not collect any data, we comply with all relevant regulations related to children's
-privacy, such as the Children's Online Privacy Protection Act (COPPA).</p>
-
-<h4>Changes to This Privacy Policy</h4>
-<p>We may update our Privacy Policy from time to time. We advise you to review this page
-periodically for any changes. Changes are effective immediately after they are posted on this page.</p>
-
-<h4>Contact Us</h4>
-<p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us
-at: support [at] hoshinosoftware [dot] com</p>
-
-<div class="doc-end-logo">
-  <a href="../" aria-label="Hoshino Software &amp; Security home">
-    <img src="../hoshino.png" alt="Hoshino Software &amp; Security logo">
-  </a>
-</div>
-
+<p><a href="./en/">Metronome Watch Special English</a> · <a href="./ja/">メトロノーム　ウオッチスペシャル 日本語</a> · <a href="./tr/">Metronom Watch Special Türkçe</a></p>
 </main>
-
-<footer><a href="../">© 2026 Hoshino Software &amp; Security. All rights reserved.</a></footer>
-
-<script>
-function applyTopPad() {
-  var bar = document.getElementById('top-bar');
-  if (bar) document.querySelector('main').style.paddingTop = (bar.offsetHeight + 20) + 'px';
-}
-applyTopPad();
-window.addEventListener('resize', applyTopPad);
-</script>
-
 </body>
 </html>
