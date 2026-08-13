@@ -28,7 +28,7 @@
   <img src="../../icons/metronome.jpg" alt="Metronome Watch Special app icon" width="92" height="92">
   <div>
     <h1 class="section-anchor" id="top">Metronome Watch Special</h1>
-    <p>A simple, precise metronome for Apple Watch. Set any tempo from 15 to 240 BPM, or choose a preset from Larghissimo through Prestissimo. Pick 1–9 beats per measure with an automatic first-beat accent. Use sound, haptics, or both, and adjust volume with the Digital Crown. Ideal for music practice, rowing stroke rate, running cadence, walking pace, and other rhythm-based exercise. Works with wrist down, remembers your last settings, and needs no iPhone.</p>
+    <p>A precise metronome for Apple Watch. 15 to 240 BPM, 1 to 9 beats per measure, sound and haptics. Switch on <b>Beat with others</b> and multiple watches set to the same tempo play together, with nothing to pair. Keeps playing with your wrist down. No iPhone needed.</p>
     <div class="product-badges" aria-label="Pricing and privacy">
       <span class="pricing-pill paid">One-time payment</span>
       <span class="trust-note">No ads · No tracking · No subscription</span>
@@ -82,6 +82,7 @@
   <li><b>Sound not playing?</b> Check that the Digital Crown volume is turned up. Also check that your watch is not in silent mode.</li>
   <li><b>Haptics not working?</b> Make sure the ⏚ button is shown (haptics are on). If you see ⚡︎, tap it to enable haptics. Also check Watch Settings → Sounds &amp; Haptics.</li>
   <li><b>Metronome drifting or stopping?</b> Background audio requires the app to stay active. Try reopening and starting the metronome again.</li>
+  <li><b>Watches sounding out of sync?</b> Make sure <b>Beat with others</b> is switched on for every watch. Check that the tempo and the beats per measure are the same on each one. Even at the same tempo, a different number of beats can put the rhythms out of sync. A watch using Bluetooth headphones can be up to 100 ms behind; close that gap with the delay setting.</li>
 </ul>
 
 <h3>Frequently Asked Questions</h3>
@@ -90,6 +91,11 @@
   <li><b>Does it work when my wrist is down?</b><br>Yes, audio and haptics continue.</li><br>
   <li><b>Does it remember my settings?</b><br>Yes. Your last tempo, beats per measure, and haptic setting are restored when you reopen the app.</li><br>
   <li><b>Can I use it for exercise?</b><br>Yes. Tempos from 15 BPM work well for rowing stroke rate, while higher tempos can support running or walking cadence.</li><br>
+  <li><b>How are the watches paired for Beat with others?</b><br>They are not paired at all. Each watch works out the beat from its own clock, so there is no pairing, no network, and no connection between them. Everyone sets the same tempo and the same beats per measure, and that is the whole of it.</li><br>
+  <li><b>How many watches can use Beat with others together?</b><br>Any number. Nothing is coordinating them, so nothing limits them. With more than two, pick one watch as the reference and have everyone adjust their delay to that one. If each person instead matches whoever is next to them, small differences add up along the chain and the ends drift apart.</li><br>
+  <li><b>The metronome starts late when Beat with others is on. Why?</b><br>It waits for the next beat, so it joins the shared count instead of starting halfway through. That is under a second at ordinary tempos, and up to four seconds at 15 BPM, where a single beat lasts four seconds.</li><br>
+  
+  
   <li><b>Does it collect any data?</b><br>No data is collected or shared.</li><br>
   <li><b>What does the ⏚ button do?</b><br>Haptics are currently on. Tap to turn them off.</li><br>
   <li><b>What does the ⚡︎ button do?</b><br>Haptics are currently off. Tap to turn them on.</li><br>
@@ -105,8 +111,8 @@
 
 <div class="screenshots watch">
   <img src="../images/screenshots/en/1-main-metronome.png" alt="Metronome set to 120 BPM and 4 beats per measure">
-  <img src="../images/screenshots/en/2-tempo-list.png" alt="Tempo preset list beginning with Larghissimo at 15 BPM">
-  <img src="../images/screenshots/en/3-sync.png" alt="The sync screen with Beat with others switched on and a delay of plus 10 milliseconds">
+  <img src="../images/screenshots/en/2-sync.png" alt="The sync screen with Beat with others switched on and a delay of plus 10 milliseconds">
+  <img src="../images/screenshots/en/3-tempo-list.png" alt="Tempo preset list beginning with Larghissimo at 15 BPM">
 </div>
 
 <h3>How to use</h3>
@@ -122,9 +128,10 @@
 <div class="tip">💡 Your tempo, beats per measure, and haptic setting are remembered when you close and reopen the app.</div>
 
 <h3>Beating with others</h3>
-<p>Tap the <b>people</b> icon at the top left, then switch on <b>Beat with others</b>. The beat is now taken from the clock rather than from the moment you pressed play, so any watches set to the same tempo and the same beats per measure land on the same beats. There is nothing to pair, no network involved, and no setup — everyone just picks the same tempo.</p>
+<p>Tap the <b>people</b> icon at the top left, then switch on <b>Beat with others</b>. The beat is now taken from the clock rather than from the moment you pressed play, so any watches set to the same tempo and the same beats per measure play the same beats at the same time. There is nothing to pair, no network involved, and no setup — everyone just picks the same tempo.</p>
 <p>With it on, play waits for the next beat instead of starting instantly. That is under a second at ordinary tempos, and up to four seconds at 15 BPM, where a beat is four seconds long.</p>
-<p>If your watch sounds out of step with the rest, turn the Digital Crown on the same screen to add or remove delay in milliseconds, and use the ⌫ button to return to zero. The delay is saved separately for each audio output, so your speaker setting and your Bluetooth setting do not overwrite each other.</p>
+<p>If your watch sounds out of sync with the rest, adjust its delay on the same screen. The row works like the BPM row on the main screen: <b>&lt;</b> and <b>&gt;</b> move by 1 ms, <b>≪</b> and <b>≫</b> by 10 ms, up to 250 ms either way. A positive delay makes this watch click later, a negative one earlier.</p>
+<p>The delay is saved separately for each audio output, so your speaker setting and your Bluetooth setting do not overwrite each other.</p>
 <div class="tip">💡 Bluetooth headphones and speakers lag well behind the watch speaker, so they need by far the largest delay.</div>
 <div class="tip">💡 Pick one watch as the reference and have everyone else adjust to it. Tuning in a chain, where each person matches a different neighbour, lets small errors add up.</div>
 
