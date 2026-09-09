@@ -1,21 +1,6 @@
-/* ══════════════════════════════════════════════════════════════
-   Hoshino Software & Security — shared dark synthwave theme
-   Used by: homepage, metronome, codereader (all languages)
-   ══════════════════════════════════════════════════════════════ */
+/* Hoshino Software & Security — shared styles */
 
-:root {
-  --bg: #07060d;
-  --bg-2: #110a22;
-  --panel: rgba(255, 255, 255, 0.03);
-  --panel-2: rgba(180, 139, 255, 0.06);
-  --fg: #e8e6f5;
-  --muted: #9d97c2;
-  --dim: #6f6a90;
-  --accent: #b48bff;
-  --accent-2: #5ec8ff;
-  --border: rgba(180, 139, 255, 0.18);
-  --border-strong: rgba(180, 139, 255, 0.35);
-}
+:root{color-scheme:light;--bg:#f7f8fa;--bg-2:#f7f8fa;--panel:#fff;--panel-2:#eef0f8;--fg:#182230;--muted:#596579;--dim:#646e80;--accent:#4f46e5;--accent-2:#4338ca;--border:#dfe3eb;--border-strong:#c9cedd}
 
 /* ── Reset & base ──────────────────────────────────────────── */
 * { box-sizing: border-box; }
@@ -24,11 +9,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   margin: 0;
   color: var(--fg);
-  background:
-    radial-gradient(1200px 600px at 50% -10%, rgba(94, 200, 255, 0.18), transparent 60%),
-    radial-gradient(900px 500px at 50% 110%, rgba(180, 139, 255, 0.18), transparent 60%),
-    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
-  background-attachment: fixed;
+  background: var(--bg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -106,136 +87,6 @@ h2.section-h2.first-section {
 /* ══════════════════════════════════════════════════════════════
    Homepage
    ══════════════════════════════════════════════════════════════ */
-body.home { display: flex; flex-direction: column; }
-.home main {
-  flex: 1;
-  max-width: 1200px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: clamp(20px, 4vh, 56px) 20px;
-}
-.hero { max-width: 480px; }
-.hero .logo {
-  width: clamp(110px, 18vh, 200px);
-  height: auto;
-  border-radius: 18px;
-  box-shadow:
-    0 0 0 1px var(--border),
-    0 20px 60px rgba(94, 100, 255, 0.35),
-    0 8px 24px rgba(0, 0, 0, 0.6);
-}
-.hero h1 { margin: clamp(12px, 2.5vh, 28px) 0 6px; font-size: 26px; }
-.hero .jp { margin: 0 0 4px; color: var(--muted); font-size: 14px; letter-spacing: 1px; }
-.hero .tag {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-/* ── App showcase grid (homepage) ──────────────────────────── */
-.apps {
-  align-self: stretch;
-  width: 100%;
-  max-width: 1160px;
-  margin: clamp(24px, 4vh, 52px) auto 0;
-}
-.apps-heading {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-align: center;
-  border: none;
-  margin: 0 0 clamp(14px, 2.5vh, 22px);
-}
-.app-categories {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(24px, 4vh, 40px);
-}
-.app-category { min-width: 0; }
-/* Single-app categories (Smartwatch + Computer) sit side by side,
-   close together at the center. */
-.app-category-pair {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: start;
-  column-gap: clamp(24px, 3vw, 48px);
-  row-gap: clamp(24px, 4vh, 40px);
-}
-/* Pin the pair's category blocks to the card width: left to intrinsic
-   sizing they shrink to the card text's width and the fixed-width
-   cards overflow and collide. */
-.app-category-pair > .app-category { flex: 0 0 340px; }
-.app-category-title {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  text-align: center;
-  border: none;
-  margin: 0 0 clamp(8px, 1.5vh, 14px);
-}
-.apps-grid {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 14px;
-}
-.apps-grid > li {
-  display: flex;
-  flex: 0 0 340px;
-}
-/* Four cards would wrap as three plus a stranded one, because the 1200px
-   page fits three 340px cards but not four. Hold this grid to two
-   columns so it reads as an even 2x2 block. */
-.apps-grid.two-col { max-width: 694px; margin-inline: auto; }
-.app-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  min-height: 112px;
-  padding: 16px 18px;
-  text-align: left;
-  text-decoration: none;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: var(--panel);
-  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-.app-card:hover {
-  border-color: var(--accent);
-  background: rgba(180, 139, 255, 0.08);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(94, 100, 255, 0.18);
-}
-.app-icon {
-  width: 64px;
-  height: 64px;
-  flex-shrink: 0;
-  border-radius: 15px;
-  box-shadow: 0 0 0 1px var(--border), 0 6px 18px rgba(0, 0, 0, 0.45);
-}
-.app-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  min-width: 0;
-}
-.app-name { font-size: 16px; font-weight: 600; color: var(--fg); }
-.app-desc { font-size: 13px; color: var(--muted); line-height: 1.45; }
 .app-badges,
 .product-badges {
   display: flex;
@@ -273,19 +124,6 @@ body.home { display: flex; flex-direction: column; }
   font-size: 12px;
   line-height: 1.35;
   color: var(--muted);
-}
-
-/* Collapse the 3 category columns into one on narrow screens */
-@media (max-width: 860px) {
-  .app-categories {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  .apps-grid > li {
-    flex: 1 1 100%;
-  }
-  /* Full-width cards no longer wrap titles, so they can be shorter */
-  .app-card { min-height: 88px; }
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -523,22 +361,6 @@ pre.dc-val { white-space: pre-wrap; margin: 4px 0 0; padding: 0; background: non
   border-top: 1px solid var(--border);
 }
 
-/* ── End-of-doc logo ───────────────────────────────────────── */
-.doc-end-logo {
-  display: flex;
-  justify-content: center;
-  margin: 64px 0 24px;
-}
-.doc-end-logo img {
-  width: min(280px, 60vw);
-  height: auto;
-  border-radius: 18px;
-  box-shadow:
-    0 0 0 1px var(--border),
-    0 20px 60px rgba(94, 100, 255, 0.35),
-    0 8px 24px rgba(0, 0, 0, 0.6);
-}
-
 /* ── Footer (doc pages) ────────────────────────────────────── */
 footer {
   position: fixed;
@@ -559,8 +381,6 @@ footer a {
 }
 footer a:hover { color: var(--accent); }
 
-/* Homepage: pad main so the fixed footer never overlaps the hero on short viewports */
-body.home main { padding-bottom: 60px; }
 
 /* ── RTL support (codereader Arabic) ───────────────────────── */
 .rtl { direction: rtl; text-align: right; }
@@ -647,4 +467,22 @@ body.home main { padding-bottom: 60px; }
 @media (max-width: 560px) {
   .product-heading { align-items: flex-start; }
   .product-heading img { width: 72px; height: 72px; border-radius: 17px; }
+}
+
+/* Light theme and studio homepage */
+
+
+body{background:#f7f8fa;color:var(--fg)}h1,h2.section-h2{background:none;color:var(--fg)}a:focus-visible{outline:3px solid #4f46e5;outline-offset:5px}#top-bar,#lang-strip{background:rgba(247,248,250,.96)}body:not(.studio-home) main{padding-top:76px}footer{position:static;background:transparent;backdrop-filter:none}.pricing-pill.free{color:#226348;background:#edf6ef;border-color:#bddbc8}.pricing-pill.paid{color:#4338ca;background:#eeedff;border-color:#d0cdf7}.safety-label{color:#88520b}.app-icon,.product-heading img,.screenshots img,.app-screenshots img{box-shadow:0 8px 24px #18223012}.contact-box,.safety-box,.coming-soon-box{box-shadow:none}.contact-email{overflow-wrap:anywhere}
+.studio-home{margin:0}.studio-header,.studio-main,.studio-footer{width:min(1120px,calc(100% - 80px));margin:0 auto}.studio-header{display:flex;justify-content:space-between;align-items:center;padding:30px 0;border-bottom:1px solid var(--border)}.studio-brand{display:flex;align-items:center;gap:12px;color:var(--fg);text-decoration:none;font-size:21px;font-weight:700;line-height:1.25;letter-spacing:-.6px}.studio-brand img{border-radius:10px;object-fit:cover}.brand-sub{display:block;font-size:12px;font-weight:500;letter-spacing:0;color:var(--muted);margin-top:3px}.header-link{font-size:14px;font-weight:600;text-decoration:none;color:var(--fg)}.header-link span{margin-left:14px;color:var(--accent)}.studio-main{max-width:1120px;padding:0}.studio-hero{padding:74px 0 52px}.eyebrow{font-size:14px;color:var(--muted);letter-spacing:.12em;margin-bottom:22px}.studio-hero h1{font-size:clamp(44px,6.4vw,78px);letter-spacing:-.055em;line-height:1.08;font-weight:650;margin:0}.studio-hero h1 span{color:var(--accent)}.hero-bottom{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-top:28px}.hero-bottom p{font-size:17px;line-height:1.7;color:var(--muted);margin:0}.studio-discipline{font-size:12px;color:var(--muted);text-align:right;line-height:1.7}.catalog-intro{display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid var(--border);padding-top:28px;margin-bottom:34px;scroll-margin-top:24px}.catalog-intro h2{font-size:24px;letter-spacing:-.7px;border:0;padding:0;margin:0}.catalog-intro>span{font-size:14px;color:var(--muted)}.catalog-section{display:grid;grid-template-columns:220px 1fr;gap:30px;margin-bottom:34px}.category-heading{padding-top:12px}.section-number{color:var(--accent);font-size:12px;font-weight:600;font-variant-numeric:tabular-nums}.category-heading h2{font-size:18px;border:0;padding:0;margin:7px 0 4px;letter-spacing:-.3px}.category-heading p{font-size:14px;color:var(--muted);margin:0;max-width:180px}.catalog-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;list-style:none;padding:0;margin:0}.catalog-grid li{margin:0;display:flex}.catalog-card{position:relative;display:flex;align-items:flex-start;gap:16px;background:white;border:1px solid var(--border);border-radius:16px;padding:24px 30px 24px 22px;width:100%;text-decoration:none;transition:transform .18s,border-color .18s,box-shadow .18s}.catalog-card:hover{transform:translateY(-3px);border-color:#aca6ee;box-shadow:0 10px 26px #18223009}.catalog-card img{width:54px;height:54px;border-radius:13px;flex-shrink:0;box-shadow:0 2px 5px #18223012}.catalog-card h3{font-size:16px;line-height:1.4;letter-spacing:-.25px;margin:0 0 7px}.catalog-card p{font-size:14px;line-height:1.55;color:var(--muted);margin:0}.card-arrow{position:absolute;right:14px;top:13px;font-size:14px;color:#778195}.free-label{display:inline-block;color:#226348;background:#edf6ef;font-size:12px;line-height:1.5;border-radius:5px;padding:1px 7px;margin-top:12px}.studio-footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--border);padding:26px 0;margin-top:64px;font-size:12px;color:var(--muted);text-align:left}.skip-link{position:absolute;left:16px;top:-100px;background:white;padding:12px;z-index:200}.skip-link:focus{top:12px}
+@media(max-width:1000px){.catalog-section{grid-template-columns:170px 1fr;gap:20px}.catalog-card{flex-direction:column}.studio-discipline{display:none}}
+@media(max-width:680px){.studio-header,.studio-main,.studio-footer{width:calc(100% - 40px)}.studio-header{padding:22px 0}.header-link{font-size:13px}.header-link span{margin-left:3px}.studio-hero{padding:48px 0 36px}.studio-hero h1{font-size:clamp(38px,9vw,58px)}.eyebrow{font-size:12px}.hero-bottom p{font-size:16px}.hero-bottom br{display:none}.catalog-intro{margin-bottom:24px}.catalog-intro>span{display:none}.catalog-section{grid-template-columns:1fr;gap:16px;margin-bottom:28px}.category-heading{display:flex;align-items:baseline;gap:12px;padding:0}.category-heading h2{margin:0}.category-heading p{display:none}.catalog-grid{grid-template-columns:1fr}.catalog-card{flex-direction:row;align-items:center;padding:22px 30px 22px 20px}.studio-footer{flex-direction:column;gap:8px;margin-top:42px}.studio-brand{font-size:18px}.studio-brand img{width:38px;height:38px}.brand-sub{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.catalog-card{transition:none}.catalog-card:hover{transform:none}}
+
+/* Fine outlines retain the codes' existing white quiet zone. */
+.demo-codes-table img,
+img[src$="/download.png"],
+.screenshots img,
+.screenshots.watch img,
+.app-screenshots img {
+  border: 1px solid #000;
 }
