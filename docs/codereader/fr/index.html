@@ -155,6 +155,28 @@ L'app fonctionne hors ligne, ne stocke rien dans le cloud et n'affiche jamais de
 <div class="tip">💡 C'est une excellente façon d'en apprendre davantage sur le fonctionnement réel des QR codes et des codes-barres. Si la technologie derrière ce que vous scannez vous intrigue, essayez-la !</div>
 
 <h3>Résultats de scan</h3>
+<p>Lorsqu’un code est détecté, Lecteur de Codes vous montre son contenu avant de faire quoi que ce soit. Vous voyez toujours d’abord les données brutes, avec les boutons <b>Copier</b> et <b>Partager</b>. Si le code contient une URL (courant dans les QR codes), un bouton <b>Ouvrir</b> apparaît : il ouvre le lien dans votre navigateur par défaut, pas dans un navigateur intégré. Aucune donnée de navigation n’est collectée.</p>
+<p>Lecteur de Codes reconnaît automatiquement les types de codes particuliers et propose des actions adaptées :</p>
+<table>
+  <thead><tr><th>Type de code</th><th>Ce que vous pouvez faire</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / Lien</td><td>Ouvrir dans votre navigateur par défaut · Copier · Partager</td></tr>
+    <tr><td>📶 Réseau Wi-Fi</td><td><b>Connecter</b> directement · <b>Copier le mot de passe</b></td></tr>
+    <tr><td>👤 Contact (vCard / MECARD)</td><td><b>Enregistrer dans Contacts</b> avec aperçu</td></tr>
+    <tr><td>📅 Événement de calendrier</td><td><b>Ajouter au calendrier</b></td></tr>
+    <tr><td>✉️ E-mail</td><td><b>Rédiger un e-mail</b> prérempli</td></tr>
+    <tr><td>💬 SMS / Message</td><td><b>Envoyer un message</b></td></tr>
+    <tr><td>📞 Numéro de téléphone</td><td><b>Appeler</b></td></tr>
+    <tr><td>📍 Lieu / Géo</td><td><b>Ouvrir dans Plans</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> ou FaceTime audio</td></tr>
+    <tr><td>₿ Bitcoin</td><td><b>Copier l’adresse</b></td></tr>
+    <tr><td>✈️ Carte d’embarquement</td><td>Détails du vol extraits d’un code Aztec / PDF417</td></tr>
+    <tr><td>🔐 Configuration d’authentificateur</td><td><b>Ajouter à Mots de passe</b> · <b>Ouvrir dans l’app d’authentification</b></td></tr>
+    <tr><td>🔑 Connexion par clé d’accès</td><td>Identifiée et expliquée · iOS la termine lui-même</td></tr>
+    <tr><td>📱 Activation eSIM</td><td><b>Installer l’eSIM</b> pour configurer le forfait mobile</td></tr>
+  </tbody>
+</table>
+
 <p>Avec <b>Afficher les détails avancés</b> activé dans les Réglages, deux sections supplémentaires apparaissent sur la page de résultat :</p>
 <ul>
   <li><b>Données décodées :</b> la chaîne brute encodée dans le code-barres, avant tout traitement.</li>
@@ -269,6 +291,7 @@ URL:https://example.com
 END:VCARD</pre></td></tr>
     <tr><td><img src="../images/codes/qr-otpauth.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Configuration d'authentification (TOTP)</div><div class="dc-val">otpauth://totp/Code%20Reader:demo@example.com?secret=JBSWY3DPEHPK3PXP&issuer=Code%20Reader&algorithm=SHA1&digits=6&period=30</div></td></tr>
     <tr><td><img src="../images/codes/qr-fido.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Demande de connexion par clé d'accès</div><div class="dc-val">FIDO:/145820612314923085710293845761029384756102938475610293847561029384756102938475610293847561029384756</div></td></tr>
+    <tr><td><img src="../images/codes/qr-esim.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Code d’activation eSIM</div><div class="dc-val">LPA:1$smdp.example.com$A1B2C3D4-E5F6-7890-ABCD-EF1234567890</div></td></tr>
     <tr><td><img src="../images/codes/microqr.png" alt="Micro QR"></td>               <td><div class="dc-type">Micro QR</div><div class="dc-sub">QR compact pour petites étiquettes</div><div class="dc-val">HELLO</div></td></tr>
     <tr><td><img src="../images/codes/aztec-full.png" alt="Aztec (Full)"></td>        <td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">Transit / cartes d'embarquement</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
     <tr><td><img src="../images/codes/aztec-compact.png" alt="Aztec (Compact)"></td>  <td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">Variante compacte pour petites étiquettes</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>

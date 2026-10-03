@@ -147,6 +147,28 @@
 <div class="tip">💡 這是了解 QR 碼和條碼實際運作方式的好方法。如果你對所掃描內容背後的技術感興趣，可以試試看！</div>
 
 <h3>掃描結果</h3>
+<p>偵測到條碼後，掃碼器會先顯示其內容，不會自動執行任何動作。你一定會先看到原始資料，並附有<b>拷貝</b>和<b>分享</b>按鈕。如果條碼中包含網址（QR 碼中很常見），會出現<b>開啟</b>按鈕，在你的預設瀏覽器而非 App 內瀏覽器中開啟連結。不會收集任何瀏覽資料。</p>
+<p>掃碼器會自動辨識特殊類型的條碼，並顯示相應的操作：</p>
+<table>
+  <thead><tr><th>條碼類型</th><th>可執行的操作</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 網址 / 連結</td><td>在預設瀏覽器中開啟 · 拷貝 · 分享</td></tr>
+    <tr><td>📶 Wi-Fi 網路</td><td>直接<b>連線</b> · <b>拷貝密碼</b></td></tr>
+    <tr><td>👤 聯絡人（vCard / MECARD）</td><td>預覽後<b>儲存至聯絡人</b></td></tr>
+    <tr><td>📅 行事曆活動</td><td><b>加入行事曆</b></td></tr>
+    <tr><td>✉️ 電子郵件</td><td><b>撰寫電子郵件</b>（已預先填入）</td></tr>
+    <tr><td>💬 簡訊 / 訊息</td><td><b>傳送訊息</b></td></tr>
+    <tr><td>📞 電話號碼</td><td><b>撥打電話</b></td></tr>
+    <tr><td>📍 位置 / 地理座標</td><td><b>在地圖中開啟</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> 或 FaceTime 語音</td></tr>
+    <tr><td>₿ 比特幣</td><td><b>拷貝地址</b></td></tr>
+    <tr><td>✈️ 登機證</td><td>從 Aztec / PDF417 讀取航班資訊</td></tr>
+    <tr><td>🔐 驗證器設定</td><td><b>加入「密碼」</b> · <b>在驗證器 App 中打開</b></td></tr>
+    <tr><td>🔑 通行密鑰登入</td><td>辨識並說明 · 由 iOS 自行完成</td></tr>
+    <tr><td>📱 eSIM 啟用</td><td><b>安裝 eSIM</b>，設定行動方案</td></tr>
+  </tbody>
+</table>
+
 <p>在設定中開啟<b>顯示進階詳細資訊</b>後，結果頁面會出現兩個額外部分：</p>
 <ul>
   <li><b>解碼資料：</b>條碼內編碼的原始字串，在任何解析之前的狀態。</li>
@@ -256,6 +278,7 @@ URL:https://example.com
 END:VCARD</pre></td></tr>
     <tr><td><img src="../images/codes/qr-otpauth.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">驗證器設定 (TOTP)</div><div class="dc-val">otpauth://totp/Code%20Reader:demo@example.com?secret=JBSWY3DPEHPK3PXP&issuer=Code%20Reader&algorithm=SHA1&digits=6&period=30</div></td></tr>
     <tr><td><img src="../images/codes/qr-fido.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">通行密鑰登入請求</div><div class="dc-val">FIDO:/145820612314923085710293845761029384756102938475610293847561029384756102938475610293847561029384756</div></td></tr>
+    <tr><td><img src="../images/codes/qr-esim.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">eSIM 啟用碼</div><div class="dc-val">LPA:1$smdp.example.com$A1B2C3D4-E5F6-7890-ABCD-EF1234567890</div></td></tr>
     <tr><td><img src="../images/codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">適用於小標籤的緊湊 QR</div><div class="dc-val">HELLO</div></td></tr>
     <tr><td><img src="../images/codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">交通 / 登機證</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
     <tr><td><img src="../images/codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">適用於小標籤的緊湊變體</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>

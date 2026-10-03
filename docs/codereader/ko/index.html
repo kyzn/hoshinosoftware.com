@@ -147,6 +147,28 @@
 <div class="tip">💡 QR 코드와 바코드가 실제로 어떻게 작동하는지 더 알아볼 수 있는 좋은 방법입니다. 스캔하는 것 뒤의 기술이 궁금하다면 사용해 보세요!</div>
 
 <h3>스캔 결과</h3>
+<p>코드가 감지되면 코드 리더는 아무 작업도 하기 전에 먼저 내용을 보여 줍니다. 항상 원본 데이터가 <b>복사</b> 및 <b>공유</b> 버튼과 함께 먼저 표시됩니다. 코드에 URL이 있으면(QR 코드에서 흔함) <b>열기</b> 버튼이 나타나며, 앱 내 브라우저가 아니라 기본 브라우저에서 링크를 엽니다. 브라우징 데이터는 수집하지 않습니다.</p>
+<p>코드 리더는 특수한 코드 유형을 자동으로 인식하고 상황에 맞는 동작을 보여 줍니다.</p>
+<table>
+  <thead><tr><th>코드 유형</th><th>할 수 있는 일</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / 링크</td><td>기본 브라우저에서 열기 · 복사 · 공유</td></tr>
+    <tr><td>📶 Wi-Fi 네트워크</td><td>바로 <b>연결</b> · <b>비밀번호 복사</b></td></tr>
+    <tr><td>👤 연락처(vCard / MECARD)</td><td>미리 보기와 함께 <b>연락처에 저장</b></td></tr>
+    <tr><td>📅 캘린더 일정</td><td><b>캘린더에 추가</b></td></tr>
+    <tr><td>✉️ 이메일</td><td>미리 채워진 <b>이메일 작성</b></td></tr>
+    <tr><td>💬 SMS / 메시지</td><td><b>메시지 보내기</b></td></tr>
+    <tr><td>📞 전화번호</td><td><b>전화</b></td></tr>
+    <tr><td>📍 위치 / Geo</td><td><b>지도에서 열기</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> 또는 FaceTime 오디오</td></tr>
+    <tr><td>₿ 비트코인</td><td><b>주소 복사</b></td></tr>
+    <tr><td>✈️ 탑승권</td><td>Aztec / PDF417에서 항공편 정보 추출</td></tr>
+    <tr><td>🔐 인증 앱 설정</td><td><b>암호에 추가</b> · <b>인증 앱에서 열기</b></td></tr>
+    <tr><td>🔑 패스키 로그인</td><td>인식하고 설명 · iOS가 직접 완료</td></tr>
+    <tr><td>📱 eSIM 활성화</td><td><b>eSIM 설치</b>로 모바일 요금제 설정</td></tr>
+  </tbody>
+</table>
+
 <p>설정에서 <b>고급 세부 정보 표시</b>를 켜면 결과 페이지에 두 개의 추가 섹션이 나타납니다.</p>
 <ul>
   <li><b>디코딩된 데이터:</b> 파싱 전에 바코드 안에 인코딩된 원시 문자열.</li>
@@ -256,6 +278,7 @@ URL:https://example.com
 END:VCARD</pre></td></tr>
     <tr><td><img src="../images/codes/qr-otpauth.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">인증 앱 설정 (TOTP)</div><div class="dc-val">otpauth://totp/Code%20Reader:demo@example.com?secret=JBSWY3DPEHPK3PXP&issuer=Code%20Reader&algorithm=SHA1&digits=6&period=30</div></td></tr>
     <tr><td><img src="../images/codes/qr-fido.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">패스키 로그인 요청</div><div class="dc-val">FIDO:/145820612314923085710293845761029384756102938475610293847561029384756102938475610293847561029384756</div></td></tr>
+    <tr><td><img src="../images/codes/qr-esim.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">eSIM 활성화 코드</div><div class="dc-val">LPA:1$smdp.example.com$A1B2C3D4-E5F6-7890-ABCD-EF1234567890</div></td></tr>
     <tr><td><img src="../images/codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">작은 라벨을 위한 소형 QR</div><div class="dc-val">HELLO</div></td></tr>
     <tr><td><img src="../images/codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">교통 / 탑승권</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
     <tr><td><img src="../images/codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">작은 라벨을 위한 소형 변형</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>

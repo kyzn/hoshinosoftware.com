@@ -147,6 +147,28 @@
 <div class="tip">💡 这是了解 QR 码和条形码实际工作方式的好方法。如果你对所扫描内容背后的技术感兴趣，可以试试看！</div>
 
 <h3>扫描结果</h3>
+<p>检测到码后，全能扫码器会先显示其内容，不会自动执行任何操作。你总是先看到原始数据，并附有<b>拷贝</b>和<b>分享</b>按钮。如果码中包含网址（QR 码中很常见），会出现<b>打开</b>按钮，在你的默认浏览器而非 App 内浏览器中打开链接。不会收集任何浏览数据。</p>
+<p>全能扫码器会自动识别特殊类型的码，并显示相应的操作：</p>
+<table>
+  <thead><tr><th>码类型</th><th>可执行的操作</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 网址 / 链接</td><td>在默认浏览器中打开 · 拷贝 · 分享</td></tr>
+    <tr><td>📶 Wi-Fi 网络</td><td>直接<b>连接</b> · <b>拷贝密码</b></td></tr>
+    <tr><td>👤 联系人（vCard / MECARD）</td><td>预览后<b>存储到通讯录</b></td></tr>
+    <tr><td>📅 日历事件</td><td><b>添加到日历</b></td></tr>
+    <tr><td>✉️ 电子邮件</td><td><b>撰写邮件</b>（已预填）</td></tr>
+    <tr><td>💬 短信 / 信息</td><td><b>发送短信</b></td></tr>
+    <tr><td>📞 电话号码</td><td><b>拨打</b></td></tr>
+    <tr><td>📍 位置 / 地理坐标</td><td><b>在地图中打开</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> 或 FaceTime 音频</td></tr>
+    <tr><td>₿ 比特币</td><td><b>拷贝地址</b></td></tr>
+    <tr><td>✈️ 登机牌</td><td>从 Aztec / PDF417 读取航班信息</td></tr>
+    <tr><td>🔐 验证器设置</td><td><b>添加到“密码”</b> · <b>在验证器 App 中打开</b></td></tr>
+    <tr><td>🔑 通行密钥登录</td><td>识别并说明 · 由 iOS 自行完成</td></tr>
+    <tr><td>📱 eSIM 激活</td><td><b>安装 eSIM</b>，设置移动套餐</td></tr>
+  </tbody>
+</table>
+
 <p>在设置中开启<b>显示高级详情</b>后，结果页面会出现两个额外部分：</p>
 <ul>
   <li><b>解码数据：</b>条形码内编码的原始字符串，在任何解析之前的状态。</li>
@@ -256,6 +278,7 @@ URL:https://example.com
 END:VCARD</pre></td></tr>
     <tr><td><img src="../images/codes/qr-otpauth.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">验证器设置 (TOTP)</div><div class="dc-val">otpauth://totp/Code%20Reader:demo@example.com?secret=JBSWY3DPEHPK3PXP&issuer=Code%20Reader&algorithm=SHA1&digits=6&period=30</div></td></tr>
     <tr><td><img src="../images/codes/qr-fido.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">通行密钥登录请求</div><div class="dc-val">FIDO:/145820612314923085710293845761029384756102938475610293847561029384756102938475610293847561029384756</div></td></tr>
+    <tr><td><img src="../images/codes/qr-esim.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">eSIM 激活码</div><div class="dc-val">LPA:1$smdp.example.com$A1B2C3D4-E5F6-7890-ABCD-EF1234567890</div></td></tr>
     <tr><td><img src="../images/codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">适用于小标签的紧凑 QR</div><div class="dc-val">HELLO</div></td></tr>
     <tr><td><img src="../images/codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">交通 / 登机牌</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
     <tr><td><img src="../images/codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">适用于小标签的紧凑变体</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>

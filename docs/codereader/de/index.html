@@ -147,6 +147,28 @@ Die App funktioniert vollständig offline, speichert nichts in der Cloud und zei
 <div class="tip">💡 Das ist eine tolle Möglichkeit, mehr darüber zu erfahren, wie QR-Codes und Barcodes tatsächlich funktionieren. Falls du neugierig auf die Technologie hinter dem bist, was du scannst, probiere es aus!</div>
 
 <h3>Scan-Ergebnisse</h3>
+<p>Wenn ein Code erkannt wird, zeigt dir Codeleser zuerst seinen Inhalt, bevor irgendetwas damit passiert. Du siehst immer zuerst die Rohdaten, zusammen mit den Tasten <b>Kopieren</b> und <b>Teilen</b>. Enthält der Code eine URL (häufig bei QR-Codes), erscheint eine Taste <b>Öffnen</b>. Sie öffnet den Link in deinem Standardbrowser, nicht in einem In-App-Browser. Es werden keine Browserdaten erfasst.</p>
+<p>Codeleser erkennt besondere Code-Typen automatisch und bietet passende Aktionen an:</p>
+<table>
+  <thead><tr><th>Code-Typ</th><th>Was du tun kannst</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / Link</td><td>Im Standardbrowser öffnen · Kopieren · Teilen</td></tr>
+    <tr><td>📶 WLAN-Netzwerk</td><td>Direkt <b>Verbinden</b> · <b>Passwort kopieren</b></td></tr>
+    <tr><td>👤 Kontakt (vCard / MECARD)</td><td><b>In Kontakte speichern</b> mit Vorschau</td></tr>
+    <tr><td>📅 Kalenderereignis</td><td><b>Zum Kalender hinzufügen</b></td></tr>
+    <tr><td>✉️ E-Mail</td><td><b>E-Mail verfassen</b>, bereits ausgefüllt</td></tr>
+    <tr><td>💬 SMS / Nachricht</td><td><b>Nachricht senden</b></td></tr>
+    <tr><td>📞 Telefonnummer</td><td><b>Anrufen</b></td></tr>
+    <tr><td>📍 Ort / Geo</td><td><b>In Karten öffnen</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> oder FaceTime Audio</td></tr>
+    <tr><td>₿ Bitcoin</td><td><b>Adresse kopieren</b></td></tr>
+    <tr><td>✈️ Bordkarte</td><td>Flugdaten aus Aztec / PDF417 ausgelesen</td></tr>
+    <tr><td>🔐 Authenticator-Einrichtung</td><td><b>Zu „Passwörter“ hinzufügen</b> · <b>In Authenticator-App öffnen</b></td></tr>
+    <tr><td>🔑 Passkey-Anmeldung</td><td>Erkannt und erklärt · iOS schließt sie selbst ab</td></tr>
+    <tr><td>📱 eSIM-Aktivierung</td><td><b>eSIM installieren</b>, um den Mobilfunktarif einzurichten</td></tr>
+  </tbody>
+</table>
+
 <p>Mit aktiviertem <b>Erweiterte Details anzeigen</b> in den Einstellungen erscheinen zwei zusätzliche Abschnitte auf der Ergebnisseite:</p>
 <ul>
   <li><b>Dekodierte Daten:</b> die im Barcode kodierte Rohzeichenkette vor jeglicher Verarbeitung.</li>
@@ -256,6 +278,7 @@ URL:https://example.com
 END:VCARD</pre></td></tr>
     <tr><td><img src="../images/codes/qr-otpauth.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Authenticator-Einrichtung (TOTP)</div><div class="dc-val">otpauth://totp/Code%20Reader:demo@example.com?secret=JBSWY3DPEHPK3PXP&issuer=Code%20Reader&algorithm=SHA1&digits=6&period=30</div></td></tr>
     <tr><td><img src="../images/codes/qr-fido.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Passkey-Anmeldeanfrage</div><div class="dc-val">FIDO:/145820612314923085710293845761029384756102938475610293847561029384756102938475610293847561029384756</div></td></tr>
+    <tr><td><img src="../images/codes/qr-esim.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">eSIM-Aktivierungscode</div><div class="dc-val">LPA:1$smdp.example.com$A1B2C3D4-E5F6-7890-ABCD-EF1234567890</div></td></tr>
     <tr><td><img src="../images/codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">Kompakter QR für kleine Etiketten</div><div class="dc-val">HELLO</div></td></tr>
     <tr><td><img src="../images/codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">Transport / Bordkarten</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
     <tr><td><img src="../images/codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">Kompakte Variante für kleine Etiketten</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>

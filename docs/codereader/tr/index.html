@@ -146,6 +146,28 @@
 <div class="tip">💡 Kodun sürümü ve yapısı gibi teknik bilgileri merak ediyorsanız bu seçeneği açabilirsiniz.</div>
 
 <h3>Tarama Sonuçları</h3>
+<p>Bir kod algılandığında Kod Okuyucu, onunla herhangi bir şey yapmadan önce içeriğini gösterir. Önce her zaman ham veriyi <b>Kopyala</b> ve <b>Paylaş</b> düğmeleriyle birlikte görürsünüz. Kod bir bağlantı içeriyorsa (QR kodlarda yaygındır) <b>Aç</b> düğmesi çıkar; bağlantıyı uygulama içi bir tarayıcıda değil, varsayılan tarayıcınızda açar. Hiçbir gezinme verisi toplanmaz.</p>
+<p>Kod Okuyucu özel kod türlerini otomatik olarak tanır ve içeriğe uygun işlemleri gösterir:</p>
+<table>
+  <thead><tr><th>Kod türü</th><th>Neler yapabilirsiniz</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / Bağlantı</td><td>Varsayılan tarayıcıda aç · Kopyala · Paylaş</td></tr>
+    <tr><td>📶 Wi-Fi ağı</td><td>Doğrudan <b>Bağlan</b> · <b>Şifreyi Kopyala</b></td></tr>
+    <tr><td>👤 Kişi (vCard / MECARD)</td><td>Önizlemeyle <b>Kişilere Kaydet</b></td></tr>
+    <tr><td>📅 Takvim etkinliği</td><td><b>Takvime Ekle</b></td></tr>
+    <tr><td>✉️ E-posta</td><td>Hazır doldurulmuş <b>E-posta Oluştur</b></td></tr>
+    <tr><td>💬 SMS / Mesaj</td><td><b>Mesaj Gönder</b></td></tr>
+    <tr><td>📞 Telefon numarası</td><td><b>Ara</b></td></tr>
+    <tr><td>📍 Konum / Geo</td><td><b>Haritalar'da Aç</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> veya FaceTime Sesli</td></tr>
+    <tr><td>₿ Bitcoin</td><td><b>Adresi Kopyala</b></td></tr>
+    <tr><td>✈️ Biniş kartı</td><td>Aztec / PDF417'den okunan uçuş bilgileri</td></tr>
+    <tr><td>🔐 Doğrulayıcı kurulumu</td><td><b>Parolalar'a Ekle</b> · <b>Doğrulayıcı Uygulamada Aç</b></td></tr>
+    <tr><td>🔑 Geçiş anahtarıyla giriş</td><td>Tanınır ve açıklanır · iOS kendisi tamamlar</td></tr>
+    <tr><td>📱 eSIM etkinleştirme</td><td><b>eSIM Kur</b> ile mobil planı kurun</td></tr>
+  </tbody>
+</table>
+
 <p>Ayarlar'da <b>Gelişmiş Ayrıntıları Göster</b> etkinleştirildiğinde, sonuç sayfasında iki ek bölüm görünür:</p>
 <ul>
   <li><b>Kodu Çözülmüş Veri:</b> kodun içerdiği metnin işlenmemiş hali.</li>
@@ -254,6 +276,7 @@ URL:https://example.com
 END:VCARD</pre></td></tr>
     <tr><td><img src="../images/codes/qr-otpauth.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Doğrulayıcı kurulumu (TOTP)</div><div class="dc-val">otpauth://totp/Code%20Reader:demo@example.com?secret=JBSWY3DPEHPK3PXP&issuer=Code%20Reader&algorithm=SHA1&digits=6&period=30</div></td></tr>
     <tr><td><img src="../images/codes/qr-fido.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Geçiş anahtarıyla giriş isteği</div><div class="dc-val">FIDO:/145820612314923085710293845761029384756102938475610293847561029384756102938475610293847561029384756</div></td></tr>
+    <tr><td><img src="../images/codes/qr-esim.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">eSIM etkinleştirme kodu</div><div class="dc-val">LPA:1$smdp.example.com$A1B2C3D4-E5F6-7890-ABCD-EF1234567890</div></td></tr>
     <tr><td><img src="../images/codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">Küçük etiketler için kompakt QR</div><div class="dc-val">HELLO</div></td></tr>
     <tr><td><img src="../images/codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">Toplu taşıma / biniş kartları</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
     <tr><td><img src="../images/codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">Küçük etiketler için kompakt çeşit</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>

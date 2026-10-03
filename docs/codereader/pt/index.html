@@ -122,6 +122,28 @@ O app funciona offline, não armazena nada na nuvem e nunca exibe anúncios.</p>
 <div class="tip">💡 É uma ótima forma de aprender mais sobre como QR codes e códigos de barras realmente funcionam. Se você tem curiosidade sobre a tecnologia por trás do que lê, experimente!</div>
 
 <h3>Resultados do Escaneamento</h3>
+<p>Quando um código é detectado, o Leitor de Códigos mostra o conteúdo antes de fazer qualquer coisa com ele. Você sempre vê primeiro os dados brutos, com os botões <b>Copiar</b> e <b>Compartilhar</b>. Se o código tiver uma URL (comum em códigos QR), aparece o botão <b>Abrir</b>, que abre o link no seu navegador padrão, não em um navegador dentro do app. Nenhum dado de navegação é coletado.</p>
+<p>O Leitor de Códigos reconhece automaticamente tipos especiais de código e mostra ações de acordo com o conteúdo:</p>
+<table>
+  <thead><tr><th>Tipo de código</th><th>O que você pode fazer</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / Link</td><td>Abrir no navegador padrão · Copiar · Compartilhar</td></tr>
+    <tr><td>📶 Rede Wi-Fi</td><td><b>Conectar</b> direto · <b>Copiar senha</b></td></tr>
+    <tr><td>👤 Contato (vCard / MECARD)</td><td><b>Salvar nos Contatos</b> com prévia</td></tr>
+    <tr><td>📅 Evento de calendário</td><td><b>Adicionar ao calendário</b></td></tr>
+    <tr><td>✉️ E-mail</td><td><b>Redigir e-mail</b> já preenchido</td></tr>
+    <tr><td>💬 SMS / Mensagem</td><td><b>Enviar mensagem</b></td></tr>
+    <tr><td>📞 Número de telefone</td><td><b>Ligar</b></td></tr>
+    <tr><td>📍 Local / Geo</td><td><b>Abrir no Mapas</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> ou FaceTime Áudio</td></tr>
+    <tr><td>₿ Bitcoin</td><td><b>Copiar endereço</b></td></tr>
+    <tr><td>✈️ Cartão de embarque</td><td>Dados do voo lidos de Aztec / PDF417</td></tr>
+    <tr><td>🔐 Configuração de autenticador</td><td><b>Adicionar a Senhas</b> · <b>Abrir no app autenticador</b></td></tr>
+    <tr><td>🔑 Login com chave-senha</td><td>Identificado e explicado · Concluído pelo próprio iOS</td></tr>
+    <tr><td>📱 Ativação de eSIM</td><td><b>Instalar eSIM</b> para configurar o plano móvel</td></tr>
+  </tbody>
+</table>
+
 <p>Com <b>Mostrar detalhes avançados</b> ativado em Ajustes, duas seções adicionais aparecem na página de resultados:</p>
 <ul>
   <li><b>Dados Decodificados:</b> a string bruta codificada dentro do código de barras, antes de qualquer análise.</li>
@@ -223,6 +245,7 @@ URL:https://example.com
 END:VCARD</pre></td></tr>
     <tr><td><img src="../images/codes/qr-otpauth.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Configuração do autenticador (TOTP)</div><div class="dc-val">otpauth://totp/Code%20Reader:demo@example.com?secret=JBSWY3DPEHPK3PXP&issuer=Code%20Reader&algorithm=SHA1&digits=6&period=30</div></td></tr>
     <tr><td><img src="../images/codes/qr-fido.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Solicitação de login com chave-senha</div><div class="dc-val">FIDO:/145820612314923085710293845761029384756102938475610293847561029384756102938475610293847561029384756</div></td></tr>
+    <tr><td><img src="../images/codes/qr-esim.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">Código de ativação de eSIM</div><div class="dc-val">LPA:1$smdp.example.com$A1B2C3D4-E5F6-7890-ABCD-EF1234567890</div></td></tr>
     <tr><td><img src="../images/codes/microqr.png" alt="Micro QR"></td>               <td><div class="dc-type">Micro QR</div><div class="dc-sub">QR compacto para etiquetas pequenas</div><div class="dc-val">HELLO</div></td></tr>
     <tr><td><img src="../images/codes/aztec-full.png" alt="Aztec (Full)"></td>        <td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">Transporte / cartões de embarque</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
     <tr><td><img src="../images/codes/aztec-compact.png" alt="Aztec (Compact)"></td>  <td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">Variante compacta para etiquetas pequenas</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>

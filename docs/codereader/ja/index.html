@@ -146,6 +146,28 @@
 <div class="tip">💡 コードのバージョンや構造など、技術的な情報を確認したいときに使えます。</div>
 
 <h3>スキャン結果</h3>
+<p>コードを検出すると、万能スキャナーは何かを実行する前に、まずその内容を表示します。最初に元のデータが<b>コピー</b>と<b>共有</b>ボタンとともに表示されます。コードにURLが含まれている場合（QRコードではよくあります）は<b>開く</b>ボタンが表示され、アプリ内ブラウザではなく、いつもお使いのブラウザでリンクを開きます。閲覧データは一切収集しません。</p>
+<p>万能スキャナーは特殊なコードの種類を自動で判別し、内容に合った操作を表示します。</p>
+<table>
+  <thead><tr><th>コードの種類</th><th>できること</th></tr></thead>
+  <tbody>
+    <tr><td>🌐 URL / リンク</td><td>いつものブラウザで開く · コピー · 共有</td></tr>
+    <tr><td>📶 Wi-Fiネットワーク</td><td>そのまま<b>接続</b> · <b>パスワードをコピー</b></td></tr>
+    <tr><td>👤 連絡先（vCard / MECARD）</td><td>プレビュー付きで<b>連絡先に保存</b></td></tr>
+    <tr><td>📅 カレンダーの予定</td><td><b>カレンダーに追加</b></td></tr>
+    <tr><td>✉️ メール</td><td>宛先入力済みで<b>メールを作成</b></td></tr>
+    <tr><td>💬 SMS / メッセージ</td><td><b>メッセージを送信</b></td></tr>
+    <tr><td>📞 電話番号</td><td><b>電話</b></td></tr>
+    <tr><td>📍 位置情報</td><td><b>マップで開く</b></td></tr>
+    <tr><td>📹 FaceTime</td><td><b>FaceTime</b> または FaceTimeオーディオ</td></tr>
+    <tr><td>₿ ビットコイン</td><td><b>アドレスをコピー</b></td></tr>
+    <tr><td>✈️ 搭乗券</td><td>Aztec / PDF417 からフライト情報を読み取り</td></tr>
+    <tr><td>🔐 認証アプリの設定</td><td><b>「パスワード」に追加</b> · <b>認証アプリで開く</b></td></tr>
+    <tr><td>🔑 パスキーでのサインイン</td><td>内容を判別して説明 · 処理は iOS 自身が完了</td></tr>
+    <tr><td>📱 eSIMのアクティベーション</td><td><b>eSIMをインストール</b>してモバイル通信プランを設定</td></tr>
+  </tbody>
+</table>
+
 <p>設定で<b>高度な詳細を表示</b>をオンにすると、結果ページに2つの追加セクションが表示されます。</p>
 <ul>
   <li><b>デコードされたデータ:</b> コードに記録されている、加工前の文字列。</li>
@@ -254,6 +276,7 @@ URL:https://example.com
 END:VCARD</pre></td></tr>
     <tr><td><img src="../images/codes/qr-otpauth.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">認証アプリの設定 (TOTP)</div><div class="dc-val">otpauth://totp/Code%20Reader:demo@example.com?secret=JBSWY3DPEHPK3PXP&issuer=Code%20Reader&algorithm=SHA1&digits=6&period=30</div></td></tr>
     <tr><td><img src="../images/codes/qr-fido.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">パスキーのサインイン要求</div><div class="dc-val">FIDO:/145820612314923085710293845761029384756102938475610293847561029384756102938475610293847561029384756</div></td></tr>
+    <tr><td><img src="../images/codes/qr-esim.png" alt="QR Code"></td><td><div class="dc-type">QR Code</div><div class="dc-sub">eSIMのアクティベーションコード</div><div class="dc-val">LPA:1$smdp.example.com$A1B2C3D4-E5F6-7890-ABCD-EF1234567890</div></td></tr>
     <tr><td><img src="../images/codes/microqr.png" alt="Micro QR"></td><td><div class="dc-type">Micro QR</div><div class="dc-sub">小さなラベル向けコンパクト QR</div><div class="dc-val">HELLO</div></td></tr>
     <tr><td><img src="../images/codes/aztec-full.png" alt="Aztec (Full)"></td><td><div class="dc-type">Aztec (Full)</div><div class="dc-sub">交通機関 / 搭乗券</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
     <tr><td><img src="../images/codes/aztec-compact.png" alt="Aztec (Compact)"></td><td><div class="dc-type">Aztec (Compact)</div><div class="dc-sub">小さなラベル向けコンパクト版</div><div class="dc-val">AZTEC-DEMO-CODE</div></td></tr>
