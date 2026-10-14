@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fold Angle</title>
+<script>
+// Pick the visitor's language when we have it; keep any #support / #legal anchor.
+var have = ['en', 'ja', 'zh-hans', 'zh-hant', 'ko', 'ar', 'de', 'fr'];
+var nav = (navigator.language || 'en').toLowerCase();
+var lang = nav.indexOf('zh') === 0
+  ? (/hant|tw|hk|mo/.test(nav) ? 'zh-hant' : 'zh-hans')
+  : nav.split('-')[0];
+if (have.indexOf(lang) < 0) lang = 'en';
+window.location.replace('/foldangle/' + lang + '/' + window.location.hash);
+</script>
+</head>
+<body>
+<p>Redirecting to <a href="/foldangle/en/">/foldangle/en/</a>...</p>
+</body>
+</html>
