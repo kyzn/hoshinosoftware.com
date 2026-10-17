@@ -9,7 +9,7 @@
 <script>
 var allowed = ['top', 'download', 'support', 'manual', 'legal', 'privacy'];
 var hash = window.location.hash.replace(/^#/, '');
-var lang = (navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en';
+var lang = 'tr';  // Turkish by default, like Müşahit Sayacı; English is one tap away
 var dest = allowed.indexOf(hash) !== -1 ? './' + lang + '/#' + hash : './' + lang + '/';
 window.location.replace(dest);
 </script>
