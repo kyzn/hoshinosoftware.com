@@ -286,6 +286,9 @@ main {
 .screenshots.four img { width: 100%; height: auto; }
 @media (max-width: 680px) { .screenshots.four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
+/* Landscape shots (iPhone Duo, HH:MM:SS): wider than the phone shots, same height or so. */
+.screenshots.wide img { width: 380px; max-width: 100%; height: auto; }
+
 /* ── Tip box ───────────────────────────────────────────────── */
 .tip {
   background: var(--panel);
