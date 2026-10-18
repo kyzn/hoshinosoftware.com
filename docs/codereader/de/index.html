@@ -49,7 +49,7 @@ Die App funktioniert vollständig offline, speichert nichts in der Cloud und zei
     <div class="product-badges" aria-label="Datenschutz">
       <span class="trust-note">Keine Werbung · Kein Tracking</span>
     </div>
-    <p class="compatibility-note">Erfordert iOS 18 oder neuer.</p>
+    <p class="compatibility-note">Erfordert iOS 18 oder neuer. Für iPhone und iPad, mit zweigeteilter Ansicht auf dem iPhone Duo.</p>
   </div>
 </div>
 
@@ -103,15 +103,17 @@ Die App funktioniert vollständig offline, speichert nichts in der Cloud und zei
   <li><b>Warum dauert der Multi-Code-Modus etwas länger?</b><br>Der Multi-Code-Modus erkennt bis zu 5 Codes gleichzeitig. Die Kamera sammelt Codes über ein kurzes Zeitfenster von Frames, um sicherzustellen, dass alle sichtbaren Codes erfasst werden, bevor das Ergebnis angezeigt wird.</li><br>
   <li><b>Wie lange wird der Scan-Verlauf aufbewahrt?</b><br>Codeleser behält bis zu 10.000 Scans ohne Zeitlimit auf deinem Gerät. Der Verlauf enthält außerdem eine Volltextsuche über den dekodierten Wert jedes Codes.</li><br>
   <li><b>Warum wird nicht automatisch zu einem Link navigiert?</b><br>Das ist beabsichtigt. Gefälschte oder bösartige QR-Codes kommen häufig vor, auf Parkplätzen, Restauranttischen und anderswo. Die URL vor dem Öffnen anzuzeigen gibt dir die Möglichkeit zu prüfen, ob sie sicher ist.</li><br>
+  <li><b>Funktioniert es auf dem iPhone Duo?</b><br>Ja. Auf dem inneren Bildschirm des iPhone Duo liegt nichts auf dem Falz. Der Verlauf zeigt die Liste auf einer Seite und den ausgewählten Scan auf der anderen, die Einstellungen öffnen sich in zwei Bereichen, und ein geteiltes Bild erscheint neben dem, was darin gefunden wurde. Die Kamera hält ihre Tasten auf einer Seite des Falzes.</li><br>
   <li><b>Kann ich wählen, welches Kameraobjektiv verwendet wird?</b><br>Ja. Tippe im Kamera-Bildschirm auf die Dreh-Taste, um durch die Objektive deines iPhones zu wechseln, oder halte sie gedrückt, um eines aus einer Liste zu wählen. Die App merkt sich deine Wahl und öffnet beim nächsten Mal dasselbe Objektiv.</li>
 </ul>
 
 <h2 class="section-h2 section-anchor" id="manual">Handbuch</h2>
 
-<div class="screenshots">
-  <img src="../images/screenshots/de/camera.png" alt="Kamera-Bildschirm">
-  <img src="../images/screenshots/de/result.png" alt="Scan-Ergebnis-Bildschirm">
-  <img src="../images/screenshots/de/settings.png" alt="Einstellungen-Bildschirm">
+<div class="screenshots four">
+  <img src="../images/screenshots/de/camera.png" alt="Kamera-Bildschirm findet drei Codes">
+  <img src="../images/screenshots/de/link.png" alt="Link-Ergebnis mit der Karte Ohne Tracking">
+  <img src="../images/screenshots/de/wifi.png" alt="WLAN-Ergebnis mit Verbinden-Taste">
+  <img src="../images/screenshots/de/history.png" alt="Verlauf-Bildschirm">
 </div>
 
 <h3>Kamera</h3>
@@ -139,7 +141,7 @@ Die App funktioniert vollständig offline, speichert nichts in der Cloud und zei
 <h3>Einstellungen</h3>
 <p>Der Tab „Einstellungen" enthält Funktionsschalter, gefolgt von Informationen zur App.</p>
 
-<p><b>Mehrere Codes scannen</b><br>Standardmäßig hält Codeleser an, sobald es <b>einen Code</b> findet. Aktiviere <b>Mehrere Codes scannen</b>, um bis zu <b>5 Codes gleichzeitig</b> zu erkennen, nützlich für Visitenkarten, Produktblätter oder Bilder mit mehreren nebeneinanderliegenden Codes. Die Kamera scannt nach der ersten Erkennung noch kurz weiter, um alle sichtbaren Codes zu erfassen, bevor die Ergebnisse angezeigt werden.</p>
+<p><b>Mehrere Codes scannen</b><br>Standardmäßig hält Codeleser an, sobald es <b>einen Code</b> findet. Aktiviere <b>Mehrere Codes scannen</b>, um bis zu <b>5 Codes gleichzeitig</b> zu erkennen, nützlich für Visitenkarten, Produktblätter oder Bilder mit mehreren nebeneinanderliegenden Codes. Die Kamera scannt nach der ersten Erkennung noch kurz weiter, um alle sichtbaren Codes zu erfassen, bevor die Ergebnisse angezeigt werden. Die Ergebnisse erscheinen so, wie die Codes im Bild liegen: von oben nach unten und innerhalb einer Reihe von links nach rechts.</p>
 
 <p><b>Mehrteilige QR-Codes</b><br>Manche Ausdrucke verteilen eine Nachricht auf mehrere QR-Codes nebeneinander, Apothekenbelege sind ein typisches Beispiel. Aktiviere <b>Mehrteilige QR-Codes</b> (verfügbar, sobald <b>Mehrere Codes scannen</b> an ist), und Codeleser fügt die Teile in der richtigen Reihenfolge zu einem Ergebnis zusammen. Beim Scannen zeigt die Kamera an, welche Teile noch fehlen, und wartet auf sie. Fehlt dir ein Teil, tippe auf <b>Erneut scannen</b> und scanne nur diesen Teil: Die bereits gefundenen Teile werden 30 Minuten lang gemerkt. Die Einstellung ist standardmäßig aus; dann wird jeder Teil als eigener Code angezeigt.</p>
 
@@ -177,7 +179,7 @@ Die App funktioniert vollständig offline, speichert nichts in der Cloud und zei
 <p>Bei QR-Codes erscheinen außerdem Metadaten-Chips, die Versionsnummer, Fehlerkorrekturlevel und Maskenmuster anzeigen.</p>
 
 <p><b>Erkennung von Tracking-Parametern</b><br>
-Wenn eine URL Tracking-Parameter enthält, zeigt Codeleser unterhalb der Rohdaten eine grüne Karte <b>Ohne Tracking</b> an. Die Karte zeigt die bereinigte URL, eine Zeile <b>Entfernt:</b> mit den entfernten Parametern (UTM-Tags sowie Klick-IDs von Facebook, Google Ads, Microsoft, TikTok und vielen anderen) und die Schaltflächen Kopieren / Teilen / Öffnen, die alle mit der bereinigten URL arbeiten. Du erreichst dieselbe Seite, ohne getrackt zu werden.</p>
+Wenn eine URL Tracking-Parameter enthält, zeigt Codeleser unterhalb der Rohdaten eine grüne Karte <b>Ohne Tracking</b> an. Die Karte zeigt die bereinigte URL, eine Zeile <b>Entfernt:</b> mit den entfernten Parametern (UTM-Tags sowie Klick-IDs von Werbenetzwerken und sozialen Medien und vielen anderen) und die Schaltflächen Kopieren / Teilen / Öffnen, die alle mit der bereinigten URL arbeiten. Du erreichst dieselbe Seite, ohne getrackt zu werden. Außerdem entfernt die App Teilen-Tags, die manche Websites beim Kopieren oder Teilen eines Links anhängen. Sie werden nur bei den Websites entfernt, die sie anhängen; in anderen Links bleibt dasselbe Wort stehen.</p>
 
 <h3>Aus einer anderen App scannen</h3>
 <p>Du kannst einen Code, der in einem Foto in einer anderen App erscheint (einer Nachricht, E-Mail, einem Dokumentenbetrachter oder Webbrowser), scannen, ohne diese App zu verlassen.</p>

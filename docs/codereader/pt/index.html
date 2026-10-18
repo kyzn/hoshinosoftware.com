@@ -36,7 +36,7 @@ O app funciona offline, não armazena nada na nuvem e nunca exibe anúncios.</p>
     <div class="product-badges" aria-label="Privacidade">
       <span class="trust-note">Sem anúncios · Sem rastreamento</span>
     </div>
-    <p class="compatibility-note">Requer o iOS 18 ou posterior.</p>
+    <p class="compatibility-note">Requer o iOS 18 ou posterior. Para iPhone e iPad, com layout de dois painéis no iPhone Duo.</p>
   </div>
 </div>
 <nav id="toc" aria-label="Conteúdo">
@@ -83,14 +83,16 @@ O app funciona offline, não armazena nada na nuvem e nunca exibe anúncios.</p>
   <li><b>Por que o modo multi-código demora um pouco mais?</b><br>O modo multi-código detecta até 5 códigos por vez. A câmera coleta códigos em uma janela curta de frames para garantir que captura todos os códigos visíveis antes de exibir o resultado.</li><br>
   <li><b>Por quanto tempo o histórico é mantido?</b><br>Leitor de Códigos guarda até 10.000 leituras no seu dispositivo sem limite de tempo. A aba Histórico também inclui busca em texto completo no valor decodificado de cada código.</li><br>
   <li><b>Por que não navega para um link automaticamente?</b><br>Isso é intencional. QR codes falsos ou maliciosos são comuns, encontrados em estacionamentos, mesas de restaurantes e outros lugares. Mostrar a URL antes de abri-la permite verificar se é segura.</li><br>
+  <li><b>Funciona no iPhone Duo?</b><br>Sim. Na tela interna do iPhone Duo, nada fica sobre a dobra. O histórico mostra a lista de um lado e a leitura selecionada do outro, as configurações se abrem em dois painéis e uma imagem compartilhada aparece ao lado do que foi encontrado nela. A câmera mantém os botões de um lado da dobra.</li><br>
   <li><b>Posso escolher qual lente da câmera usar?</b><br>Sim. Na tela da câmera, toque no botão de girar para alternar entre as lentes do seu iPhone, ou mantenha pressionado para escolher uma na lista. O app lembra a sua escolha e reabre com a mesma lente.</li>
 </ul>
 
 <h2 class="section-h2 section-anchor" id="manual">Manual</h2>
-<div class="screenshots">
-  <img src="../images/screenshots/pt/camera.png" alt="Tela câmera">
-  <img src="../images/screenshots/pt/result.png" alt="Tela resultado">
-  <img src="../images/screenshots/pt/settings.png" alt="Tela configurações">
+<div class="screenshots four">
+  <img src="../images/screenshots/pt/camera.png" alt="Tela câmera com três códigos">
+  <img src="../images/screenshots/pt/link.png" alt="Resultado de link com o cartão Sem rastreamento">
+  <img src="../images/screenshots/pt/wifi.png" alt="Resultado Wi-Fi com botão Conectar">
+  <img src="../images/screenshots/pt/history.png" alt="Tela histórico">
 </div>
 <h3>Câmera</h3>
 <p>A aba Câmera abre e começa a escanear imediatamente. Aponte seu telefone para qualquer código de barras ou QR code e o app o detecta automaticamente. É necessária permissão para a câmera. Se você ainda não a concedeu, uma solicitação aparecerá. Toque em <b>Abrir Ajustes</b> e ative o acesso à <b>Câmera</b> para Leitor de Códigos.</p>
@@ -114,7 +116,7 @@ O app funciona offline, não armazena nada na nuvem e nunca exibe anúncios.</p>
 <h3>Ajustes</h3>
 <p>A aba Ajustes contém interruptores de recursos, seguidos por informações do app.</p>
 
-<p><b>Ler vários códigos</b><br>Por padrão, Leitor de Códigos para assim que encontra <b>um código</b>. Ative <b>Ler vários códigos</b> para detectar até <b>5 códigos ao mesmo tempo</b>, útil para cartões de visita, fichas de produto ou qualquer imagem com vários códigos lado a lado. A câmera continua lendo por um breve momento após a primeira detecção para coletar todos os códigos visíveis antes de mostrar os resultados.</p>
+<p><b>Ler vários códigos</b><br>Por padrão, Leitor de Códigos para assim que encontra <b>um código</b>. Ative <b>Ler vários códigos</b> para detectar até <b>5 códigos ao mesmo tempo</b>, útil para cartões de visita, fichas de produto ou qualquer imagem com vários códigos lado a lado. A câmera continua lendo por um breve momento após a primeira detecção para coletar todos os códigos visíveis antes de mostrar os resultados. Os resultados aparecem na ordem em que os códigos estão na imagem: de cima para baixo e, em cada linha, da esquerda para a direita.</p>
 
 <p><b>Códigos QR em várias partes</b><br>Alguns impressos dividem uma mesma mensagem em vários códigos QR impressos lado a lado; recibos de farmácia são um exemplo comum. Ative <b>Códigos QR em várias partes</b> (disponível quando <b>Ler vários códigos</b> está ativado) e o Leitor de Códigos une as partes, na ordem certa, em um único resultado. Durante a leitura, a câmera mostra quais partes ainda faltam e espera por elas. Se uma parte escapar, toque em <b>Escanear de novo</b> e leia só essa parte: as partes já encontradas ficam guardadas por 30 minutos. Esta opção vem desativada, e cada parte aparece como um código separado.</p>
 
@@ -151,7 +153,7 @@ O app funciona offline, não armazena nada na nuvem e nunca exibe anúncios.</p>
 </ul>
 <p>Para QR codes, chips de metadados também aparecem mostrando número de versão, nível de correção de erros e padrão de máscara.</p>
 <p><b>Detecção de parâmetros de rastreamento</b><br>
-Quando uma URL contém parâmetros de rastreamento, Leitor de Códigos exibe um cartão verde <b>Sem rastreamento</b> abaixo dos dados brutos. O cartão mostra a URL limpa, uma linha <b>Removidos:</b> listando os parâmetros retirados (tags UTM e IDs de clique do Facebook, Google Ads, Microsoft, TikTok e muitos outros) e os botões Copiar / Compartilhar / Abrir, todos operando na URL limpa. Você acessa a mesma página sem ser rastreado.</p>
+Quando uma URL contém parâmetros de rastreamento, Leitor de Códigos exibe um cartão verde <b>Sem rastreamento</b> abaixo dos dados brutos. O cartão mostra a URL limpa, uma linha <b>Removidos:</b> listando os parâmetros retirados (tags UTM e IDs de clique de redes de anúncios e redes sociais, e muitos outros) e os botões Copiar / Compartilhar / Abrir, todos operando na URL limpa. Você acessa a mesma página sem ser rastreado. Também remove as marcas de compartilhamento que alguns sites adicionam quando você copia ou compartilha um link. Elas são removidas só nos sites que as adicionam, então a mesma palavra em outros links continua lá.</p>
 <h3>Escanear de Outro App</h3>
 <p>Você pode escanear um código que aparece em uma foto dentro de qualquer outro app (uma mensagem, e-mail, visualizador de documentos ou navegador) sem sair desse app.</p>
 <p><b>Usando Compartilhar:</b></p>

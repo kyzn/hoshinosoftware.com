@@ -42,7 +42,7 @@ No ads, no tracking. Remove trackers, scan multiple codes, and share images from
     <div class="product-badges" aria-label="Privacy">
       <span class="trust-note">No ads · No tracking</span>
     </div>
-    <p class="compatibility-note">Requires iOS 18 or later.</p>
+    <p class="compatibility-note">Requires iOS 18 or later. For iPhone and iPad, with a two-pane layout on iPhone Duo.</p>
   </div>
 </div>
 
@@ -106,6 +106,7 @@ No ads, no tracking. Remove trackers, scan multiple codes, and share images from
   <li><b>Why does multi-code mode take a little longer?</b><br>Multi-Code Mode detects up to 5 codes at once. The camera gathers codes across a short window of frames to make sure it catches all of them before showing the result.</li><br>
   <li><b>How long is scan history kept?</b><br>Barcode QR Reader keeps up to 10,000 scans on your device with no time limit. The History tab also includes full-text search across each code's decoded value.</li><br>
   <li><b>Why doesn't it navigate to a link automatically?</b><br>This is intentional. Fake or malicious QR codes are common, found in parking lots, restaurant tables, and elsewhere. Showing you the URL before opening it lets you verify it's safe.</li><br>
+  <li><b>Does it work on iPhone Duo?</b><br>Yes. On the iPhone Duo's inner screen, nothing sits on the fold. History shows the list on one side and the selected scan on the other, Settings opens into two panes, and a shared image appears beside what was found in it. The camera keeps its buttons on one side of the fold.</li><br>
   <li><b>Can I choose which camera lens to use?</b><br>Yes. Tap the rotate button on the camera screen to cycle through your iPhone's lenses, or long-press it to pick one from a list. The app remembers your choice and reopens with the same lens next time.</li>
 </ul>
 
@@ -116,10 +117,11 @@ No ads, no tracking. Remove trackers, scan multiple codes, and share images from
 
 <h2 class="section-h2 section-anchor" id="manual">Manual</h2>
 
-<div class="screenshots">
-  <img src="../images/screenshots/en/camera.png" alt="Camera screen">
-  <img src="../images/screenshots/en/result.png" alt="Scan result screen">
-  <img src="../images/screenshots/en/settings.png" alt="Settings screen">
+<div class="screenshots four">
+  <img src="../images/screenshots/en/camera.png" alt="Camera screen finding three codes">
+  <img src="../images/screenshots/en/link.png" alt="Link result with the Without tracking card">
+  <img src="../images/screenshots/en/wifi.png" alt="Wi-Fi result with a Connect button">
+  <img src="../images/screenshots/en/history.png" alt="History screen">
 </div>
 
 <h3>Camera</h3>
@@ -148,7 +150,7 @@ No ads, no tracking. Remove trackers, scan multiple codes, and share images from
 <p>The Settings tab contains feature toggles, then app information.</p>
 
 <p><b>Scan Multiple Codes</b><br>
-By default, Barcode QR Reader stops as soon as it finds <b>one code</b>. Turn on <b>Scan Multiple Codes</b> to detect up to <b>5 codes at once</b>, useful for business cards, product sheets, or any image containing several codes side by side. The camera keeps scanning for a brief moment after the first detection to gather all visible codes before showing results.</p>
+By default, Barcode QR Reader stops as soon as it finds <b>one code</b>. Turn on <b>Scan Multiple Codes</b> to detect up to <b>5 codes at once</b>, useful for business cards, product sheets, or any image containing several codes side by side. The camera keeps scanning for a brief moment after the first detection to gather all visible codes before showing results. Results are listed the way the codes sit in the picture: top to bottom, and left to right within a row.</p>
 
 <p><b>Multi-Part QR Codes</b><br>
 Some printouts split one message across several QR codes printed side by side; pharmacy receipts are a common example. Turn on <b>Multi-Part QR Codes</b> (available once <b>Scan Multiple Codes</b> is on) and Barcode QR Reader joins the parts, in the right order, into a single result. While scanning, the camera tells you which parts are still missing and waits for them. If you miss a part, tap <b>Scan Again</b> and scan just that part: the parts already found are remembered for 30 minutes. The setting is off by default, in which case each part shows as its own code.</p>
@@ -188,7 +190,7 @@ Turn on <b>Show Advanced Details</b> to reveal technical metadata alongside each
 <p>For QR codes, metadata chips also appear showing version number, error correction level, and mask pattern.</p>
 
 <p><b>Tracking parameter detection</b><br>
-When a URL contains tracking parameters, Barcode QR Reader shows a green <b>Without tracking</b> card below the raw data. The card displays the cleaned URL, a <b>Removed:</b> line listing the stripped parameters (UTM tags, plus click IDs from Facebook, Google Ads, Microsoft, TikTok, and many more), and Copy / Share / Open buttons that all operate on the clean URL. You reach the same page without being tracked.</p>
+When a URL contains tracking parameters, Barcode QR Reader shows a green <b>Without tracking</b> card below the raw data. The card displays the cleaned URL, a <b>Removed:</b> line listing the stripped parameters (UTM tags, plus click IDs from ad networks and social media, and many more), and Copy / Share / Open buttons that all operate on the clean URL. You reach the same page without being tracked. It also removes share tags that some sites add when you copy or share a link. Those are removed only on the sites that add them, so the same word in other links is left alone.</p>
 
 <h3>Scanning from Another App</h3>
 <p>You can scan a code that appears in a photo inside any other app (a message, email, document viewer, or web browser) without leaving that app.</p>

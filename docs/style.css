@@ -281,6 +281,11 @@ main {
    the corner radius differs, matching the rounder watch bezel. */
 .screenshots.watch img { border-radius: 16px; }
 
+/* Four phone shots in one row (Code Reader); two by two on narrow screens. */
+.screenshots.four { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.screenshots.four img { width: 100%; height: auto; }
+@media (max-width: 680px) { .screenshots.four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
 /* ── Tip box ───────────────────────────────────────────────── */
 .tip {
   background: var(--panel);

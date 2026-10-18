@@ -42,7 +42,7 @@ L'app fonctionne hors ligne, ne stocke rien dans le cloud et n'affiche jamais de
     <div class="product-badges" aria-label="Confidentialité">
       <span class="trust-note">Sans pub · Sans suivi</span>
     </div>
-    <p class="compatibility-note">Nécessite iOS 18 ou version ultérieure.</p>
+    <p class="compatibility-note">Nécessite iOS 18 ou version ultérieure. Pour iPhone et iPad, avec une disposition en deux volets sur iPhone Duo.</p>
   </div>
 </div>
 
@@ -106,6 +106,7 @@ L'app fonctionne hors ligne, ne stocke rien dans le cloud et n'affiche jamais de
   <li><b>Pourquoi le mode multi-code prend-il un peu plus de temps ?</b><br>Le mode multi-code détecte jusqu'à 5 codes à la fois. L'appareil photo collecte les codes sur une courte fenêtre d'images pour s'assurer de capturer tous les codes visibles avant d'afficher le résultat.</li><br>
   <li><b>Combien de temps l'historique des scans est-il conservé ?</b><br>Lecteur de Codes conserve jusqu'à 10 000 scans sur votre appareil sans limite de temps. L'onglet Historique inclut également une recherche en texte intégral dans la valeur décodée de chaque code.</li><br>
   <li><b>Pourquoi ne navigue-t-il pas automatiquement vers un lien ?</b><br>C'est intentionnel. Les QR codes faux ou malveillants sont courants : dans les parkings, sur les tables de restaurant et ailleurs. Vous montrer l'URL avant de l'ouvrir vous permet de vérifier qu'elle est sûre.</li><br>
+  <li><b>Fonctionne-t-il sur iPhone Duo ?</b><br>Oui. Sur l'écran intérieur de l'iPhone Duo, rien ne se trouve sur le pli. L'historique affiche la liste d'un côté et le scan sélectionné de l'autre, les réglages s'ouvrent en deux volets, et une image partagée apparaît à côté de ce qui y a été trouvé. L'appareil photo garde ses boutons d'un seul côté du pli.</li><br>
   <li><b>Puis-je choisir quel objectif de caméra utiliser ?</b><br>Oui. Sur l'écran de la caméra, appuyez sur le bouton de rotation pour parcourir les objectifs de votre iPhone, ou appuyez longuement pour en choisir un dans une liste. L'app mémorise votre choix et rouvre avec le même objectif.</li>
 </ul>
 
@@ -116,10 +117,11 @@ L'app fonctionne hors ligne, ne stocke rien dans le cloud et n'affiche jamais de
 
 <h2 class="section-h2 section-anchor" id="manual">Manuel</h2>
 
-<div class="screenshots">
-  <img src="../images/screenshots/fr/camera.png" alt="Écran caméra">
-  <img src="../images/screenshots/fr/result.png" alt="Écran résultat">
-  <img src="../images/screenshots/fr/settings.png" alt="Écran réglages">
+<div class="screenshots four">
+  <img src="../images/screenshots/fr/camera.png" alt="Écran caméra trouvant trois codes">
+  <img src="../images/screenshots/fr/link.png" alt="Résultat de lien avec la carte Sans suivi">
+  <img src="../images/screenshots/fr/wifi.png" alt="Résultat Wi-Fi avec bouton Se connecter">
+  <img src="../images/screenshots/fr/history.png" alt="Écran historique">
 </div>
 
 <h3>Appareil photo</h3>
@@ -147,7 +149,7 @@ L'app fonctionne hors ligne, ne stocke rien dans le cloud et n'affiche jamais de
 <h3>Réglages</h3>
 <p>L'onglet Réglages contient les interrupteurs de fonctionnalités, puis les informations sur l'application.</p>
 
-<p><b>Scanner plusieurs codes</b><br>Par défaut, Lecteur de Codes s'arrête dès qu'il trouve <b>un code</b>. Activez <b>Scanner plusieurs codes</b> pour détecter jusqu'à <b>5 codes à la fois</b>, utile pour les cartes de visite, les fiches produits ou toute image contenant plusieurs codes côte à côte. L'appareil photo continue de scanner brièvement après la première détection afin de rassembler tous les codes visibles avant d'afficher les résultats.</p>
+<p><b>Scanner plusieurs codes</b><br>Par défaut, Lecteur de Codes s'arrête dès qu'il trouve <b>un code</b>. Activez <b>Scanner plusieurs codes</b> pour détecter jusqu'à <b>5 codes à la fois</b>, utile pour les cartes de visite, les fiches produits ou toute image contenant plusieurs codes côte à côte. L'appareil photo continue de scanner brièvement après la première détection afin de rassembler tous les codes visibles avant d'afficher les résultats. Les résultats suivent la disposition des codes dans l'image : de haut en bas, puis de gauche à droite sur une même ligne.</p>
 
 <p><b>QR codes en plusieurs parties</b><br>Certains imprimés répartissent un même message sur plusieurs QR codes placés côte à côte ; les tickets de pharmacie en sont un exemple courant. Activez <b>QR codes en plusieurs parties</b> (disponible une fois <b>Scanner plusieurs codes</b> activé) et Lecteur de Codes réunit les parties, dans le bon ordre, en un seul résultat. Pendant le scan, l’appareil photo indique les parties encore manquantes et les attend. Si une partie vous échappe, touchez <b>Scanner à nouveau</b> et scannez uniquement cette partie : les parties déjà trouvées sont mémorisées pendant 30 minutes. Cette option est désactivée par défaut ; chaque partie s’affiche alors comme un code distinct.</p>
 
@@ -185,7 +187,7 @@ L'app fonctionne hors ligne, ne stocke rien dans le cloud et n'affiche jamais de
 <p>Pour les QR codes, des puces de métadonnées apparaissent également indiquant le numéro de version, le niveau de correction d'erreur et le motif de masque.</p>
 
 <p><b>Détection des paramètres de suivi</b><br>
-Lorsqu'une URL contient des paramètres de suivi, Lecteur de Codes affiche une carte verte <b>Sans suivi</b> sous les données brutes. La carte affiche l'URL nettoyée, une ligne <b>Supprimés :</b> indiquant les paramètres retirés (balises UTM ainsi que les identifiants de clic de Facebook, Google Ads, Microsoft, TikTok et bien d'autres) et des boutons Copier / Partager / Ouvrir, qui agissent tous sur l'URL nettoyée. Vous accédez à la même page sans être suivi.</p>
+Lorsqu'une URL contient des paramètres de suivi, Lecteur de Codes affiche une carte verte <b>Sans suivi</b> sous les données brutes. La carte affiche l'URL nettoyée, une ligne <b>Supprimés :</b> indiquant les paramètres retirés (balises UTM ainsi que les identifiants de clic des régies publicitaires et des réseaux sociaux, et bien d'autres) et des boutons Copier / Partager / Ouvrir, qui agissent tous sur l'URL nettoyée. Vous accédez à la même page sans être suivi. Elle retire aussi les balises de partage que certains sites ajoutent quand vous copiez ou partagez un lien. Elles ne sont retirées que sur les sites qui les ajoutent : le même mot dans d'autres liens reste en place.</p>
 
 <h3>Scanner depuis une autre application</h3>
 <p>Vous pouvez scanner un code qui apparaît dans une photo dans n'importe quelle autre application (un message, un e-mail, un lecteur de documents ou un navigateur web) sans quitter cette application.</p>
