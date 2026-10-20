@@ -27,11 +27,11 @@
   <img src="../../icons/plaka.png" alt="Plaka App Kolunda uygulama simgesi" width="92" height="92">
   <div>
     <h1 class="section-anchor" id="top">Plaka App Kolunda</h1>
-    <p>Türkiye’nin 81 ilinin plaka kodlarını Apple Watch’unuzda öğrenin. İl adını görüp plakasını yazın ya da plakayı görüp ili bulun. Her cevaptan sonra doğrusunu görürsünüz. iPhone gerekmez.</p>
+    <p>Türkiye’nin 81 ilinin plaka kodlarını ve haritadaki yerlerini Apple Watch’unuzda öğrenin. İl adını görüp plakasını yazın, plakayı görüp ili bulun ya da haritada işaretli ili tanıyın. İsterseniz tüm Türkiye’yi, isterseniz tek bir bölgeyi çalışın. Her cevaptan sonra doğrusunu görürsünüz. iPhone gerekmez.</p>
     <div class="product-badges" aria-label="Gizlilik">
       <span class="trust-note">Reklam yok · Takip yok</span>
     </div>
-    <p class="compatibility-note">watchOS 9 veya sonrası gerekir.</p>
+    <p class="compatibility-note">watchOS 8 veya sonrası gerekir.</p>
   </div>
 </div>
 
@@ -85,7 +85,8 @@
 <ul>
   <li><b>iPhone olmadan çalışır mı?</b><br>Evet. Uygulama doğrudan Apple Watch’ta çalışır; iPhone gerekmez.</li><br>
   <li><b>Hangi iller var?</b><br>81 ilin tamamı, 01 Adana’dan 81 Düzce’ye kadar. Aşağıda tam listeyi bulabilirsiniz.</li><br>
-  <li><b>Aynı il sık sık tekrar ediyor mu?</b><br>Hayır. 81 ilin her biri sorulmadan hiçbir il ikinci kez sorulmaz.</li><br>
+  <li><b>Sadece bir bölgeyi çalışabilir miyim?</b><br>Evet. Ana ekrandaki <b>Bölge</b>’ye dokunup Marmara, Ege, Akdeniz, İç Anadolu, Karadeniz, Doğu Anadolu ya da Güneydoğu Anadolu’yu seçin. Üç oyun da yalnızca o bölgenin illerini sorar. Seçiminiz hatırlanır.</li><br>
+  <li><b>Aynı il sık sık tekrar ediyor mu?</b><br>Hayır. Seçtiğiniz bölgedeki (ya da 81 ilin) her il sorulmadan hiçbir il ikinci kez sorulmaz.</li><br>
   <li><b>Süre sınırı var mı?</b><br>Hayır. İstediğiniz kadar düşünebilirsiniz. Cevabınızdan sonra doğru il ve plakası gösterilir.</li><br>
   <li><b>Uygulama hangi dillerde?</b><br>Türkçe ve İngilizce. Saatiniz başka bir dildeyse uygulama Türkçe açılır. İl adları her iki dilde de resmi Türkçe adlarıyla gösterilir.</li><br>
   <li><b>Hangi cevaplar istatistiklere dahil edilir?</b><br>Yalnızca cevapladığınız sorular sayılır. Cevap vermeden çıktığınız sorular istatistiklere eklenmez.</li><br>
@@ -101,6 +102,8 @@
 <div class="screenshots watch">
   <img src="../images/screenshots/1-typing.png" alt="İstanbul adı, yazılan 3 rakamı ve iki sıra rakam tuşunu gösteren Şehir → Plaka ekranı">
   <img src="../images/screenshots/2-choosing.png" alt="10 plakası ve Bursa, Balıkesir, İzmir, Ankara seçeneklerini gösteren Plaka → Şehir ekranı">
+  <img src="../images/screenshots/3-map.png" alt="Türkiye haritasında Balıkesir’in işaretli olduğu ve Çanakkale, Bursa, Balıkesir, Manisa seçeneklerini gösteren Harita → Şehir ekranı">
+  <img src="../images/screenshots/4-regions.png" alt="Tüm Türkiye, Marmara ve seçili Ege satırlarını gösteren Bölge listesi">
 </div>
 
 <h3>Şehir → Plaka</h3>
@@ -117,12 +120,21 @@
   <li>Dört il arasından plakanın ait olduğu ili seçin.</li>
 </ul>
 
+<h3>Harita → Şehir</h3>
+<ul>
+  <li><b>Harita → Şehir</b> seçeneğine dokunun. Haritada bir il turuncu renkte ve etrafında bir halkayla işaretlenir.</li>
+  <li>Dört il arasından işaretli ili seçin. Seçenekler hep o ilin yakınındaki illerdir, yani yerini gerçekten bilmeniz gerekir.</li>
+</ul>
+
+<h3>Bölge</h3>
+<p>Ana ekrandaki <b>Bölge</b> satırından <b>Tüm Türkiye</b>’yi ya da yedi coğrafi bölgeden birini seçin. Sorular ve seçenekler o bölgeden gelir, harita da bölgeye yakınlaşır. Klavye yine 01–81 arasındaki tüm plakaları kabul eder, böylece ipucu vermez.</p>
+
 <h3>Sonuç</h3>
 <p>Her cevaptan sonra <b>Doğru</b> ya da <b>Olmadı</b> yazısı, doğru il ve plakası görünür. Yanlış cevapta yazdığınız ya da seçtiğiniz plakanın hangi ile ait olduğunu da görürsünüz, örneğin <b>Yanlış: 36 Kars</b>. Yeni bir soru için <b>Devam</b>'a dokunun.</p>
 <div class="tip">💡 Süre sınırı yok. Yanlış cevap bile bir ilin plakasını öğretir.</div>
 
 <h3>İstatistik</h3>
-<p><b>Bugün</b> ve <b>Toplam</b> bölümlerinde doğru ve yanlış cevap sayılarınızı ve yüzdelerini görebilirsiniz. Yana kaydırarak üç sayfa arasında geçebilirsiniz: <b>Genel</b>, <b>Şehir → Plaka</b> ve <b>Plaka → Şehir</b>.</p>
+<p><b>Bugün</b> ve <b>Toplam</b> bölümlerinde doğru ve yanlış cevap sayılarınızı ve yüzdelerini görebilirsiniz. Yana kaydırarak dört sayfa arasında geçebilirsiniz: <b>Genel</b>, <b>Şehir → Plaka</b>, <b>Plaka → Şehir</b> ve <b>Harita → Şehir</b>.</p>
 
 <h3>Plaka Listesi</h3>
 <table>
@@ -165,6 +177,9 @@
 <!-- ══════════════════════════════════════════════════════════ -->
 
 <h2 class="section-h2 section-anchor" id="legal">Yasal</h2>
+
+<h3>Harita verileri</h3>
+<p>İl sınırları <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a> verilerinden alınmıştır (kamu malı).</p>
 
 <h3 id="privacy">Gizlilik Politikası</h3>
 <p><b>Son Güncelleme:</b> Ekim 2026</p>
