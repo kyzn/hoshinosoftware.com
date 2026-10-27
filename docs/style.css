@@ -488,7 +488,7 @@ body{background:#f7f8fa;color:var(--fg)}h1,h2.section-h2{background:none;color:v
 
 /* Fine outlines retain the codes' existing white quiet zone. */
 .demo-codes-table img,
-img[src$="/download.png"],
+img[src*="/images/download"],
 .screenshots img,
 .screenshots.watch img,
 .app-screenshots img {
